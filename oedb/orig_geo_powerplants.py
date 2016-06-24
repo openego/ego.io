@@ -1,12 +1,11 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, DateTime, Float, Integer, Numeric, String, Table, Text, text
+from sqlalchemy import BigInteger, Column, DateTime, Float, Integer, Numeric, \
+    String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
-
 Base = declarative_base()
 metadata = Base.metadata
-
 
 t_industry_hoes_substations = Table(
     'industry_hoes_substations', metadata,
@@ -16,7 +15,6 @@ t_industry_hoes_substations = Table(
     schema='orig_geo_powerplants'
 )
 
-
 t_industry_hs_substations = Table(
     'industry_hs_substations', metadata,
     Column('polygon_gid', Integer),
@@ -24,7 +22,6 @@ t_industry_hs_substations = Table(
     Column('voltage_level', Text),
     schema='orig_geo_powerplants'
 )
-
 
 t_industry_powerplant = Table(
     'industry_powerplant', metadata,
@@ -57,7 +54,8 @@ class Nep2015Powerplant(Base):
     lon = Column(Float(53))
     location_checked = Column(Text)
     geom = Column(Geometry('POINT', 4326))
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_powerplants.nep_2015_powerplants_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_powerplants.nep_2015_powerplants_gid_seq'::regclass)"))
 
 
 class ProcPowerPlantGermany(Base):

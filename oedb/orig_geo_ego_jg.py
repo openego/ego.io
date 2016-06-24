@@ -1,9 +1,9 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Boolean, Column, Float, Index, Integer, Numeric, SmallInteger, String, Table, Text, text
+from sqlalchemy import BigInteger, Boolean, Column, Float, Index, Integer, \
+    Numeric, SmallInteger, String, Table, Text, text
 from geoalchemy2.types import Geometry, Raster
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -13,7 +13,8 @@ class EgoDeuLoad(Base):
     __tablename__ = 'ego_deu_loads'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_loads_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_loads_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
     zensus_sum = Column(Integer)
     zensus_count = Column(Integer)
@@ -50,7 +51,6 @@ t_ego_deu_loads_centre_mview = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_ego_deu_loads_city_area_1_mview = Table(
     'ego_deu_loads_city_area_1_mview', metadata,
     Column('id', Integer),
@@ -58,7 +58,6 @@ t_ego_deu_loads_city_area_1_mview = Table(
     Column('geom', Geometry('POLYGON', 3035), index=True),
     schema='orig_geo_ego_jg'
 )
-
 
 t_ego_deu_loads_city_area_2_mview = Table(
     'ego_deu_loads_city_area_2_mview', metadata,
@@ -68,7 +67,6 @@ t_ego_deu_loads_city_area_2_mview = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_ego_deu_loads_city_area_3_mview = Table(
     'ego_deu_loads_city_area_3_mview', metadata,
     Column('id', Integer),
@@ -77,7 +75,6 @@ t_ego_deu_loads_city_area_3_mview = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_ego_deu_loads_city_area_4_mview = Table(
     'ego_deu_loads_city_area_4_mview', metadata,
     Column('id', Integer),
@@ -85,7 +82,6 @@ t_ego_deu_loads_city_area_4_mview = Table(
     Column('geom', Geometry('POLYGON', 3035), index=True),
     schema='orig_geo_ego_jg'
 )
-
 
 t_ego_deu_loads_city_area_5_mview = Table(
     'ego_deu_loads_city_area_5_mview', metadata,
@@ -100,7 +96,8 @@ class EgoDeuLoadsCollect(Base):
     __tablename__ = 'ego_deu_loads_collect'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_loads_collect_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_loads_collect_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
@@ -108,7 +105,8 @@ class EgoDeuLoadsCollectBuffer100(Base):
     __tablename__ = 'ego_deu_loads_collect_buffer100'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
@@ -116,7 +114,8 @@ class EgoDeuLoadsCollectBuffer100Unbuffer(Base):
     __tablename__ = 'ego_deu_loads_collect_buffer100_unbuffer'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_unbuffer_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_unbuffer_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
     geom_centroid = Column(Geometry('POINT', 3035), index=True)
 
@@ -125,7 +124,8 @@ class EgoDeuLoadsCollectBuffer100UnbufferCut(Base):
     __tablename__ = 'ego_deu_loads_collect_buffer100_unbuffer_cut'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_unbuffer_cut_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_unbuffer_cut_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035))
     geom_buffer = Column(Geometry('POLYGON', 3035))
 
@@ -134,7 +134,8 @@ class EgoDeuLoadsCollectBuffer100UnbufferCutGem(Base):
     __tablename__ = 'ego_deu_loads_collect_buffer100_unbuffer_cut_gem'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_unbuffer_cut_gem_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_unbuffer_cut_gem_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
@@ -142,7 +143,8 @@ class EgoDeuLoadsCollectBuffer100UnbufferCutSpf(Base):
     __tablename__ = 'ego_deu_loads_collect_buffer100_unbuffer_cut_spf'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_unbuffer_cut_spf_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_loads_collect_buffer100_unbuffer_cut_spf_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
@@ -156,7 +158,6 @@ t_ego_deu_loads_collect_buffer100_unbuffer_error_geom_fix_mview = Table(
     Column('geom', Geometry('POLYGON', 3035)),
     schema='orig_geo_ego_jg'
 )
-
 
 t_ego_deu_loads_collect_buffer100_unbuffer_error_geom_view = Table(
     'ego_deu_loads_collect_buffer100_unbuffer_error_geom_view', metadata,
@@ -196,7 +197,6 @@ t_ego_deu_loads_error_area_ha_mview = Table(
     Column('geom', Geometry('POLYGON', 3035)),
     schema='orig_geo_ego_jg'
 )
-
 
 t_ego_deu_loads_error_noags_view = Table(
     'ego_deu_loads_error_noags_view', metadata,
@@ -255,7 +255,8 @@ class EgoDeuMvGridcellFull(Base):
     __tablename__ = 'ego_deu_mv_gridcell_full'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_mv_gridcell_full_id_seq'::regclass)"))
+    id = Column(BigInteger, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_mv_gridcell_full_id_seq'::regclass)"))
     geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
@@ -265,7 +266,6 @@ t_ego_deu_mv_gridcell_full_mview = Table(
     Column('geom', Geometry('POLYGON', 3035), index=True),
     schema='orig_geo_ego_jg'
 )
-
 
 t_ego_deu_mv_gridcell_full_mview_error_geom_mview = Table(
     'ego_deu_mv_gridcell_full_mview_error_geom_mview', metadata,
@@ -277,14 +277,12 @@ t_ego_deu_mv_gridcell_full_mview_error_geom_mview = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_ego_deu_mv_gridcell_mview = Table(
     'ego_deu_mv_gridcell_mview', metadata,
     Column('id', Integer),
     Column('geom', Geometry('POLYGON', 3035), index=True),
     schema='orig_geo_ego_jg'
 )
-
 
 t_ego_deu_mv_substations_mview = Table(
     'ego_deu_mv_substations_mview', metadata,
@@ -328,7 +326,8 @@ class EgoDeuOsmLoadarea(Base):
     geom_centroid = Column(Geometry('POINT', 3035), index=True)
     geom_surfacepoint = Column(Geometry('POINT', 3035), index=True)
     geom_buffer = Column(Geometry('POLYGON', 3035), index=True)
-    la_id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_osm_loadarea_la_id_seq'::regclass)"))
+    la_id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_osm_loadarea_la_id_seq'::regclass)"))
 
 
 class EgoDeuOsmLoadareaSpf(Base):
@@ -370,7 +369,8 @@ class EgoDeuZensusLoadpointsCluster(Base):
     __tablename__ = 'ego_deu_zensus_loadpoints_cluster'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    cid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.ego_deu_zensus_loadpoints_cluster_cid_seq'::regclass)"))
+    cid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.ego_deu_zensus_loadpoints_cluster_cid_seq'::regclass)"))
     zensus_sum = Column(Integer)
     area_ha = Column(Integer)
     geom = Column(Geometry('POLYGON', 3035), index=True)
@@ -405,7 +405,8 @@ class JgMSBy(Base):
     __tablename__ = 'jg_MS_Bies'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Bies_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """nextval('orig_geo_ego_jg."jg_MS_Bies_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -435,7 +436,8 @@ class JgMSBreit(Base):
     __tablename__ = 'jg_MS_Breit'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Breit_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """nextval('orig_geo_ego_jg."jg_MS_Breit_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -465,7 +467,8 @@ class JgMSBuch(Base):
     __tablename__ = 'jg_MS_Buch'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Buch_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """nextval('orig_geo_ego_jg."jg_MS_Buch_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -495,7 +498,8 @@ class JgMSHorg(Base):
     __tablename__ = 'jg_MS_Horg'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Horg_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """nextval('orig_geo_ego_jg."jg_MS_Horg_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -525,7 +529,8 @@ class JgMSLage(Base):
     __tablename__ = 'jg_MS_Lage'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Lage_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """nextval('orig_geo_ego_jg."jg_MS_Lage_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -555,7 +560,8 @@ class JgMSLeng(Base):
     __tablename__ = 'jg_MS_Leng'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Leng_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """"nextval('orig_geo_ego_jg."jg_MS_Leng_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -585,7 +591,8 @@ class JgMSMemm(Base):
     __tablename__ = 'jg_MS_Memm'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Memm_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """nextval('orig_geo_ego_jg."jg_MS_Memm_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -615,7 +622,8 @@ class JgMSObau(Base):
     __tablename__ = 'jg_MS_Obau'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Obau_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """nextval('orig_geo_ego_jg."jg_MS_Obau_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -645,7 +653,8 @@ class JgMSOtto(Base):
     __tablename__ = 'jg_MS_Otto'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Otto_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """"nextval('orig_geo_ego_jg."jg_MS_Otto_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -675,7 +684,8 @@ class JgMSUntei(Base):
     __tablename__ = 'jg_MS_Untei'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_Untei_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """nextval('orig_geo_ego_jg."jg_MS_Untei_id_seq"'::regclass)"""))
     geom = Column(Geometry('MULTILINESTRING', 4326), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -708,7 +718,8 @@ class JgMSSpf(Base):
     id = Column(Integer)
     geom = Column(Geometry('LINESTRING', 3035), index=True)
     name = Column(String(254))
-    pid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_MS_spf_pid_seq"'::regclass)"))
+    pid = Column(Integer, primary_key=True, server_default=text(
+        """"nextval('orig_geo_ego_jg."jg_MS_spf_pid_seq"'::regclass)"""))
 
 
 class JgMSSpfBb(Base):
@@ -723,7 +734,8 @@ class JgNSTu(Base):
     __tablename__ = 'jg_NS_Tus'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    Name = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_NS_Tus_Name_seq"'::regclass)"))
+    Name = Column(Integer, primary_key=True, server_default=text(
+        """"nextval('orig_geo_ego_jg."jg_NS_Tus_Name_seq"'::regclass)"""))
     geom = Column(Geometry('LINESTRINGZ', 3035), index=True)
     name = Column(String(254))
     descriptio = Column(String(254))
@@ -765,7 +777,7 @@ class JgNSTusAnglesGi(Base):
     geom = Column(Geometry('POINTZ'), primary_key=True)
 
 
-class JgNSTusCont3.75(Base):
+class JgNSTusCont3_75(Base):
     __tablename__ = 'jg_NS_Tus_cont_3.75'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
@@ -773,7 +785,7 @@ class JgNSTusCont3.75(Base):
     id = Column(BigInteger, primary_key=True)
 
 
-class JgNSTusCont9.75(Base):
+class JgNSTusCont9_75(Base):
     __tablename__ = 'jg_NS_Tus_cont_9.75'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
@@ -794,7 +806,8 @@ class JgONTsSpf(Base):
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
     geom = Column(Geometry('POINT'), index=True)
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg."jg_ONTs_spf_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        """nextval('orig_geo_ego_jg."jg_ONTs_spf_id_seq"'::regclass)"""))
 
 
 class JgBboxesSpf(Base):
@@ -802,7 +815,8 @@ class JgBboxesSpf(Base):
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
     geom = Column(Geometry('POLYGON', 3035), index=True)
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.jg_bboxes_spf_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.jg_bboxes_spf_id_seq'::regclass)"))
     zensus_sum = Column(Integer)
     zensus_count = Column(Integer)
     zensus_density = Column(Numeric)
@@ -846,12 +860,13 @@ class JgPopulatedAreasL(Base):
 
     geom = Column(Geometry, index=True)
     box_id = Column(Integer)
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.jg_populated_areas_ls_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.jg_populated_areas_ls_id_seq'::regclass)"))
     zensus_sum = Column(Integer)
     onts = Column(Numeric)
 
 
-class JgStreetsBuffered9.75(Base):
+class JgStreetsBuffered9_75(Base):
     __tablename__ = 'jg_streets_buffered_9.75'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
@@ -892,7 +907,8 @@ class OsmDeuPolygonUrbanBuffer100Unbuffer(Base):
     __tablename__ = 'osm_deu_polygon_urban_buffer100_unbuffer'
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
-    uid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.osm_deu_polygon_urban_buffer100_unbuffer_uid_seq'::regclass)"))
+    uid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.osm_deu_polygon_urban_buffer100_unbuffer_uid_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
     zensus_sum = Column(Integer)
     zensus_count = Column(Integer)
@@ -934,7 +950,6 @@ t_osm_deu_polygon_urban_buffer100_unbuffer_check_res_combination_ = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_osm_deu_polygon_urban_buffer100_unbuffer_error_area_ha_mview = Table(
     'osm_deu_polygon_urban_buffer100_unbuffer_error_area_ha_mview', metadata,
     Column('uid', Integer),
@@ -942,7 +957,6 @@ t_osm_deu_polygon_urban_buffer100_unbuffer_error_area_ha_mview = Table(
     Column('geom', Geometry('POLYGON', 3035)),
     schema='orig_geo_ego_jg'
 )
-
 
 t_osm_deu_polygon_urban_error_geom_vg250_mview = Table(
     'osm_deu_polygon_urban_error_geom_vg250_mview', metadata,
@@ -960,7 +974,6 @@ t_osm_deu_polygon_urban_error_geom_vg250_mview = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_osm_deu_polygon_urban_error_geom_view = Table(
     'osm_deu_polygon_urban_error_geom_view', metadata,
     Column('id', Integer),
@@ -970,13 +983,11 @@ t_osm_deu_polygon_urban_error_geom_view = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_test_2_voronoi = Table(
     'test_2_voronoi', metadata,
     Column('geom', Geometry),
     schema='orig_geo_ego_jg'
 )
-
 
 t_test_2_voronoi_pts = Table(
     'test_2_voronoi_pts', metadata,
@@ -984,7 +995,6 @@ t_test_2_voronoi_pts = Table(
     Column('geom', Geometry),
     schema='orig_geo_ego_jg'
 )
-
 
 t_test_voronoi = Table(
     'test_voronoi', metadata,
@@ -999,7 +1009,8 @@ class TestVoronoiGeom(Base):
     __table_args__ = {'schema': 'orig_geo_ego_jg'}
 
     geom = Column(Geometry('POLYGON', 4326), index=True)
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_ego_jg.test_voronoi_geom_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_ego_jg.test_voronoi_geom_id_seq'::regclass)"))
 
 
 t_test_voronoi_pts = Table(
@@ -1025,13 +1036,11 @@ t_usw_2_pts_mview = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_usw_voronoi = Table(
     'usw_voronoi', metadata,
     Column('geom', Geometry),
     schema='orig_geo_ego_jg'
 )
-
 
 t_vg250_6_gem_usw_1_mview = Table(
     'vg250_6_gem_usw_1_mview', metadata,
@@ -1045,7 +1054,6 @@ t_vg250_6_gem_usw_1_mview = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_vg250_6_gem_usw_2_mview = Table(
     'vg250_6_gem_usw_2_mview', metadata,
     Column('gid', Integer),
@@ -1058,14 +1066,12 @@ t_vg250_6_gem_usw_2_mview = Table(
     schema='orig_geo_ego_jg'
 )
 
-
 t_vg250_6_gem_usw_2_pts_mview = Table(
     'vg250_6_gem_usw_2_pts_mview', metadata,
     Column('id', Integer),
     Column('geom', Geometry),
     schema='orig_geo_ego_jg'
 )
-
 
 t_vg250_6_gem_usw_3_mview = Table(
     'vg250_6_gem_usw_3_mview', metadata,

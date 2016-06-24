@@ -1,10 +1,10 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Boolean, Column, Float, Integer, SmallInteger, String, Table, Text, text
+from sqlalchemy import BigInteger, Boolean, Column, Float, Integer, \
+    SmallInteger, String, Table, Text, text
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from geoalchemy2.types import Geometry
 from sqlalchemy.dialects.postgresql.base import ARRAY
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -84,7 +84,8 @@ class OsmDeuLine(Base):
     way_area = Column(Float)
     tags = Column(HSTORE, index=True)
     geom = Column(Geometry('LINESTRING', 3857), index=True)
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_osm.osm_deu_line_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_osm.osm_deu_line_gid_seq'::regclass)"))
 
 
 class OsmDeuNode(Base):
@@ -172,7 +173,8 @@ class OsmDeuPoint(Base):
     z_order = Column(Integer)
     tags = Column(HSTORE, index=True)
     geom = Column(Geometry('POINT', 3857), index=True)
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_osm.osm_deu_point_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_osm.osm_deu_point_gid_seq'::regclass)"))
 
 
 t_osm_deu_point_power_substation_industrial_view = Table(
@@ -327,7 +329,8 @@ class OsmDeuPolygon(Base):
     way_area = Column(Float)
     tags = Column(HSTORE, index=True)
     geom = Column(Geometry('MULTIPOLYGON', 3857), index=True)
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_osm.osm_deu_polygon_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_osm.osm_deu_polygon_gid_seq'::regclass)"))
 
 
 t_osm_deu_polygon_agriculture_view = Table(
@@ -406,7 +409,6 @@ t_osm_deu_polygon_agriculture_view = Table(
     schema='orig_osm'
 )
 
-
 t_osm_deu_polygon_buildings_view = Table(
     'osm_deu_polygon_buildings_view', metadata,
     Column('osm_id', BigInteger),
@@ -483,7 +485,6 @@ t_osm_deu_polygon_buildings_view = Table(
     schema='orig_osm'
 )
 
-
 t_osm_deu_polygon_error_geom_mview = Table(
     'osm_deu_polygon_error_geom_mview', metadata,
     Column('id', Integer),
@@ -492,7 +493,6 @@ t_osm_deu_polygon_error_geom_mview = Table(
     Column('error_location', Geometry('POINT', 3035)),
     schema='orig_osm'
 )
-
 
 t_osm_deu_polygon_landuse_view = Table(
     'osm_deu_polygon_landuse_view', metadata,
@@ -570,7 +570,6 @@ t_osm_deu_polygon_landuse_view = Table(
     schema='orig_osm'
 )
 
-
 t_osm_deu_polygon_nature_view = Table(
     'osm_deu_polygon_nature_view', metadata,
     Column('osm_id', BigInteger),
@@ -647,7 +646,6 @@ t_osm_deu_polygon_nature_view = Table(
     schema='orig_osm'
 )
 
-
 t_osm_deu_polygon_population_view = Table(
     'osm_deu_polygon_population_view', metadata,
     Column('osm_id', BigInteger),
@@ -723,7 +721,6 @@ t_osm_deu_polygon_population_view = Table(
     Column('gid', Integer),
     schema='orig_osm'
 )
-
 
 t_osm_deu_polygon_power_substation_industrial_view = Table(
     'osm_deu_polygon_power_substation_industrial_view', metadata,
@@ -826,7 +823,6 @@ t_osm_deu_polygon_urban_buffer100_mview = Table(
     schema='orig_osm'
 )
 
-
 t_osm_deu_polygon_urban_error_geom_mview = Table(
     'osm_deu_polygon_urban_error_geom_mview', metadata,
     Column('id', Integer),
@@ -835,7 +831,6 @@ t_osm_deu_polygon_urban_error_geom_mview = Table(
     Column('error_location', Geometry('POINT', 3035)),
     schema='orig_osm'
 )
-
 
 t_osm_deu_polygon_urban_error_geom_vg250_mview = Table(
     'osm_deu_polygon_urban_error_geom_vg250_mview', metadata,
@@ -853,7 +848,6 @@ t_osm_deu_polygon_urban_error_geom_vg250_mview = Table(
     schema='orig_osm'
 )
 
-
 t_osm_deu_polygon_urban_sector_1_residential_mview = Table(
     'osm_deu_polygon_urban_sector_1_residential_mview', metadata,
     Column('gid', Integer, unique=True),
@@ -868,7 +862,6 @@ t_osm_deu_polygon_urban_sector_1_residential_mview = Table(
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='orig_osm'
 )
-
 
 t_osm_deu_polygon_urban_sector_2_retail_mview = Table(
     'osm_deu_polygon_urban_sector_2_retail_mview', metadata,
@@ -885,7 +878,6 @@ t_osm_deu_polygon_urban_sector_2_retail_mview = Table(
     schema='orig_osm'
 )
 
-
 t_osm_deu_polygon_urban_sector_3_industrial_mview = Table(
     'osm_deu_polygon_urban_sector_3_industrial_mview', metadata,
     Column('gid', Integer, unique=True),
@@ -900,7 +892,6 @@ t_osm_deu_polygon_urban_sector_3_industrial_mview = Table(
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='orig_osm'
 )
-
 
 t_osm_deu_polygon_urban_sector_4_agricultural_mview = Table(
     'osm_deu_polygon_urban_sector_4_agricultural_mview', metadata,
@@ -917,7 +908,6 @@ t_osm_deu_polygon_urban_sector_4_agricultural_mview = Table(
     schema='orig_osm'
 )
 
-
 t_osm_deu_polygon_urban_sector_4_agricultural_mview_error_geom_vi = Table(
     'osm_deu_polygon_urban_sector_4_agricultural_mview_error_geom_vi', metadata,
     Column('id', Integer),
@@ -926,7 +916,6 @@ t_osm_deu_polygon_urban_sector_4_agricultural_mview_error_geom_vi = Table(
     Column('error_location', Geometry('POINT', 3035)),
     schema='orig_osm'
 )
-
 
 t_osm_deu_polygon_urban_vg250_clean_cut_multi_mview = Table(
     'osm_deu_polygon_urban_vg250_clean_cut_multi_mview', metadata,
@@ -944,7 +933,6 @@ t_osm_deu_polygon_urban_vg250_clean_cut_multi_mview = Table(
     schema='orig_osm'
 )
 
-
 t_osm_deu_polygon_urban_vg250_clean_cut_mview = Table(
     'osm_deu_polygon_urban_vg250_clean_cut_mview', metadata,
     Column('gid', Integer, unique=True),
@@ -960,7 +948,6 @@ t_osm_deu_polygon_urban_vg250_clean_cut_mview = Table(
     Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='orig_osm'
 )
-
 
 t_osm_deu_polygon_urban_vg250_cut_mview = Table(
     'osm_deu_polygon_urban_vg250_cut_mview', metadata,
@@ -1068,7 +1055,8 @@ class OsmDeuRoad(Base):
     way_area = Column(Float)
     tags = Column(HSTORE, index=True)
     geom = Column(Geometry('LINESTRING', 3857), index=True)
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_osm.osm_deu_roads_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_osm.osm_deu_roads_gid_seq'::regclass)"))
 
 
 class OsmDeuSubstationsEhv(Base):
@@ -1091,7 +1079,8 @@ class OsmDeuSubstationsEhv(Base):
     status = Column(SmallInteger)
     visible = Column(SmallInteger)
     geom = Column(Geometry('POINT', 4326), nullable=False)
-    subst_id = Column(Integer, primary_key=True, server_default=text("nextval('orig_osm.osm_deu_substations_ehv_subst_id_seq'::regclass)"))
+    subst_id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_osm.osm_deu_substations_ehv_subst_id_seq'::regclass)"))
 
 
 class OsmDeuWay(Base):

@@ -1,9 +1,9 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Boolean, Column, Float, Integer, Numeric, String, Table, Text, text
+from sqlalchemy import BigInteger, Boolean, Column, Float, Integer, Numeric, \
+    String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.dialects.postgresql.base import ARRAY
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -24,7 +24,8 @@ class GridDistrictCollect(Base):
     __tablename__ = 'grid_district_collect'
     __table_args__ = {'schema': 'calc_ego_grid_district'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_ego_grid_district.grid_district_collect_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('calc_ego_grid_district.grid_district_collect_id_seq'::regclass)"))
     subst_id = Column(Integer)
     subst_name = Column(Text)
     ags_0 = Column(String(12))
@@ -116,7 +117,6 @@ t_municipalities_subst_1_mview = Table(
     schema='calc_ego_grid_district'
 )
 
-
 t_municipalities_subst_2_mview = Table(
     'municipalities_subst_2_mview', metadata,
     Column('id', BigInteger, unique=True),
@@ -127,7 +127,6 @@ t_municipalities_subst_2_mview = Table(
     Column('geom', Geometry('POLYGON', 3035)),
     schema='calc_ego_grid_district'
 )
-
 
 t_municipalities_subst_3_mview = Table(
     'municipalities_subst_3_mview', metadata,
@@ -164,7 +163,6 @@ t_municipalities_subst_3_nn_line = Table(
     Column('geom', Geometry('LINESTRING', 3035), index=True),
     schema='calc_ego_grid_district'
 )
-
 
 t_municipalities_subst_3_nn_union = Table(
     'municipalities_subst_3_nn_union', metadata,

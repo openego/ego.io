@@ -1,8 +1,8 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, DateTime, Float, Integer, Numeric, String, Text, text
+from sqlalchemy import BigInteger, Column, DateTime, Float, Integer, Numeric, \
+    String, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -81,7 +81,8 @@ class OpsdPowerPlantsGermany(Base):
     __tablename__ = 'opsd_power_plants_germany'
     __table_args__ = {'schema': 'orig_geo_opsd'}
 
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_opsd.opsd_power_plants_germany_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_opsd.opsd_power_plants_germany_seq'::regclass)"))
     bnetza_id = Column(Text)
     company = Column(Text)
     name = Column(Text)

@@ -1,8 +1,8 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, Float, Integer, Numeric, String, Table, text
+from sqlalchemy import BigInteger, Column, Float, Integer, Numeric, String, \
+    Table, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -83,7 +83,8 @@ class EgoDeuLoadArea(Base):
     __tablename__ = 'ego_deu_load_area'
     __table_args__ = {'schema': 'calc_ego_loads'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_ego_loads.ego_deu_loads_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('calc_ego_loads.ego_deu_loads_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
     zensus_sum = Column(Integer)
     zensus_count = Column(Integer)
@@ -205,14 +206,12 @@ t_ego_deu_load_area_ta_with_peak_loads_mview = Table(
     schema='calc_ego_loads'
 )
 
-
 t_ego_deu_loads_centre_mview = Table(
     'ego_deu_loads_centre_mview', metadata,
     Column('id', Integer),
     Column('geom_centroid', Geometry('POINT', 3035)),
     schema='calc_ego_loads'
 )
-
 
 t_ego_deu_loads_error_area_ha_mview = Table(
     'ego_deu_loads_error_area_ha_mview', metadata,
@@ -227,7 +226,8 @@ class UrbanSectorPerGridDistrict1Residential(Base):
     __tablename__ = 'urban_sector_per_grid_district_1_residential'
     __table_args__ = {'schema': 'calc_ego_loads'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_ego_loads.urban_sector_per_grid_district_1_residential_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('calc_ego_loads.urban_sector_per_grid_district_1_residential_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
@@ -235,7 +235,8 @@ class UrbanSectorPerGridDistrict2Retail(Base):
     __tablename__ = 'urban_sector_per_grid_district_2_retail'
     __table_args__ = {'schema': 'calc_ego_loads'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_ego_loads.urban_sector_per_grid_district_2_retail_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('calc_ego_loads.urban_sector_per_grid_district_2_retail_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
@@ -243,7 +244,8 @@ class UrbanSectorPerGridDistrict3Industrial(Base):
     __tablename__ = 'urban_sector_per_grid_district_3_industrial'
     __table_args__ = {'schema': 'calc_ego_loads'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_ego_loads.urban_sector_per_grid_district_3_industrial_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('calc_ego_loads.urban_sector_per_grid_district_3_industrial_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
@@ -251,5 +253,6 @@ class UrbanSectorPerGridDistrict4Agricultural(Base):
     __tablename__ = 'urban_sector_per_grid_district_4_agricultural'
     __table_args__ = {'schema': 'calc_ego_loads'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_ego_loads.urban_sector_per_grid_district_4_agricultural_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('calc_ego_loads.urban_sector_per_grid_district_4_agricultural_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)

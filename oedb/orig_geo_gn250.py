@@ -3,7 +3,6 @@ from sqlalchemy import Column, Integer, Numeric, String, Table, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
-
 Base = declarative_base()
 metadata = Base.metadata
 
@@ -12,7 +11,8 @@ class Gn250B(Base):
     __tablename__ = 'gn250_b'
     __table_args__ = {'schema': 'orig_geo_gn250'}
 
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_gn250.gn250_b_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_gn250.gn250_b_gid_seq'::regclass)"))
     nnid = Column(String(16))
     datum = Column(String(10))
     oba = Column(String(40))
@@ -68,7 +68,8 @@ class Gn250P(Base):
     __tablename__ = 'gn250_p'
     __table_args__ = {'schema': 'orig_geo_gn250'}
 
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_gn250.gn250_p_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_geo_gn250.gn250_p_gid_seq'::regclass)"))
     nnid = Column(String(16))
     datum = Column(String(10))
     oba = Column(String(40))

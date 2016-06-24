@@ -1,8 +1,8 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, Float, Integer, SmallInteger, String, Table, Text, text
+from sqlalchemy import BigInteger, Column, Float, Integer, SmallInteger, String, \
+    Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -58,7 +58,8 @@ class Substation110Voronoi(Base):
     __table_args__ = {'schema': 'calc_ego_substation'}
 
     geom = Column(Geometry('POLYGON', 3035), index=True)
-    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_ego_substation.substation_110_voronoi_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('calc_ego_substation.substation_110_voronoi_id_seq'::regclass)"))
     subst_id = Column(Integer)
     subst_sum = Column(Integer)
 
@@ -90,7 +91,6 @@ t_substation_110_voronoi_cut_0subst_mview = Table(
     schema='calc_ego_substation'
 )
 
-
 t_substation_110_voronoi_cut_0subst_nn_line_mview = Table(
     'substation_110_voronoi_cut_0subst_nn_line_mview', metadata,
     Column('id', BigInteger, unique=True),
@@ -100,7 +100,6 @@ t_substation_110_voronoi_cut_0subst_nn_line_mview = Table(
     Column('geom', Geometry('LINESTRING', 3035), index=True),
     schema='calc_ego_substation'
 )
-
 
 t_substation_110_voronoi_cut_0subst_nn_mview = Table(
     'substation_110_voronoi_cut_0subst_nn_mview', metadata,
@@ -113,14 +112,12 @@ t_substation_110_voronoi_cut_0subst_nn_mview = Table(
     schema='calc_ego_substation'
 )
 
-
 t_substation_110_voronoi_cut_0subst_nn_union_mview = Table(
     'substation_110_voronoi_cut_0subst_nn_union_mview', metadata,
     Column('subst_id', Integer, unique=True),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='calc_ego_substation'
 )
-
 
 t_substation_110_voronoi_cut_1subst_mview = Table(
     'substation_110_voronoi_cut_1subst_mview', metadata,
@@ -141,7 +138,8 @@ class Substation110VoronoiCutNnCollect(Base):
     __tablename__ = 'substation_110_voronoi_cut_nn_collect'
     __table_args__ = {'schema': 'calc_ego_substation'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_ego_substation.substation_110_voronoi_cut_nn_collect_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('calc_ego_substation.substation_110_voronoi_cut_nn_collect_id_seq'::regclass)"))
     subst_id = Column(Integer)
     geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
 

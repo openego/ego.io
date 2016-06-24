@@ -5,7 +5,6 @@ tables and rows.
 
 from typing import Iterable, Mapping, TypeVar
 
-
 JSON = TypeVar('JSON', str, int, Iterable['JSON'], Mapping[str, 'JSON'])
 
 
@@ -23,8 +22,9 @@ class RowComment:
             Specifies the assumptions that were made to achieve a full
             non-redundant row of data
     """
+
     def __init__(self, origin: str, method: str,
-                 assumptions: Iterable[Assumption]=None):
+                 assumptions: Iterable[Assumption] = None):
         self.origin = origin
         self.method = method
         self.assumptions = list(assumptions) if assumptions else []
@@ -47,6 +47,7 @@ class Assumption:
         solution: str
             Description of the solution to create the final data
     """
+
     def __init__(self, assumption_type: str, begin: str, end: str,
                  solution: str):
         self.type = assumption_type
@@ -65,6 +66,7 @@ class Assumption:
                 'end': self.end,
                 'solution': self.solution}
 
+
 class Multiplicity(Assumption):
     """
     Handler for multiplicity assumptions. These may be used, if a simulation
@@ -73,6 +75,7 @@ class Multiplicity(Assumption):
     Attributes:
         values: A dictionary that maps column names to the corresponding possible
     """
+
     def __init__(self, begin: int, end: int, solution: str,
                  values: Mapping[str, JSON]):
         super(Multiplicity, self).__init__('multiplicity', begin, end, solution)

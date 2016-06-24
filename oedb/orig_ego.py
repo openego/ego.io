@@ -1,9 +1,9 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Boolean, Column, Float, Integer, Numeric, SmallInteger, String, Table, Text, text
+from sqlalchemy import BigInteger, Boolean, Column, Float, Integer, Numeric, \
+    SmallInteger, String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.dialects.postgresql.base import ARRAY
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -13,7 +13,8 @@ class EgoDeuLoad(Base):
     __tablename__ = 'ego_deu_loads'
     __table_args__ = {'schema': 'orig_ego'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_loads_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_loads_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035))
 
 
@@ -21,7 +22,8 @@ class EgoDeuLoadsCollect(Base):
     __tablename__ = 'ego_deu_loads_collect'
     __table_args__ = {'schema': 'orig_ego'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_loads_collect_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_loads_collect_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
@@ -56,7 +58,8 @@ class EgoDeuLoadsMeltedCutGem(Base):
     __tablename__ = 'ego_deu_loads_melted_cut_gem'
     __table_args__ = {'schema': 'orig_ego'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_loads_melted_cut_gem_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_loads_melted_cut_gem_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
@@ -71,7 +74,6 @@ t_ego_deu_loads_melted_error_geom_fix_mview = Table(
     schema='orig_ego'
 )
 
-
 t_ego_deu_loads_melted_error_geom_mview = Table(
     'ego_deu_loads_melted_error_geom_mview', metadata,
     Column('id', BigInteger, unique=True),
@@ -81,7 +83,6 @@ t_ego_deu_loads_melted_error_geom_mview = Table(
     Column('geom', Geometry('POLYGON', 3035), index=True),
     schema='orig_ego'
 )
-
 
 t_ego_deu_loads_melted_error_geom_view = Table(
     'ego_deu_loads_melted_error_geom_view', metadata,
@@ -116,7 +117,8 @@ class EgoDeuLoadsSpf(Base):
     __tablename__ = 'ego_deu_loads_spf'
     __table_args__ = {'schema': 'orig_ego'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_loads_spf_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_loads_spf_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
     zensus_sum = Column(Integer)
     zensus_count = Column(Integer)
@@ -153,7 +155,6 @@ t_ego_deu_loads_spf_centre_mview = Table(
     schema='orig_ego'
 )
 
-
 t_ego_deu_loads_spf_error_area_ha_mview = Table(
     'ego_deu_loads_spf_error_area_ha_mview', metadata,
     Column('id', Integer),
@@ -179,7 +180,8 @@ class EgoDeuLoadsZensusCluster(Base):
     __tablename__ = 'ego_deu_loads_zensus_cluster'
     __table_args__ = {'schema': 'orig_ego'}
 
-    cid = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_loads_zensus_cluster_cid_seq'::regclass)"))
+    cid = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_loads_zensus_cluster_cid_seq'::regclass)"))
     zensus_sum = Column(Integer)
     area_ha = Column(Integer)
     geom = Column(Geometry('POLYGON', 3035), index=True)
@@ -220,7 +222,6 @@ t_ego_deu_municipalities_sub_1_mview = Table(
     schema='orig_ego'
 )
 
-
 t_ego_deu_municipalities_sub_2_mview = Table(
     'ego_deu_municipalities_sub_2_mview', metadata,
     Column('id', BigInteger, unique=True),
@@ -231,7 +232,6 @@ t_ego_deu_municipalities_sub_2_mview = Table(
     Column('geom', Geometry('POLYGON', 3035)),
     schema='orig_ego'
 )
-
 
 t_ego_deu_municipalities_sub_3_mview = Table(
     'ego_deu_municipalities_sub_3_mview', metadata,
@@ -269,7 +269,6 @@ t_ego_deu_municipalities_sub_3_nn_line = Table(
     schema='orig_ego'
 )
 
-
 t_ego_deu_municipalities_sub_3_nn_union = Table(
     'ego_deu_municipalities_sub_3_nn_union', metadata,
     Column('sub_id', Integer, unique=True),
@@ -305,7 +304,8 @@ class EgoDeuSubstations110Voronoi(Base):
     __table_args__ = {'schema': 'orig_ego'}
 
     geom = Column(Geometry('POLYGON', 3035), index=True)
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_substations_110_voronoi_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_substations_110_voronoi_id_seq'::regclass)"))
     sub_id = Column(Integer)
     sub_sum = Column(Integer)
 
@@ -337,7 +337,6 @@ t_ego_deu_substations_110_voronoi_cut_0sub_mview = Table(
     schema='orig_ego'
 )
 
-
 t_ego_deu_substations_110_voronoi_cut_0sub_nn_line_mview = Table(
     'ego_deu_substations_110_voronoi_cut_0sub_nn_line_mview', metadata,
     Column('id', BigInteger, unique=True),
@@ -347,7 +346,6 @@ t_ego_deu_substations_110_voronoi_cut_0sub_nn_line_mview = Table(
     Column('geom', Geometry('LINESTRING', 3035), index=True),
     schema='orig_ego'
 )
-
 
 t_ego_deu_substations_110_voronoi_cut_0sub_nn_mview = Table(
     'ego_deu_substations_110_voronoi_cut_0sub_nn_mview', metadata,
@@ -360,14 +358,12 @@ t_ego_deu_substations_110_voronoi_cut_0sub_nn_mview = Table(
     schema='orig_ego'
 )
 
-
 t_ego_deu_substations_110_voronoi_cut_0sub_nn_union_mview = Table(
     'ego_deu_substations_110_voronoi_cut_0sub_nn_union_mview', metadata,
     Column('sub_id', Integer, unique=True),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='orig_ego'
 )
-
 
 t_ego_deu_substations_110_voronoi_cut_1sub_mview = Table(
     'ego_deu_substations_110_voronoi_cut_1sub_mview', metadata,
@@ -388,7 +384,8 @@ class EgoDeuSubstations110VoronoiCutNnCollect(Base):
     __tablename__ = 'ego_deu_substations_110_voronoi_cut_nn_collect'
     __table_args__ = {'schema': 'orig_ego'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_substations_110_voronoi_cut_nn_collect_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_substations_110_voronoi_cut_nn_collect_id_seq'::regclass)"))
     sub_id = Column(Integer)
     geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
 
@@ -399,7 +396,6 @@ t_ego_deu_substations_110_voronoi_cut_nn_mview = Table(
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='orig_ego'
 )
-
 
 t_ego_deu_substations_110_voronoi_mview = Table(
     'ego_deu_substations_110_voronoi_mview', metadata,
@@ -449,7 +445,8 @@ class EgoDeuSubstationsVoronoi(Base):
     __table_args__ = {'schema': 'orig_ego'}
 
     geom = Column(Geometry('POLYGON', 4326), index=True)
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_substations_voronoi_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_substations_voronoi_id_seq'::regclass)"))
     subst_id = Column(Integer)
     subst_sum = Column(Integer)
 
@@ -481,7 +478,6 @@ t_ego_deu_substations_voronoi_cut_0sub_mview = Table(
     schema='orig_ego'
 )
 
-
 t_ego_deu_substations_voronoi_cut_0sub_nn_line_mview = Table(
     'ego_deu_substations_voronoi_cut_0sub_nn_line_mview', metadata,
     Column('id', BigInteger, unique=True),
@@ -491,7 +487,6 @@ t_ego_deu_substations_voronoi_cut_0sub_nn_line_mview = Table(
     Column('geom', Geometry('LINESTRING', 4326), index=True),
     schema='orig_ego'
 )
-
 
 t_ego_deu_substations_voronoi_cut_0sub_nn_mview = Table(
     'ego_deu_substations_voronoi_cut_0sub_nn_mview', metadata,
@@ -504,14 +499,12 @@ t_ego_deu_substations_voronoi_cut_0sub_nn_mview = Table(
     schema='orig_ego'
 )
 
-
 t_ego_deu_substations_voronoi_cut_0sub_nn_union_mview = Table(
     'ego_deu_substations_voronoi_cut_0sub_nn_union_mview', metadata,
     Column('subst_id', Integer, unique=True),
     Column('geom', Geometry('MULTIPOLYGON', 4326), index=True),
     schema='orig_ego'
 )
-
 
 t_ego_deu_substations_voronoi_cut_1sub_mview = Table(
     'ego_deu_substations_voronoi_cut_1sub_mview', metadata,
@@ -527,7 +520,6 @@ t_ego_deu_substations_voronoi_cut_1sub_mview = Table(
     schema='orig_ego'
 )
 
-
 t_ego_deu_substations_voronoi_cut_nn = Table(
     'ego_deu_substations_voronoi_cut_nn', metadata,
     Column('subst_id', Integer),
@@ -540,7 +532,8 @@ class EgoDeuSubstationsVoronoiCutNnCollect(Base):
     __tablename__ = 'ego_deu_substations_voronoi_cut_nn_collect'
     __table_args__ = {'schema': 'orig_ego'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_substations_voronoi_cut_nn_collect_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_substations_voronoi_cut_nn_collect_id_seq'::regclass)"))
     subst_id = Column(Integer)
     geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
 
@@ -558,7 +551,8 @@ class EgoDeuVoronoiEhv(Base):
     __table_args__ = {'schema': 'orig_ego'}
 
     geom = Column(Geometry('POLYGON', 4326), index=True)
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_deu_voronoi_ehv_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_deu_voronoi_ehv_id_seq'::regclass)"))
 
 
 class EgoGridDistrict(Base):
@@ -576,7 +570,8 @@ class EgoGridDistrictsCollect(Base):
     __tablename__ = 'ego_grid_districts_collect'
     __table_args__ = {'schema': 'orig_ego'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.ego_grid_districts_collect_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.ego_grid_districts_collect_id_seq'::regclass)"))
     sub_id = Column(Integer)
     sub_name = Column(Text)
     ags_0 = Column(String(12))
@@ -650,7 +645,8 @@ class Netzinseln110(Base):
     __tablename__ = 'netzinseln_110'
     __table_args__ = {'schema': 'orig_ego'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_ego.netzinseln_110_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('orig_ego.netzinseln_110_id_seq'::regclass)"))
     lon = Column(Float(53), nullable=False)
     lat = Column(Float(53), nullable=False)
     point = Column(Text, nullable=False)
