@@ -3,7 +3,7 @@
 
 from setuptools import find_packages, setup
 
-setup(name='egoio',
+setup(name='ego.io',
       author='openego development group',
       description='ego input/output repository',
       packages=find_packages()
