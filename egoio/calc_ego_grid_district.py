@@ -99,7 +99,7 @@ class MunicipalitiesSubst(Base):
     ags_0 = Column(String(12))
     area_ha = Column(Float(53))
     count_ring = Column(Integer)
-    path = Column(ARRAY(INTEGER()))
+    path = Column(ARRAY(Integer()))
     geom = Column(Geometry('POLYGON', 3035), index=True)
     is_ring = Column(Boolean)
     subst_sum = Column(Integer)
