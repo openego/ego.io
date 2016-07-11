@@ -7,6 +7,26 @@ from typing import Iterable, Mapping, TypeVar
 
 JSON = TypeVar('JSON', str, int, Iterable['JSON'], Mapping[str, 'JSON'])
 
+class TableComment:
+    def __init__(self, name: str, source: str, collection_date, orig_file: str,
+                 spat_resolution: Iterable[str],
+                 fields: Iterable[FieldDescription], licence: str,
+                 proper_use: Iterable[str], description: str=""):
+        self.name = name
+        self.source = source
+        self.collection_data = collection_date
+        self.orig_file = orig_file
+        self.spat_resolution = spat_resolution
+        self.fields = list(fields)
+        self.licence = licence
+        self.proper_use = proper_use
+        self.description = description
+
+class FieldDescription:
+    def __init__(self, name, description, unit=None):
+        self.name = name
+        self.description = description
+        self.unit = unit
 
 class RowComment:
     """
