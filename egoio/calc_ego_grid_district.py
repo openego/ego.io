@@ -171,3 +171,13 @@ t_municipalities_subst_3_nn_union = Table(
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='calc_ego_grid_district'
 )
+
+
+class LVGridDistrictTa(Base):
+    __tablename__ = 'lv_grid_district_ta'
+    __table_args__ = {'schema': 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry('POLYGON', 3035), index=True)
+    population = Column(Integer)
+    peak_load = Column(Numeric)
