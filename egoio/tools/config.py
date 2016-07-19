@@ -34,8 +34,19 @@ except:
 cfg = cp.RawConfigParser()
 _loaded = False
 
-def load_config(filename):
-    FILE = path.join(path.dirname(path.realpath(__file__)), '..', 'config', filename)
+def load_config(filename, filepath=''):
+    """
+    Loads config file
+
+    Parameters
+    ----------
+    filename: str
+        Filename of config file (incl. file extension
+    filepath: str
+        Absolute path to directory of desired config file
+    """
+
+    FILE = path.join(filepath, filename)
 
     try:
         cfg.read(FILE)
