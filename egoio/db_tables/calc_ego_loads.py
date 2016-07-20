@@ -161,6 +161,45 @@ class EgoDeuLoadAreaTa(Base):
     sector_consumption_agricultural = Column(Numeric)
     sector_consumption_sum = Column(Numeric)
 
+class EgoDeuLoadAreaLittleTa(Base):
+    __tablename__ = 'ego_deu_load_area_little_ta'
+    __table_args__ = {'schema': 'calc_ego_loads'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry('POLYGON', 3035), index=True)
+    zensus_sum = Column(Integer)
+    zensus_count = Column(Integer)
+    zensus_density = Column(Numeric)
+    ioer_sum = Column(Numeric)
+    ioer_count = Column(Integer)
+    ioer_density = Column(Numeric)
+    area_ha = Column(Numeric)
+    sector_area_residential = Column(Numeric)
+    sector_area_retail = Column(Numeric)
+    sector_area_industrial = Column(Numeric)
+    sector_area_agricultural = Column(Numeric)
+    sector_share_residential = Column(Numeric)
+    sector_share_retail = Column(Numeric)
+    sector_share_industrial = Column(Numeric)
+    sector_share_agricultural = Column(Numeric)
+    sector_count_residential = Column(Integer)
+    sector_count_retail = Column(Integer)
+    sector_count_industrial = Column(Integer)
+    sector_count_agricultural = Column(Integer)
+    subst_id = Column(Integer)
+    nuts = Column(String(5))
+    rs_0 = Column(String(12))
+    ags_0 = Column(String(12))
+    geom_centroid = Column(Geometry('POINT', 3035))
+    geom_surfacepoint = Column(Geometry('POINT', 3035))
+    geom_centre = Column(Geometry('POINT', 3035))
+    sector_area_sum = Column(Numeric)
+    sector_share_sum = Column(Numeric)
+    sector_consumption_residential = Column(Numeric)
+    sector_consumption_retail = Column(Numeric)
+    sector_consumption_industrial = Column(Numeric)
+    sector_consumption_agricultural = Column(Numeric)
+    sector_consumption_sum = Column(Numeric)
 
 t_ego_deu_load_area_ta_with_peak_loads_mview = Table(
     'ego_deu_load_area_ta_with_peak_loads_mview', metadata,
