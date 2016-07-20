@@ -181,3 +181,17 @@ class LVGridDistrictTa(Base):
     geom = Column(Geometry('POLYGON', 3035), index=True)
     population = Column(Integer)
     peak_load = Column(Numeric)
+
+class ego_deu_ontgrids(Base):
+    __tablename__ = 'ego_deu_ontgrids_test'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    
+class ego_deu_load_area_rest(Base):
+    __tablename__ = 'ego_deu_load_area_rest_test'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
