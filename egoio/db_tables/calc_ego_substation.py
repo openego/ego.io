@@ -160,14 +160,14 @@ class SubstationDummy(Base):
     subst_name = Column(Text)
     geom = Column(Geometry('POINT', 3035), index=True)
 
-class ego_deu_onts(Base):
+class EgoDeuOnts(Base):
     __tablename__ = 'ego_deu_onts'
     __table_args__ = {"schema": 'calc_ego_substation'}
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POINT", srid=3035))
 
-class ego_deu_ontsTa(Base):
+class EgoDeuOntsTa(Base):
     __tablename__ = 'ego_deu_onts_ta'
     __table_args__ = {"schema": 'calc_ego_substation'}
 
