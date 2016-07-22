@@ -166,6 +166,7 @@ class EgoDeuOnts(Base):
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POINT", srid=3035))
+    load_area_id = Column(Integer)
 
 class EgoDeuOntsTa(Base):
     __tablename__ = 'ego_deu_onts_ta'
@@ -173,3 +174,12 @@ class EgoDeuOntsTa(Base):
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POINT", srid=3035))
+    load_area_id = Column(Integer)
+
+class EgoDeuOntsLittleTa(Base):
+    __tablename__ = 'ego_deu_onts_little_ta'
+    __table_args__ = {"schema": 'calc_ego_substation'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POINT", srid=3035))
+    load_area_id = Column(Integer)
