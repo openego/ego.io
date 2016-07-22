@@ -188,6 +188,7 @@ class EgoDeuOntGrids(Base):
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
     
 class EgoDeuLoadAreaRest(Base):
     __tablename__ = 'ego_deu_load_area_rest'
@@ -195,6 +196,7 @@ class EgoDeuLoadAreaRest(Base):
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
 
 class EgoDeuOntGridsTa(Base):
     __tablename__ = 'ego_deu_ontgrids_ta'
@@ -202,6 +204,7 @@ class EgoDeuOntGridsTa(Base):
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
     
 class EgoDeuLoadAreaRestTa(Base):
     __tablename__ = 'ego_deu_load_area_rest_ta'
@@ -209,3 +212,20 @@ class EgoDeuLoadAreaRestTa(Base):
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
+    
+class EgoDeuOntGridsLittleTa(Base):
+    __tablename__ = 'ego_deu_ontgrids_little_ta'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
+
+class EgoDeuLoadAreaRestLittleTa(Base):
+    __tablename__ = 'ego_deu_load_area_rest_little_ta'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
