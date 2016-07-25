@@ -182,30 +182,50 @@ class LVGridDistrictTa(Base):
     population = Column(Integer)
     peak_load = Column(Numeric)
 
-class ego_deu_ontgrids(Base):
+class EgoDeuOntGrids(Base):
     __tablename__ = 'ego_deu_ontgrids'
     __table_args__ = {"schema": 'calc_ego_grid_district'}
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
     
-class ego_deu_load_area_rest(Base):
+class EgoDeuLoadAreaRest(Base):
     __tablename__ = 'ego_deu_load_area_rest'
     __table_args__ = {"schema": 'calc_ego_grid_district'}
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
 
-class ego_deu_ontgridsTa(Base):
+class EgoDeuOntGridsTa(Base):
     __tablename__ = 'ego_deu_ontgrids_ta'
     __table_args__ = {"schema": 'calc_ego_grid_district'}
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
     
-class ego_deu_load_area_restTa(Base):
+class EgoDeuLoadAreaRestTa(Base):
     __tablename__ = 'ego_deu_load_area_rest_ta'
     __table_args__ = {"schema": 'calc_ego_grid_district'}
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
+    
+class EgoDeuOntGridsLittleTa(Base):
+    __tablename__ = 'ego_deu_ontgrids_little_ta'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
+
+class EgoDeuLoadAreaRestLittleTa(Base):
+    __tablename__ = 'ego_deu_load_area_rest_little_ta'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
