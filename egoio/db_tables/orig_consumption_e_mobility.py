@@ -1,8 +1,9 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, Integer, MetaData, Numeric, \
-    SmallInteger, Table
+from sqlalchemy import BigInteger, Column, Integer, MetaData, Numeric, SmallInteger, Table
+
 
 metadata = MetaData()
+
 
 t_result_e_mobility_2020_2a_11001 = Table(
     'result_e_mobility_2020_2a_11001', metadata,
@@ -19,6 +20,7 @@ t_result_e_mobility_2020_2a_11001 = Table(
     schema='orig_consumption_e_mobility'
 )
 
+
 t_result_e_mobility_2020_2a_11002 = Table(
     'result_e_mobility_2020_2a_11002', metadata,
     Column('time_step', Integer),
@@ -33,6 +35,7 @@ t_result_e_mobility_2020_2a_11002 = Table(
     Column('week_id', BigInteger),
     schema='orig_consumption_e_mobility'
 )
+
 
 t_result_e_mobility_2020_2a_11003 = Table(
     'result_e_mobility_2020_2a_11003', metadata,
@@ -49,6 +52,7 @@ t_result_e_mobility_2020_2a_11003 = Table(
     schema='orig_consumption_e_mobility'
 )
 
+
 t_result_e_mobility_2020_2a_11004 = Table(
     'result_e_mobility_2020_2a_11004', metadata,
     Column('time_step', Integer),
@@ -63,6 +67,7 @@ t_result_e_mobility_2020_2a_11004 = Table(
     Column('week_id', BigInteger),
     schema='orig_consumption_e_mobility'
 )
+
 
 t_result_e_mobility_2020_2a_11005 = Table(
     'result_e_mobility_2020_2a_11005', metadata,
@@ -79,6 +84,7 @@ t_result_e_mobility_2020_2a_11005 = Table(
     schema='orig_consumption_e_mobility'
 )
 
+
 t_result_e_mobility_2020_2a_11006 = Table(
     'result_e_mobility_2020_2a_11006', metadata,
     Column('time_step', Integer),
@@ -93,6 +99,7 @@ t_result_e_mobility_2020_2a_11006 = Table(
     Column('week_id', BigInteger),
     schema='orig_consumption_e_mobility'
 )
+
 
 t_result_e_mobility_2020_2a_11007 = Table(
     'result_e_mobility_2020_2a_11007', metadata,
@@ -109,6 +116,7 @@ t_result_e_mobility_2020_2a_11007 = Table(
     schema='orig_consumption_e_mobility'
 )
 
+
 t_result_e_mobility_2020_2a_11008 = Table(
     'result_e_mobility_2020_2a_11008', metadata,
     Column('time_step', Integer),
@@ -123,6 +131,7 @@ t_result_e_mobility_2020_2a_11008 = Table(
     Column('week_id', BigInteger),
     schema='orig_consumption_e_mobility'
 )
+
 
 t_result_e_mobility_2020_2a_11009 = Table(
     'result_e_mobility_2020_2a_11009', metadata,
@@ -139,6 +148,7 @@ t_result_e_mobility_2020_2a_11009 = Table(
     schema='orig_consumption_e_mobility'
 )
 
+
 t_result_e_mobility_2020_2a_11010 = Table(
     'result_e_mobility_2020_2a_11010', metadata,
     Column('time_step', Integer),
@@ -153,6 +163,7 @@ t_result_e_mobility_2020_2a_11010 = Table(
     Column('week_id', BigInteger),
     schema='orig_consumption_e_mobility'
 )
+
 
 t_result_e_mobility_2020_2a_11011 = Table(
     'result_e_mobility_2020_2a_11011', metadata,
@@ -169,6 +180,7 @@ t_result_e_mobility_2020_2a_11011 = Table(
     schema='orig_consumption_e_mobility'
 )
 
+
 t_result_e_mobility_2020_2a_11012 = Table(
     'result_e_mobility_2020_2a_11012', metadata,
     Column('time_step', Integer),
@@ -183,6 +195,7 @@ t_result_e_mobility_2020_2a_11012 = Table(
     Column('week_id', BigInteger),
     schema='orig_consumption_e_mobility'
 )
+
 
 t_result_e_mobility_2020_2a_11013 = Table(
     'result_e_mobility_2020_2a_11013', metadata,
@@ -199,6 +212,7 @@ t_result_e_mobility_2020_2a_11013 = Table(
     schema='orig_consumption_e_mobility'
 )
 
+
 t_result_e_mobility_2020_2a_11014 = Table(
     'result_e_mobility_2020_2a_11014', metadata,
     Column('time_step', Integer),
@@ -213,6 +227,7 @@ t_result_e_mobility_2020_2a_11014 = Table(
     Column('week_id', BigInteger),
     schema='orig_consumption_e_mobility'
 )
+
 
 t_result_e_mobility_2020_2a_11015 = Table(
     'result_e_mobility_2020_2a_11015', metadata,
@@ -229,6 +244,7 @@ t_result_e_mobility_2020_2a_11015 = Table(
     schema='orig_consumption_e_mobility'
 )
 
+
 t_result_e_mobility_2020_2a_11016 = Table(
     'result_e_mobility_2020_2a_11016', metadata,
     Column('time_step', Integer),
@@ -244,6 +260,7 @@ t_result_e_mobility_2020_2a_11016 = Table(
     schema='orig_consumption_e_mobility'
 )
 
+
 t_result_e_mobility_2020_2a_11017 = Table(
     'result_e_mobility_2020_2a_11017', metadata,
     Column('time_step', Integer),
@@ -258,6 +275,7 @@ t_result_e_mobility_2020_2a_11017 = Table(
     Column('week_id', BigInteger),
     schema='orig_consumption_e_mobility'
 )
+
 
 t_result_e_mobility_2020_2a_11018 = Table(
     'result_e_mobility_2020_2a_11018', metadata,

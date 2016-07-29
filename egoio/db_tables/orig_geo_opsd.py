@@ -1,8 +1,8 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, DateTime, Float, Integer, Numeric, \
-    String, Text, text
+from sqlalchemy import BigInteger, Column, DateTime, Float, Integer, Numeric, String, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -81,8 +81,7 @@ class OpsdPowerPlantsGermany(Base):
     __tablename__ = 'opsd_power_plants_germany'
     __table_args__ = {'schema': 'orig_geo_opsd'}
 
-    gid = Column(Integer, primary_key=True, server_default=text(
-        "nextval('orig_geo_opsd.opsd_power_plants_germany_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_opsd.opsd_power_plants_germany_seq'::regclass)"))
     bnetza_id = Column(Text)
     company = Column(Text)
     name = Column(Text)
@@ -145,3 +144,67 @@ class RenewablePowerPlantsGermany(Base):
     source = Column(String)
     comment = Column(String)
     geom = Column(Geometry('POINT', 4326), index=True)
+
+
+class RenewablePowerPlantsGermanyHvSolarRoof(Base):
+    __tablename__ = 'renewable_power_plants_germany_hv_solar_roof'
+    __table_args__ = {'schema': 'orig_geo_opsd'}
+
+    id = Column(BigInteger, primary_key=True)
+    electrical_capacity = Column(Numeric)
+    generation_type = Column(Text)
+    generation_subtype = Column(String)
+    voltage_level = Column(String)
+    subst_id = Column(Integer)
+    geom = Column(Geometry('POINT', 3035), index=True)
+
+
+class TestDea(Base):
+    __tablename__ = 'test_dea'
+    __table_args__ = {'schema': 'orig_geo_opsd'}
+
+    sorted = Column(BigInteger, primary_key=True)
+    id = Column(BigInteger)
+    electrical_capacity = Column(Numeric)
+    generation_type = Column(Text)
+    generation_subtype = Column(String)
+    voltage_level = Column(String)
+    subst_id = Column(Integer)
+    geom = Column(Geometry('POINT', 3035))
+
+
+class TestNew(Base):
+    __tablename__ = 'test_new'
+    __table_args__ = {'schema': 'orig_geo_opsd'}
+
+    sorted = Column(BigInteger, primary_key=True)
+    id = Column(BigInteger)
+    electrical_capacity = Column(Numeric)
+    generation_type = Column(Text)
+    generation_subtype = Column(String)
+    voltage_level = Column(String)
+    subst_id = Column(Integer)
+    old_geom = Column(Geometry('POINT', 3035))
+    geom_line = Column(Geometry('LINESTRING', 3035))
+    geom = Column(Geometry('POINT', 3035))
+
+
+class TestOsm(Base):
+    __tablename__ = 'test_osm'
+    __table_args__ = {'schema': 'orig_geo_opsd'}
+
+    sorted = Column(BigInteger, primary_key=True)
+    id = Column(Integer)
+    subst_id = Column(Integer)
+    area_ha = Column(Numeric)
+    geom = Column(Geometry('POLYGON', 3035))
+
+
+class UrbanSectorPerGridDistrict4Agricultural(Base):
+    __tablename__ = 'urban_sector_per_grid_district_4_agricultural'
+    __table_args__ = {'schema': 'orig_geo_opsd'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_opsd.urban_sector_per_grid_district_4_agricultural_id_seq'::regclass)"))
+    subst_id = Column(Integer)
+    area_ha = Column(Numeric)
+    geom = Column(Geometry('POLYGON', 3035), index=True)

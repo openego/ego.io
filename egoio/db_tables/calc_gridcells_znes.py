@@ -1,9 +1,9 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, Float, ForeignKey, Integer, \
-    SmallInteger, String, Table, Text, text
+from sqlalchemy import BigInteger, Column, Float, ForeignKey, Integer, SmallInteger, String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -66,19 +66,16 @@ class Voronoi(Base):
     __table_args__ = {'schema': 'calc_gridcells_znes'}
 
     geom = Column(Geometry('POLYGON', 4326), index=True)
-    id = Column(Integer, primary_key=True, server_default=text(
-        "nextval('calc_gridcells_znes.voronoi_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_gridcells_znes.voronoi_id_seq'::regclass)"))
 
 
 class ZnesDeuGridcellsQgi(Base):
     __tablename__ = 'znes_deu_gridcells_qgis'
     __table_args__ = {'schema': 'calc_gridcells_znes'}
 
-    id = Column(Integer, primary_key=True, server_default=text(
-        "nextval('calc_gridcells_znes.znes_deu_gridcells_qgis_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_gridcells_znes.znes_deu_gridcells_qgis_id_seq'::regclass)"))
     geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
-    subst_id = Column(ForeignKey(
-        'calc_gridcells_znes.znes_deu_substations_filtered.subst_id'))
+    subst_id = Column(ForeignKey('calc_gridcells_znes.znes_deu_substations_filtered.subst_id'))
 
     subst = relationship('ZnesDeuSubstationsFiltered')
 
@@ -87,8 +84,7 @@ class ZnesDeuSubstation(Base):
     __tablename__ = 'znes_deu_substations'
     __table_args__ = {'schema': 'calc_gridcells_znes'}
 
-    id = Column(Integer, primary_key=True, server_default=text(
-        "nextval('calc_gridcells_znes.uw_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('calc_gridcells_znes.uw_id_seq'::regclass)"))
     lon = Column(Float(53), nullable=False)
     lat = Column(Float(53), nullable=False)
     voltage = Column(Text)
@@ -126,5 +122,4 @@ class ZnesDeuSubstationsFiltered(Base):
     status = Column(SmallInteger)
     visible = Column(SmallInteger)
     geom = Column(Geometry('POINT', 4326))
-    subst_id = Column(Integer, primary_key=True, server_default=text(
-        "nextval('calc_gridcells_znes.znes_deu_substations_filtered_subst_id_seq'::regclass)"))
+    subst_id = Column(Integer, primary_key=True, server_default=text("nextval('calc_gridcells_znes.znes_deu_substations_filtered_subst_id_seq'::regclass)"))

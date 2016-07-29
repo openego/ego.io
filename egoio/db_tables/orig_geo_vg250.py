@@ -1,9 +1,9 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Boolean, Column, Date, Float, Integer, \
-    String, Table, Text, text
+from sqlalchemy import BigInteger, Boolean, Column, Date, Float, Integer, String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.dialects.postgresql.base import ARRAY
 from sqlalchemy.ext.declarative import declarative_base
+
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -13,8 +13,7 @@ class Vg2501Sta(Base):
     __tablename__ = 'vg250_1_sta'
     __table_args__ = {'schema': 'orig_geo_vg250'}
 
-    gid = Column(Integer, primary_key=True, server_default=text(
-        "nextval('orig_geo_vg250.vg250_1_sta_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_vg250.vg250_1_sta_gid_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -51,6 +50,7 @@ t_vg250_1_sta_error_geom_mview = Table(
     schema='orig_geo_vg250'
 )
 
+
 t_vg250_1_sta_mview = Table(
     'vg250_1_sta_mview', metadata,
     Column('gid', Integer, unique=True),
@@ -59,6 +59,7 @@ t_vg250_1_sta_mview = Table(
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='orig_geo_vg250'
 )
+
 
 t_vg250_1_sta_union_mview = Table(
     'vg250_1_sta_union_mview', metadata,
@@ -74,8 +75,7 @@ class Vg2502Lan(Base):
     __tablename__ = 'vg250_2_lan'
     __table_args__ = {'schema': 'orig_geo_vg250'}
 
-    gid = Column(Integer, primary_key=True, server_default=text(
-        "nextval('orig_geo_vg250.vg250_2_lan_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_vg250.vg250_2_lan_gid_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -115,8 +115,7 @@ class Vg2503Rbz(Base):
     __tablename__ = 'vg250_3_rbz'
     __table_args__ = {'schema': 'orig_geo_vg250'}
 
-    gid = Column(Integer, primary_key=True, server_default=text(
-        "nextval('orig_geo_vg250.vg250_3_rbz_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_vg250.vg250_3_rbz_gid_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -147,8 +146,7 @@ class Vg2504Kr(Base):
     __tablename__ = 'vg250_4_krs'
     __table_args__ = {'schema': 'orig_geo_vg250'}
 
-    gid = Column(Integer, primary_key=True, server_default=text(
-        "nextval('orig_geo_vg250.vg250_4_krs_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_vg250.vg250_4_krs_gid_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -188,6 +186,7 @@ t_vg250_4_krs_mview = Table(
     schema='orig_geo_vg250'
 )
 
+
 t_vg250_4_krs_spf_mview = Table(
     'vg250_4_krs_spf_mview', metadata,
     Column('gid', Integer, unique=True),
@@ -202,8 +201,7 @@ class Vg2505Vwg(Base):
     __tablename__ = 'vg250_5_vwg'
     __table_args__ = {'schema': 'orig_geo_vg250'}
 
-    gid = Column(Integer, primary_key=True, server_default=text(
-        "nextval('orig_geo_vg250.vg250_5_vwg_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_vg250.vg250_5_vwg_gid_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -234,8 +232,7 @@ class Vg2506Gem(Base):
     __tablename__ = 'vg250_6_gem'
     __table_args__ = {'schema': 'orig_geo_vg250'}
 
-    gid = Column(Integer, primary_key=True, server_default=text(
-        "nextval('orig_geo_vg250.vg250_6_gem_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('orig_geo_vg250.vg250_6_gem_gid_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -296,6 +293,7 @@ t_vg250_6_gem_dump_mview = Table(
     schema='orig_geo_vg250'
 )
 
+
 t_vg250_6_gem_mview = Table(
     'vg250_6_gem_mview', metadata,
     Column('gid', Integer, unique=True),
@@ -309,6 +307,7 @@ t_vg250_6_gem_mview = Table(
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='orig_geo_vg250'
 )
+
 
 t_vg250_6_gem_rings_mview = Table(
     'vg250_6_gem_rings_mview', metadata,
