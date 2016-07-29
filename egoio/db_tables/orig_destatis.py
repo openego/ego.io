@@ -1,9 +1,9 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, ForeignKey, Integer, Numeric, String, \
-    Table, Text, text
+from sqlalchemy import BigInteger, Column, ForeignKey, Integer, Numeric, String, Table, Text, text
 from sqlalchemy.orm import relationship
 from geoalchemy2.types import Geometry, Raster
 from sqlalchemy.ext.declarative import declarative_base
+
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -46,15 +46,11 @@ class BbsrRagSpatialTypesPerMun(Base):
     mun_name = Column(Text)
     munassn_id = Column(BigInteger)
     munassn_name = Column(Text)
-    sp_typ_pop = Column(ForeignKey(
-        'orig_destatis.bbsr_rag_spatial_types_per_mun_key_pop.sp_typ_pop'))
-    sp_typ_loc = Column(ForeignKey(
-        'orig_destatis.bbsr_rag_spatial_types_per_mun_key_loc.sp_typ_loc'))
+    sp_typ_pop = Column(ForeignKey('orig_destatis.bbsr_rag_spatial_types_per_mun_key_pop.sp_typ_pop'))
+    sp_typ_loc = Column(ForeignKey('orig_destatis.bbsr_rag_spatial_types_per_mun_key_loc.sp_typ_loc'))
 
-    bbsr_rag_spatial_types_per_mun_key_loc = relationship(
-        'BbsrRagSpatialTypesPerMunKeyLoc')
-    bbsr_rag_spatial_types_per_mun_key_pop = relationship(
-        'BbsrRagSpatialTypesPerMunKeyPop')
+    bbsr_rag_spatial_types_per_mun_key_loc = relationship('BbsrRagSpatialTypesPerMunKeyLoc')
+    bbsr_rag_spatial_types_per_mun_key_pop = relationship('BbsrRagSpatialTypesPerMunKeyPop')
 
 
 class BbsrRagSpatialTypesPerMunKeyLoc(Base):
@@ -276,8 +272,7 @@ class ZensusPopulationPerHaGridCluster(Base):
     __tablename__ = 'zensus_population_per_ha_grid_cluster'
     __table_args__ = {'schema': 'orig_destatis'}
 
-    cid = Column(Integer, primary_key=True, server_default=text(
-        "nextval('orig_destatis.zensus_population_per_ha_grid_cluster_cid_seq'::regclass)"))
+    cid = Column(Integer, primary_key=True, server_default=text("nextval('orig_destatis.zensus_population_per_ha_grid_cluster_cid_seq'::regclass)"))
     population_sum = Column(Integer)
     area_ha = Column(Integer)
     geom = Column(Geometry('POLYGON', 3035), index=True)
@@ -305,8 +300,7 @@ class ZensusPopulationPerHaRasterTile100(Base):
     __tablename__ = 'zensus_population_per_ha_raster_tile100'
     __table_args__ = {'schema': 'orig_destatis'}
 
-    rid = Column(Integer, primary_key=True, server_default=text(
-        "nextval('orig_destatis.zensus_population_per_ha_raster_tile100_rid_seq'::regclass)"))
+    rid = Column(Integer, primary_key=True, server_default=text("nextval('orig_destatis.zensus_population_per_ha_raster_tile100_rid_seq'::regclass)"))
     rast = Column(Raster)
 
 

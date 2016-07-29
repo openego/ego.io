@@ -2,7 +2,9 @@
 from sqlalchemy import Column, DateTime, Integer, MetaData, String, Table, text
 from sqlalchemy.dialects.postgresql.base import ARRAY, OID
 
+
 metadata = MetaData()
+
 
 t__pg_foreign_data_wrappers = Table(
     '_pg_foreign_data_wrappers', metadata,
@@ -15,6 +17,7 @@ t__pg_foreign_data_wrappers = Table(
     Column('foreign_data_wrapper_language', String),
     schema='information_schema'
 )
+
 
 t__pg_foreign_servers = Table(
     '_pg_foreign_servers', metadata,
@@ -30,6 +33,7 @@ t__pg_foreign_servers = Table(
     schema='information_schema'
 )
 
+
 t__pg_foreign_table_columns = Table(
     '_pg_foreign_table_columns', metadata,
     Column('nspname', String),
@@ -38,6 +42,7 @@ t__pg_foreign_table_columns = Table(
     Column('attfdwoptions', ARRAY(TEXT())),
     schema='information_schema'
 )
+
 
 t__pg_foreign_tables = Table(
     '_pg_foreign_tables', metadata,
@@ -51,6 +56,7 @@ t__pg_foreign_tables = Table(
     schema='information_schema'
 )
 
+
 t__pg_user_mappings = Table(
     '_pg_user_mappings', metadata,
     Column('oid', OID),
@@ -63,6 +69,7 @@ t__pg_user_mappings = Table(
     schema='information_schema'
 )
 
+
 t_administrable_role_authorizations = Table(
     'administrable_role_authorizations', metadata,
     Column('grantee', String),
@@ -71,6 +78,7 @@ t_administrable_role_authorizations = Table(
     schema='information_schema'
 )
 
+
 t_applicable_roles = Table(
     'applicable_roles', metadata,
     Column('grantee', String),
@@ -78,6 +86,7 @@ t_applicable_roles = Table(
     Column('is_grantable', String),
     schema='information_schema'
 )
+
 
 t_attributes = Table(
     'attributes', metadata,
@@ -115,6 +124,7 @@ t_attributes = Table(
     schema='information_schema'
 )
 
+
 t_character_sets = Table(
     'character_sets', metadata,
     Column('character_set_catalog', String),
@@ -128,6 +138,7 @@ t_character_sets = Table(
     schema='information_schema'
 )
 
+
 t_check_constraint_routine_usage = Table(
     'check_constraint_routine_usage', metadata,
     Column('constraint_catalog', String),
@@ -139,6 +150,7 @@ t_check_constraint_routine_usage = Table(
     schema='information_schema'
 )
 
+
 t_check_constraints = Table(
     'check_constraints', metadata,
     Column('constraint_catalog', String),
@@ -147,6 +159,7 @@ t_check_constraints = Table(
     Column('check_clause', String),
     schema='information_schema'
 )
+
 
 t_collation_character_set_applicability = Table(
     'collation_character_set_applicability', metadata,
@@ -159,6 +172,7 @@ t_collation_character_set_applicability = Table(
     schema='information_schema'
 )
 
+
 t_collations = Table(
     'collations', metadata,
     Column('collation_catalog', String),
@@ -167,6 +181,7 @@ t_collations = Table(
     Column('pad_attribute', String),
     schema='information_schema'
 )
+
 
 t_column_domain_usage = Table(
     'column_domain_usage', metadata,
@@ -180,6 +195,7 @@ t_column_domain_usage = Table(
     schema='information_schema'
 )
 
+
 t_column_options = Table(
     'column_options', metadata,
     Column('table_catalog', String),
@@ -190,6 +206,7 @@ t_column_options = Table(
     Column('option_value', String),
     schema='information_schema'
 )
+
 
 t_column_privileges = Table(
     'column_privileges', metadata,
@@ -204,6 +221,7 @@ t_column_privileges = Table(
     schema='information_schema'
 )
 
+
 t_column_udt_usage = Table(
     'column_udt_usage', metadata,
     Column('udt_catalog', String),
@@ -215,6 +233,7 @@ t_column_udt_usage = Table(
     Column('column_name', String),
     schema='information_schema'
 )
+
 
 t_columns = Table(
     'columns', metadata,
@@ -265,6 +284,7 @@ t_columns = Table(
     schema='information_schema'
 )
 
+
 t_constraint_column_usage = Table(
     'constraint_column_usage', metadata,
     Column('table_catalog', String),
@@ -277,6 +297,7 @@ t_constraint_column_usage = Table(
     schema='information_schema'
 )
 
+
 t_constraint_table_usage = Table(
     'constraint_table_usage', metadata,
     Column('table_catalog', String),
@@ -288,6 +309,7 @@ t_constraint_table_usage = Table(
     schema='information_schema'
 )
 
+
 t_data_type_privileges = Table(
     'data_type_privileges', metadata,
     Column('object_catalog', String),
@@ -297,6 +319,7 @@ t_data_type_privileges = Table(
     Column('dtd_identifier', String),
     schema='information_schema'
 )
+
 
 t_domain_constraints = Table(
     'domain_constraints', metadata,
@@ -311,6 +334,7 @@ t_domain_constraints = Table(
     schema='information_schema'
 )
 
+
 t_domain_udt_usage = Table(
     'domain_udt_usage', metadata,
     Column('udt_catalog', String),
@@ -321,6 +345,7 @@ t_domain_udt_usage = Table(
     Column('domain_name', String),
     schema='information_schema'
 )
+
 
 t_domains = Table(
     'domains', metadata,
@@ -353,6 +378,7 @@ t_domains = Table(
     Column('dtd_identifier', String),
     schema='information_schema'
 )
+
 
 t_element_types = Table(
     'element_types', metadata,
@@ -388,11 +414,13 @@ t_element_types = Table(
     schema='information_schema'
 )
 
+
 t_enabled_roles = Table(
     'enabled_roles', metadata,
     Column('role_name', String),
     schema='information_schema'
 )
+
 
 t_foreign_data_wrapper_options = Table(
     'foreign_data_wrapper_options', metadata,
@@ -402,6 +430,7 @@ t_foreign_data_wrapper_options = Table(
     Column('option_value', String),
     schema='information_schema'
 )
+
 
 t_foreign_data_wrappers = Table(
     'foreign_data_wrappers', metadata,
@@ -413,6 +442,7 @@ t_foreign_data_wrappers = Table(
     schema='information_schema'
 )
 
+
 t_foreign_server_options = Table(
     'foreign_server_options', metadata,
     Column('foreign_server_catalog', String),
@@ -421,6 +451,7 @@ t_foreign_server_options = Table(
     Column('option_value', String),
     schema='information_schema'
 )
+
 
 t_foreign_servers = Table(
     'foreign_servers', metadata,
@@ -434,6 +465,7 @@ t_foreign_servers = Table(
     schema='information_schema'
 )
 
+
 t_foreign_table_options = Table(
     'foreign_table_options', metadata,
     Column('foreign_table_catalog', String),
@@ -443,6 +475,7 @@ t_foreign_table_options = Table(
     Column('option_value', String),
     schema='information_schema'
 )
+
 
 t_foreign_tables = Table(
     'foreign_tables', metadata,
@@ -454,11 +487,13 @@ t_foreign_tables = Table(
     schema='information_schema'
 )
 
+
 t_information_schema_catalog_name = Table(
     'information_schema_catalog_name', metadata,
     Column('catalog_name', String),
     schema='information_schema'
 )
+
 
 t_key_column_usage = Table(
     'key_column_usage', metadata,
@@ -473,6 +508,7 @@ t_key_column_usage = Table(
     Column('position_in_unique_constraint', Integer),
     schema='information_schema'
 )
+
 
 t_parameters = Table(
     'parameters', metadata,
@@ -510,6 +546,7 @@ t_parameters = Table(
     schema='information_schema'
 )
 
+
 t_referential_constraints = Table(
     'referential_constraints', metadata,
     Column('constraint_catalog', String),
@@ -524,6 +561,7 @@ t_referential_constraints = Table(
     schema='information_schema'
 )
 
+
 t_role_column_grants = Table(
     'role_column_grants', metadata,
     Column('grantor', String),
@@ -536,6 +574,7 @@ t_role_column_grants = Table(
     Column('is_grantable', String),
     schema='information_schema'
 )
+
 
 t_role_routine_grants = Table(
     'role_routine_grants', metadata,
@@ -552,6 +591,7 @@ t_role_routine_grants = Table(
     schema='information_schema'
 )
 
+
 t_role_table_grants = Table(
     'role_table_grants', metadata,
     Column('grantor', String),
@@ -565,6 +605,7 @@ t_role_table_grants = Table(
     schema='information_schema'
 )
 
+
 t_role_udt_grants = Table(
     'role_udt_grants', metadata,
     Column('grantor', String),
@@ -576,6 +617,7 @@ t_role_udt_grants = Table(
     Column('is_grantable', String),
     schema='information_schema'
 )
+
 
 t_role_usage_grants = Table(
     'role_usage_grants', metadata,
@@ -589,6 +631,7 @@ t_role_usage_grants = Table(
     Column('is_grantable', String),
     schema='information_schema'
 )
+
 
 t_routine_privileges = Table(
     'routine_privileges', metadata,
@@ -604,6 +647,7 @@ t_routine_privileges = Table(
     Column('is_grantable', String),
     schema='information_schema'
 )
+
 
 t_routines = Table(
     'routines', metadata,
@@ -661,10 +705,8 @@ t_routines = Table(
     Column('to_sql_specific_schema', String),
     Column('to_sql_specific_name', String),
     Column('as_locator', String),
-    Column('created', DateTime,
-           server_default=text("('now'::text)::timestamp(2) with time zone")),
-    Column('last_altered', DateTime,
-           server_default=text("('now'::text)::timestamp(2) with time zone")),
+    Column('created', DateTime, server_default=text("('now'::text)::timestamp(2) with time zone")),
+    Column('last_altered', DateTime, server_default=text("('now'::text)::timestamp(2) with time zone")),
     Column('new_savepoint_level', String),
     Column('is_udt_dependent', String),
     Column('result_cast_from_data_type', String),
@@ -694,6 +736,7 @@ t_routines = Table(
     schema='information_schema'
 )
 
+
 t_schemata = Table(
     'schemata', metadata,
     Column('catalog_name', String),
@@ -705,6 +748,7 @@ t_schemata = Table(
     Column('sql_path', String),
     schema='information_schema'
 )
+
 
 t_sequences = Table(
     'sequences', metadata,
@@ -723,6 +767,7 @@ t_sequences = Table(
     schema='information_schema'
 )
 
+
 t_sql_features = Table(
     'sql_features', metadata,
     Column('feature_id', String),
@@ -735,6 +780,7 @@ t_sql_features = Table(
     schema='information_schema'
 )
 
+
 t_sql_implementation_info = Table(
     'sql_implementation_info', metadata,
     Column('implementation_info_id', String),
@@ -744,6 +790,7 @@ t_sql_implementation_info = Table(
     Column('comments', String),
     schema='information_schema'
 )
+
 
 t_sql_languages = Table(
     'sql_languages', metadata,
@@ -757,6 +804,7 @@ t_sql_languages = Table(
     schema='information_schema'
 )
 
+
 t_sql_packages = Table(
     'sql_packages', metadata,
     Column('feature_id', String),
@@ -766,6 +814,7 @@ t_sql_packages = Table(
     Column('comments', String),
     schema='information_schema'
 )
+
 
 t_sql_parts = Table(
     'sql_parts', metadata,
@@ -777,6 +826,7 @@ t_sql_parts = Table(
     schema='information_schema'
 )
 
+
 t_sql_sizing = Table(
     'sql_sizing', metadata,
     Column('sizing_id', Integer),
@@ -785,6 +835,7 @@ t_sql_sizing = Table(
     Column('comments', String),
     schema='information_schema'
 )
+
 
 t_sql_sizing_profiles = Table(
     'sql_sizing_profiles', metadata,
@@ -795,6 +846,7 @@ t_sql_sizing_profiles = Table(
     Column('comments', String),
     schema='information_schema'
 )
+
 
 t_table_constraints = Table(
     'table_constraints', metadata,
@@ -810,6 +862,7 @@ t_table_constraints = Table(
     schema='information_schema'
 )
 
+
 t_table_privileges = Table(
     'table_privileges', metadata,
     Column('grantor', String),
@@ -822,6 +875,7 @@ t_table_privileges = Table(
     Column('with_hierarchy', String),
     schema='information_schema'
 )
+
 
 t_tables = Table(
     'tables', metadata,
@@ -840,6 +894,7 @@ t_tables = Table(
     schema='information_schema'
 )
 
+
 t_triggered_update_columns = Table(
     'triggered_update_columns', metadata,
     Column('trigger_catalog', String),
@@ -851,6 +906,7 @@ t_triggered_update_columns = Table(
     Column('event_object_column', String),
     schema='information_schema'
 )
+
 
 t_triggers = Table(
     'triggers', metadata,
@@ -870,10 +926,10 @@ t_triggers = Table(
     Column('action_reference_new_table', String),
     Column('action_reference_old_row', String),
     Column('action_reference_new_row', String),
-    Column('created', DateTime,
-           server_default=text("('now'::text)::timestamp(2) with time zone")),
+    Column('created', DateTime, server_default=text("('now'::text)::timestamp(2) with time zone")),
     schema='information_schema'
 )
+
 
 t_udt_privileges = Table(
     'udt_privileges', metadata,
@@ -887,6 +943,7 @@ t_udt_privileges = Table(
     schema='information_schema'
 )
 
+
 t_usage_privileges = Table(
     'usage_privileges', metadata,
     Column('grantor', String),
@@ -899,6 +956,7 @@ t_usage_privileges = Table(
     Column('is_grantable', String),
     schema='information_schema'
 )
+
 
 t_user_defined_types = Table(
     'user_defined_types', metadata,
@@ -934,6 +992,7 @@ t_user_defined_types = Table(
     schema='information_schema'
 )
 
+
 t_user_mapping_options = Table(
     'user_mapping_options', metadata,
     Column('authorization_identifier', String),
@@ -944,6 +1003,7 @@ t_user_mapping_options = Table(
     schema='information_schema'
 )
 
+
 t_user_mappings = Table(
     'user_mappings', metadata,
     Column('authorization_identifier', String),
@@ -951,6 +1011,7 @@ t_user_mappings = Table(
     Column('foreign_server_name', String),
     schema='information_schema'
 )
+
 
 t_view_column_usage = Table(
     'view_column_usage', metadata,
@@ -964,6 +1025,7 @@ t_view_column_usage = Table(
     schema='information_schema'
 )
 
+
 t_view_routine_usage = Table(
     'view_routine_usage', metadata,
     Column('table_catalog', String),
@@ -975,6 +1037,7 @@ t_view_routine_usage = Table(
     schema='information_schema'
 )
 
+
 t_view_table_usage = Table(
     'view_table_usage', metadata,
     Column('view_catalog', String),
@@ -985,6 +1048,7 @@ t_view_table_usage = Table(
     Column('table_name', String),
     schema='information_schema'
 )
+
 
 t_views = Table(
     'views', metadata,
