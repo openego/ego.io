@@ -174,13 +174,14 @@ t_municipalities_subst_3_nn_union = Table(
 
 
 class LVGridDistrictTa(Base):
-    __tablename__ = 'lv_grid_district_ta'
+    __tablename__ = 'ego_deu_lv_grid_district_ta'
     __table_args__ = {'schema': 'calc_ego_grid_district'}
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry('POLYGON', 3035), index=True)
     population = Column(Integer)
     peak_load = Column(Numeric)
+    load_area_id = Column(Integer)
 
 class EgoDeuOntGrids(Base):
     __tablename__ = 'ego_deu_ontgrids'
