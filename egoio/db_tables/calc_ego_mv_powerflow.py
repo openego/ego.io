@@ -1,5 +1,6 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Boolean, Column,  Float, ForeignKey, Integer, Numeric, Text, text
+from sqlalchemy import BigInteger, Boolean, Column,  Float, ForeignKey,\
+    Integer, Numeric, Text, text, String
 from sqlalchemy.dialects.postgresql.base import ARRAY
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -18,6 +19,8 @@ class Bus(Base):
     v_mag_pu_min = Column(Float(53), server_default=text("0"))
     v_mag_pu_max = Column(Float(53))
     geom = Column(Geometry('POINT'))
+    scn_name = Column(String,
+                      server_default=text("'Status Quo'::character varying"))
 
 
 # class BusVMagSet(Base):
@@ -44,6 +47,8 @@ class Generator(Base):
     p_min_pu_fixed = Column(Float(53), server_default=text("0"))
     p_max_pu_fixed = Column(Float(53), server_default=text("1"))
     sign = Column(Float(53), server_default=text("1"))
+    scn_name = Column(String,
+                      server_default=text("'Status Quo'::character varying"))
 
     bu = relationship('Bus')
     source1 = relationship('Source')
@@ -82,6 +87,8 @@ class Line(Base):
 
     bu = relationship('Bus', primaryjoin='Line.bus0 == Bus.bus_id')
     bu1 = relationship('Bus', primaryjoin='Line.bus1 == Bus.bus_id')
+    scn_name = Column(String,
+                      server_default=text("'Status Quo'::character varying"))
 
 
 class Load(Base):
@@ -91,6 +98,8 @@ class Load(Base):
     load_id = Column(BigInteger, primary_key=True)
     bus = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
     sign = Column(Float(53), server_default=text("'-1'::integer"))
+    scn_name = Column(String,
+                      server_default=text("'Status Quo'::character varying"))
 
     bu = relationship('Bus')
 
@@ -191,6 +200,8 @@ class Transformer(Base):
     tap_ratio = Column(Float(53))
     phase_shift = Column(Float(53))
     geom = Column(Geometry('MULTILINESTRING'))
+    scn_name = Column(String,
+                      server_default=text("'Status Quo'::character varying"))
 
     bu = relationship('Bus', primaryjoin='Transformer.bus0 == Bus.bus_id')
     bu1 = relationship('Bus', primaryjoin='Transformer.bus1 == Bus.bus_id')
