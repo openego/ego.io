@@ -11,7 +11,7 @@ metadata = Base.metadata
 
 class Bus(Base):
     __tablename__ = 'bus'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
     bus_id = Column(BigInteger, primary_key=True)
     v_nom = Column(Float(53))
@@ -23,10 +23,10 @@ class Bus(Base):
 
 class BusVMagSet(Base):
     __tablename__ = 'bus_v_mag_set'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    bus_id = Column(ForeignKey('powerflow_test.bus.bus_id'), primary_key=True, nullable=False)
-    temp_id = Column(ForeignKey('powerflow_test.temp_resolution.temp_id'), primary_key=True, nullable=False)
+    bus_id = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'), primary_key=True, nullable=False)
+    temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
     v_mag_pu_set = Column(ARRAY(Float(53)))
 
     bus = relationship('Bus')
@@ -35,10 +35,10 @@ class BusVMagSet(Base):
 
 class Generator(Base):
     __tablename__ = 'generator'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
     generator_id = Column(BigInteger, primary_key=True)
-    bus = Column(ForeignKey('powerflow_test.bus.bus_id'))
+    bus = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
     dispatch = Column(Text, server_default=text("'flexible'::text"))
     control = Column(Text, server_default=text("'PQ'::text"))
     p_nom = Column(Float(53), server_default=text("0"))
@@ -48,7 +48,7 @@ class Generator(Base):
     p_min_pu_fixed = Column(Float(53), server_default=text("0"))
     p_max_pu_fixed = Column(Float(53), server_default=text("1"))
     sign = Column(Float(53), server_default=text("1"))
-    source = Column(ForeignKey('powerflow_test.source.source_id'), index=True)
+    source = Column(ForeignKey('calc_ego_mv_powerflow.source.source_id'), index=True)
     marginal_cost = Column(Float(53))
     capital_cost = Column(Float(53))
     efficiency = Column(Float(53))
@@ -59,10 +59,10 @@ class Generator(Base):
 
 class GeneratorPqSet(Base):
     __tablename__ = 'generator_pq_set'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    generator_id = Column(ForeignKey('powerflow_test.generator.generator_id'), primary_key=True, nullable=False)
-    temp_id = Column(ForeignKey('powerflow_test.temp_resolution.temp_id'), primary_key=True, nullable=False)
+    generator_id = Column(ForeignKey('calc_ego_mv_powerflow.generator.generator_id'), primary_key=True, nullable=False)
+    temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
     p_set = Column(ARRAY(Float(53)))
     q_set = Column(ARRAY(Float(53)))
     p_min_pu = Column(ARRAY(Float(53)))
@@ -74,11 +74,11 @@ class GeneratorPqSet(Base):
 
 class Line(Base):
     __tablename__ = 'line'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
     line_id = Column(BigInteger, primary_key=True)
-    bus0 = Column(ForeignKey('powerflow_test.bus.bus_id'))
-    bus1 = Column(ForeignKey('powerflow_test.bus.bus_id'))
+    bus0 = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
+    bus1 = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
     x = Column(Numeric, server_default=text("0"))
     r = Column(Numeric, server_default=text("0"))
     g = Column(Numeric, server_default=text("0"))
@@ -101,10 +101,10 @@ class Line(Base):
 
 class Load(Base):
     __tablename__ = 'load'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
     load_id = Column(BigInteger, primary_key=True)
-    bus = Column(ForeignKey('powerflow_test.bus.bus_id'))
+    bus = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
     sign = Column(Float(53), server_default=text("'-1'::integer"))
 
     bu = relationship('Bus')
@@ -112,10 +112,10 @@ class Load(Base):
 
 class LoadPqSet(Base):
     __tablename__ = 'load_pq_set'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    load_id = Column(ForeignKey('powerflow_test.load.load_id'), primary_key=True, nullable=False)
-    temp_id = Column(ForeignKey('powerflow_test.temp_resolution.temp_id'), primary_key=True, nullable=False)
+    load_id = Column(ForeignKey('calc_ego_mv_powerflow.load.load_id'), primary_key=True, nullable=False)
+    temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
     p_set = Column(ARRAY(Float(53)))
     q_set = Column(ARRAY(Float(53)))
 
@@ -125,7 +125,7 @@ class LoadPqSet(Base):
 
 class Source(Base):
     __tablename__ = 'source'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
     source_id = Column(BigInteger, primary_key=True)
     name = Column(Text)
@@ -135,10 +135,10 @@ class Source(Base):
 
 class Storage(Base):
     __tablename__ = 'storage'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
     storage_id = Column(BigInteger, primary_key=True)
-    bus = Column(ForeignKey('powerflow_test.bus.bus_id'))
+    bus = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
     dispatch = Column(Text, server_default=text("'flexible'::text"))
     control = Column(Text, server_default=text("'PQ'::text"))
     p_nom = Column(Float(53), server_default=text("0"))
@@ -148,7 +148,7 @@ class Storage(Base):
     p_min_pu_fixed = Column(Float(53), server_default=text("0"))
     p_max_pu_fixed = Column(Float(53), server_default=text("1"))
     sign = Column(Float(53), server_default=text("1"))
-    source = Column(ForeignKey('powerflow_test.source.source_id'), index=True)
+    source = Column(ForeignKey('calc_ego_mv_powerflow.source.source_id'), index=True)
     marginal_cost = Column(Float(53))
     capital_cost = Column(Float(53))
     efficiency = Column(Float(53))
@@ -165,10 +165,10 @@ class Storage(Base):
 
 class StoragePqSet(Base):
     __tablename__ = 'storage_pq_set'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    storage_id = Column(ForeignKey('powerflow_test.storage.storage_id'), primary_key=True, nullable=False)
-    temp_id = Column(ForeignKey('powerflow_test.temp_resolution.temp_id'), primary_key=True, nullable=False)
+    storage_id = Column(ForeignKey('calc_ego_mv_powerflow.storage.storage_id'), primary_key=True, nullable=False)
+    temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
     p_set = Column(ARRAY(Float(53)))
     q_set = Column(ARRAY(Float(53)))
     p_min_pu = Column(ARRAY(Float(53)))
@@ -182,7 +182,7 @@ class StoragePqSet(Base):
 
 class TempResolution(Base):
     __tablename__ = 'temp_resolution'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
     temp_id = Column(BigInteger, primary_key=True)
     timesteps = Column(BigInteger, nullable=False)
@@ -193,11 +193,11 @@ class TempResolution(Base):
 
 class Transformer(Base):
     __tablename__ = 'transformer'
-    __table_args__ = {'schema': 'powerflow_test'}
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
     trafo_id = Column(BigInteger, primary_key=True)
-    bus0 = Column(ForeignKey('powerflow_test.bus.bus_id'), index=True)
-    bus1 = Column(ForeignKey('powerflow_test.bus.bus_id'), index=True)
+    bus0 = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'), index=True)
+    bus1 = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'), index=True)
     x = Column(Numeric, server_default=text("0"))
     r = Column(Numeric, server_default=text("0"))
     g = Column(Numeric, server_default=text("0"))
