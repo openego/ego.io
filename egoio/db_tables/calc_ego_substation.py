@@ -15,8 +15,8 @@ class EgoDeuSubstation(Base):
     id = Column(Integer, primary_key=True)
     lon = Column(Float(53))
     lat = Column(Float(53))
-    point = Column(Text)
-    polygon = Column(Text)
+    point = Column(Geometry('POINT', 4326), index=True)
+    polygon = Column(Geometry('POLYGON', 4326), index=True)
     voltage = Column(Text)
     power_type = Column(Text)
     substation = Column(Text)
@@ -29,8 +29,7 @@ class EgoDeuSubstation(Base):
     dbahn = Column(Text)
     status = Column(SmallInteger)
     visible = Column(SmallInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
-    ags_0 = Column(String(12))
+    otg_id = Column(BigInteger)
 
 
 class Substation110(Base):
