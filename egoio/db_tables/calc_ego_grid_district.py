@@ -181,6 +181,17 @@ class LVGridDistrictTa(Base):
     geom = Column(Geometry('POLYGON', 3035), index=True)
     population = Column(Integer)
     peak_load = Column(Numeric)
+    load_area_id = Column (Integer)
+    
+class LVGridDistrict(Base):
+    __tablename__ = 'lv_grid_district'
+    __table_args__ = {'schema': 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry('POLYGON', 3035), index=True)
+    population = Column(Integer)
+    peak_load = Column(Numeric)
+    load_area_id = Column (Integer)
 
 class EgoDeuOntGrids(Base):
     __tablename__ = 'ego_deu_ontgrids'
@@ -229,3 +240,57 @@ class EgoDeuLoadAreaRestLittleTa(Base):
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
     load_area_id = Column(Integer)
+
+class EgoDeuLvGridDistrictsVoronoi(Base):
+    __tablename__ = 'ego_deu_lv_grid_districts_voronoi'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+
+class EgoDeuLvGridDistrictsVoronoiTa(Base):
+    __tablename__ = 'ego_deu_lv_grid_districts_voronoi_ta'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    
+class EgoDeuLvGridDistrictsVoronoiCut(Base):
+    __tablename__ = 'ego_deu_lv_grid_districts_voronoi_cut'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    ont_count = Column(Integer)
+    ont_id = Column(Integer)
+    merge_id = Column(Integer)
+
+class EgoDeuLvGridDistrictsVoronoiCutTa(Base):
+    __tablename__ = 'ego_deu_lv_grid_districts_voronoi_cut_ta'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    ont_count = Column(Integer)
+    ont_id = Column(Integer)
+    merge_id = Column(Integer)
+
+class EgoDeuLvGridDistrictsWithoutPop(Base):
+    __tablename__ = 'ego_deu_lv_grid_districts_withoutpop'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
+
+class EgoDeuLvGridDistrictsWithoutPopTa(Base):
+    __tablename__ = 'ego_deu_lv_grid_districts_withoutpop_ta'
+    __table_args__ = {"schema": 'calc_ego_grid_district'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry(geometry_type="POLYGON", srid=3035))
+    load_area_id = Column(Integer)
+
+
+
+
