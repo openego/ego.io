@@ -224,7 +224,7 @@ class Transformer(Base):
     s_nom_min = Column(Float(53), server_default=text("0"))
     s_nom_max = Column(Float(53))
     tap_ratio = Column(Float(53))
-    pashe_shift = Column(Float(53))
+    phase_shift = Column(Float(53))
     capital_cost = Column(Float(53), server_default=text("0"))
     geom = Column(Geometry('MULTILINESTRING'))
     topo = Column(Geometry('LINESTRING'))
