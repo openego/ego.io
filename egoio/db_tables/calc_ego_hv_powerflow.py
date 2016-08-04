@@ -9,7 +9,7 @@ Base = declarative_base()
 metadata = Base.metadata
 
 
-class Bu(Base):
+class Bus(Base):
     __tablename__ = 'bus'
     __table_args__ = {'schema': 'calc_ego_hv_powerflow'}
 
