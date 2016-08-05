@@ -14,7 +14,7 @@ class Bus(Base):
     __tablename__ = 'bus'
     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    bus_id = Column(BigInteger, primary_key=True)
+    bus_id = Column(String(25), primary_key=True)
     v_nom = Column(Float(53))
     v_mag_pu_min = Column(Float(53), server_default=text("0"))
     v_mag_pu_max = Column(Float(53))
@@ -39,7 +39,7 @@ class Generator(Base):
     __tablename__ = 'generator'
     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    generator_id = Column(BigInteger, primary_key=True)
+    generator_id = Column(String(25), primary_key=True)
     bus = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
 
     control = Column(Text, server_default=text("'PQ'::text"))
@@ -73,7 +73,7 @@ class Line(Base):
     __tablename__ = 'line'
     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    line_id = Column(BigInteger, primary_key=True)
+    line_id = Column(String(25), primary_key=True)
     bus0 = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
     bus1 = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
     x = Column(Numeric, server_default=text("0"))
@@ -95,7 +95,7 @@ class Load(Base):
     __tablename__ = 'load'
     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    load_id = Column(BigInteger, primary_key=True)
+    load_id = Column(String(25), primary_key=True)
     bus = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
     sign = Column(Float(53), server_default=text("'-1'::integer"))
     scn_name = Column(String,
@@ -121,7 +121,7 @@ class Source(Base):
     __tablename__ = 'source'
     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    source_id = Column(BigInteger, primary_key=True)
+    source_id = Column(String(25), primary_key=True)
     name = Column(Text)
     co2_emissions = Column(Float(53))
     commentary = Column(Text)
@@ -131,7 +131,7 @@ class Storage(Base):
     __tablename__ = 'storage'
     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    storage_id = Column(BigInteger, primary_key=True)
+    storage_id = Column(String(25), primary_key=True)
     bus = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
     dispatch = Column(Text, server_default=text("'flexible'::text"))
     control = Column(Text, server_default=text("'PQ'::text"))
@@ -189,7 +189,7 @@ class Transformer(Base):
     __tablename__ = 'transformer'
     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
 
-    trafo_id = Column(BigInteger, primary_key=True)
+    trafo_id = Column(String(25), primary_key=True)
     bus0 = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'), index=True)
     bus1 = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'), index=True)
     x = Column(Numeric, server_default=text("0"))
