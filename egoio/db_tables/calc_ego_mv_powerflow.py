@@ -198,7 +198,6 @@ class Transformer(Base):
     b = Column(Numeric, server_default=text("0"))
     s_nom = Column(Float(53), server_default=text("0"))
     tap_ratio = Column(Float(53))
-    phase_shift = Column(Float(53))
     geom = Column(Geometry('MULTILINESTRING'))
     scn_name = Column(String,
                       server_default=text("'Status Quo'::character varying"))
