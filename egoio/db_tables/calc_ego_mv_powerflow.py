@@ -23,16 +23,16 @@ class Bus(Base):
                       server_default=text("'Status Quo'::character varying"))
 
 
-# class BusVMagSet(Base):
-#     __tablename__ = 'bus_v_mag_set'
-#     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
-#
-#     bus_id = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'), primary_key=True, nullable=False)
-#     temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
-#     v_mag_pu_set = Column(ARRAY(Float(53)))
-#
-#     bus = relationship('Bus')
-#     temp = relationship('TempResolution')
+class BusVMagSet(Base):
+    __tablename__ = 'bus_v_mag_set'
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
+
+    bus_id = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'), primary_key=True, nullable=False)
+    temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
+    v_mag_pu_set = Column(ARRAY(Float(53)))
+
+    bus = relationship('Bus')
+    temp = relationship('TempResolution')
 
 
 class Generator(Base):
@@ -51,22 +51,22 @@ class Generator(Base):
                       server_default=text("'Status Quo'::character varying"))
 
     bu = relationship('Bus')
-    source1 = relationship('Source')
+    # source1 = relationship('Source', primaryjoin='Generator.source1 == Source.source_id')
 
 
-# class GeneratorPqSet(Base):
-#     __tablename__ = 'generator_pq_set'
-#     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
-#
-#     generator_id = Column(ForeignKey('calc_ego_mv_powerflow.generator.generator_id'), primary_key=True, nullable=False)
-#     temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
-#     p_set = Column(ARRAY(Float(53)))
-#     q_set = Column(ARRAY(Float(53)))
-#     p_min_pu = Column(ARRAY(Float(53)))
-#     p_max_pu = Column(ARRAY(Float(53)))
-#
-#     generator = relationship('Generator')
-#     temp = relationship('TempResolution')
+class GeneratorPqSet(Base):
+    __tablename__ = 'generator_pq_set'
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
+
+    generator_id = Column(ForeignKey('calc_ego_mv_powerflow.generator.generator_id'), primary_key=True, nullable=False)
+    temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
+    p_set = Column(ARRAY(Float(53)))
+    q_set = Column(ARRAY(Float(53)))
+    p_min_pu = Column(ARRAY(Float(53)))
+    p_max_pu = Column(ARRAY(Float(53)))
+
+    generator = relationship('Generator')
+    temp = relationship('TempResolution')
 
 
 class Line(Base):
@@ -104,74 +104,74 @@ class Load(Base):
     bu = relationship('Bus')
 
 
-# class LoadPqSet(Base):
-#     __tablename__ = 'load_pq_set'
-#     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
-#
-#     load_id = Column(ForeignKey('calc_ego_mv_powerflow.load.load_id'), primary_key=True, nullable=False)
-#     temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
-#     p_set = Column(ARRAY(Float(53)))
-#     q_set = Column(ARRAY(Float(53)))
-#
-#     load = relationship('Load')
-#     temp = relationship('TempResolution')
+class LoadPqSet(Base):
+    __tablename__ = 'load_pq_set'
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
+
+    load_id = Column(ForeignKey('calc_ego_mv_powerflow.load.load_id'), primary_key=True, nullable=False)
+    temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
+    p_set = Column(ARRAY(Float(53)))
+    q_set = Column(ARRAY(Float(53)))
+
+    load = relationship('Load')
+    temp = relationship('TempResolution')
 
 
-# class Source(Base):
-#     __tablename__ = 'source'
-#     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
-#
-#     source_id = Column(BigInteger, primary_key=True)
-#     name = Column(Text)
-#     co2_emissions = Column(Float(53))
-#     commentary = Column(Text)
+class Source(Base):
+    __tablename__ = 'source'
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
+
+    source_id = Column(BigInteger, primary_key=True)
+    name = Column(Text)
+    co2_emissions = Column(Float(53))
+    commentary = Column(Text)
 
 
-# class Storage(Base):
-#     __tablename__ = 'storage'
-#     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
-#
-#     storage_id = Column(BigInteger, primary_key=True)
-#     bus = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
-#     dispatch = Column(Text, server_default=text("'flexible'::text"))
-#     control = Column(Text, server_default=text("'PQ'::text"))
-#     p_nom = Column(Float(53), server_default=text("0"))
-#     p_nom_extendable = Column(Boolean, server_default=text("false"))
-#     p_nom_min = Column(Float(53), server_default=text("0"))
-#     p_nom_max = Column(Float(53))
-#     p_min_pu_fixed = Column(Float(53), server_default=text("0"))
-#     p_max_pu_fixed = Column(Float(53), server_default=text("1"))
-#     sign = Column(Float(53), server_default=text("1"))
-#     source = Column(ForeignKey('calc_ego_mv_powerflow.source.source_id'), index=True)
-#     marginal_cost = Column(Float(53))
-#     capital_cost = Column(Float(53))
-#     efficiency = Column(Float(53))
-#     soa_initial = Column(Float(53))
-#     soa_cyclic = Column(Boolean, server_default=text("false"))
-#     max_hours = Column(Float(53))
-#     efficiency_store = Column(Float(53))
-#     efficiency_dispatch = Column(Float(53))
-#     standing_loss = Column(Float(53))
-#
-#     bu = relationship('Bus')
-#     source1 = relationship('Source')
+class Storage(Base):
+    __tablename__ = 'storage'
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
+
+    storage_id = Column(BigInteger, primary_key=True)
+    bus = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'))
+    dispatch = Column(Text, server_default=text("'flexible'::text"))
+    control = Column(Text, server_default=text("'PQ'::text"))
+    p_nom = Column(Float(53), server_default=text("0"))
+    p_nom_extendable = Column(Boolean, server_default=text("false"))
+    p_nom_min = Column(Float(53), server_default=text("0"))
+    p_nom_max = Column(Float(53))
+    p_min_pu_fixed = Column(Float(53), server_default=text("0"))
+    p_max_pu_fixed = Column(Float(53), server_default=text("1"))
+    sign = Column(Float(53), server_default=text("1"))
+    source = Column(ForeignKey('calc_ego_mv_powerflow.source.source_id'), index=True)
+    marginal_cost = Column(Float(53))
+    capital_cost = Column(Float(53))
+    efficiency = Column(Float(53))
+    soa_initial = Column(Float(53))
+    soa_cyclic = Column(Boolean, server_default=text("false"))
+    max_hours = Column(Float(53))
+    efficiency_store = Column(Float(53))
+    efficiency_dispatch = Column(Float(53))
+    standing_loss = Column(Float(53))
+
+    bu = relationship('Bus')
+    source1 = relationship('Source')
 
 
-# class StoragePqSet(Base):
-#     __tablename__ = 'storage_pq_set'
-#     __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
-#
-#     storage_id = Column(ForeignKey('calc_ego_mv_powerflow.storage.storage_id'), primary_key=True, nullable=False)
-#     temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
-#     p_set = Column(ARRAY(Float(53)))
-#     q_set = Column(ARRAY(Float(53)))
-#     p_min_pu = Column(ARRAY(Float(53)))
-#     p_max_pu = Column(ARRAY(Float(53)))
-#     soa_set = Column(ARRAY(Float(53)))
-#     inflow = Column(ARRAY(Float(53)))
-#
-#     storage = relationship('Storage')
-#     temp = relationship('TempResolution')
+class StoragePqSet(Base):
+    __tablename__ = 'storage_pq_set'
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
+
+    storage_id = Column(ForeignKey('calc_ego_mv_powerflow.storage.storage_id'), primary_key=True, nullable=False)
+    temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
+    p_set = Column(ARRAY(Float(53)))
+    q_set = Column(ARRAY(Float(53)))
+    p_min_pu = Column(ARRAY(Float(53)))
+    p_max_pu = Column(ARRAY(Float(53)))
+    soa_set = Column(ARRAY(Float(53)))
+    inflow = Column(ARRAY(Float(53)))
+
+    storage = relationship('Storage')
+    temp = relationship('TempResolution')
 
 
 class TempResolution(Base):
