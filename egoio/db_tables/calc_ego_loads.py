@@ -1,8 +1,9 @@
 # coding: utf-8
 from sqlalchemy import BigInteger, Column, Float, Integer, Numeric, String, \
-    Table, text
+    Table, text, ForeignKey
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.dialects.postgresql.base import ARRAY
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -295,3 +296,12 @@ class UrbanSectorPerGridDistrict4Agricultural(Base):
     id = Column(Integer, primary_key=True, server_default=text(
         "nextval('calc_ego_loads.urban_sector_per_grid_district_4_agricultural_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035), index=True)
+
+
+class EgoDemandPerTransitionPoint(Base):
+    __tablename__ = 'ego_demand_per_transition_point'
+    __table_args__ = {'schema': 'calc_ego_loads'}
+    id = Column(Integer,
+                primary_key=True,
+                nullable=False)
+    demand = Column(ARRAY(Float(53)))
