@@ -21,6 +21,7 @@ class Bus(Base):
     geom = Column(Geometry('POINT'))
     scn_name = Column(String,
                       server_default=text("'Status Quo'::character varying"))
+    grid_id = Column(Integer)
 
 
 class BusVMagSet(Base):
@@ -30,9 +31,12 @@ class BusVMagSet(Base):
     bus_id = Column(ForeignKey('calc_ego_mv_powerflow.bus.bus_id'), primary_key=True, nullable=False)
     temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
     v_mag_pu_set = Column(ARRAY(Float(53)))
+    scn_name = Column(String,
+                      server_default=text("'Status Quo'::character varying"))
 
     bus = relationship('Bus')
     temp = relationship('TempResolution')
+    grid_id = Column(Integer)
 
 
 class Generator(Base):
@@ -52,6 +56,7 @@ class Generator(Base):
 
     bu = relationship('Bus')
     # source1 = relationship('Source', primaryjoin='Generator.source1 == Source.source_id')
+    grid_id = Column(Integer)
 
 
 class GeneratorPqSet(Base):
@@ -64,9 +69,12 @@ class GeneratorPqSet(Base):
     q_set = Column(ARRAY(Float(53)))
     p_min_pu = Column(ARRAY(Float(53)))
     p_max_pu = Column(ARRAY(Float(53)))
+    scn_name = Column(String,
+                      server_default=text("'Status Quo'::character varying"))
 
     generator = relationship('Generator')
     temp = relationship('TempResolution')
+    grid_id = Column(Integer)
 
 
 class Line(Base):
@@ -83,12 +91,13 @@ class Line(Base):
     s_nom = Column(Numeric, server_default=text("0"))
     length = Column(Float(53))
     cables = Column(Integer)
-    geom = Column(Geometry('MULTILINESTRING'))
+    geom = Column(Geometry('LINESTRING'))
 
     bu = relationship('Bus', primaryjoin='Line.bus0 == Bus.bus_id')
     bu1 = relationship('Bus', primaryjoin='Line.bus1 == Bus.bus_id')
     scn_name = Column(String,
                       server_default=text("'Status Quo'::character varying"))
+    grid_id = Column(Integer)
 
 
 class Load(Base):
@@ -102,6 +111,7 @@ class Load(Base):
                       server_default=text("'Status Quo'::character varying"))
 
     bu = relationship('Bus')
+    grid_id = Column(Integer)
 
 
 class LoadPqSet(Base):
@@ -112,9 +122,12 @@ class LoadPqSet(Base):
     temp_id = Column(ForeignKey('calc_ego_mv_powerflow.temp_resolution.temp_id'), primary_key=True, nullable=False)
     p_set = Column(ARRAY(Float(53)))
     q_set = Column(ARRAY(Float(53)))
+    scn_name = Column(String,
+                      server_default=text("'Status Quo'::character varying"))
 
     load = relationship('Load')
     temp = relationship('TempResolution')
+    grid_id = Column(Integer)
 
 
 class Source(Base):
@@ -155,6 +168,7 @@ class Storage(Base):
 
     bu = relationship('Bus')
     source1 = relationship('Source')
+    grid_id = Column(Integer)
 
 
 class StoragePqSet(Base):
@@ -172,6 +186,7 @@ class StoragePqSet(Base):
 
     storage = relationship('Storage')
     temp = relationship('TempResolution')
+    grid_id = Column(Integer)
 
 
 class TempResolution(Base):
@@ -181,7 +196,6 @@ class TempResolution(Base):
     temp_id = Column(BigInteger, primary_key=True)
     timesteps = Column(BigInteger, nullable=False)
     resolution = Column(Text)
-    commentary = Column(Text)
     start_time = Column(Text)
 
 
@@ -204,3 +218,4 @@ class Transformer(Base):
 
     bu = relationship('Bus', primaryjoin='Transformer.bus0 == Bus.bus_id')
     bu1 = relationship('Bus', primaryjoin='Transformer.bus1 == Bus.bus_id')
+    grid_id = Column(Integer)
