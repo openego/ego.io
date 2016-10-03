@@ -9,5 +9,7 @@ setup(name='ego.io',
       description='ego input/output repository',
       version='0.0.1-pre',
       url='https://github.com/openego/ego.io',
-      packages=find_packages()
+      packages=find_packages(),
+      install_requires=[
+          'geoalchemy2']
      )
