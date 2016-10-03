@@ -304,4 +304,5 @@ class EgoDemandPerTransitionPoint(Base):
     id = Column(Integer,
                 primary_key=True,
                 nullable=False)
-    demand = Column(ARRAY(Float(53)))
+    p_set = Column(ARRAY(Float(53)))
+    q_set = Column(ARRAY(Float(53)))
