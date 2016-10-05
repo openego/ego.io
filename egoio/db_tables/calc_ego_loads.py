@@ -20,6 +20,17 @@ class CalcEgoPeakLoadTa(Base):
     agricultural = Column(Float(53))
 
 
+class CalcEgoPeakLoad(Base):
+    __tablename__ = 'calc_ego_peak_load'
+    __table_args__ = {'schema': 'calc_ego_loads'}
+
+    id = Column(BigInteger, primary_key=True, index=True)
+    retail = Column(Float(53))
+    residential = Column(Float(53))
+    industrial = Column(Float(53))
+    agricultural = Column(Float(53))
+
+
 class EgoDeuConsumption(Base):
     __tablename__ = 'ego_deu_consumption'
     __table_args__ = {'schema': 'calc_ego_loads'}
