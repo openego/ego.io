@@ -1,6 +1,6 @@
 # coding: utf-8
 from sqlalchemy import BigInteger, Boolean, Column, DateTime, Float, ForeignKey, Integer, Numeric, String, Text, text
-from sqlalchemy.dialects.postgresql.base import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from geoalchemy2 import Geometry
@@ -191,7 +191,7 @@ class StoragePqSet(Base):
     q_set = Column(ARRAY(Float(53)))
     p_min_pu = Column(ARRAY(Float(53)))
     p_max_pu = Column(ARRAY(Float(53)))
-    soa_set = Column(ARRAY(Float(53)))
+    soc_set = Column(ARRAY(Float(53)))
     inflow = Column(ARRAY(Float(53)))
 
     temp = relationship('TempResolution')
