@@ -10,6 +10,7 @@ setup(name='ego.io',
       version='0.0.1rc4',
       url='https://github.com/openego/ego.io',
       packages=find_packages(),
+      license='GNU GENERAL PUBLIC LICENSE Version 3',
       install_requires=[
           'geoalchemy2',
           "sqlalchemy[postgresql] <=1.0.15",
