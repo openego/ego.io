@@ -11,5 +11,8 @@ setup(name='ego.io',
       url='https://github.com/openego/ego.io',
       packages=find_packages(),
       install_requires=[
-          'geoalchemy2']
-     )
+          'geoalchemy2',
+          "sqlalchemy['postgresql']",
+          "numpy",
+          "psycopg2"]
+      )
