@@ -37,6 +37,8 @@ class EgoDeuConsumption(Base):
 
     id = Column(Integer, primary_key=True)
     subst_id = Column(Integer)
+    otg_id = Column(Integer)
+    un_id = Column(Integer)
     sector_consumption_residential = Column(Numeric)
     sector_consumption_retail = Column(Numeric)
     sector_consumption_industrial = Column(Numeric)
