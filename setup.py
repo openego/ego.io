@@ -13,10 +13,10 @@ setup(name='ego.io',
       license='GNU GENERAL PUBLIC LICENSE Version 3',
       install_requires=[
           'geoalchemy2',
-          "sqlalchemy <=1.0.15",
+          "sqlalchemy",
           "numpy",
           "psycopg2"],
       extras_require={
-          "sqlalchemy <=1.0.15": 'postgresql'
+          "sqlalchemy": 'postgresql'
       }
       )
