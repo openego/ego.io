@@ -3,7 +3,7 @@ from sqlalchemy import BigInteger, Column, Float, Integer, Numeric, String, \
     Table, text, ForeignKey
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.dialects.postgresql.base import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY
 
 Base = declarative_base()
 metadata = Base.metadata
