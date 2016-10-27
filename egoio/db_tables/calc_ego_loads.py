@@ -10,8 +10,8 @@ metadata = Base.metadata
 
 
 class CalcEgoPeakLoadTa(Base):
-    __tablename__ = 'calc_ego_peak_load_ta'
-    __table_args__ = {'schema': 'calc_ego_loads'}
+    __tablename__ = 'ego_demand_load_area_peak_load_ta'
+    __table_args__ = {'schema': 'model_draft'}
 
     id = Column(BigInteger, primary_key=True, index=True)
     retail = Column(Float(53))
@@ -21,8 +21,8 @@ class CalcEgoPeakLoadTa(Base):
 
 
 class CalcEgoPeakLoad(Base):
-    __tablename__ = 'calc_ego_peak_load'
-    __table_args__ = {'schema': 'calc_ego_loads'}
+    __tablename__ = 'ego_demand_load_area_peak_load'
+    __table_args__ = {'schema': 'model_draft'}
 
     id = Column(BigInteger, primary_key=True, index=True)
     retail = Column(Float(53))
@@ -32,8 +32,8 @@ class CalcEgoPeakLoad(Base):
 
 
 class EgoDeuConsumption(Base):
-    __tablename__ = 'ego_deu_consumption'
-    __table_args__ = {'schema': 'calc_ego_loads'}
+    __tablename__ = 'ego_demand_per_load_area'
+    __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
     subst_id = Column(Integer)
@@ -312,8 +312,8 @@ class UrbanSectorPerGridDistrict4Agricultural(Base):
 
 
 class EgoDemandPerTransitionPoint(Base):
-    __tablename__ = 'ego_demand_per_transition_point'
-    __table_args__ = {'schema': 'calc_ego_loads'}
+    __tablename__ = 'ego_demand_hvmv_demand'
+    __table_args__ = {'schema': 'model_draft'}
     id = Column(Integer,
                 primary_key=True,
                 nullable=False)
