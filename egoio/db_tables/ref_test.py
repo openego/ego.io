@@ -1,6 +1,6 @@
 # coding: utf-8
 from sqlalchemy import Column, Integer, Numeric, String
-from sqlalchemy.dialects.postgresql.base import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.ext.declarative import declarative_base
 
 

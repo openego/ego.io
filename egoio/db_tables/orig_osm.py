@@ -3,7 +3,7 @@ from sqlalchemy import BigInteger, Boolean, Column, Float, Integer, \
     SmallInteger, String, Table, Text, text
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from geoalchemy2.types import Geometry
-from sqlalchemy.dialects.postgresql.base import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
