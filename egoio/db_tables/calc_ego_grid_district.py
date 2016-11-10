@@ -2,7 +2,7 @@
 from sqlalchemy import BigInteger, Boolean, Column, Float, Integer, Numeric, \
     String, Table, Text, text
 from geoalchemy2.types import Geometry
-from sqlalchemy.dialects.postgresql.base import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()

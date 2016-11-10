@@ -1,6 +1,6 @@
 # coding: utf-8
 from sqlalchemy import Column, DateTime, Integer, MetaData, String, Table, text
-from sqlalchemy.dialects.postgresql.base import ARRAY, OID
+from sqlalchemy.dialects.postgresql import ARRAY, OID
 
 metadata = MetaData()
 

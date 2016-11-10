@@ -1,7 +1,7 @@
 # coding: utf-8
 from sqlalchemy import BigInteger, Boolean, Column,  Float, ForeignKey,\
     Integer, Numeric, Text, text, String
-from sqlalchemy.dialects.postgresql.base import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from geoalchemy2 import Geometry
