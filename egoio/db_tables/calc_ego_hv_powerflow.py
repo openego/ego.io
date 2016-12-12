@@ -150,7 +150,7 @@ class Source(Base):
     commentary = Column(Text)
 
 
-class Storage(Base):
+class StorageUnit(Base):
     __tablename__ = 'storage'
     __table_args__ = {'schema': 'calc_ego_hv_powerflow'}
 
