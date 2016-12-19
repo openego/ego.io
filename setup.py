@@ -7,16 +7,14 @@ setup(name='ego.io',
       author='openego development group',
       author_email='oemof@rl-institut.de',
       description='ego input/output repository',
-      version='0.0.1rc7',
+      version='0.0.1',
       url='https://github.com/openego/ego.io',
       packages=find_packages(),
       license='GNU GENERAL PUBLIC LICENSE Version 3',
       install_requires=[
-          'geoalchemy2',
-          "sqlalchemy",
-          "numpy",
-          "psycopg2"],
+          'geoalchemy2 >= 0.3.0, <=0.3.0',
+          'sqlalchemy >= 1.0.15, <= 1.1.4',
+          "numpy >= 1.11.2, <= 1.11.2"],
       extras_require={
-          "sqlalchemy": 'postgresql'
-      }
+          "sqlalchemy": 'postgresql'}
       )
