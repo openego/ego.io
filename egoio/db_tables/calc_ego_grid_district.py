@@ -184,7 +184,7 @@ class LVGridDistrictTa(Base):
     load_area_id = Column (Integer)
     
 class LVGridDistrict(Base):
-    __tablename__ = 'lv_grid_district'
+    __tablename__ = 'ego_deu_lv_grid_district'
     __table_args__ = {'schema': 'calc_ego_grid_district'}
 
     id = Column(Integer, primary_key=True)
