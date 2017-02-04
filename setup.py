@@ -4,8 +4,8 @@
 from setuptools import find_packages, setup
 
 setup(name='egoio',
-      author='openego development group',
-      author_email='oemof@rl-institut.de',
+      author='NEXT ENERGY, Reiner Lemoine Institut gGmbH, ZNES',
+      author_email='',
       description='ego input/output repository',
       version='0.0.2',
       url='https://github.com/openego/ego.io',
