@@ -160,11 +160,14 @@ class SubstationDummy(Base):
     geom = Column(Geometry('POINT', 3035), index=True)
 
 class EgoDeuOnts(Base):
-    __tablename__ = 'ego_deu_onts'
-    __table_args__ = {"schema": 'calc_ego_substation'}
+    __tablename__ = 'ego_grid_mvlv_onsbygrid'
+    __table_args__ = {"schema": 'model_draft'}
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POINT", srid=3035))
-    load_area_id = Column(Integer)
+    la_id = Column(Integer)
+    subst_id = Column(Integer)
+    is_dummy = Column(Boolean)
+
 
 
