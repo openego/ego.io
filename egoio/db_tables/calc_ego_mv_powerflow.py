@@ -219,3 +219,33 @@ class Transformer(Base):
     bu = relationship('Bus', primaryjoin='Transformer.bus0 == Bus.bus_id')
     bu1 = relationship('Bus', primaryjoin='Transformer.bus1 == Bus.bus_id')
     grid_id = Column(Integer)
+
+
+class ResBus(Base):
+    __tablename__ = 'res_bus'
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
+
+    bus_id = Column(String(25), primary_key=True)
+    v_mag_pu = Column(ARRAY(Float(53)))
+
+
+class ResLine(Base):
+    __tablename__ = 'res_line'
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
+
+    line_id = Column(String(25), primary_key=True)
+    p0 = Column(ARRAY(Float(53)))
+    q0 = Column(ARRAY(Float(53)))
+    p1 = Column(ARRAY(Float(53)))
+    q1 = Column(ARRAY(Float(53)))
+
+
+class ResTransformer(Base):
+    __tablename__ = 'res_transformer'
+    __table_args__ = {'schema': 'calc_ego_mv_powerflow'}
+
+    trafo_id = Column(String(25), primary_key=True)
+    p0 = Column(ARRAY(Float(53)))
+    q0 = Column(ARRAY(Float(53)))
+    p1 = Column(ARRAY(Float(53)))
+    q1 = Column(ARRAY(Float(53)))
