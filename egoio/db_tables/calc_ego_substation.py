@@ -1,6 +1,6 @@
 # coding: utf-8
 from sqlalchemy import BigInteger, Column, Float, Integer, SmallInteger, String, \
-    Table, Text, text
+    Table, Text, text, Boolean
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
