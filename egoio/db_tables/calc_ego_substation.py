@@ -1,6 +1,6 @@
 # coding: utf-8
 from sqlalchemy import BigInteger, Column, Float, Integer, SmallInteger, String, \
-    Table, Text, text
+    Table, Text, text, Boolean
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -12,7 +12,7 @@ class EgoDeuSubstation(Base):
     __tablename__ = 'ego_deu_substations'
     __table_args__ = {'schema': 'calc_ego_substation'}
 
-    id = Column(Integer, primary_key=True)
+    subst_id = Column(Integer, primary_key=True)
     lon = Column(Float(53))
     lat = Column(Float(53))
     point = Column(Geometry('POINT', 4326), index=True)
@@ -23,7 +23,7 @@ class EgoDeuSubstation(Base):
     osm_id = Column(Text)
     osm_www = Column(Text)
     frequency = Column(Text)
-    name = Column(Text)
+    subst_name = Column(Text)
     ref = Column(Text)
     operator = Column(Text)
     dbahn = Column(Text)
@@ -160,26 +160,14 @@ class SubstationDummy(Base):
     geom = Column(Geometry('POINT', 3035), index=True)
 
 class EgoDeuOnts(Base):
-    __tablename__ = 'ego_deu_onts'
-    __table_args__ = {"schema": 'calc_ego_substation'}
+    __tablename__ = 'ego_grid_mvlv_onsbygrid'
+    __table_args__ = {"schema": 'model_draft'}
 
     id = Column(Integer, primary_key=True)
     geom = Column(Geometry(geometry_type="POINT", srid=3035))
-    load_area_id = Column(Integer)
+    la_id = Column(Integer)
+    subst_id = Column(Integer)
+    is_dummy = Column(Boolean)
 
-class EgoDeuOntsTa(Base):
-    __tablename__ = 'ego_deu_onts_ta'
-    __table_args__ = {"schema": 'calc_ego_substation'}
 
-    id = Column(Integer, primary_key=True)
-    geom = Column(Geometry(geometry_type="POINT", srid=3035))
-    load_area_id = Column(Integer)
-
-class EgoDeuOntsLittleTa(Base):
-    __tablename__ = 'ego_deu_onts_little_ta'
-    __table_args__ = {"schema": 'calc_ego_substation'}
-
-    id = Column(Integer, primary_key=True)
-    geom = Column(Geometry(geometry_type="POINT", srid=3035))
-    load_area_id = Column(Integer)
 
