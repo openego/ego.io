@@ -21,7 +21,7 @@ class CalcEgoPeakLoadTa(Base):
 
 
 class CalcEgoPeakLoad(Base):
-    __tablename__ = 'ego_demand_load_area_peak_load'
+    __tablename__ = 'ego_demand_loadarea_peak_load'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(BigInteger, primary_key=True, index=True)
