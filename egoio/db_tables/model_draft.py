@@ -2,7 +2,7 @@
 from sqlalchemy import BigInteger, Boolean, Column, Date, DateTime, Float, ForeignKey, ForeignKeyConstraint, Integer, Numeric, SmallInteger, String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.orm import relationship
-from sqlalchemy.dialects.postgresql.base import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY, DOUBLE_PRECISION, INTEGER, NUMERIC, TEXT
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -1866,7 +1866,7 @@ class EgoScenarioLog(Base):
     status = Column(Text)
     user_name = Column(Text)
     timestamp = Column(DateTime)
-    metadata = Column(Text)
+    meta_data = Column('metadata', Text)
 
     ego_scenario = relationship('EgoScenario')
 
