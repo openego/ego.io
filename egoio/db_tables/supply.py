@@ -1,7 +1,7 @@
 # coding: utf-8
 from sqlalchemy import BigInteger, Column, DateTime, Float, Integer, Numeric, SmallInteger, String, Table, Text, text
 from geoalchemy2.types import Geometry
-from sqlalchemy.dialects.postgresql.base import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY, REAL
 from sqlalchemy.ext.declarative import declarative_base
 
 
