@@ -1300,6 +1300,17 @@ class EgoGridMvlvReferenceont(Base):
     id = Column(Integer, primary_key=True, unique=True, server_default=text("nextval('model_draft.ego_grid_mvlv_referenceonts_id_seq'::regclass)"))
 
 
+class EgoGridMvlvSubstation(Base):
+    __tablename__ = 'ego_grid_mvlv_substation'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_id_seq'::regclass)"))
+    geom = Column(Geometry('POINT', 3035), index=True)
+    subst_id = Column(Integer)
+    load_area_id = Column(Integer)
+    is_dummy = Column(Boolean)
+
+
 class EgoGridPfHvBu(Base):
     __tablename__ = 'ego_grid_pf_hv_bus'
     __table_args__ = {'schema': 'model_draft'}
