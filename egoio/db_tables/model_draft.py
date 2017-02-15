@@ -458,6 +458,14 @@ class EgoDemandHvLargescaleconsumer(Base):
     geom_centre = Column(Geometry('POINT', 3035), index=True)
 
 
+class EgoDemandHvmvDemand(Base):
+    __tablename__ = 'ego_demand_hvmv_demand'
+    __table_args__ = {'schema': 'model_draft'}
+    id = Column(Integer, primary_key=True, nullable=False)
+    p_set = Column(ARRAY(Float(53)))
+    q_set = Column(ARRAY(Float(53)))
+
+
 class EgoDemandLoadCollect(Base):
     __tablename__ = 'ego_demand_load_collect'
     __table_args__ = {'schema': 'model_draft'}
