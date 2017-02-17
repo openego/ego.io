@@ -461,9 +461,10 @@ class EgoDemandHvLargescaleconsumer(Base):
 class EgoDemandHvmvDemand(Base):
     __tablename__ = 'ego_demand_hvmv_demand'
     __table_args__ = {'schema': 'model_draft'}
-    id = Column(Integer, primary_key=True, nullable=False)
-    p_set = Column(ARRAY(Float(53)))
-    q_set = Column(ARRAY(Float(53)))
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_demand_hvmv_demand_id_seq'::regclass)"))
+    p_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
 
 
 class EgoDemandLoadCollect(Base):
@@ -701,6 +702,7 @@ t_ego_demand_loadarea_with_peak_loads_mview = Table(
     Column('residential', Float(53)),
     Column('industrial', Float(53)),
     Column('agricultural', Float(53)),
+    Column('peak_load_sum', Float(53)),
     schema='model_draft'
 )
 
@@ -872,6 +874,7 @@ class EgoGridHvmvSubstationDummy(Base):
     subst_id = Column(Integer, primary_key=True)
     subst_name = Column(Text)
     geom = Column(Geometry('POINT', 3035), index=True)
+    is_dummy = Column(Boolean)
 
 
 t_ego_grid_hvmv_substation_mun_2_mview = Table(
@@ -995,24 +998,25 @@ t_ego_grid_hvmv_substation_voronoi_mview = Table(
 )
 
 
-class EgoGridLvGridDistrictsVoronoi(Base):
-    __tablename__ = 'ego_grid_lv_grid_districts_voronoi'
+class EgoGridLvGriddistrictsvoronoi(Base):
+    __tablename__ = 'ego_grid_lv_griddistrictsvoronoi'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_grid_districts_voronoi_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_griddistrictsvoronoi_id_seq'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035))
-    la_id = Column(Integer)
+    subst_id = Column(Integer)
 
 
 class EgoGridLvGriddistrict(Base):
     __tablename__ = 'ego_grid_lv_griddistrict'
     __table_args__ = {'schema': 'model_draft'}
 
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_cut_id_seq1'::regclass)"))
+    geom = Column(Geometry('POLYGON', 3035))
     load_area_id = Column(Integer)
+    ont_count = Column(Integer)
+    ont_id = Column(Integer)
     merge_id = Column(Integer)
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_cut_id_seq'::regclass)"))
-    ons_id = Column(Integer)
 
 
 class EgoGridLvGriddistrictpt(Base):
@@ -1312,11 +1316,11 @@ class EgoGridMvlvSubstation(Base):
     __tablename__ = 'ego_grid_mvlv_substation'
     __table_args__ = {'schema': 'model_draft'}
 
+    geom = Column(Geometry('POINT', 3035))
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
+    is_dummy = Column(Boolean)
     subst_id = Column(Integer)
     load_area_id = Column(Integer)
-    is_dummy = Column(Boolean)
 
 
 class EgoGridPfHvBu(Base):
@@ -1538,6 +1542,188 @@ class EgoGridPfHvTransformer(Base):
     capital_cost = Column(Float(53), server_default=text("0"))
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
+
+
+class EgoGridPfMvBu(Base):
+    __tablename__ = 'ego_grid_pf_mv_bus'
+    __table_args__ = {'schema': 'model_draft'}
+
+    bus_id = Column(String(25), primary_key=True, nullable=False)
+    v_nom = Column(Float(53))
+    v_mag_pu_min = Column(Float(53), server_default=text("0"))
+    v_mag_pu_max = Column(Float(53))
+    geom = Column(Geometry('POINT', 4326))
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    grid_id = Column(Integer)
+
+
+class EgoGridPfMvBusVMagSet(Base):
+    __tablename__ = 'ego_grid_pf_mv_bus_v_mag_set'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    bus_id = Column(String(25), primary_key=True, nullable=False)
+    temp_id = Column(Integer, primary_key=True, nullable=False)
+    v_mag_pu_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    grid_id = Column(Integer)
+
+
+class EgoGridPfMvGenerator(Base):
+    __tablename__ = 'ego_grid_pf_mv_generator'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    generator_id = Column(String(25), primary_key=True, nullable=False)
+    bus = Column(String(25))
+    control = Column(Text, server_default=text("'PQ'::text"))
+    p_nom = Column(Float(53), server_default=text("0"))
+    p_min_pu_fixed = Column(Float(53), server_default=text("0"))
+    p_max_pu_fixed = Column(Float(53), server_default=text("1"))
+    sign = Column(Float(53), server_default=text("1"))
+    grid_id = Column(Integer)
+
+
+class EgoGridPfMvGeneratorPqSet(Base):
+    __tablename__ = 'ego_grid_pf_mv_generator_pq_set'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    generator_id = Column(String(25), primary_key=True, nullable=False)
+    temp_id = Column(Integer, primary_key=True, nullable=False)
+    p_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p_min_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p_max_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    grid_id = Column(Integer)
+
+
+class EgoGridPfMvLine(Base):
+    __tablename__ = 'ego_grid_pf_mv_line'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    line_id = Column(String(25), primary_key=True, nullable=False)
+    bus0 = Column(String(25))
+    bus1 = Column(String(25))
+    x = Column(Numeric, server_default=text("0"))
+    r = Column(Numeric, server_default=text("0"))
+    g = Column(Numeric, server_default=text("0"))
+    b = Column(Numeric, server_default=text("0"))
+    s_nom = Column(Numeric, server_default=text("0"))
+    length = Column(Float(53))
+    cables = Column(Integer)
+    geom = Column(Geometry('LINESTRING', 4326))
+    grid_id = Column(Integer)
+
+
+class EgoGridPfMvLoad(Base):
+    __tablename__ = 'ego_grid_pf_mv_load'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    load_id = Column(String(25), primary_key=True, nullable=False)
+    bus = Column(String(25))
+    sign = Column(Float(53), server_default=text("(-1)"))
+    grid_id = Column(Integer)
+
+
+class EgoGridPfMvLoadPqSet(Base):
+    __tablename__ = 'ego_grid_pf_mv_load_pq_set'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    load_id = Column(String(25), primary_key=True, nullable=False)
+    temp_id = Column(Integer, primary_key=True, nullable=False)
+    p_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    grid_id = Column(Integer)
+
+
+class EgoGridPfMvResBu(Base):
+    __tablename__ = 'ego_grid_pf_mv_res_bus'
+    __table_args__ = {'schema': 'model_draft'}
+
+    bus_id = Column(String(25), primary_key=True)
+    v_mag_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+
+
+class EgoGridPfMvResLine(Base):
+    __tablename__ = 'ego_grid_pf_mv_res_line'
+    __table_args__ = {'schema': 'model_draft'}
+
+    line_id = Column(String(25), primary_key=True)
+    p0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+
+
+class EgoGridPfMvResTransformer(Base):
+    __tablename__ = 'ego_grid_pf_mv_res_transformer'
+    __table_args__ = {'schema': 'model_draft'}
+
+    trafo_id = Column(String(25), primary_key=True)
+    p0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+
+
+class EgoGridPfMvScenarioSetting(Base):
+    __tablename__ = 'ego_grid_pf_mv_scenario_settings'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, server_default=text("'Status Quo'::character varying"))
+    bus = Column(String)
+    bus_v_mag_set = Column(String)
+    generator = Column(String)
+    generator_pq_set = Column(String)
+    line = Column(String)
+    load = Column(String)
+    load_pq_set = Column(String)
+    storage = Column(String)
+    storage_pq_set = Column(String)
+    temp_resolution = Column(String)
+    transformer = Column(String)
+
+
+class EgoGridPfMvSource(Base):
+    __tablename__ = 'ego_grid_pf_mv_source'
+    __table_args__ = {'schema': 'model_draft'}
+
+    source_id = Column(String(25), primary_key=True)
+    name = Column(Text)
+    co2_emissions = Column(Float(53))
+    commentary = Column(Text)
+
+
+class EgoGridPfMvTempResolution(Base):
+    __tablename__ = 'ego_grid_pf_mv_temp_resolution'
+    __table_args__ = {'schema': 'model_draft'}
+
+    temp_id = Column(BigInteger, primary_key=True)
+    timesteps = Column(BigInteger, nullable=False)
+    resolution = Column(Text)
+    start_time = Column(DateTime)
+    grid_id = Column(Integer)
+
+
+class EgoGridPfMvTransformer(Base):
+    __tablename__ = 'ego_grid_pf_mv_transformer'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    trafo_id = Column(String(25), primary_key=True, nullable=False)
+    bus0 = Column(String(25))
+    bus1 = Column(String(25))
+    x = Column(Numeric, server_default=text("0"))
+    r = Column(Numeric, server_default=text("0"))
+    g = Column(Numeric, server_default=text("0"))
+    b = Column(Numeric, server_default=text("0"))
+    s_nom = Column(Float(53), server_default=text("0"))
+    tap_ratio = Column(Float(53))
+    geom = Column(Geometry('POINT', 4326))
+    grid_id = Column(Integer)
 
 
 class EgoLanduseIndustry(Base):
@@ -2000,6 +2186,20 @@ class EgoSupplyPvDev2035GermanyMun(Base):
     pv_units = Column(Integer)
     pv_cap_2014 = Column(Integer)
     pv_add_cap_2035 = Column(Integer)
+    voltage_level = Column(SmallInteger)
+    rs_0 = Column(String(12))
+    pv_avg_cap = Column(Integer)
+    pv_new_units = Column(Numeric(9, 2))
+
+
+class EgoSupplyPvDev2050GermanyMun(Base):
+    __tablename__ = 'ego_supply_pv_dev_2050_germany_mun'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.ego_supply_dev_2050_germany_mun_id_seq'::regclass)"))
+    pv_units = Column(Integer)
+    pv_cap_2035 = Column(Integer)
+    pv_add_cap_2050 = Column(Integer)
     voltage_level = Column(SmallInteger)
     rs_0 = Column(String(12))
     pv_avg_cap = Column(Integer)
@@ -2481,6 +2681,20 @@ class EgoSupplyWoDev2035GermanyMun(Base):
     wo_new_units = Column(Numeric(9, 2))
 
 
+class EgoSupplyWoDev2050GermanyMun(Base):
+    __tablename__ = 'ego_supply_wo_dev_2050_germany_mun'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.ego_supply_wo_dev_2050_germany_mun_id_seq'::regclass)"))
+    wo_units = Column(Integer)
+    wo_cap_2035 = Column(Integer)
+    wo_add_cap_2050 = Column(Integer)
+    voltage_level = Column(SmallInteger)
+    rs_0 = Column(String(12))
+    wo_avg_cap = Column(Integer)
+    wo_new_units = Column(Numeric(9, 2))
+
+
 class EgoSupplyWpa(Base):
     __tablename__ = 'ego_supply_wpa'
     __table_args__ = {'schema': 'model_draft'}
@@ -2614,6 +2828,17 @@ class RenpassGisEconomicStorage(Base):
     capacity_max = Column(ARRAY(NUMERIC()))
 
     scenario = relationship('RenpassGisEconomicScenario')
+
+
+class RenpassGisParameterRegion(Base):
+    __tablename__ = 'renpass_gis_parameter_region'
+    __table_args__ = {'schema': 'model_draft'}
+
+    gid = Column(Integer, primary_key=True)
+    u_region_id = Column(String(14), nullable=False)
+    stat_level = Column(Integer)
+    geom = Column(Geometry('MULTIPOLYGON', 4326))
+    geom_point = Column(Geometry('POINT', 4326))
 
 
 class RenpassGisScenarioResult(Base):
