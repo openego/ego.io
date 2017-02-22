@@ -1017,6 +1017,7 @@ class EgoGridLvGriddistrict(Base):
     ont_count = Column(Integer)
     ont_id = Column(Integer)
     merge_id = Column(Integer)
+    mvlv_subst_id = Column(Integer)
 
 
 class EgoGridLvGriddistrictpt(Base):
