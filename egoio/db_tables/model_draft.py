@@ -2618,6 +2618,35 @@ class EgoSupplyResPowerplant2035(Base):
     un_id = Column(BigInteger)
 
 
+class EgoSupplyResPowerplant(Base):
+    __tablename__ = 'ego_supply_res_powerplant'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(BigInteger, primary_key=True)
+    scenario_year = Column(Integer)
+    electrical_capacity = Column(Numeric)
+    generation_type = Column(Text, index=True)
+    generation_subtype = Column(String)
+    thermal_capacity = Column(Numeric)
+    nuts = Column(String)
+    lon = Column(Numeric)
+    lat = Column(Numeric)
+    voltage_level = Column(SmallInteger)
+    network_node = Column(String)
+    source = Column(String)
+    comment = Column(String)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    voltage = Column(String)
+    subst_id = Column(BigInteger)
+    otg_id = Column(BigInteger)
+    un_id = Column(BigInteger)
+    la_id = Column(Integer)
+    rea_sort = Column(Integer)
+    rea_flag = Column(String)
+    rea_geom_line = Column(Geometry('LINESTRING', 3035), index=True)
+    rea_geom_new = Column(Geometry('POINT', 3035), index=True)
+
+
 class EgoSupplyResPowerplant2050(Base):
     __tablename__ = 'ego_supply_res_powerplant_2050'
     __table_args__ = {'schema': 'model_draft'}
@@ -2893,3 +2922,45 @@ t_way_substations_test = Table(
     Column('geom', Geometry),
     schema='model_draft'
 )
+
+
+class EgoConvPowerplant(Base):
+    __tablename__ = 'ego_supply_conv_powerplant'
+    __table_args__ = {'schema': 'model_draft'}
+
+    gid = Column(Integer, primary_key=True)
+    bnetza_id = Column(Text)
+    company = Column(Text)
+    name = Column(Text)
+    postcode = Column(Text)
+    city = Column(Text)
+    street = Column(Text)
+    state = Column(Text)
+    block = Column(Text)
+    commissioned_original = Column(Text)
+    commissioned = Column(Float(53))
+    retrofit = Column(Float(53))
+    shutdown = Column(Float(53))
+    status = Column(Text)
+    fuel = Column(Text)
+    technology = Column(Text)
+    type = Column(Text)
+    eeg = Column(Text)
+    chp = Column(Text)
+    capacity = Column(Float(53))
+    capacity_uba = Column(Float(53))
+    chp_capacity_uba = Column(Float(53))
+    efficiency_data = Column(Float(53))
+    efficiency_estimate = Column(Float(53))
+    network_node = Column(Text)
+    voltage = Column(Text)
+    network_operator = Column(Text)
+    name_uba = Column(Text)
+    lat = Column(Float(53))
+    lon = Column(Float(53))
+    comment = Column(Text)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    voltage_level = Column(Float(53))
+    subst_id = Column(BigInteger)
+    otg_id = Column(BigInteger)
+    un_id = Column(BigInteger)
