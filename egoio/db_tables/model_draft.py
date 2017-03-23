@@ -1345,6 +1345,16 @@ class EgoGridMvlvSubstation(Base):
     subst_id = Column(Integer)
     load_area_id = Column(Integer)
 
+class EgoGridMvlvSubstationTemp(Base):
+    __tablename__ = 'ego_grid_mvlv_substation_temp'
+    __table_args__ = {'schema': 'model_draft'}
+
+    geom = Column(Geometry('POINT', 3035))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_temp_id_seq'::regclass)"))
+    is_dummy = Column(Boolean)
+    subst_id = Column(Integer)
+    load_area_id = Column(Integer)
+
 class EgoGridMvlvSubstationPaper(Base):
     __tablename__ = 'ego_grid_mvlv_substation_paper'
     __table_args__ = {'schema': 'model_draft'}
