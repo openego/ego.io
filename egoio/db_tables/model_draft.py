@@ -1019,6 +1019,17 @@ class EgoGridLvGriddistrict(Base):
     merge_id = Column(Integer)
     mvlv_subst_id = Column(Integer)
 
+class EgoGridLvGriddistrictTemp(Base):
+    __tablename__ = 'ego_grid_lv_griddistrict_temp'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_cut_id_seq1'::regclass)"))
+    geom = Column(Geometry('POINT', 3035))
+    load_area_id = Column(Integer)
+    ont_count = Column(Integer)
+    ont_id = Column(Integer)
+    merge_id = Column(Integer)
+    mvlv_subst_id = Column(Integer)
 
 class EgoGridLvGriddistrictpt(Base):
     __tablename__ = 'ego_grid_lv_griddistrictpts'
