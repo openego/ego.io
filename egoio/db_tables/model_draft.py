@@ -1019,28 +1019,17 @@ class EgoGridLvGriddistrict(Base):
     merge_id = Column(Integer)
     mvlv_subst_id = Column(Integer)
 
-class EgoGridLvGriddistrictTemp(Base):
-    __tablename__ = 'ego_grid_lv_griddistrict_temp'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_griddistrict_temp_id_seq1'::regclass)"))
-    geom = Column(Geometry('POINT', 3035))
-    load_area_id = Column(Integer)
-    ont_count = Column(Integer)
-    ont_id = Column(Integer)
-    merge_id = Column(Integer)
-    mvlv_subst_id = Column(Integer)
-
 class EgoGridLvGriddistrictPaper(Base):
     __tablename__ = 'ego_grid_lv_griddistrict_paper'
     __table_args__ = {'schema': 'model_draft'}
 
-    mvlv_subst_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_griddistrict_paper_id_seq1'::regclass)"))
-    mvlv_subst_id_new = Column(Integer)
-    geom = Column(Geometry('MULTIPOLYGON', 3035))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_griddistrict_paper_id_seq1'::regclass)"))
+    geom = Column(Geometry('POINT', 3035))
     la_id = Column(Integer)
-    subst_id = Column(Integer)
-    mm = Column(Boolean)
+    ont_count = Column(Integer)
+    ont_id = Column(Integer)
+    merge_id = Column(Integer)
+    mvlv_subst_id = Column(Integer)
 
 class EgoGridLvGriddistrictpt(Base):
     __tablename__ = 'ego_grid_lv_griddistrictpts'
@@ -1340,27 +1329,18 @@ class EgoGridMvlvSubstation(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     geom = Column(Geometry('POINT', 3035))
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_id_seq'::regclass)"))
+    mvlv_subst_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_id_seq'::regclass)"))
     is_dummy = Column(Boolean)
     subst_id = Column(Integer)
-    load_area_id = Column(Integer)
-
-class EgoGridMvlvSubstationTemp(Base):
-    __tablename__ = 'ego_grid_mvlv_substation_temp'
-    __table_args__ = {'schema': 'model_draft'}
-
-    geom = Column(Geometry('POINT', 3035))
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_temp_id_seq'::regclass)"))
-    is_dummy = Column(Boolean)
-    subst_id = Column(Integer)
-    load_area_id = Column(Integer)
+    la_id = Column(Integer)
 
 class EgoGridMvlvSubstationPaper(Base):
     __tablename__ = 'ego_grid_mvlv_substation_paper'
     __table_args__ = {'schema': 'model_draft'}
 
-    mvlv_subst_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_paper_id_seq'::regclass)"))
     geom = Column(Geometry('POINT', 3035))
+    mvlv_subst_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_paper_id_seq'::regclass)"))
+    is_dummy = Column(Boolean)
     subst_id = Column(Integer)
     la_id = Column(Integer)
 
