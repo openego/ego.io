@@ -2665,6 +2665,7 @@ class EgoSupplyResPowerplant(Base):
     rea_flag = Column(String)
     rea_geom_line = Column(Geometry('LINESTRING', 3035), index=True)
     rea_geom_new = Column(Geometry('POINT', 3035), index=True)
+    mvlv_subst_id = Column(Integer)
 
 
 class EgoSupplyResPowerplant2050(Base):
