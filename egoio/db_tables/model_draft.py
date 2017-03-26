@@ -1031,6 +1031,17 @@ class EgoGridLvGriddistrictPaper(Base):
     merge_id = Column(Integer)
     mvlv_subst_id = Column(Integer)
 
+class EgoGridLvGriddistrictCutNnCollect(Base):
+    __tablename__ = 'ego_grid_lv_griddistrict_cut_nn_collect'
+    __table_args__ = {'schema': 'model_draft'}
+
+    mvlv_subst_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_griddistrict_cut_nn_collect_id_seq1'::regclass)"))
+    mvlv_subst_id_new = Column(Integer)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
+    subst_id = Column(Integer)
+    la_id = Column(Integer)
+    nn = Column(Boolean)
+
 class EgoGridLvGriddistrictpt(Base):
     __tablename__ = 'ego_grid_lv_griddistrictpts'
     __table_args__ = {'schema': 'model_draft'}
