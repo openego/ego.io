@@ -84,6 +84,7 @@ class EgoDpLoadarea(Base):
     __tablename__ = 'ego_dp_loadarea'
     __table_args__ = {'schema': 'demand'}
 
+    version = Column(Text, primary_key=True)
     id = Column(Integer, primary_key=True, server_default=text("nextval('demand.ego_dp_loadarea_id_seq'::regclass)"))
     subst_id = Column(Integer)
     area_ha = Column(Numeric)

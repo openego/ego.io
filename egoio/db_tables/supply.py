@@ -271,6 +271,7 @@ class EgoDpResPowerplant(Base):
     __tablename__ = 'ego_dp_res_powerplant'
     __table_args__ = {'schema': 'supply'}
 
+    version = Column(Text, primary_key=True)
     id = Column(BigInteger, primary_key=True)
     scenario_year = Column(Integer)
     electrical_capacity = Column(Numeric)
@@ -301,6 +302,7 @@ class EgoDpConvPowerplant(Base):
     __tablename__ = 'ego_dp_conv_powerplant'
     __table_args__ = {'schema': 'supply'}
 
+    version = Column(Text, primary_key=True)
     gid = Column(Integer, primary_key=True)
     bnetza_id = Column(Text)
     company = Column(Text)

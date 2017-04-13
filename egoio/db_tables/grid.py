@@ -168,6 +168,7 @@ class EgoDpMvGriddistrict(Base):
     __tablename__ = 'ego_dp_mv_griddistrict'
     __table_args__ = {'schema': 'grid'}
 
+    version = Column(Text, primary_key=True)
     subst_id = Column(Integer, primary_key=True)
     geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
     subst_sum = Column(Integer)
@@ -200,6 +201,7 @@ class EgoDpLvGriddistrict(Base):
     __tablename__ = 'ego_dp_lv_griddistrict'
     __table_args__ = {'schema': 'grid'}
 
+    version = Column(Text, primary_key=True)
     id = Column(Integer, primary_key=True, server_default=text(
         "nextval('grid.ego_dp_lv_griddistrict_id_seq1'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035))
@@ -211,6 +213,7 @@ class EgoDpHvmvSubstation(Base):
     __tablename__ = 'ego_dp_hvmv_substation'
     __table_args__ = {'schema': 'grid'}
 
+    version = Column(Text, primary_key=True)
     subst_id = Column(Integer, nullable=False, server_default=text("nextval('grid.ego_dp_hvmv_substation_id_seq'::regclass)"))
     lon = Column(Float(53), nullable=False)
     lat = Column(Float(53), nullable=False)
@@ -236,6 +239,7 @@ class EgoDpMvlvSubstation(Base):
     __tablename__ = 'ego_dp_mvlv_substation'
     __table_args__ = {'schema': 'grid'}
 
+    version = Column(Text, primary_key=True)
     geom = Column(Geometry('POINT', 3035))
     mvlv_subst_id = Column(Integer, primary_key=True, server_default=text("nextval('grid.ego_dp_mvlv_substation'::regclass)"))
     is_dummy = Column(Boolean)
