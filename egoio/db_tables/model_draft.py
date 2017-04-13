@@ -799,7 +799,7 @@ class EgoDemandPfLoadSingle(Base):
     sign = Column(Float(53), server_default=text("(-1)"))
     e_annual = Column(Float(53))
 
-    ego_grid_pf_hv_bu = relationship('EgoGridPfHvBu')
+    ego_grid_pf_hv_bus = relationship('EgoGridPfHvBus')
 
 
 class EgoDeuLoadsOsm(Base):
@@ -1352,7 +1352,7 @@ class EgoGridMvlvSubstationPaper(Base):
     subst_id = Column(Integer)
     la_id = Column(Integer)
 
-class EgoGridPfHvBu(Base):
+class EgoGridPfHvBus(Base):
     __tablename__ = 'ego_grid_pf_hv_bus'
     __table_args__ = {'schema': 'model_draft'}
 
