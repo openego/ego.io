@@ -1013,10 +1013,7 @@ class EgoGridLvGriddistrict(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_cut_id_seq1'::regclass)"))
     geom = Column(Geometry('POLYGON', 3035))
-    load_area_id = Column(Integer)
-    ont_count = Column(Integer)
-    ont_id = Column(Integer)
-    merge_id = Column(Integer)
+    la_id = Column(Integer)
     mvlv_subst_id = Column(Integer)
 
 class EgoGridLvGriddistrictPaper(Base):
