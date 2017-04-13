@@ -162,3 +162,82 @@ class EgoScenario(Base):
     release = Column(Boolean)
     comment = Column(Text)
     timestamp = Column(DateTime)
+
+
+class EgoDpMvGriddistrict(Base):
+    __tablename__ = 'ego_dp_mv_griddistrict'
+    __table_args__ = {'schema': 'grid'}
+
+    subst_id = Column(Integer, primary_key=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    subst_sum = Column(Integer)
+    area_ha = Column(Numeric)
+    geom_type = Column(Text)
+    type1 = Column(Integer)
+    type1_cnt = Column(Integer)
+    type2 = Column(Integer)
+    type2_cnt = Column(Integer)
+    type3 = Column(Integer)
+    type3_cnt = Column(Integer)
+    group = Column(String(1))
+    gem = Column(Integer)
+    gem_clean = Column(Integer)
+    la_count = Column(Integer)
+    la_area = Column(Numeric(10, 1))
+    free_area = Column(Numeric(10, 1))
+    area_share = Column(Numeric(4, 1))
+    consumption = Column(Numeric)
+    consumption_per_area = Column(Numeric)
+    dea_cnt = Column(Integer)
+    dea_capacity = Column(Numeric)
+    lv_dea_cnt = Column(Integer)
+    lv_dea_capacity = Column(Numeric)
+    mv_dea_cnt = Column(Integer)
+    mv_dea_capacity = Column(Numeric)
+
+
+class EgoDpLvGriddistrict(Base):
+    __tablename__ = 'ego_dp_lv_griddistrict'
+    __table_args__ = {'schema': 'grid'}
+
+    id = Column(Integer, primary_key=True, server_default=text(
+        "nextval('grid.ego_dp_lv_griddistrict_id_seq1'::regclass)"))
+    geom = Column(Geometry('POLYGON', 3035))
+    la_id = Column(Integer)
+    mvlv_subst_id = Column(Integer)
+
+
+class EgoDpHvmvSubstation(Base):
+    __tablename__ = 'ego_dp_hvmv_substation'
+    __table_args__ = {'schema': 'grid'}
+
+    subst_id = Column(Integer, nullable=False, server_default=text("nextval('grid.ego_dp_hvmv_substation_id_seq'::regclass)"))
+    lon = Column(Float(53), nullable=False)
+    lat = Column(Float(53), nullable=False)
+    point = Column(Geometry('POINT', 4326), nullable=False)
+    polygon = Column(Geometry, nullable=False)
+    voltage = Column(Text)
+    power_type = Column(Text)
+    substation = Column(Text)
+    osm_id = Column(Text, primary_key=True)
+    osm_www = Column(Text, nullable=False)
+    frequency = Column(Text)
+    subst_name = Column(Text)
+    ref = Column(Text)
+    operator = Column(Text)
+    dbahn = Column(Text)
+    status = Column(SmallInteger, nullable=False)
+    otg_id = Column(BigInteger)
+    ags_0 = Column(Text)
+    geom = Column(Geometry('POINT', 3035), index=True)
+
+
+class EgoDpMvlvSubstation(Base):
+    __tablename__ = 'ego_dp_mvlv_substation'
+    __table_args__ = {'schema': 'grid'}
+
+    geom = Column(Geometry('POINT', 3035))
+    mvlv_subst_id = Column(Integer, primary_key=True, server_default=text("nextval('grid.ego_dp_mvlv_substation'::regclass)"))
+    is_dummy = Column(Boolean)
+    subst_id = Column(Integer)
+    la_id = Column(Integer)
