@@ -207,6 +207,15 @@ class EgoDpLvGriddistrict(Base):
     geom = Column(Geometry('POLYGON', 3035))
     la_id = Column(Integer)
     mvlv_subst_id = Column(Integer)
+    zensus_sum = Column(Integer)
+    sector_peakload_residential = Column(Numeric)
+    sector_peakload_retail = Column(Numeric)
+    sector_peakload_industrial = Column(Numeric)
+    sector_peakload_agricultural = Column(Numeric)
+    sector_count_residential = Column(Integer)
+    sector_count_retail = Column(Integer)
+    sector_count_industrial = Column(Integer)
+    sector_count_agricultural = Column(Integer)
 
 
 class EgoDpHvmvSubstation(Base):
