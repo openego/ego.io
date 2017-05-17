@@ -2535,7 +2535,7 @@ class EgoScenarioLog(Base):
     status = Column(Text)
     user_name = Column(Text)
     timestamp = Column(DateTime)
-    metadata = Column(Text)
+    meta_data = Column('metadata', Text)
 
 
 class EgoScenarioOverview(Base):
