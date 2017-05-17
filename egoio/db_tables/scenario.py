@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, DateTime, Integer, Numeric, Text, text
+from sqlalchemy import Column, Float, Integer, Numeric, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -101,16 +101,10 @@ class AbbbTransmissionCapacity(Base):
     capacity = Column(Numeric)
 
 
-class EgoDataProcessingCleanRun(Base):
-    __tablename__ = 'ego_data_processing_clean_run'
+class EgoSlpParameter(Base):
+    __tablename__ = 'ego_slp_parameters'
     __table_args__ = {'schema': 'scenario'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('scenario.ego_data_processing_clean_run_id_seq'::regclass)"))
-    version = Column(Text)
-    schema_name = Column(Text)
-    table_name = Column(Text)
-    script_name = Column(Text)
-    entries = Column(Integer)
-    status = Column(Text)
-    timestamp = Column(DateTime)
-    user_name = Column(Text)
+    parameter = Column(Text, primary_key=True)
+    value = Column(Float(53))
+    unit = Column(Text)
