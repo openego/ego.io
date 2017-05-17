@@ -4,6 +4,7 @@ from geoalchemy2.types import Geometry, Raster
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.dialects.postgresql import ARRAY, DOUBLE_PRECISION, INTEGER, NUMERIC, TEXT
 
 
 Base = declarative_base()

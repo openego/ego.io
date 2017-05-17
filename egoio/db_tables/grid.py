@@ -3,6 +3,7 @@ from sqlalchemy import ARRAY, BigInteger, Boolean, Column, Date, DateTime, Float
 from geoalchemy2.types import Geometry
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 
 
 Base = declarative_base()
