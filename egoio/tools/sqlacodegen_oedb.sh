@@ -5,7 +5,7 @@ db_password=""
 db_host=""
 db_port=""
 db="oedb"
-path="egoio/db_tables/"
+path="../db_tables/"
 
 if [ -d "egoio/db_tables" ]; then
     schemas=("demand" "economic" "emission" "environmental" "grid" "openstreetmap" "political_boundary" "reference" "scenario" "social" "supply" "weather" "model_draft")
