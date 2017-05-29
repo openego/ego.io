@@ -1013,7 +1013,7 @@ class EgoGridEhvSubstationVoronoi(EgoGridEhvSubstation):
     subst_id = Column(ForeignKey('model_draft.ego_grid_ehv_substation.subst_id'), primary_key=True)
 
 
-class EgoGridHvElectricalNeighboursBu(Base):
+class EgoGridHvElectricalNeighboursBus(Base):
     __tablename__ = 'ego_grid_hv_electrical_neighbours_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -1895,7 +1895,7 @@ class EgoGridPfHvTransformer(Base):
     topo = Column(Geometry('LINESTRING', 4326))
 
 
-class EgoGridPfMvBu(Base):
+class EgoGridPfMvBus(Base):
     __tablename__ = 'ego_grid_pf_mv_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -1990,7 +1990,7 @@ class EgoGridPfMvLoadPqSet(Base):
     grid_id = Column(Integer)
 
 
-class EgoGridPfMvResBu(Base):
+class EgoGridPfMvResBus(Base):
     __tablename__ = 'ego_grid_pf_mv_res_bus'
     __table_args__ = {'schema': 'model_draft'}
 
