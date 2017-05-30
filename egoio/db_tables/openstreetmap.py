@@ -1,22 +1,12 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Boolean, Column, Float, Integer, SmallInteger, Table, Text, text
-from geoalchemy2.types import Geometry
+from sqlalchemy import ARRAY, BigInteger, Boolean, Column, Float, Integer, SmallInteger, Table, Text, text
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
-from sqlalchemy.dialects.postgresql.base import ARRAY
+from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
 
 Base = declarative_base()
 metadata = Base.metadata
-
-
-class EgoDeuLoadsOsm(Base):
-    __tablename__ = 'ego_deu_loads_osm'
-    __table_args__ = {'schema': 'openstreetmap'}
-
-    id = Column(BigInteger, primary_key=True)
-    area_ha = Column(Float(53))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
 class EgoDeuPowerOsmLine(Base):
@@ -28,7 +18,7 @@ class EgoDeuPowerOsmLine(Base):
     cables = Column(Text)
     voltage = Column(Text)
     wires = Column(Text)
-    tags = Column(HSTORE, index=True)
+    tags = Column(HSTORE(Text()), index=True)
     way = Column(Geometry('LINESTRING', 900913), index=True)
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.ego_deu_power_osm_line_gid_seq'::regclass)"))
 
@@ -56,7 +46,7 @@ class EgoDeuPowerOsmPoint(Base):
     power = Column(Text)
     railway = Column(Text)
     ref = Column(Text)
-    tags = Column(HSTORE, index=True)
+    tags = Column(HSTORE(Text()), index=True)
     way = Column(Geometry('POINT', 900913), nullable=False, index=True)
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.ego_deu_power_osm_point_gid_seq'::regclass)"))
 
@@ -70,7 +60,7 @@ class EgoDeuPowerOsmPolygon(Base):
     cables = Column(Text)
     voltage = Column(Text)
     wires = Column(Text)
-    tags = Column(HSTORE, index=True)
+    tags = Column(HSTORE(Text()), index=True)
     way = Column(Geometry(srid=900913), index=True)
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.ego_deu_power_osm_polygon_gid_seq'::regclass)"))
 
@@ -100,7 +90,7 @@ class EgoDeuPowerOsmRoad(Base):
     railway = Column(Text)
     ref = Column(Text)
     tracktype = Column(Text)
-    tags = Column(HSTORE, index=True)
+    tags = Column(HSTORE(Text()), index=True)
     way = Column(Geometry('LINESTRING', 900913), nullable=False, index=True)
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.ego_deu_power_osm_roads_gid_seq'::regclass)"))
 
@@ -112,43 +102,6 @@ class EgoDeuPowerOsmWay(Base):
     id = Column(BigInteger, primary_key=True)
     nodes = Column(ARRAY(BIGINT()), nullable=False)
     tags = Column(ARRAY(TEXT()))
-
-
-t_osm_deu_landuse_20160113_mview = Table(
-    'osm_deu_landuse_20160113_mview', metadata,
-    Column('gid', Integer),
-    Column('tags', HSTORE),
-    Column('geom', Geometry('MULTIPOLYGON', 3857), index=True),
-    schema='openstreetmap'
-)
-
-
-t_osm_deu_landuse_20160916_mview = Table(
-    'osm_deu_landuse_20160916_mview', metadata,
-    Column('gid', Integer),
-    Column('tags', HSTORE),
-    Column('geom', Geometry(srid=3857), index=True),
-    schema='openstreetmap'
-)
-
-
-t_osm_deu_landuse_20161005_mview = Table(
-    'osm_deu_landuse_20161005_mview', metadata,
-    Column('id', BigInteger, unique=True),
-    Column('osm_id', BigInteger),
-    Column('tags', HSTORE),
-    Column('way', Geometry(srid=3857), index=True),
-    schema='openstreetmap'
-)
-
-
-t_osm_deu_landuse_mview = Table(
-    'osm_deu_landuse_mview', metadata,
-    Column('gid', Integer),
-    Column('tags', HSTORE),
-    Column('geom', Geometry(srid=900913), index=True),
-    schema='openstreetmap'
-)
 
 
 class OsmDeuLine(Base):
@@ -229,7 +182,7 @@ class OsmDeuLine(Base):
     abandoned_landuse = Column('abandoned:landuse', Text)
     abandoned_power = Column('abandoned:power', Text)
     area_highway = Column('area:highway', Text)
-    tags = Column(HSTORE, index=True)
+    tags = Column(HSTORE(Text()), index=True)
     geom = Column(Geometry('LINESTRING', 900913), index=True)
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_line_gid_seq'::regclass)"))
 
@@ -310,7 +263,7 @@ t_osm_deu_line_street_mview = Table(
     Column('abandoned:landuse', Text),
     Column('abandoned:power', Text),
     Column('area:highway', Text),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('geom', Geometry('LINESTRING', 900913), index=True),
     Column('gid', Integer, unique=True),
     schema='openstreetmap'
@@ -399,7 +352,7 @@ class OsmDeuPoint(Base):
     width = Column(Text)
     wood = Column(Text)
     z_order = Column(Integer)
-    tags = Column(HSTORE, index=True)
+    tags = Column(HSTORE(Text()), index=True)
     geom = Column(Geometry('POINT', 900913), index=True)
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_point_gid_seq'::regclass)"))
 
@@ -482,7 +435,7 @@ class OsmDeuPolygon(Base):
     abandoned_landuse = Column('abandoned:landuse', Text)
     abandoned_power = Column('abandoned:power', Text)
     area_highway = Column('area:highway', Text)
-    tags = Column(HSTORE, index=True)
+    tags = Column(HSTORE(Text()), index=True)
     geom = Column(Geometry(srid=900913), index=True)
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_polygon_gid_seq'::regclass)"))
 
@@ -496,6 +449,15 @@ t_osm_deu_polygon_building_mview = Table(
 )
 
 
+t_osm_deu_polygon_landuse_mview = Table(
+    'osm_deu_polygon_landuse_mview', metadata,
+    Column('gid', Integer),
+    Column('tags', HSTORE(Text())),
+    Column('geom', Geometry(srid=900913), index=True),
+    schema='openstreetmap'
+)
+
+
 class OsmDeuPolygonUrban(Base):
     __tablename__ = 'osm_deu_polygon_urban'
     __table_args__ = {'schema': 'openstreetmap'}
@@ -505,7 +467,7 @@ class OsmDeuPolygonUrban(Base):
     name = Column(Text)
     sector = Column(Integer)
     area_ha = Column(Float(53))
-    tags = Column(HSTORE)
+    tags = Column(HSTORE(Text()))
     vg250 = Column(Text)
     geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
 
@@ -517,7 +479,7 @@ t_osm_deu_polygon_urban_error_geom_vg250_mview = Table(
     Column('name', Text),
     Column('sector', Integer),
     Column('area_ha', Float(53)),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('vg250', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='openstreetmap'
@@ -531,7 +493,7 @@ t_osm_deu_polygon_urban_sector_1_residential_mview = Table(
     Column('name', Text),
     Column('sector', Integer),
     Column('area_ha', Float(53)),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('vg250', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='openstreetmap'
@@ -545,7 +507,7 @@ t_osm_deu_polygon_urban_sector_2_retail_mview = Table(
     Column('name', Text),
     Column('sector', Integer),
     Column('area_ha', Float(53)),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('vg250', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='openstreetmap'
@@ -559,7 +521,7 @@ t_osm_deu_polygon_urban_sector_3_industrial_mview = Table(
     Column('name', Text),
     Column('sector', Integer),
     Column('area_ha', Float(53)),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('vg250', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='openstreetmap'
@@ -568,14 +530,14 @@ t_osm_deu_polygon_urban_sector_3_industrial_mview = Table(
 
 t_osm_deu_polygon_urban_sector_3_industrial_nolargescale_mview = Table(
     'osm_deu_polygon_urban_sector_3_industrial_nolargescale_mview', metadata,
-    Column('gid', Integer),
+    Column('gid', Integer, unique=True),
     Column('osm_id', Integer),
     Column('name', Text),
     Column('sector', Integer),
     Column('area_ha', Float(53)),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('vg250', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035)),
+    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='openstreetmap'
 )
 
@@ -587,7 +549,7 @@ t_osm_deu_polygon_urban_sector_4_agricultural_mview = Table(
     Column('name', Text),
     Column('sector', Integer),
     Column('area_ha', Float(53)),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('vg250', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='openstreetmap'
@@ -601,7 +563,7 @@ t_osm_deu_polygon_urban_vg250_clean_cut_multi_mview = Table(
     Column('name', Text),
     Column('sector', Integer),
     Column('area_ha', Float(53)),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('vg250', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='openstreetmap'
@@ -615,7 +577,7 @@ t_osm_deu_polygon_urban_vg250_clean_cut_mview = Table(
     Column('name', Text),
     Column('sector', Integer),
     Column('area_ha', Float(53)),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('vg250', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='openstreetmap'
@@ -630,7 +592,7 @@ t_osm_deu_polygon_urban_vg250_cut_mview = Table(
     Column('name', Text),
     Column('sector', Integer),
     Column('area_ha', Float(53)),
-    Column('tags', HSTORE),
+    Column('tags', HSTORE(Text())),
     Column('vg250', Text),
     Column('geom_type', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
@@ -729,7 +691,7 @@ class OsmDeuRoad(Base):
     abandoned_landuse = Column('abandoned:landuse', Text)
     abandoned_power = Column('abandoned:power', Text)
     area_highway = Column('area:highway', Text)
-    tags = Column(HSTORE, index=True)
+    tags = Column(HSTORE(Text()), index=True)
     geom = Column(Geometry('LINESTRING', 900913), index=True)
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_roads_gid_seq'::regclass)"))
 

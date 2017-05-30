@@ -1,6 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, Float, Integer, Numeric, String, text
-from geoalchemy2.types import Geometry, Raster
+from sqlalchemy import Column, Float, String
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -17,21 +16,3 @@ class DestatisGvaPerDistrict(Base):
     total_gva = Column(Float(53), nullable=False)
     gva_industry = Column(Float(53), nullable=False)
     gva_tertiary_sector = Column(Float(53), nullable=False)
-
-
-class IoerUrbanShareIndustrial(Base):
-    __tablename__ = 'ioer_urban_share_industrial'
-    __table_args__ = {'schema': 'economic'}
-
-    rid = Column(Integer, primary_key=True, server_default=text("nextval('economic.ioer_urban_share_industrial_rid_seq'::regclass)"))
-    rast = Column(Raster)
-
-
-class IoerUrbanShareIndustrialCentroid(Base):
-    __tablename__ = 'ioer_urban_share_industrial_centroid'
-    __table_args__ = {'schema': 'economic'}
-
-    id = Column(Integer, primary_key=True, server_default=text("nextval('economic.ioer_urban_share_industrial_centroid_id_seq'::regclass)"))
-    rid = Column(Integer)
-    ioer_share = Column(Numeric)
-    geom = Column(Geometry('POINT', 3035), index=True)

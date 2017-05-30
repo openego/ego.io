@@ -12,8 +12,8 @@ setup(name='egoio',
       packages=find_packages(),
       license='GNU GENERAL PUBLIC LICENSE Version 3',
       install_requires=[
-          'geoalchemy2 >= 0.3.0, <=0.3.0',
-          'sqlalchemy >= 1.0.15, <= 1.1.4',
+          'geoalchemy2 >= 0.3.0, <=0.4.0',
+          'sqlalchemy >= 1.0.15, <= 1.1.9',
           'numpy >= 1.11.3, <= 1.12.1',
           'psycopg2'],
       extras_require={
