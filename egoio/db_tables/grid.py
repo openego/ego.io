@@ -268,9 +268,12 @@ class EgoPfHvLoadPqSet(Base):
     version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     load_id = Column(BigInteger, primary_key=True, nullable=False)
+    temp_id = Column(Integer, primary_key=True, nullable=False)
     bus = Column(BigInteger)
     sign = Column(Float(53), server_default=text("(-1)"))
     e_annual = Column(Float(53))
+    p_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
 
     ego_scenario = relationship('EgoScenario')
 
