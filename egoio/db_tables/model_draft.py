@@ -1690,10 +1690,10 @@ class EgoGridPfHvBusmap(Base):
     __tablename__ = 'ego_grid_pf_hv_busmap'
     __table_args__ = {'schema': 'model_draft'}
 
-    scn_name = Column(Text, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    scn_name = Column(Text, primary_key=True, nullable=False)
     bus0 = Column(Text, primary_key=True, nullable=False)
     bus1 = Column(Text, primary_key=True, nullable=False)
-    path_length = Column(Numeric, primary_key=True, nullable=False)
+    path_length = Column(Numeric)
 
 class EgoGridPfHvBusVMagSet(Base):
     __tablename__ = 'ego_grid_pf_hv_bus_v_mag_set'
