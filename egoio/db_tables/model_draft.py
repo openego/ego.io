@@ -1686,6 +1686,14 @@ class EgoGridPfHvBus(Base):
     v_mag_pu_max = Column(Float(53))
     geom = Column(Geometry('POINT', 4326))
 
+class EgoGridPfHvBusmap(Base):
+    __tablename__ = 'ego_grid_pf_hv_busmap'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    bus0 = Column(Integer, primary_key=True, nullable=False)
+    bus1 = Column(Integer, primary_key=True, nullable=False)
+    path_length = Column(Numeric, primary_key=True, nullable=False)
 
 class EgoGridPfHvBusVMagSet(Base):
     __tablename__ = 'ego_grid_pf_hv_bus_v_mag_set'
