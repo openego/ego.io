@@ -108,7 +108,7 @@ def create_oedb_config_file(filepath, section='oep'):
         file.close()
 
         print('Template {0} with section `{1}` created.\n You can manually edit'
-              'the config file.'
+              ' the config file.'
                     .format(filepath,
                             section))
 
