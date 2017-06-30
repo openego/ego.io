@@ -10,10 +10,10 @@ metadata = Base.metadata
 
 class BkgVg2501Sta(Base):
     __tablename__ = 'bkg_vg250_1_sta'
-    __table_args__ = {'schema': 'political_boundary'}
+    __table_args__ = {'schema': 'boundaries'}
 
     reference_date = Column(Date, primary_key=True, nullable=False)
-    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('political_boundary.bkg_vg250_1_sta_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('boundaries.bkg_vg250_1_sta_id_seq'::regclass)"))
     geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
     ade = Column(BigInteger)
     gf = Column(BigInteger)
@@ -47,7 +47,7 @@ t_bkg_vg250_1_sta_bbox_mview = Table(
     Column('bez', Text),
     Column('area_ha', Float(53)),
     Column('geom', Geometry('POLYGON', 3035), index=True),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
@@ -57,7 +57,7 @@ t_bkg_vg250_1_sta_error_geom_mview = Table(
     Column('error', Boolean),
     Column('error_reason', String),
     Column('geom', Geometry('POINT', 3035), index=True),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
@@ -69,7 +69,7 @@ t_bkg_vg250_1_sta_mview = Table(
     Column('gf', Float(53)),
     Column('area_ha', Float(53)),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
@@ -80,16 +80,16 @@ t_bkg_vg250_1_sta_union_mview = Table(
     Column('bez', Text),
     Column('area_ha', Float(53)),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
 class BkgVg2502Lan(Base):
     __tablename__ = 'bkg_vg250_2_lan'
-    __table_args__ = {'schema': 'political_boundary'}
+    __table_args__ = {'schema': 'boundaries'}
 
     reference_date = Column(Date, primary_key=True, nullable=False)
-    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('political_boundary.bkg_vg250_2_lan_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('boundaries.bkg_vg250_2_lan_id_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -122,16 +122,16 @@ t_bkg_vg250_2_lan_mview = Table(
     Column('ags_0', String(12), unique=True),
     Column('gen', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
 class BkgVg2503Rbz(Base):
     __tablename__ = 'bkg_vg250_3_rbz'
-    __table_args__ = {'schema': 'political_boundary'}
+    __table_args__ = {'schema': 'boundaries'}
 
     reference_date = Column(Date, primary_key=True, nullable=False)
-    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('political_boundary.bkg_vg250_3_rbz_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('boundaries.bkg_vg250_3_rbz_id_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -160,10 +160,10 @@ class BkgVg2503Rbz(Base):
 
 class BkgVg2504Kr(Base):
     __tablename__ = 'bkg_vg250_4_krs'
-    __table_args__ = {'schema': 'political_boundary'}
+    __table_args__ = {'schema': 'boundaries'}
 
     reference_date = Column(Date, primary_key=True, nullable=False)
-    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('political_boundary.bkg_vg250_4_krs_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('boundaries.bkg_vg250_4_krs_id_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -201,16 +201,16 @@ t_bkg_vg250_4_krs_mview = Table(
     Column('ags_0', String(12)),
     Column('area_ha', Float(53)),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
 class BkgVg2505Vwg(Base):
     __tablename__ = 'bkg_vg250_5_vwg'
-    __table_args__ = {'schema': 'political_boundary'}
+    __table_args__ = {'schema': 'boundaries'}
 
     reference_date = Column(Date, primary_key=True, nullable=False)
-    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('political_boundary.bkg_vg250_5_vwg_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('boundaries.bkg_vg250_5_vwg_id_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -239,10 +239,10 @@ class BkgVg2505Vwg(Base):
 
 class BkgVg2506Gem(Base):
     __tablename__ = 'bkg_vg250_6_gem'
-    __table_args__ = {'schema': 'political_boundary'}
+    __table_args__ = {'schema': 'boundaries'}
 
     reference_date = Column(Date, primary_key=True, nullable=False)
-    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('political_boundary.bkg_vg250_6_gem_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('boundaries.bkg_vg250_6_gem_id_seq'::regclass)"))
     ade = Column(Float(53))
     gf = Column(Float(53))
     bsg = Column(Float(53))
@@ -281,7 +281,7 @@ t_bkg_vg250_6_gem_dump_mview = Table(
     Column('ags_0', String(12)),
     Column('area_ha', Float(53)),
     Column('geom', Geometry('POLYGON', 3035), index=True),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
@@ -291,7 +291,7 @@ t_bkg_vg250_6_gem_error_geom_mview = Table(
     Column('error', Boolean),
     Column('error_reason', String),
     Column('geom', Geometry('POINT', 3035), index=True),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
@@ -312,7 +312,7 @@ t_bkg_vg250_6_gem_mview = Table(
     Column('census_density', Integer),
     Column('pd', Float(53)),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
@@ -321,7 +321,7 @@ t_bkg_vg250_6_gem_pts = Table(
     Column('id', Integer),
     Column('ags_0', String(12)),
     Column('geom', Geometry),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
@@ -331,7 +331,7 @@ t_bkg_vg250_statistics_mview = Table(
     Column('table', Text),
     Column('descript_nameion', Text),
     Column('area_sum_ha', Integer),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
@@ -339,15 +339,15 @@ t_bkg_vg250_statistics_view = Table(
     'bkg_vg250_statistics_view', metadata,
     Column('id', Text),
     Column('area_sum_ha', Integer),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
 class Gn250B(Base):
     __tablename__ = 'gn250_b'
-    __table_args__ = {'schema': 'political_boundary'}
+    __table_args__ = {'schema': 'boundaries'}
 
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('political_boundary.gn250_b_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('boundaries.gn250_b_gid_seq'::regclass)"))
     nnid = Column(String(16))
     datum = Column(String(10))
     oba = Column(String(40))
@@ -395,15 +395,15 @@ t_gn250_b_oba_view = Table(
     Column('ewz_ger', String(8)),
     Column('gemeinde', String(40)),
     Column('geom', Geometry('MULTIPOLYGON', 31467)),
-    schema='political_boundary'
+    schema='boundaries'
 )
 
 
 class Gn250P(Base):
     __tablename__ = 'gn250_p'
-    __table_args__ = {'schema': 'political_boundary'}
+    __table_args__ = {'schema': 'boundaries'}
 
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('political_boundary.gn250_p_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('boundaries.gn250_p_gid_seq'::regclass)"))
     nnid = Column(String(16))
     datum = Column(String(10))
     oba = Column(String(40))
