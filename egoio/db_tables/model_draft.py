@@ -2359,10 +2359,10 @@ class EgoOsmSectorPerLvgd4Agricultural(Base):
 
 
 class EgoBoundariesBkgVg2506GemClean(Base):
-    __tablename__ = 'ego_political_boundary_bkg_vg250_6_gem_clean'
+    __tablename__ = 'ego_boundaries_bkg_vg250_6_gem_clean'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_political_boundary_bkg_vg250_6_gem_clean_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_boundaries_bkg_vg250_6_gem_clean_id_seq'::regclass)"))
     old_id = Column(Integer)
     gen = Column(Text)
     bez = Column(Text)
@@ -2377,8 +2377,8 @@ class EgoBoundariesBkgVg2506GemClean(Base):
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
-t_ego_political_boundary_bkg_vg250_6_gem_hole_mview = Table(
-    'ego_political_boundary_bkg_vg250_6_gem_hole_mview', metadata,
+t_ego_boundaries_bkg_vg250_6_gem_hole_mview = Table(
+    'ego_boundaries_bkg_vg250_6_gem_hole_mview', metadata,
     Column('id', Integer, unique=True),
     Column('old_id', Integer),
     Column('gen', Text),
@@ -2397,7 +2397,7 @@ t_ego_political_boundary_bkg_vg250_6_gem_hole_mview = Table(
 
 
 class EgoBoundariesHvmvSubstPerGem(Base):
-    __tablename__ = 'ego_political_boundary_hvmv_subst_per_gem'
+    __tablename__ = 'ego_boundaries_hvmv_subst_per_gem'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
@@ -2417,8 +2417,8 @@ class EgoBoundariesHvmvSubstPerGem(Base):
     subst_type = Column(Integer)
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_1_mview = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_1_mview', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_1_mview = Table(
+    'ego_boundaries_hvmv_subst_per_gem_1_mview', metadata,
     Column('id', Integer, unique=True),
     Column('gen', Text),
     Column('bez', Text),
@@ -2429,8 +2429,8 @@ t_ego_political_boundary_hvmv_subst_per_gem_1_mview = Table(
 )
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_2_mview = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_2_mview', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_2_mview = Table(
+    'ego_boundaries_hvmv_subst_per_gem_2_mview', metadata,
     Column('id', Integer, unique=True),
     Column('gen', Text),
     Column('bez', Text),
@@ -2441,8 +2441,8 @@ t_ego_political_boundary_hvmv_subst_per_gem_2_mview = Table(
 )
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_3_mview = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_3_mview', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_3_mview = Table(
+    'ego_boundaries_hvmv_subst_per_gem_3_mview', metadata,
     Column('id', Integer, unique=True),
     Column('gen', Text),
     Column('bez', Text),
@@ -2454,7 +2454,7 @@ t_ego_political_boundary_hvmv_subst_per_gem_3_mview = Table(
 
 
 class EgoBoundariesHvmvSubstPerGem3Nn(Base):
-    __tablename__ = 'ego_political_boundary_hvmv_subst_per_gem_3_nn'
+    __tablename__ = 'ego_boundaries_hvmv_subst_per_gem_3_nn'
     __table_args__ = {'schema': 'model_draft'}
 
     mun_id = Column(Integer, primary_key=True)
@@ -2467,8 +2467,8 @@ class EgoBoundariesHvmvSubstPerGem3Nn(Base):
     geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_3_nn_line = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_3_nn_line', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_3_nn_line = Table(
+    'ego_boundaries_hvmv_subst_per_gem_3_nn_line', metadata,
     Column('id', BigInteger, unique=True),
     Column('nn_id', Integer),
     Column('subst_id', Integer),
@@ -2478,8 +2478,8 @@ t_ego_political_boundary_hvmv_subst_per_gem_3_nn_line = Table(
 )
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_3_nn_union = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_3_nn_union', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_3_nn_union = Table(
+    'ego_boundaries_hvmv_subst_per_gem_3_nn_union', metadata,
     Column('subst_id', Integer, unique=True),
     Column('subst_type', Integer),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
