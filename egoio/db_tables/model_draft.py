@@ -2358,7 +2358,7 @@ class EgoOsmSectorPerLvgd4Agricultural(Base):
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
-class EgoPoliticalBoundaryBkgVg2506GemClean(Base):
+class EgoBoundariesBkgVg2506GemClean(Base):
     __tablename__ = 'ego_political_boundary_bkg_vg250_6_gem_clean'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -2396,7 +2396,7 @@ t_ego_political_boundary_bkg_vg250_6_gem_hole_mview = Table(
 )
 
 
-class EgoPoliticalBoundaryHvmvSubstPerGem(Base):
+class EgoBoundariesHvmvSubstPerGem(Base):
     __tablename__ = 'ego_political_boundary_hvmv_subst_per_gem'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -2453,7 +2453,7 @@ t_ego_political_boundary_hvmv_subst_per_gem_3_mview = Table(
 )
 
 
-class EgoPoliticalBoundaryHvmvSubstPerGem3Nn(Base):
+class EgoBoundariesHvmvSubstPerGem3Nn(Base):
     __tablename__ = 'ego_political_boundary_hvmv_subst_per_gem_3_nn'
     __table_args__ = {'schema': 'model_draft'}
 
