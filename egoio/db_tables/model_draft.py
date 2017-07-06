@@ -3705,12 +3705,12 @@ t_osm_deu_polygon_urban_buffer100_mview = Table(
 )
 
 
-class RenpassGisEconomicLinearTransformer(Base):
-    __tablename__ = 'renpass_gis_economic_linear_transformer'
+class RenpassGisEconomyLinearTransformer(Base):
+    __tablename__ = 'renpass_gis_economy_linear_transformer'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_linear_transformer_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_linear_transformer_id_seq'::regclass)"))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     label = Column(String(250))
     source = Column(String(250))
     target = Column(String(250))
@@ -3722,23 +3722,23 @@ class RenpassGisEconomicLinearTransformer(Base):
     variable_costs = Column(ARRAY(NUMERIC()))
     fixed_costs = Column(ARRAY(NUMERIC()))
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
-class RenpassGisEconomicScenario(Base):
-    __tablename__ = 'renpass_gis_economic_scenario'
+class RenpassGisEconomyScenario(Base):
+    __tablename__ = 'renpass_gis_economy_scenario'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_scenario_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_scenario_id_seq'::regclass)"))
     name = Column(String(250), nullable=False, unique=True)
 
 
-class RenpassGisEconomicSink(Base):
-    __tablename__ = 'renpass_gis_economic_sink'
+class RenpassGisEconomySink(Base):
+    __tablename__ = 'renpass_gis_economy_sink'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_sink_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_sink_id_seq'::regclass)"))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     label = Column(String(250))
     source = Column(String(250))
     target = Column(String(250))
@@ -3746,15 +3746,15 @@ class RenpassGisEconomicSink(Base):
     actual_value = Column(ARRAY(NUMERIC()))
     fixed = Column(Boolean)
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
-class RenpassGisEconomicSource(Base):
-    __tablename__ = 'renpass_gis_economic_source'
+class RenpassGisEconomySource(Base):
+    __tablename__ = 'renpass_gis_economy_source'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_source_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_source_id_seq'::regclass)"))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     label = Column(String(250))
     source = Column(String(250))
     target = Column(String(250))
@@ -3763,15 +3763,15 @@ class RenpassGisEconomicSource(Base):
     variable_costs = Column(ARRAY(NUMERIC()))
     fixed = Column(Boolean)
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
-class RenpassGisEconomicStorage(Base):
-    __tablename__ = 'renpass_gis_economic_storage'
+class RenpassGisEconomyStorage(Base):
+    __tablename__ = 'renpass_gis_economy_storage'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_storage_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_storage_id_seq'::regclass)"))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     label = Column(String(250))
     source = Column(String(250))
     target = Column(String(250))
@@ -3792,7 +3792,7 @@ class RenpassGisEconomicStorage(Base):
     capacity_min = Column(ARRAY(NUMERIC()))
     capacity_max = Column(ARRAY(NUMERIC()))
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
 class RenpassGisParameterRegion(Base):
@@ -3811,18 +3811,18 @@ class RenpassGisScenarioResult(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_scenario_results_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     bus_label = Column(String(250))
     type = Column(String(250))
     obj_label = Column(String(250))
     datetime = Column(DateTime)
     val = Column(Numeric)
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
-class RenpassgisEconomicWeatherpointVoronoi(Base):
-    __tablename__ = 'renpassgis_economic_weatherpoint_voronoi'
+class RenpassgisEconomyWeatherpointVoronoi(Base):
+    __tablename__ = 'renpassgis_economy_weatherpoint_voronoi'
     __table_args__ = {'schema': 'model_draft'}
 
     geom = Column(Geometry('POLYGON', 4326), index=True)
