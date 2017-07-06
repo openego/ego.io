@@ -2587,11 +2587,11 @@ class EgoSmallChpPlantGermany(Base):
     geom = Column(Geometry('POINT', 4326))
 
 
-class EgoSocialZensusLoad(Base):
-    __tablename__ = 'ego_social_zensus_load'
+class EgoSocietyZensusLoad(Base):
+    __tablename__ = 'ego_society_zensus_load'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_social_zensus_load_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_society_zensus_load_id_seq'::regclass)"))
     gid = Column(Integer)
     population = Column(Integer)
     inside_la = Column(Boolean)
@@ -2599,11 +2599,11 @@ class EgoSocialZensusLoad(Base):
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
-class EgoSocialZensusLoadCluster(Base):
-    __tablename__ = 'ego_social_zensus_load_cluster'
+class EgoSocietyZensusLoadCluster(Base):
+    __tablename__ = 'ego_society_zensus_load_cluster'
     __table_args__ = {'schema': 'model_draft'}
 
-    cid = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_social_zensus_load_cluster_cid_seq'::regclass)"))
+    cid = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_society_zensus_load_cluster_cid_seq'::regclass)"))
     zensus_sum = Column(Integer)
     area_ha = Column(Integer)
     geom = Column(Geometry('POLYGON', 3035), index=True)
@@ -2612,8 +2612,8 @@ class EgoSocialZensusLoadCluster(Base):
     geom_surfacepoint = Column(Geometry('POINT', 3035), index=True)
 
 
-t_ego_social_zensus_per_la_mview = Table(
-    'ego_social_zensus_per_la_mview', metadata,
+t_ego_society_zensus_per_la_mview = Table(
+    'ego_society_zensus_per_la_mview', metadata,
     Column('name', Text),
     Column('sum', Numeric),
     Column('census_count', BigInteger),
