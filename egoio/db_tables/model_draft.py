@@ -2358,11 +2358,11 @@ class EgoOsmSectorPerLvgd4Agricultural(Base):
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
-class EgoPoliticalBoundaryBkgVg2506GemClean(Base):
-    __tablename__ = 'ego_political_boundary_bkg_vg250_6_gem_clean'
+class EgoBoundariesBkgVg2506GemClean(Base):
+    __tablename__ = 'ego_boundaries_bkg_vg250_6_gem_clean'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_political_boundary_bkg_vg250_6_gem_clean_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_boundaries_bkg_vg250_6_gem_clean_id_seq'::regclass)"))
     old_id = Column(Integer)
     gen = Column(Text)
     bez = Column(Text)
@@ -2377,8 +2377,8 @@ class EgoPoliticalBoundaryBkgVg2506GemClean(Base):
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
-t_ego_political_boundary_bkg_vg250_6_gem_hole_mview = Table(
-    'ego_political_boundary_bkg_vg250_6_gem_hole_mview', metadata,
+t_ego_boundaries_bkg_vg250_6_gem_hole_mview = Table(
+    'ego_boundaries_bkg_vg250_6_gem_hole_mview', metadata,
     Column('id', Integer, unique=True),
     Column('old_id', Integer),
     Column('gen', Text),
@@ -2396,8 +2396,8 @@ t_ego_political_boundary_bkg_vg250_6_gem_hole_mview = Table(
 )
 
 
-class EgoPoliticalBoundaryHvmvSubstPerGem(Base):
-    __tablename__ = 'ego_political_boundary_hvmv_subst_per_gem'
+class EgoBoundariesHvmvSubstPerGem(Base):
+    __tablename__ = 'ego_boundaries_hvmv_subst_per_gem'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
@@ -2417,8 +2417,8 @@ class EgoPoliticalBoundaryHvmvSubstPerGem(Base):
     subst_type = Column(Integer)
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_1_mview = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_1_mview', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_1_mview = Table(
+    'ego_boundaries_hvmv_subst_per_gem_1_mview', metadata,
     Column('id', Integer, unique=True),
     Column('gen', Text),
     Column('bez', Text),
@@ -2429,8 +2429,8 @@ t_ego_political_boundary_hvmv_subst_per_gem_1_mview = Table(
 )
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_2_mview = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_2_mview', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_2_mview = Table(
+    'ego_boundaries_hvmv_subst_per_gem_2_mview', metadata,
     Column('id', Integer, unique=True),
     Column('gen', Text),
     Column('bez', Text),
@@ -2441,8 +2441,8 @@ t_ego_political_boundary_hvmv_subst_per_gem_2_mview = Table(
 )
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_3_mview = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_3_mview', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_3_mview = Table(
+    'ego_boundaries_hvmv_subst_per_gem_3_mview', metadata,
     Column('id', Integer, unique=True),
     Column('gen', Text),
     Column('bez', Text),
@@ -2453,8 +2453,8 @@ t_ego_political_boundary_hvmv_subst_per_gem_3_mview = Table(
 )
 
 
-class EgoPoliticalBoundaryHvmvSubstPerGem3Nn(Base):
-    __tablename__ = 'ego_political_boundary_hvmv_subst_per_gem_3_nn'
+class EgoBoundariesHvmvSubstPerGem3Nn(Base):
+    __tablename__ = 'ego_boundaries_hvmv_subst_per_gem_3_nn'
     __table_args__ = {'schema': 'model_draft'}
 
     mun_id = Column(Integer, primary_key=True)
@@ -2467,8 +2467,8 @@ class EgoPoliticalBoundaryHvmvSubstPerGem3Nn(Base):
     geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_3_nn_line = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_3_nn_line', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_3_nn_line = Table(
+    'ego_boundaries_hvmv_subst_per_gem_3_nn_line', metadata,
     Column('id', BigInteger, unique=True),
     Column('nn_id', Integer),
     Column('subst_id', Integer),
@@ -2478,8 +2478,8 @@ t_ego_political_boundary_hvmv_subst_per_gem_3_nn_line = Table(
 )
 
 
-t_ego_political_boundary_hvmv_subst_per_gem_3_nn_union = Table(
-    'ego_political_boundary_hvmv_subst_per_gem_3_nn_union', metadata,
+t_ego_boundaries_hvmv_subst_per_gem_3_nn_union = Table(
+    'ego_boundaries_hvmv_subst_per_gem_3_nn_union', metadata,
     Column('subst_id', Integer, unique=True),
     Column('subst_type', Integer),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
@@ -2587,11 +2587,11 @@ class EgoSmallChpPlantGermany(Base):
     geom = Column(Geometry('POINT', 4326))
 
 
-class EgoSocialZensusLoad(Base):
-    __tablename__ = 'ego_social_zensus_load'
+class EgoSocietyZensusLoad(Base):
+    __tablename__ = 'ego_society_zensus_load'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_social_zensus_load_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_society_zensus_load_id_seq'::regclass)"))
     gid = Column(Integer)
     population = Column(Integer)
     inside_la = Column(Boolean)
@@ -2599,11 +2599,11 @@ class EgoSocialZensusLoad(Base):
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
-class EgoSocialZensusLoadCluster(Base):
-    __tablename__ = 'ego_social_zensus_load_cluster'
+class EgoSocietyZensusLoadCluster(Base):
+    __tablename__ = 'ego_society_zensus_load_cluster'
     __table_args__ = {'schema': 'model_draft'}
 
-    cid = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_social_zensus_load_cluster_cid_seq'::regclass)"))
+    cid = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_society_zensus_load_cluster_cid_seq'::regclass)"))
     zensus_sum = Column(Integer)
     area_ha = Column(Integer)
     geom = Column(Geometry('POLYGON', 3035), index=True)
@@ -2612,8 +2612,8 @@ class EgoSocialZensusLoadCluster(Base):
     geom_surfacepoint = Column(Geometry('POINT', 3035), index=True)
 
 
-t_ego_social_zensus_per_la_mview = Table(
-    'ego_social_zensus_per_la_mview', metadata,
+t_ego_society_zensus_per_la_mview = Table(
+    'ego_society_zensus_per_la_mview', metadata,
     Column('name', Text),
     Column('sum', Numeric),
     Column('census_count', BigInteger),
@@ -3705,12 +3705,12 @@ t_osm_deu_polygon_urban_buffer100_mview = Table(
 )
 
 
-class RenpassGisEconomicLinearTransformer(Base):
-    __tablename__ = 'renpass_gis_economic_linear_transformer'
+class RenpassGisEconomyLinearTransformer(Base):
+    __tablename__ = 'renpass_gis_economy_linear_transformer'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_linear_transformer_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_linear_transformer_id_seq'::regclass)"))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     label = Column(String(250))
     source = Column(String(250))
     target = Column(String(250))
@@ -3722,23 +3722,23 @@ class RenpassGisEconomicLinearTransformer(Base):
     variable_costs = Column(ARRAY(NUMERIC()))
     fixed_costs = Column(ARRAY(NUMERIC()))
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
-class RenpassGisEconomicScenario(Base):
-    __tablename__ = 'renpass_gis_economic_scenario'
+class RenpassGisEconomyScenario(Base):
+    __tablename__ = 'renpass_gis_economy_scenario'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_scenario_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_scenario_id_seq'::regclass)"))
     name = Column(String(250), nullable=False, unique=True)
 
 
-class RenpassGisEconomicSink(Base):
-    __tablename__ = 'renpass_gis_economic_sink'
+class RenpassGisEconomySink(Base):
+    __tablename__ = 'renpass_gis_economy_sink'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_sink_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_sink_id_seq'::regclass)"))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     label = Column(String(250))
     source = Column(String(250))
     target = Column(String(250))
@@ -3746,15 +3746,15 @@ class RenpassGisEconomicSink(Base):
     actual_value = Column(ARRAY(NUMERIC()))
     fixed = Column(Boolean)
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
-class RenpassGisEconomicSource(Base):
-    __tablename__ = 'renpass_gis_economic_source'
+class RenpassGisEconomySource(Base):
+    __tablename__ = 'renpass_gis_economy_source'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_source_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_source_id_seq'::regclass)"))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     label = Column(String(250))
     source = Column(String(250))
     target = Column(String(250))
@@ -3763,15 +3763,15 @@ class RenpassGisEconomicSource(Base):
     variable_costs = Column(ARRAY(NUMERIC()))
     fixed = Column(Boolean)
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
-class RenpassGisEconomicStorage(Base):
-    __tablename__ = 'renpass_gis_economic_storage'
+class RenpassGisEconomyStorage(Base):
+    __tablename__ = 'renpass_gis_economy_storage'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economic_storage_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_economy_storage_id_seq'::regclass)"))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     label = Column(String(250))
     source = Column(String(250))
     target = Column(String(250))
@@ -3792,7 +3792,7 @@ class RenpassGisEconomicStorage(Base):
     capacity_min = Column(ARRAY(NUMERIC()))
     capacity_max = Column(ARRAY(NUMERIC()))
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
 class RenpassGisParameterRegion(Base):
@@ -3811,18 +3811,18 @@ class RenpassGisScenarioResult(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.renpass_gis_scenario_results_id_seq'::regclass)"))
-    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economic_scenario.id'))
+    scenario_id = Column(ForeignKey('model_draft.renpass_gis_economy_scenario.id'))
     bus_label = Column(String(250))
     type = Column(String(250))
     obj_label = Column(String(250))
     datetime = Column(DateTime)
     val = Column(Numeric)
 
-    scenario = relationship('RenpassGisEconomicScenario')
+    scenario = relationship('RenpassGisEconomyScenario')
 
 
-class RenpassgisEconomicWeatherpointVoronoi(Base):
-    __tablename__ = 'renpassgis_economic_weatherpoint_voronoi'
+class RenpassgisEconomyWeatherpointVoronoi(Base):
+    __tablename__ = 'renpassgis_economy_weatherpoint_voronoi'
     __table_args__ = {'schema': 'model_draft'}
 
     geom = Column(Geometry('POLYGON', 4326), index=True)

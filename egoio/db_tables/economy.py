@@ -9,7 +9,7 @@ metadata = Base.metadata
 
 class DestatisGvaPerDistrict(Base):
     __tablename__ = 'destatis_gva_per_district'
-    __table_args__ = {'schema': 'economic'}
+    __table_args__ = {'schema': 'economy'}
 
     eu_code = Column(String(7), primary_key=True)
     district = Column(String, nullable=False)
