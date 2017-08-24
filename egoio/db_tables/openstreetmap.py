@@ -3,105 +3,11 @@ from sqlalchemy import ARRAY, BigInteger, Boolean, Column, Float, Integer, Small
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.dialects.postgresql import TEXT, BIGINT
 
 
 Base = declarative_base()
 metadata = Base.metadata
-
-
-class EgoDeuPowerOsmLine(Base):
-    __tablename__ = 'ego_deu_power_osm_line'
-    __table_args__ = {'schema': 'openstreetmap'}
-
-    osm_id = Column(BigInteger)
-    power = Column(Text)
-    cables = Column(Text)
-    voltage = Column(Text)
-    wires = Column(Text)
-    tags = Column(HSTORE(Text()), index=True)
-    way = Column(Geometry('LINESTRING', 900913), index=True)
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.ego_deu_power_osm_line_gid_seq'::regclass)"))
-
-
-class EgoDeuPowerOsmNode(Base):
-    __tablename__ = 'ego_deu_power_osm_nodes'
-    __table_args__ = {'schema': 'openstreetmap'}
-
-    id = Column(BigInteger, primary_key=True)
-    lat = Column(Integer, nullable=False)
-    lon = Column(Integer, nullable=False)
-    tags = Column(ARRAY(TEXT()))
-
-
-class EgoDeuPowerOsmPoint(Base):
-    __tablename__ = 'ego_deu_power_osm_point'
-    __table_args__ = {'schema': 'openstreetmap'}
-
-    osm_id = Column(BigInteger)
-    addr_housenumber = Column('addr:housenumber', Text)
-    building = Column(Text)
-    highway = Column(Text)
-    name = Column(Text)
-    poi = Column(Text)
-    power = Column(Text)
-    railway = Column(Text)
-    ref = Column(Text)
-    tags = Column(HSTORE(Text()), index=True)
-    way = Column(Geometry('POINT', 900913), nullable=False, index=True)
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.ego_deu_power_osm_point_gid_seq'::regclass)"))
-
-
-class EgoDeuPowerOsmPolygon(Base):
-    __tablename__ = 'ego_deu_power_osm_polygon'
-    __table_args__ = {'schema': 'openstreetmap'}
-
-    osm_id = Column(BigInteger)
-    power = Column(Text)
-    cables = Column(Text)
-    voltage = Column(Text)
-    wires = Column(Text)
-    tags = Column(HSTORE(Text()), index=True)
-    way = Column(Geometry(srid=900913), index=True)
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.ego_deu_power_osm_polygon_gid_seq'::regclass)"))
-
-
-class EgoDeuPowerOsmRel(Base):
-    __tablename__ = 'ego_deu_power_osm_rels'
-    __table_args__ = {'schema': 'openstreetmap'}
-
-    id = Column(BigInteger, primary_key=True)
-    way_off = Column(SmallInteger)
-    rel_off = Column(SmallInteger)
-    parts = Column(ARRAY(BIGINT()))
-    members = Column(ARRAY(TEXT()))
-    tags = Column(ARRAY(TEXT()))
-
-
-class EgoDeuPowerOsmRoad(Base):
-    __tablename__ = 'ego_deu_power_osm_roads'
-    __table_args__ = {'schema': 'openstreetmap'}
-
-    osm_id = Column(BigInteger)
-    addr_housenumber = Column('addr:housenumber', Text)
-    building = Column(Text)
-    highway = Column(Text)
-    name = Column(Text)
-    power = Column(Text)
-    railway = Column(Text)
-    ref = Column(Text)
-    tracktype = Column(Text)
-    tags = Column(HSTORE(Text()), index=True)
-    way = Column(Geometry('LINESTRING', 900913), nullable=False, index=True)
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.ego_deu_power_osm_roads_gid_seq'::regclass)"))
-
-
-class EgoDeuPowerOsmWay(Base):
-    __tablename__ = 'ego_deu_power_osm_ways'
-    __table_args__ = {'schema': 'openstreetmap'}
-
-    id = Column(BigInteger, primary_key=True)
-    nodes = Column(ARRAY(BIGINT()), nullable=False)
-    tags = Column(ARRAY(TEXT()))
 
 
 class OsmDeuLine(Base):
