@@ -10,6 +10,109 @@ Base = declarative_base()
 metadata = Base.metadata
 
 
+class BnetzaVorhabenBbplg(Base):
+    __tablename__ = 'bnetza_vorhaben_bbplg'
+    __table_args__ = {'schema': 'grid'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('grid.bnetza_vorhaben_bbplg_id_seq'::regclass)"))
+    geom = Column(Geometry('MULTILINESTRING', 5652), index=True)
+    object_id = Column(BigInteger)
+    rechtsgrundlage = Column(String(5))
+    vorhabennummer = Column(Integer)
+    nova = Column(String(20))
+    vorhabenbezeichnung = Column(String(200))
+    zustaendigkeit = Column(String(4))
+    technik = Column(String(2))
+    abschnitt = Column(String(5))
+    anfangspunkt = Column(String(50))
+    endpunkt = Column(String(50))
+    abschnittsbezeichnung = Column(String(150))
+    art_der_geometrie = Column(String(20))
+    status_der_geometrie = Column(String(20))
+    luftlinie_km = Column(Float(53))
+    erdkabelvorrang = Column(String(4))
+    erdkabelpilot = Column(String(4))
+    kennzeichnung = Column(String(10))
+    kennzeichnung_a1 = Column(String(3))
+    kennzeichnung_a2 = Column(String(3))
+    kennzeichnung_b = Column(String(3))
+    kennzeichnung_c = Column(String(3))
+    kennzeichnung_d = Column(String(3))
+    kennzeichnung_e = Column(String(3))
+    kennzeichnung_f = Column(String(3))
+    kennzeichnung_strich = Column(String(3))
+    stand_des_vorhabens = Column(String(100))
+    id_a = Column(String(10))
+    vgi = Column(String(10))
+    vgi_nr = Column(String(15))
+    vorhabentraeger = Column(String(50))
+    spannung = Column(String(20))
+    shape_length = Column(Float(53))
+    bezugsmassstab = Column(String(50))
+    hinweis = Column(String(150))
+
+
+class BnetzaVorhabenEnlag(Base):
+    __tablename__ = 'bnetza_vorhaben_enlag'
+    __table_args__ = {'schema': 'grid'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('grid.bnetza_vorhaben_enlag_id_seq'::regclass)"))
+    geom = Column(Geometry('MULTILINESTRING', 5652), index=True)
+    object_id = Column(BigInteger)
+    rechtsgrundlage = Column(String(5))
+    vorhabennummer = Column(Integer)
+    nova = Column(String(20))
+    vorhabenbezeichnung = Column(String(200))
+    zustaendigkeit = Column(String(4))
+    technik = Column(String(2))
+    abschnitt = Column(String(5))
+    anfangspunkt = Column(String(50))
+    endpunkt = Column(String(50))
+    abschnittsbezeichnung = Column(String(150))
+    art_der_geometrie = Column(String(20))
+    status_der_geometrie = Column(String(20))
+    erdkabelvorrang = Column(String(4))
+    erdkabelpilot = Column(String(4))
+    kennzeichnung = Column(String(10))
+    kennzeichnung_a1 = Column(String(3))
+    kennzeichnung_a2 = Column(String(3))
+    kennzeichnung_b = Column(String(3))
+    kennzeichnung_c = Column(String(3))
+    kennzeichnung_d = Column(String(3))
+    kennzeichnung_e = Column(String(3))
+    kennzeichnung_f = Column(String(3))
+    kennzeichnung_strich = Column(String(3))
+    stand_des_vorhabens = Column(String(100))
+    id_a = Column(String(10))
+    vgi = Column(String(10))
+    vgi_nr = Column(String(15))
+    vorhabentraeger = Column(String(50))
+    spannung = Column(String(20))
+    shape_length = Column(Float(53))
+    bezugsmassstab = Column(String(50))
+    hinweis = Column(String(150))
+
+
+class BnetzaVorhabenpunkteBbplg(Base):
+    __tablename__ = 'bnetza_vorhabenpunkte_bbplg'
+    __table_args__ = {'schema': 'grid'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('grid.bnetza_vorhabenpunkte_bbplg_id_seq'::regclass)"))
+    geom = Column(Geometry('POINT', 4647), index=True)
+    object_id = Column(BigInteger)
+    name = Column(String(50))
+
+
+class BnetzaVorhabenpunkteEnlag(Base):
+    __tablename__ = 'bnetza_vorhabenpunkte_enlag'
+    __table_args__ = {'schema': 'grid'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('grid.bnetza_vorhabenpunkte_enlag_id_seq'::regclass)"))
+    geom = Column(Geometry('POINT', 4647), index=True)
+    object_id = Column(BigInteger)
+    name = Column(String(50))
+
+
 class EgoDpEhvGriddistrict(Base):
     __tablename__ = 'ego_dp_ehv_griddistrict'
     __table_args__ = {'schema': 'grid'}
@@ -166,7 +269,7 @@ class EgoPfHvBus(Base):
     __tablename__ = 'ego_pf_hv_bus'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     bus_id = Column(BigInteger, primary_key=True, nullable=False)
     v_nom = Column(Float(53))
@@ -175,14 +278,12 @@ class EgoPfHvBus(Base):
     v_mag_pu_max = Column(Float(53))
     geom = Column(Geometry('POINT', 4326), index=True)
 
-    ego_scenario = relationship('EgoScenario')
-
 
 class EgoPfHvGenerator(Base):
     __tablename__ = 'ego_pf_hv_generator'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     generator_id = Column(BigInteger, primary_key=True, nullable=False)
     bus = Column(BigInteger)
@@ -200,14 +301,12 @@ class EgoPfHvGenerator(Base):
     capital_cost = Column(Float(53))
     efficiency = Column(Float(53))
 
-    ego_scenario = relationship('EgoScenario')
-
 
 class EgoPfHvGeneratorPqSet(Base):
     __tablename__ = 'ego_pf_hv_generator_pq_set'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     generator_id = Column(String(25), primary_key=True, nullable=False)
     temp_id = Column(Integer, primary_key=True, nullable=False)
@@ -216,14 +315,12 @@ class EgoPfHvGeneratorPqSet(Base):
     p_min_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     p_max_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
 
-    ego_scenario = relationship('EgoScenario')
-
 
 class EgoPfHvLine(Base):
     __tablename__ = 'ego_pf_hv_line'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     line_id = Column(BigInteger, primary_key=True, nullable=False)
     bus0 = Column(BigInteger)
@@ -244,21 +341,17 @@ class EgoPfHvLine(Base):
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
 
-    ego_scenario = relationship('EgoScenario')
-
 
 class EgoPfHvLoad(Base):
     __tablename__ = 'ego_pf_hv_load'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     load_id = Column(BigInteger, primary_key=True, nullable=False)
     bus = Column(BigInteger)
-    sign = Column(Float(53), server_default=text("(-1)"))
+    sign = Column(Float(53), server_default=text("'-1'::integer"))
     e_annual = Column(Float(53))
-
-    ego_scenario = relationship('EgoScenario')
 
 
 class EgoPfHvLoadPqSet(Base):
@@ -268,10 +361,7 @@ class EgoPfHvLoadPqSet(Base):
     version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     load_id = Column(BigInteger, primary_key=True, nullable=False)
-    temp_id = Column(Integer, primary_key=True, nullable=False)
-    bus = Column(BigInteger)
-    sign = Column(Float(53), server_default=text("(-1)"))
-    e_annual = Column(Float(53))
+    temp_id = Column(Integer, nullable=False)
     p_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     q_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
 
@@ -282,20 +372,18 @@ class EgoPfHvSource(Base):
     __tablename__ = 'ego_pf_hv_source'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     source_id = Column(BigInteger, primary_key=True, nullable=False)
     name = Column(Text)
     co2_emissions = Column(Float(53))
     commentary = Column(Text)
-
-    ego_scenario = relationship('EgoScenario')
 
 
 class EgoPfHvStorage(Base):
     __tablename__ = 'ego_pf_hv_storage'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     storage_id = Column(BigInteger, primary_key=True, nullable=False)
     bus = Column(BigInteger)
@@ -319,14 +407,12 @@ class EgoPfHvStorage(Base):
     efficiency_dispatch = Column(Float(53))
     standing_loss = Column(Float(53))
 
-    ego_scenario = relationship('EgoScenario')
-
 
 class EgoPfHvStoragePqSet(Base):
     __tablename__ = 'ego_pf_hv_storage_pq_set'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'))
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     storage_id = Column(BigInteger, primary_key=True, nullable=False)
     temp_id = Column(Integer, primary_key=True, nullable=False)
@@ -337,27 +423,23 @@ class EgoPfHvStoragePqSet(Base):
     soc_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     inflow = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
 
-    ego_scenario = relationship('EgoScenario')
-
 
 class EgoPfHvTempResolution(Base):
     __tablename__ = 'ego_pf_hv_temp_resolution'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     temp_id = Column(BigInteger, primary_key=True, nullable=False)
     timesteps = Column(BigInteger, nullable=False)
     resolution = Column(Text)
     start_time = Column(DateTime)
-
-    ego_scenario = relationship('EgoScenario')
 
 
 class EgoPfHvTransformer(Base):
     __tablename__ = 'ego_pf_hv_transformer'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(ForeignKey('model_draft.ego_scenario.version'), primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
     trafo_id = Column(BigInteger, primary_key=True, nullable=False)
     bus0 = Column(BigInteger)
@@ -375,8 +457,6 @@ class EgoPfHvTransformer(Base):
     capital_cost = Column(Float(53), server_default=text("0"))
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
-
-    ego_scenario = relationship('EgoScenario')
 
 
 class OtgEhvhvBranchDatum(Base):

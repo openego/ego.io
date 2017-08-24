@@ -10,7 +10,7 @@ metadata = Base.metadata
 
 class BbsrRagCityAndMunTypesPerMun(Base):
     __tablename__ = 'bbsr_rag_city_and_mun_types_per_mun'
-    __table_args__ = {'schema': 'social'}
+    __table_args__ = {'schema': 'society'}
 
     mun_id = Column(BigInteger, primary_key=True)
     mun_name = Column(Text)
@@ -26,7 +26,7 @@ class BbsrRagCityAndMunTypesPerMun(Base):
 
 class DestatisZensusPopulationPerBkgVg2506Gem(Base):
     __tablename__ = 'destatis_zensus_population_per_bkg_vg250_6_gem'
-    __table_args__ = {'schema': 'social'}
+    __table_args__ = {'schema': 'society'}
 
     reference_date = Column(Date, primary_key=True, nullable=False)
     gem_id = Column(Integer, primary_key=True, nullable=False)
@@ -38,7 +38,7 @@ class DestatisZensusPopulationPerBkgVg2506Gem(Base):
 
 class DestatisZensusPopulationPerHa(Base):
     __tablename__ = 'destatis_zensus_population_per_ha'
-    __table_args__ = {'schema': 'social'}
+    __table_args__ = {'schema': 'society'}
 
     gid = Column(Integer, primary_key=True)
     grid_id = Column(String(254), nullable=False)
@@ -55,5 +55,5 @@ t_destatis_zensus_population_per_ha_mview = Table(
     Column('population', Numeric(10, 0)),
     Column('geom_point', Geometry('POINT', 3035), index=True),
     Column('geom', Geometry('POLYGON', 3035), index=True),
-    schema='social'
+    schema='society'
 )

@@ -10,7 +10,7 @@ metadata = Base.metadata
 
 class Cosmoclmgrid(Base):
     __tablename__ = 'cosmoclmgrid'
-    __table_args__ = {'schema': 'weather'}
+    __table_args__ = {'schema': 'climate'}
 
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('weather.cosmoclmgrid_gid_seq'::regclass)"))
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('climate.cosmoclmgrid_gid_seq'::regclass)"))
     geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
