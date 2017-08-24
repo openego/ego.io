@@ -7,7 +7,7 @@ db_port=""
 db="oedb"
 path="../db_tables/"
 
-if [ -d "egoio/db_tables" ]; then
+if [ -d "../db_tables" ]; then
     schemas=("demand" "economic" "emission" "environmental" "grid" "openstreetmap" "political_boundary" "reference" "scenario" "social" "supply" "weather" "model_draft")
     for schema in ${schemas[*]}
     do 
@@ -20,6 +20,6 @@ if [ -d "egoio/db_tables" ]; then
         }
     done
 else
-    echo "Folder egoio/db_tables does not exist"
+    echo "Folder ../db_tables does not exist"
 fi
 
