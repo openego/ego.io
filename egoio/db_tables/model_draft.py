@@ -1803,17 +1803,27 @@ class EgoGridPfHvResultBus(Base):
 
     result_id = Column(BigInteger, primary_key=True, nullable=False)
     bus_id = Column(BigInteger, primary_key=True, nullable=False)
+    x = Column(Float(53))
+    y = Column(Float(53))
     v_nom = Column(Float(53))
-    current_type = Column(Text, server_default=text("'AC'::text"))
-    v_mag_pu_min = Column(Float(53), server_default=text("0"))
+    current_type = Column(Text)
+    v_mag_pu_min = Column(Float(53))
     v_mag_pu_max = Column(Float(53))
+    geom = Column(Geometry('POINT', 4326))
+    
+    
+class EgoGridPfHvResultBusT(Base):
+    __tablename__ = 'ego_grid_pf_hv_result_bus_t'
+    __table_args__ = {'schema': 'model_draft'}
+    
+    result_id = Column(BigInteger, primary_key=True, nullable=False)
+    bus_id = Column(BigInteger, primary_key=True, nullable=False)
     p = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     q = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     v_mag_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     v_ang = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     marginal_price = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
-    geom = Column(Geometry('POINT', 4326))
-
+    
 
 class EgoGridPfHvResultGenerator(Base):
     __tablename__ = 'ego_grid_pf_hv_result_generator'
@@ -1835,9 +1845,22 @@ class EgoGridPfHvResultGenerator(Base):
     marginal_cost = Column(Float(53))
     capital_cost = Column(Float(53))
     efficiency = Column(Float(53))
+    p_nom_opt= Column(Float(53))
+    
+    
+class EgoGridPfHvResultGeneratorT(Base):
+    __tablename__ = 'ego_grid_pf_hv_result_generator_t'
+    __table_args__ = {'schema': 'model_draft'}    
+    
+    result_id = Column(BigInteger, primary_key=True, nullable=False)
+    generator_id = Column(BigInteger, primary_key=True, nullable=False)
+    p_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p_min_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p_max_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     p = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     q = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
-    p_nom_opt= Column(Float(53))
+    status = Column(ARRAY(BigInteger))
     
 
 class EgoGridPfHvResultLine(Base):
@@ -1861,10 +1884,6 @@ class EgoGridPfHvResultLine(Base):
     cables = Column(Integer)
     frequency = Column(Numeric)
     terrain_factor = Column(Float(53))
-    p0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
-    q0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
-    p1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
-    q1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     x_pu = Column(Numeric)
     r_pu = Column(Numeric)
     g_pu = Column(Numeric)
@@ -1872,6 +1891,41 @@ class EgoGridPfHvResultLine(Base):
     s_nom_opt = Column(Numeric)
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
+    
+    
+class EgoGridPfHvResultLineT(Base):
+    __tablename__ = 'ego_grid_pf_hv_result_line_t'
+    __table_args__ = {'schema': 'model_draft'}   
+    
+    result_id = Column(BigInteger, primary_key=True, nullable=False)
+    line_id = Column(BigInteger, primary_key=True, nullable=False)
+    p0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    
+
+class EgoGridPfHvResultLoad(Base):
+    __tablename__ = 'ego_grid_pf_hv_result_load'
+    __table_args__ = {'schema': 'model_draft'}    
+    
+    result_id = Column(BigInteger, primary_key=True, nullable=False)
+    load_id = Column(BigInteger, primary_key=True, nullable=False)
+    bus = Column(BigInteger)
+    sign = Column(Float(53), server_default=text("(-1)"))
+    e_annual = Column(Float(53))
+    
+    
+class EgoGridPfHvResultLoadT(Base):
+    __tablename__ = 'ego_grid_pf_hv_result_load_t'
+    __table_args__ = {'schema': 'model_draft'}    
+    
+    result_id = Column(BigInteger, primary_key=True, nullable=False)
+    load_id = Column(BigInteger, primary_key=True, nullable=False)
+    p_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     
     
 class EgoGridPfHvResultMeta(Base):
@@ -1884,8 +1938,10 @@ class EgoGridPfHvResultMeta(Base):
     method = Column(String)
     network_clustering = Column(Boolean)
     gridversion = Column(String)
-    start_h = Column(Integer)
-    end_h = Column(Integer)
+    start_step = Column(Integer)
+    end_step = Column(Integer)
+    start_date = Column(DateTime)
+    end_date = Column(DateTime)
     solver = Column(String)
     branch_cap_factor = Column(Float(53))
     storage_extendable  = Column(Boolean)
@@ -1914,16 +1970,31 @@ class EgoGridPfHvResultStorage(Base):
     capital_cost = Column(Float(53))
     efficiency = Column(Float(53))
     soc_initial = Column(Float(53))
-    soc_cyclic = Column(Boolean, server_default=text("false"))
+    soc_cyclic = Column(Boolean)
     max_hours = Column(Float(53))
     efficiency_store = Column(Float(53))
     efficiency_dispatch = Column(Float(53))
     standing_loss = Column(Float(53))
+    p_nom_opt = Column(Float(53))
+
+
+class EgoGridPfHvResultStorageT(Base):
+    __tablename__ = 'ego_grid_pf_hv_result_storage_t'
+    __table_args__ = {'schema': 'model_draft'}
+    
+    result_id = Column(BigInteger, primary_key=True, nullable=False)
+    storage_id = Column(BigInteger, primary_key=True, nullable=False)
+    p_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p_min_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p_max_pu = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    soc_set = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    inflow = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     p = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     q = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     state_of_charge = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     spill = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
-    p_nom_opt = Column(Float(53))
+    
 
 class EgoGridPfHvResultTransformer(Base):
     __tablename__ = 'ego_grid_pf_hv_result_transformer'
@@ -1944,10 +2015,6 @@ class EgoGridPfHvResultTransformer(Base):
     tap_ratio = Column(Float(53))
     phase_shift = Column(Float(53))
     capital_cost = Column(Float(53), server_default=text("0"))
-    p0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
-    q0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
-    p1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
-    q1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
     x_pu = Column(Numeric)
     r_pu = Column(Numeric)
     g_pu = Column(Numeric)
@@ -1955,6 +2022,18 @@ class EgoGridPfHvResultTransformer(Base):
     s_nom_opt = Column(Numeric)
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
+
+
+class EgoGridPfHvResultTransformerT(Base):
+    __tablename__ = 'ego_grid_pf_hv_result_transformer_t'
+    __table_args__ = {'schema': 'model_draft'}
+    
+    result_id = Column(BigInteger, primary_key=True, nullable=False)
+    trafo_id = Column(BigInteger, primary_key=True, nullable=False)
+    p0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q0 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    p1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    q1 = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
 
 
 class EgoGridPfHvScenarioSetting(Base):
