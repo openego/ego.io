@@ -1,6 +1,7 @@
 import os
 from oemof.db import connection as oemof_connection
 
+
 def grant_db_access(conn, schema, table, role):
     r"""Gives access to database users/ groups
 
@@ -74,16 +75,22 @@ def create_oedb_config_file(filepath, section='oep'):
     ----------
     filepath : str
         Absolute path of config file including the filename itself
+    section : str
+        Section in config file which contains connection details
     """
 
     # create egoio dir if not existent
-    # TODO: create directory '~/.egoio' if not existent
     base_path = os.path.split(filepath)[0]
     if not os.path.isdir(base_path):
         os.mkdir(base_path)
         print('The directory {path} was created.'.format(path=base_path))
 
     # if not, ask to create with user input
+    print('DB config file {} not found. '
+          'This might be the first run of the tool. '
+          'Do you want me to create this file?'
+          .format(filepath))
+
     choice = ''
     while choice not in ['y', 'n']:
         choice = input('(y/n): ')
@@ -141,12 +148,8 @@ def connection(filepath=None, section='oep'):
     if filepath is None:
         filepath = os.path.join(os.path.expanduser("~"), '.egoio', 'config.ini')
 
-    # does the file exist? otherwise create
+    # does the file exist?
     if not os.path.isfile(filepath):
-        print('DB config file {} not found. '
-              'This might be the first run of DINGO. '
-              'Do you want me to create this file? (y/n): '
-              .format(filepath))
         config_file = create_oedb_config_file(filepath, section=section)
     else:
         config_file = filepath
