@@ -8,7 +8,7 @@ db="oedb"
 path="../db_tables/"
 
 if [ -d "../db_tables" ]; then
-    schemas=("demand" "economic" "emission" "environmental" "grid" "openstreetmap" "political_boundary" "reference" "scenario" "social" "supply" "weather" "model_draft")
+    schemas=("climate" "demand" "economy" "emission" "environment" "grid" "openstreetmap" "boundaries" "reference" "scenario" "society" "supply" "model_draft")
     for schema in ${schemas[*]}
     do 
         {
