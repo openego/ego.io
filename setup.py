@@ -13,7 +13,7 @@ setup(name='egoio',
       license='GNU Affero General Public License v3.0',
       install_requires=[
           'geoalchemy2 >= 0.3.0, <=0.4.0',
-          'sqlalchemy >= 1.0.15, <= 1.1.11',
+          'sqlalchemy >= 1.0.15, <= 1.1.13',
           'psycopg2'],
       extras_require={
           "sqlalchemy": 'postgresql'}
