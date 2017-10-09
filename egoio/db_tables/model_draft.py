@@ -3464,7 +3464,7 @@ t_ego_supply_conv_powerplant_2035 = Table(
 
 t_ego_supply_conv_powerplant_ego100_mview = Table(
     'ego_supply_conv_powerplant_ego100_mview', metadata,
-    Column('version', Text),
+    Column('preversion', Text),
     Column('id', Integer),
     Column('bnetza_id', Text),
     Column('company', Text),
@@ -3511,7 +3511,7 @@ t_ego_supply_conv_powerplant_ego100_mview = Table(
 
 t_ego_supply_conv_powerplant_nep2035_mview = Table(
     'ego_supply_conv_powerplant_nep2035_mview', metadata,
-    Column('version', Text),
+    Column('preversion', Text),
     Column('id', Integer),
     Column('bnetza_id', Text),
     Column('company', Text),
@@ -3559,7 +3559,7 @@ t_ego_supply_conv_powerplant_nep2035_mview = Table(
 
 t_ego_supply_conv_powerplant_sq_mview = Table(
     'ego_supply_conv_powerplant_sq_mview', metadata,
-    Column('version', Text),
+    Column('preversion', Text),
     Column('id', Integer),
     Column('bnetza_id', Text),
     Column('company', Text),
@@ -4175,7 +4175,7 @@ class EgoSupplyResPowerplant(Base):
 
 t_ego_supply_res_powerplant_ego100_mview = Table(
     'ego_supply_res_powerplant_ego100_mview', metadata,
-    Column('version', Text),
+    Column('preversion', Text),
     Column('id', BigInteger),
     Column('start_up_date', DateTime),
     Column('electrical_capacity', Numeric),
@@ -4222,7 +4222,7 @@ t_ego_supply_res_powerplant_ego100_mview = Table(
 
 t_ego_supply_res_powerplant_nep2035_mview = Table(
     'ego_supply_res_powerplant_nep2035_mview', metadata,
-    Column('version', Text),
+    Column('preversion', Text),
     Column('id', BigInteger),
     Column('start_up_date', DateTime),
     Column('electrical_capacity', Numeric),
@@ -4310,7 +4310,7 @@ t_ego_supply_res_powerplant_out_mview = Table(
 
 t_ego_supply_res_powerplant_sq_mview = Table(
     'ego_supply_res_powerplant_sq_mview', metadata,
-    Column('version', Text),
+    Column('preversion', Text),
     Column('id', BigInteger),
     Column('start_up_date', DateTime),
     Column('electrical_capacity', Numeric),
