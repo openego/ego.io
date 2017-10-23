@@ -14,6 +14,7 @@ setup(name='egoio',
       install_requires=[
           'geoalchemy2 >= 0.3.0, <=0.4.0',
           'sqlalchemy >= 1.0.11, <= 1.1.15',
+          'oemof.db >=0.0.5, <=0.0.5',
           'psycopg2'],
       extras_require={
           "sqlalchemy": 'postgresql'}
