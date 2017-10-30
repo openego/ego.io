@@ -4,7 +4,7 @@ from geoalchemy2.types import Geometry, Raster
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION, BIGINT, INTEGER, NUMERIC, TEXT
+from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION, BIGINT, INTEGER, NUMERIC, TEXT, JSON
 
 
 Base = declarative_base()
@@ -2440,24 +2440,13 @@ class EgoGridPfHvResultMeta(Base):
     result_id = Column(BigInteger, primary_key=True, nullable=False)
     scn_name = Column(String)
     calc_date = Column(DateTime)
+    user_name = Column(Text)
     method = Column(String)
-    gridversion = Column(String)
     start_snapshot = Column(Integer)
     end_snapshot = Column(Integer)
     snapshots = Column(ARRAY(DateTime))
     solver = Column(String)
-    branch_capacity_factor = Column(Float(53))
-    pf_post_lopf = Column(Boolean)
-    network_clustering = Column(Boolean)
-    storage_extendable = Column(Boolean)
-    load_shedding = Column(Boolean)
-    generator_noise = Column(Boolean)
-    minimize_loading = Column(Boolean)
-    k_mean_clustering = Column(Boolean)
-    parallelisation = Column(Boolean)
-    line_grouping = Column(Boolean)
-    misc = Column(ARRAY(String))
-    comments = Column(String)
+    settings = Column(JSON)
 
 class EgoGridPfHvResultStorage(Base):
     __tablename__ = 'ego_grid_pf_hv_result_storage'
