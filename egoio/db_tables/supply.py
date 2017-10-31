@@ -88,6 +88,11 @@ class EgoDpConvPowerplant(Base):
     subst_id = Column(BigInteger)
     otg_id = Column(BigInteger)
     un_id = Column(BigInteger)
+    preversion = Column(Text)
+    la_id = Column(Integer)
+    scenario = Column(Text, primary_key=True, nullable=False, server_default=text("'none'::text"))
+    flag = Column(Text)
+    nuts = Column(String)
 
 
 class EgoDpResPowerplant(Base):
@@ -130,6 +135,10 @@ class EgoDpResPowerplant(Base):
     rea_flag = Column(String)
     rea_geom_line = Column(Geometry('LINESTRING', 3035))
     rea_geom_new = Column(Geometry('POINT', 3035), index=True)
+    preversion = Column(Text)
+    flag = Column(String)
+    scenario = Column(String, primary_key=True, nullable=False, server_default=text("'none'::character varying"))
+    nuts = Column(String)
 
 
 t_ego_renewable_power_plants_germany_hydro_mview = Table(
