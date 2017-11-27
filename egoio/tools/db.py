@@ -69,20 +69,6 @@ def change_owner_to(conn, schema, table, role):
 
     conn.execute(sql_str)
 
-def get_connection_details():
-    username = input('Enter value for `username`: ')
-    database = input('Enter value for `database`: ')
-    host = input('Enter value for `host`: ')
-    port = input('Enter value for `port` (default: 5432): ') or '5432'
-    password = input('Enter your password: ')
-    conn_details={}
-    conn_details={"username":username,
-                  "database":database,
-                  "host":host,
-                 "port":port,
-                  "password":password}
-    return conn_details
-
 def readcfg(filepath, section):
     """ 
     Reads the configuration file. If section is not available, calls
@@ -109,7 +95,7 @@ def readcfg(filepath, section):
 
     return cfg
 
-def get_connection_details():
+def get_connection_details(section):
     """
     Asks the user for the database connection details and returns them as a
     ConfigParser-object.
@@ -159,7 +145,7 @@ def create_oedb_config_file(filepath, section='oep'):
         Used for configuration file parser language.
     """
     
-    cfg = get_connection_details()
+    cfg = get_connection_details(section)
 
     print('Do you want to store the connection details in the config.ini?')
     choice = ''
