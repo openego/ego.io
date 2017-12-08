@@ -209,13 +209,13 @@ def connection(filepath=None, section='oep'):
     try:
         pw = cfg.get(section, "password")
     except:
-        try:
-            pw = keyring.get_password(section,
-                                      cfg.get(section, "username"))
-        except:
-            pw = getpass.getpass(prompt="Enter your password to " \
-                                        "store it in "
-                                        "keyring: ".format(database=section))
+        pw = keyring.get_password(section,
+                                  cfg.get(section, "username"))
+        if pw is None:
+            pw = getpass.getpass(prompt='No password found for database "{db}". '
+                                        'Enter your password to '
+                                        'store it in keyring: '
+                                 .format(db=cfg.get(section, 'database')))
             keyring.set_password(section, cfg.get(section, "username"), pw)
         
     # establish connection and return it
