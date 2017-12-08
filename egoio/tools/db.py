@@ -4,6 +4,7 @@ import keyring
 import getpass
 from sqlalchemy import create_engine
 
+
 def grant_db_access(conn, schema, table, role):
     r"""Gives access to database users/ groups
 
@@ -69,6 +70,7 @@ def change_owner_to(conn, schema, table, role):
 
     conn.execute(sql_str)
 
+
 def readcfg(filepath, section):
     """ 
     Reads the configuration file. If section is not available, calls
@@ -95,6 +97,7 @@ def readcfg(filepath, section):
         cfg = create_oedb_config_file(filepath, section)   
 
     return cfg
+
 
 def get_connection_details(section):
     """
