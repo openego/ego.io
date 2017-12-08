@@ -92,8 +92,9 @@ def readcfg(filepath, section):
     cfg.read(filepath)
     
     if not cfg.has_section(section):
-        print('The section "{sec}" is not in the config.ini.'
-              .format(sec=section))
+        print('The section "{sec}" is not in the config file {file}.'
+              .format(sec=section,
+                      file=filepath))
         cfg = create_oedb_config_file(filepath, section)   
 
     return cfg
@@ -151,7 +152,8 @@ def create_oedb_config_file(filepath, section='oep'):
     
     cfg = get_connection_details(section)
 
-    print('Do you want to store the connection details in the config.ini?')
+    print('Do you want to store the connection details in the config file {file} ?'
+          .format(file=filepath))
     choice = ''
     while choice not in ['y', 'n']:
         choice = input('(y/n): ')
@@ -168,7 +170,7 @@ def create_oedb_config_file(filepath, section='oep'):
             pass
         
         
-        print('Template {0} with section `{1}` created.\nYou can manually edit'
+        print('Template {0} with section "{1}" created.\nYou can manually edit'
               ' the config file.'
                     .format(filepath,
                             section))
@@ -203,9 +205,9 @@ def connection(filepath=None, section='oep'):
 
     # does the file exist?
     if not os.path.isfile(filepath):
-        print('DB config file {} not found. '
+        print('DB config file {file} not found. '
           'This might be the first run of the tool. '
-          .format(filepath))
+          .format(file=filepath))
         cfg = create_oedb_config_file(filepath, section=section)
     else:
         cfg = readcfg(filepath, section)
