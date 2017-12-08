@@ -225,6 +225,6 @@ def connection(filepath=None, section='oep'):
             password=pw,
             host=cfg.get(section, 'host'),
             port=cfg.get(section, 'port'),
-            db=cfg.get(section, 'db')))
+            db=cfg.get(section, 'database')))
 
     return conn
