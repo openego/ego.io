@@ -121,7 +121,7 @@ def get_connection_details(section):
     cfg.set(section, 'username', username)
     cfg.set(section, 'host', host)
     cfg.set(section, 'port', port)
-    cfg.set(section, 'db', database)
+    cfg.set(section, 'database', database)
     pw = getpass.getpass(prompt="Enter your password to " \
                                         "store it in "
                                         "keyring: ".format(database=section))
