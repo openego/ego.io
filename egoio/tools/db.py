@@ -90,7 +90,8 @@ def readcfg(filepath, section):
     cfg.read(filepath)
     
     if not cfg.has_section(section):
-        print('The section is not in the config.ini.')
+        print('The section "{sec}" is not in the config.ini.'
+              .format(sec=section))
         cfg = create_oedb_config_file(filepath, section)   
 
     return cfg
