@@ -164,7 +164,7 @@ class ReferenceToEntry(Base):
     ref_data_json = Column(JSON)
     schema_name = Column(String, nullable=False)
     tbl_name = Column(String, nullable=False)
-    changed_by = Column(String(20), server_default=text(""current_user"()"))
+    changed_by = Column(String(20), server_default=text("current_user()"))
     lastmodified = Column(DateTime, server_default=text("now()"))
 
 
