@@ -3,7 +3,6 @@ from sqlalchemy import ARRAY, BigInteger, Boolean, Column, Date, DateTime, Float
 from geoalchemy2.types import Geometry
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION
 
 
 Base = declarative_base()
@@ -265,7 +264,7 @@ class EgoDpMvlvSubstation(Base):
     subst_cnt = Column(Integer)
 
 
-class EgoPfHvBus(Base):
+class EgoPfHvBu(Base):
     __tablename__ = 'ego_pf_hv_bus'
     __table_args__ = {'schema': 'grid'}
 
