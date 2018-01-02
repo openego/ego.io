@@ -3728,7 +3728,7 @@ class EgoScenarioInput(Base):
     path = Column(Text)
     metadata_title = Column(Text)
     metadata_reference_date = Column(Text)
-    metadata = Column(Text)
+    meta_data = Column(Text)
 
 
 class EgoScenarioLog(Base):
