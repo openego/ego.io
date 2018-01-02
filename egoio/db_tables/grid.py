@@ -265,7 +265,7 @@ class EgoDpMvlvSubstation(Base):
     subst_cnt = Column(Integer)
 
 
-class EgoPfHvBu(Base):
+class EgoPfHvBus(Base):
     __tablename__ = 'ego_pf_hv_bus'
     __table_args__ = {'schema': 'grid'}
 
