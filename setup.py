@@ -5,7 +5,7 @@ from setuptools import find_packages, setup
 
 setup(name='egoio',
       author='NEXT ENERGY, Reiner Lemoine Institut gGmbH, ZNES',
-      author_email='',
+      author_email='ulf.p.mueller@hs-flensburg.de',
       description='ego input/output repository',
       version='0.3.0',
       url='https://github.com/openego/ego.io',
