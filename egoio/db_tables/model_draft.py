@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from sqlalchemy.dialects.postgresql.base import OID
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.dialects.postgresql import ARRAY, DOUBLE_PRECISION, INTEGER, NUMERIC, TEXT, BIGINT, TIMESTAMP
+from sqlalchemy.dialects.postgresql import ARRAY, DOUBLE_PRECISION, INTEGER, NUMERIC, TEXT, BIGINT, TIMESTAMP, VARCHAR
 
 
 Base = declarative_base()
