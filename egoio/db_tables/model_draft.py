@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from sqlalchemy.dialects.postgresql.base import OID
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.dialects.postgresql import ARRAY, DOUBLE_PRECISION, INTEGER, NUMERIC, TEXT, BIGINT, TIMESTAMP
 
 
 Base = declarative_base()
@@ -5522,7 +5523,7 @@ class EvChargingGießenStreet(Base):
     __tablename__ = 'ev_charging_gie\xdfen_streets'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft."ev_charging_gießen_streets_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_gießen_streets_id_seq'::regclass)"))
     osm_id = Column(Integer)
     geom = Column(Geometry('LINESTRING', 3035), index=True)
     length = Column(Numeric)
@@ -5533,7 +5534,7 @@ class EvChargingGießenStreetsSegmented(Base):
     __tablename__ = 'ev_charging_gie\xdfen_streets_segmented'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft."ev_charging_gießen_streets_segmented_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_gießen_streets_segmented_id_seq'::regclass)"))
     x1 = Column(Float(53))
     y1 = Column(Float(53))
     x2 = Column(Float(53))
@@ -5949,7 +5950,7 @@ class EvChargingStreetsGießen(Base):
     __tablename__ = 'ev_charging_streets_gie\xdfen'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft."ev_charging_streets_gießen_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_streets_gießen_id_seq'::regclass)"))
     osm_id = Column(Integer)
     geom = Column(Geometry('LINESTRING', 3035), index=True)
     length = Column(Numeric)
@@ -5960,7 +5961,7 @@ class EvChargingStreetsGießenSegmented(Base):
     __tablename__ = 'ev_charging_streets_gie\xdfen_segmented'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft."ev_charging_streets_gießen_segmented_id_seq"'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_streets_gießen_segmented_id_seq'::regclass)"))
     x1 = Column(Float(53))
     y1 = Column(Float(53))
     x2 = Column(Float(53))
