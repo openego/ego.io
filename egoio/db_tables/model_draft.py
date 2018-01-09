@@ -2446,6 +2446,7 @@ class EgoGridPfHvResultMeta(Base):
     end_snapshot = Column(Integer)
     snapshots = Column(ARRAY(DateTime))
     solver = Column(String)
+    safe_results = Column(Boolean)
     settings = Column(JSON)
 
 class EgoGridPfHvResultStorage(Base):
