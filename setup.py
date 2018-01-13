@@ -15,6 +15,7 @@ setup(name='egoio',
           'geoalchemy2 >= 0.3.0, <= 0.4.1',
           'sqlalchemy >= 1.0.11, <= 1.2.0',
           'keyring >= 4.0',
+          'keyrings.alt',
           'psycopg2'],
       extras_require={
           "sqlalchemy": 'postgresql'},
