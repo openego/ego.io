@@ -1,5 +1,8 @@
 import os
-from oemof.db import connection as oemof_connection
+import configparser as cp
+import keyring
+import getpass
+from sqlalchemy import create_engine
 
 
 def grant_db_access(conn, schema, table, role):
@@ -68,6 +71,69 @@ def change_owner_to(conn, schema, table, role):
     conn.execute(sql_str)
 
 
+def readcfg(filepath, section):
+    """ 
+    Reads the configuration file. If section is not available, calls
+    create_oedb_config_file to add the new section to an existing config.ini.
+    
+    Parameters
+    ----------
+    filepath : str
+        Absolute path of config file including the filename itself
+    section : str
+        Section in config file which contains connection details
+    Returns
+    -------
+    cfg : configparser.ConfigParser
+        Used for configuration file parser language.
+    """
+
+    cfg = cp.ConfigParser()
+    cfg.read(filepath)
+    
+    if not cfg.has_section(section):
+        print('The section "{sec}" is not in the config file {file}.'
+              .format(sec=section,
+                      file=filepath))
+        cfg = create_oedb_config_file(filepath, section)   
+
+    return cfg
+
+
+def get_connection_details(section):
+    """
+    Asks the user for the database connection details and returns them as a
+    ConfigParser-object.
+    
+    Parameters
+    ----------
+    None
+    
+    Returns
+    -------
+    cfg : configparser.ConfigParser
+        Used for configuration file parser language.
+    """
+    print('Please enter your connection details:')
+    username = input('Enter value for `username`: ')
+    database = input('Enter value for `database`: ')
+    host = input('Enter value for `host`: ')
+    port = input('Enter value for `port` (default: 5432): ') or '5432'
+
+    cfg = cp.ConfigParser()
+    cfg.add_section(section)
+    cfg.set(section, 'username', username)
+    cfg.set(section, 'host', host)
+    cfg.set(section, 'port', port)
+    cfg.set(section, 'database', database)
+    pw = getpass.getpass(prompt="Enter your password to " \
+                                        "store it in "
+                                        "keyring: ".format(database=section))
+    keyring.set_password(section, cfg.get(section, "username"), pw)
+    
+    return cfg
+
+
 def create_oedb_config_file(filepath, section='oep'):
     """
 
@@ -77,62 +143,46 @@ def create_oedb_config_file(filepath, section='oep'):
         Absolute path of config file including the filename itself
     section : str
         Section in config file which contains connection details
+        
+    Returns
+    -------
+    cfg : configparser.ConfigParser
+        Used for configuration file parser language.
     """
+    
+    cfg = get_connection_details(section)
 
-    # create egoio dir if not existent
-    base_path = os.path.split(filepath)[0]
-    if not os.path.isdir(base_path):
-        os.mkdir(base_path)
-        print('The directory {path} was created.'.format(path=base_path))
-
-    # if not, ask to create with user input
-    print('DB config file {} not found. '
-          'This might be the first run of the tool. '
-          'Do you want me to create this file?'
-          .format(filepath))
-
+    print('Do you want to store the connection details in the config file {file} ?'
+          .format(file=filepath))
     choice = ''
     while choice not in ['y', 'n']:
         choice = input('(y/n): ')
 
     if choice == 'y':
-        username = input('Enter value for `username`: ')
-        database = input('Enter value for `database`: ')
-        host = input('Enter value for `host`: ')
-        port = input('Enter value for `port` (default: 5432): ')
-
-        file = open(filepath, 'w')
-        template = '[{0}]\n' \
-                   'username = {1}\n' \
-                   'database = {2}\n' \
-                   'host     = {3}\n' \
-                   'port     = {4}\n'.format(section,
-                                             username,
-                                             database,
-                                             host,
-                                             '5432' if not port else port)
-        file.write(template)
-        file.close()
-
-        print('Template {0} with section `{1}` created.\n You can manually edit'
+        # create egoio dir if not existent
+        base_path = os.path.split(filepath)[0]
+        if not os.path.isdir(base_path):
+            os.mkdir(base_path)
+            print('The directory {path} was created.'.format(path=base_path))
+        
+        with open(filepath, 'a') as configfile:
+            cfg.write(configfile)
+            pass
+        
+        
+        print('Template {0} with section "{1}" created.\nYou can manually edit'
               ' the config file.'
                     .format(filepath,
                             section))
-
-        config_file = filepath
-
-    # fallback: use oemof's config.ini
     else:
-        print('No DB config file created, I\'ll try to use oemof\'s config.ini')
-        config_file=None
-
-    return config_file
+        pass
+    
+    return cfg
 
 
 def connection(filepath=None, section='oep'):
     """
-    Instantiate a database connection (for the use with SQLAlchemy) based on
-    oemof.db.
+    Instantiate a database connection (for the use with SQLAlchemy).
 
     The keyword argument `filepath` specifies the location of the config file
     that contains database connection information. If not given, the default
@@ -142,6 +192,11 @@ def connection(filepath=None, section='oep'):
     ----------
     filepath : str
         Absolute path of config file including the filename itself
+    
+    Returns
+    -------
+    conn : sqlalchemy.engine
+        SQLalchemy engine object containing the connection details
     """
 
     # define default filepath if not provided
@@ -150,11 +205,32 @@ def connection(filepath=None, section='oep'):
 
     # does the file exist?
     if not os.path.isfile(filepath):
-        config_file = create_oedb_config_file(filepath, section=section)
+        print('DB config file {file} not found. '
+          'This might be the first run of the tool. '
+          .format(file=filepath))
+        cfg = create_oedb_config_file(filepath, section=section)
     else:
-        config_file = filepath
-
+        cfg = readcfg(filepath, section)
+    
+    try:
+        pw = cfg.get(section, "password")
+    except:
+        pw = keyring.get_password(section,
+                                  cfg.get(section, "username"))
+        if pw is None:
+            pw = getpass.getpass(prompt='No password found for database "{db}". '
+                                        'Enter your password to '
+                                        'store it in keyring: '
+                                 .format(db=cfg.get(section, 'database')))
+            keyring.set_password(section, cfg.get(section, "username"), pw)
+        
     # establish connection and return it
-    conn = oemof_connection(section=section, config_file=config_file)
+    conn = create_engine(
+        "postgresql+psycopg2://{user}:{password}@{host}:{port}/{db}".format(
+            user=cfg.get(section, 'username'),
+            password=pw,
+            host=cfg.get(section, 'host'),
+            port=cfg.get(section, 'port'),
+            db=cfg.get(section, 'database')))
 
     return conn
