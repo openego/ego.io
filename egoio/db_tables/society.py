@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, Date, Integer, Numeric, String, Table, Text
+from sqlalchemy import BigInteger, Column, Date, Integer, Numeric, String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -55,5 +55,49 @@ t_destatis_zensus_population_per_ha_mview = Table(
     Column('population', Numeric(10, 0)),
     Column('geom_point', Geometry('POINT', 3035), index=True),
     Column('geom', Geometry('POLYGON', 3035), index=True),
+    schema='society'
+)
+
+
+class DestatisZensusPopulationPerKm2(Base):
+    __tablename__ = 'destatis_zensus_population_per_km2'
+    __table_args__ = {'schema': 'society'}
+
+    gid_ = Column(Integer, primary_key=True, server_default=text("nextval('society.destatis_zensus_population_per_km2_gid_seq'::regclass)"))
+    grid_id = Column(String(254))
+    x_mp_1km = Column(Numeric(10, 0))
+    y_mp_1km = Column(Numeric(10, 0))
+    population = Column(Numeric(10, 0))
+    women = Column(Numeric)
+    avg_age = Column(Numeric)
+    age_under18 = Column(Numeric)
+    age_over65 = Column(Numeric)
+    non_german = Column(Numeric)
+    avg_hh_size = Column(Numeric)
+    vacancy_bldg = Column(Numeric)
+    avg_space_resident = Column(Numeric)
+    avg_space_dwelling = Column(Numeric)
+    geom_point = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035), index=True)
+
+
+t_destatis_zensus_population_per_km2_mview = Table(
+    'destatis_zensus_population_per_km2_mview', metadata,
+    Column('gid_', Integer),
+    Column('grid_id', String(254)),
+    Column('x_mp_1km', Numeric(10, 0)),
+    Column('y_mp_1km', Numeric(10, 0)),
+    Column('population', Numeric(10, 0)),
+    Column('women', Numeric),
+    Column('avg_age', Numeric),
+    Column('age_under18', Numeric),
+    Column('age_over65', Numeric),
+    Column('non_german', Numeric),
+    Column('avg_hh_size', Numeric),
+    Column('vacancy_bldg', Numeric),
+    Column('avg_space_resident', Numeric),
+    Column('avg_space_dwelling', Numeric),
+    Column('geom_point', Geometry('POINT', 3035)),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='society'
 )
