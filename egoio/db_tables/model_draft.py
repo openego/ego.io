@@ -2472,9 +2472,18 @@ class EgoGridPfHvExtensionStoragePqSet(Base):
 
     temp = relationship('EgoGridPfHvTempResolution')
        
+class EgoGridPfHvExtensionTempResolution(Base):
+    __tablename__ = 'ego_grid_pf_hv_extension_temp_resolution'
+    __table_args__ = {'schema': 'model_draft'}
 
-class EgoGridPfHvExtensionTrafo(Base):
-    __tablename__ = 'ego_grid_pf_hv_extension_trafo'
+    temp_id = Column(BigInteger, primary_key=True)
+    timesteps = Column(BigInteger, nullable=False)
+    resolution = Column(Text)
+    start_time = Column(DateTime)
+
+
+class EgoGridPfHvExtensionTransformer(Base):
+    __tablename__ = 'ego_grid_pf_hv_extension_transformer'
     __table_args__ = {'schema': 'model_draft'}
 
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'NEP'::character varying"))
