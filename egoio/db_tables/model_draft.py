@@ -2373,6 +2373,9 @@ class EgoGridPfHvExtensionLine(Base):
     terrain_factor = Column(Float(53), server_default=text("1"))
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
+    v_nom  = Column(BigInteger)
+    project = Column(String)
+    project_id = Column(BigInteger)
     
     
 class EgoGridPfHvExtensionLink(Base):
@@ -2503,6 +2506,7 @@ class EgoGridPfHvExtensionTransformer(Base):
     capital_cost = Column(Float(53), server_default=text("0"))
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
+    project =  Column(String)
      
 
 class EgoGridPfHvLoad(Base):
