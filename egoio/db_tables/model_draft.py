@@ -4189,6 +4189,15 @@ class EgoSupplyPfGeneratorSingle(Base):
 
     ego_grid_pf_hv_source = relationship('EgoGridPfHvSource')
 
+class EgoSupplyAggrWeather(Base):
+    __tablename__ = 'ego_supply_aggr_weather_mview'
+    __table_args__ = {'schema': 'model_draft'}
+
+    row_number = Column(Integer, primary_key=True)
+    w_id = Column(BigInteger)
+    aggr_id = Column(BigInteger)
+    scn_name = Column(String)
+    bus = Column(BigInteger)
 
 class EgoSupplyPfStorageSingle(Base):
     __tablename__ = 'ego_supply_pf_storage_single'
