@@ -4191,7 +4191,7 @@ class EgoSupplyPfGeneratorSingle(Base):
 
 ego_supply_aggr_weather_mview = Table(
     'ego_supply_aggr_weather_mview', metadata,
-    Column('row_number', Integer, primary_key=True),
+    Column('row_number', Integer),
     Column('w_id', BigInteger),
     Column('aggr_id', BigInteger),
     Column('scn_name', String),
