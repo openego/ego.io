@@ -3704,6 +3704,16 @@ t_ego_res_powerplant_costdat_gid = Table(
     schema='model_draft'
 )
 
+class EgoRenewableFeedin(Base):
+    __tablename__ = 'ego_renewable_feedin'
+    __table_args__ = {'schema': 'model_draft'}
+
+    weather_scenario_id = Column(Integer, primary_key=True, nullable=False)
+    w_id = Column(Integer, primary_key=True, nullable=False)
+    source = Column(Text, primary_key=True, nullable=False)
+    weather_year = Column(Integer, primary_key=True, nullable=False)
+    feedin = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    scenario = Column(Text, primary_key=True, nullable=False)
 
 class EgoScenario(Base):
     __tablename__ = 'ego_scenario'
