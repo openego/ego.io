@@ -204,12 +204,46 @@ class BkgVg2502Lan(Base):
     geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
 
 
+t_bkg_vg250_2_lan_brandenburg = Table(
+    'bkg_vg250_2_lan_brandenburg', metadata,
+    Column('id', Integer),
+    Column('geom', Geometry),
+    schema='boundaries'
+)
+
+
+t_bkg_vg250_2_lan_hessen = Table(
+    'bkg_vg250_2_lan_hessen', metadata,
+    Column('id', Integer),
+    Column('geom', Geometry),
+    schema='boundaries'
+)
+
+
 t_bkg_vg250_2_lan_mview = Table(
     'bkg_vg250_2_lan_mview', metadata,
     Column('reference_date', Text),
     Column('ags_0', String(12), unique=True),
     Column('gen', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    schema='boundaries'
+)
+
+
+t_bkg_vg250_2_lan_nuts_view = Table(
+    'bkg_vg250_2_lan_nuts_view', metadata,
+    Column('ags_0', String(12)),
+    Column('gen', Text),
+    Column('nuts', String(5)),
+    Column('geom', Geometry),
+    schema='boundaries'
+)
+
+
+t_bkg_vg250_2_lan_saarland = Table(
+    'bkg_vg250_2_lan_saarland', metadata,
+    Column('id', Integer),
+    Column('geom', Geometry),
     schema='boundaries'
 )
 
@@ -463,3 +497,11 @@ class OsmPostcode(Base):
     plz = Column(String(5))
     note = Column(Text)
     geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+
+
+t_vg250_statistics = Table(
+    'vg250_statistics', metadata,
+    Column('id', Text),
+    Column('area_sum_km2', Integer),
+    schema='boundaries'
+)
