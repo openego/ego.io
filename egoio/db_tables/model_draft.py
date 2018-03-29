@@ -4374,6 +4374,222 @@ t_ev_charging_candidatepoints = Table(
 )
 
 
+class EgoGridLvBranchtee(Base):
+    __tablename__ = 'ego_grid_lv_branchtee'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_lv_branchtee_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(36))
+    geom = Column(Geometry('POINT', 4326))
+    lv_grid_id_db = Column(String(22))
+
+
+class EgoGridLvGrid(Base):
+    __tablename__ = 'ego_grid_lv_grid'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_lv_grid_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(22))
+    geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
+    lv_grid_id = Column(BigInteger)
+    population = Column(BigInteger)
+    voltage_nom = Column(Float(10)) #Todo: Check Datatypes
+
+
+class EgoGridLvGenerator(Base):
+    __tablename__ = 'ego_grid_lv_generator'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_lv_generator_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(34))
+    geom = Column(Geometry('POINT', 4326))
+    lv_grid_id_db = Column(String(22))
+    type = Column(String(22))
+    subtype = Column(String(22))
+    v_level = Column(Integer)
+    nominal_capacity = Column(Float(10))
+
+
+class EgoGridLvLoad(Base):
+    __tablename__ = 'ego_grid_lv_load'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_lv_load_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(26))
+    geom = Column(Geometry('POINT', 4326))
+    lv_grid_id_db = Column(String(22))
+    consumption = Column(String(22))
+
+
+class EgoGridLvmvStation(Base):
+    __tablename__ = 'ego_grid_lvmv_station'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_lvmv_station_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(27))
+    geom = Column(Geometry('POINT', 4326))
+    lv_grid_id_db = Column(String(22))
+
+
+class EgoGridLvTransformer(Base):
+    __tablename__ = 'ego_grid_lv_transformer'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_lv_transformer_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(29))
+    geom = Column(Geometry('POINT', 4326))
+    lv_grid_id_db = Column(String(22))
+    voltage_op = Column(Float(10))
+    S_nom = Column(Float(10))
+    X = Column(Float(10))
+    R = Column(Float(10))
+
+
+class EgoGridLvmvMapping(Base):
+    __tablename__ = 'ego_grid_lvmv_mapping'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_lvmv_mapping_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    lv_grid_id = Column(Integer)
+    lv_grid_id_db = Column(String(30))
+    mv_grid_id = Column(Integer)
+    mv_grid_id_db = Column(String(30))
+
+
+class EgoGridLine(Base):
+    __tablename__ = 'ego_grid_line'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_line_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    edge_name = Column(String(20))
+    grid_id_db = Column(String(30))
+    node1 = Column(String(40))
+    node2 = Column(String(40))
+    type_kind = Column(String(20))
+    type_name = Column(String(30))
+    length = Column(Float(10))
+    U_n = Column(Float(10))
+    C = Column(Float(10))
+    L = Column(Float(10))
+    R = Column(Float(10))
+    I_max_th = Column(Float(10))
+
+
+class EgoGridMvCircuitbreaker(Base):
+    __tablename__ = 'ego_grid_mv_circuitbreaker'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_mv_circuitbreaker_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(36))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(30))
+    mv_grid_id = Column(Integer)
+    status = Column(String(6))
+
+
+class EgoGridMvBranchtee(Base):
+    __tablename__ = 'ego_grid_mv_branchtee'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_mv_branchtee_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(36))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(22))
+
+
+class EgoGridMvGrid(Base):
+    __tablename__ = 'ego_grid_mv_grid'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_mv_grid_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(22))
+    geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
+    mv_grid_id = Column(BigInteger)
+    population = Column(BigInteger)
+    voltage_nom = Column(Float(10)) #Todo: Check Datatypes
+
+
+class EgoGridMvGenerator(Base):
+    __tablename__ = 'ego_grid_mv_generator'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_mv_generator_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(34))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(22))
+    type = Column(String(22))
+    subtype = Column(String(22))
+    v_level = Column(Integer)
+    nominal_capacity = Column(Float(10))
+
+
+class EgoGridMvLoad(Base):
+    __tablename__ = 'ego_grid_mv_load'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_mv_load_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(26))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(22))
+    consumption = Column(String(22))
+
+
+class EgoGridMvhvStation(Base):
+    __tablename__ = 'ego_grid_mvhv_station'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_mvhv_station_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(27))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(22))
+    lv_grid_id_db = Column(String(22))
+
+
+class EgoGridMvTransformer(Base):
+    __tablename__ = 'ego_grid_mv_transformer'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True,
+                server_default=text("nextval('model_draft.ego_grid_mv_transformer_id_seq'::regclass)"))
+    run_id = Column(BigInteger)
+    id_db = Column(String(29))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(22))
+    voltage_op = Column(Float(10))
+    S_nom = Column(Float(10))
+    X = Column(Float(10))
+    R = Column(Float(10))
+    lv_grid_id_db = Column(String(2))
+
+
 class ExampleApiTableWolf(Base):
     __tablename__ = 'example_api_table_wolf'
     __table_args__ = {'schema': 'model_draft'}
@@ -4662,3 +4878,4 @@ t_way_substations_test = Table(
     Column('geom', Geometry),
     schema='model_draft'
 )
+
