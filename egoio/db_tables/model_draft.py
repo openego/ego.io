@@ -4209,6 +4209,7 @@ class EgoSupplyPfGeneratorSingle(Base):
     efficiency = Column(Float(53))
     w_id = Column(BigInteger)
     aggr_id = Column(BigInteger)
+    power_class = Column(BigInteger)
     voltage_level = Column(SmallInteger)
 
     ego_grid_pf_hv_source = relationship('EgoGridPfHvSource')
