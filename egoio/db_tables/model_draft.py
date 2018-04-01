@@ -3656,6 +3656,30 @@ t_ego_political_boundary_hvmv_subst_per_gem_3_nn_union = Table(
 )
 
 
+class EgoPowerClass(Base):
+    __tablename__ = 'ego_power_class'
+    __table_args__ = {'schema': 'model_draft'}
+
+    power_class_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_power_class_power_class_id_seq'::regclass)"))
+    lower_limit = Column(Float(53))
+    upper_limit = Column(Float(53))
+    wea = Column(Text)
+    h_hub = Column(Float(53))
+    d_rotor = Column(Float(53))
+
+
+class EgoRenewableFeedin(Base):
+    __tablename__ = 'ego_renewable_feedin'
+    __table_args__ = {'schema': 'model_draft'}
+
+    weather_scenario_id = Column(Integer, primary_key=True, nullable=False)
+    w_id = Column(Integer, primary_key=True, nullable=False)
+    source = Column(Text, primary_key=True, nullable=False)
+    weather_year = Column(Integer, primary_key=True, nullable=False)
+    power_class = Column(Integer, primary_key=True, nullable=False)
+    feedin = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+
+
 t_ego_renewable_powerplant_eaa_mview = Table(
     'ego_renewable_powerplant_eaa_mview', metadata,
     Column('id', BigInteger, unique=True),
