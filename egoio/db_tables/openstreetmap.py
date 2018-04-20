@@ -3,7 +3,6 @@ from sqlalchemy import ARRAY, BigInteger, Boolean, Column, Float, Integer, Small
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.dialects.postgresql import TEXT, BIGINT
 
 
 Base = declarative_base()
@@ -93,85 +92,21 @@ class OsmDeuLine(Base):
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_line_gid_seq'::regclass)"))
 
 
+t_osm_deu_line_major_mview = Table(
+    'osm_deu_line_major_mview', metadata,
+    Column('osm_id', BigInteger),
+    Column('geom', Geometry),
+    Column('tags', HSTORE(Text())),
+    schema='openstreetmap'
+)
+
+
 t_osm_deu_line_street_mview = Table(
     'osm_deu_line_street_mview', metadata,
-    Column('osm_id', BigInteger),
-    Column('access', Text),
-    Column('addr:housename', Text),
-    Column('addr:housenumber', Text),
-    Column('addr:interpolation', Text),
-    Column('admin_level', Text),
-    Column('aerialway', Text),
-    Column('aeroway', Text),
-    Column('amenity', Text),
-    Column('area', Text),
-    Column('barrier', Text),
-    Column('bicycle', Text),
-    Column('brand', Text),
-    Column('bridge', Text),
-    Column('boundary', Text),
-    Column('building', Text),
-    Column('construction', Text),
-    Column('covered', Text),
-    Column('culvert', Text),
-    Column('cutting', Text),
-    Column('denomination', Text),
-    Column('disused', Text),
-    Column('embankment', Text),
-    Column('foot', Text),
-    Column('generator:source', Text),
-    Column('harbour', Text),
-    Column('highway', Text),
-    Column('historic', Text),
-    Column('horse', Text),
-    Column('intermittent', Text),
-    Column('junction', Text),
-    Column('landuse', Text),
-    Column('layer', Text),
-    Column('leisure', Text),
-    Column('lock', Text),
-    Column('man_made', Text),
-    Column('military', Text),
-    Column('motorcar', Text),
-    Column('name', Text),
-    Column('natural', Text),
-    Column('office', Text),
-    Column('oneway', Text),
-    Column('operator', Text),
-    Column('place', Text),
-    Column('population', Text),
-    Column('power', Text),
-    Column('power_source', Text),
-    Column('public_transport', Text),
-    Column('railway', Text),
-    Column('ref', Text),
-    Column('religion', Text),
-    Column('route', Text),
-    Column('service', Text),
-    Column('shop', Text),
-    Column('sport', Text),
-    Column('surface', Text),
-    Column('toll', Text),
-    Column('tourism', Text),
-    Column('tower:type', Text),
-    Column('tracktype', Text),
-    Column('tunnel', Text),
-    Column('water', Text),
-    Column('waterway', Text),
-    Column('wetland', Text),
-    Column('width', Text),
-    Column('wood', Text),
-    Column('z_order', Integer),
-    Column('way_area', Float),
-    Column('abandoned:aeroway', Text),
-    Column('abandoned:amenity', Text),
-    Column('abandoned:building', Text),
-    Column('abandoned:landuse', Text),
-    Column('abandoned:power', Text),
-    Column('area:highway', Text),
-    Column('tags', HSTORE(Text())),
-    Column('geom', Geometry('LINESTRING', 900913), index=True),
     Column('gid', Integer, unique=True),
+    Column('osm_id', BigInteger),
+    Column('tags', HSTORE(Text())),
+    Column('geom', Geometry, index=True),
     schema='openstreetmap'
 )
 

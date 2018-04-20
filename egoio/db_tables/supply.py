@@ -88,6 +88,155 @@ class EgoDpConvPowerplant(Base):
     subst_id = Column(BigInteger)
     otg_id = Column(BigInteger)
     un_id = Column(BigInteger)
+    preversion = Column(Text)
+    la_id = Column(Integer)
+    scenario = Column(Text, primary_key=True, nullable=False, server_default=text("'none'::text"))
+    flag = Column(Text)
+    nuts = Column(String)
+
+
+t_ego_dp_conv_powerplant_ego100_mview = Table(
+    'ego_dp_conv_powerplant_ego100_mview', metadata,
+    Column('version', Text),
+    Column('preversion', Text),
+    Column('gid', Integer),
+    Column('bnetza_id', Text),
+    Column('company', Text),
+    Column('name', Text),
+    Column('postcode', Text),
+    Column('city', Text),
+    Column('street', Text),
+    Column('state', Text),
+    Column('block', Text),
+    Column('commissioned_original', Text),
+    Column('commissioned', Float(53)),
+    Column('retrofit', Float(53)),
+    Column('shutdown', Float(53)),
+    Column('status', Text),
+    Column('fuel', Text),
+    Column('technology', Text),
+    Column('type', Text),
+    Column('eeg', Text),
+    Column('chp', Text),
+    Column('capacity', Float(53)),
+    Column('capacity_uba', Float(53)),
+    Column('chp_capacity_uba', Float(53)),
+    Column('efficiency_data', Float(53)),
+    Column('efficiency_estimate', Float(53)),
+    Column('network_node', Text),
+    Column('voltage', Text),
+    Column('network_operator', Text),
+    Column('name_uba', Text),
+    Column('lat', Float(53)),
+    Column('lon', Float(53)),
+    Column('comment', Text),
+    Column('geom', Geometry('POINT', 4326)),
+    Column('voltage_level', SmallInteger),
+    Column('subst_id', BigInteger),
+    Column('otg_id', BigInteger),
+    Column('un_id', BigInteger),
+    Column('la_id', Integer),
+    Column('scenario', Text),
+    Column('flag', Text),
+    Column('nuts', String),
+    schema='supply'
+)
+
+
+t_ego_dp_conv_powerplant_nep2035_mview = Table(
+    'ego_dp_conv_powerplant_nep2035_mview', metadata,
+    Column('version', Text),
+    Column('gid', Integer),
+    Column('bnetza_id', Text),
+    Column('company', Text),
+    Column('name', Text),
+    Column('postcode', Text),
+    Column('city', Text),
+    Column('street', Text),
+    Column('state', Text),
+    Column('block', Text),
+    Column('commissioned_original', Text),
+    Column('commissioned', Float(53)),
+    Column('retrofit', Float(53)),
+    Column('shutdown', Float(53)),
+    Column('status', Text),
+    Column('fuel', Text),
+    Column('technology', Text),
+    Column('type', Text),
+    Column('eeg', Text),
+    Column('chp', Text),
+    Column('capacity', Float(53)),
+    Column('capacity_uba', Float(53)),
+    Column('chp_capacity_uba', Float(53)),
+    Column('efficiency_data', Float(53)),
+    Column('efficiency_estimate', Float(53)),
+    Column('network_node', Text),
+    Column('voltage', Text),
+    Column('network_operator', Text),
+    Column('name_uba', Text),
+    Column('lat', Float(53)),
+    Column('lon', Float(53)),
+    Column('comment', Text),
+    Column('geom', Geometry('POINT', 4326)),
+    Column('voltage_level', SmallInteger),
+    Column('subst_id', BigInteger),
+    Column('otg_id', BigInteger),
+    Column('un_id', BigInteger),
+    Column('preversion', Text),
+    Column('la_id', Integer),
+    Column('scenario', Text),
+    Column('flag', Text),
+    Column('nuts', String),
+    schema='supply'
+)
+
+
+t_ego_dp_conv_powerplant_sq_mview = Table(
+    'ego_dp_conv_powerplant_sq_mview', metadata,
+    Column('version', Text),
+    Column('gid', Integer),
+    Column('bnetza_id', Text),
+    Column('company', Text),
+    Column('name', Text),
+    Column('postcode', Text),
+    Column('city', Text),
+    Column('street', Text),
+    Column('state', Text),
+    Column('block', Text),
+    Column('commissioned_original', Text),
+    Column('commissioned', Float(53)),
+    Column('retrofit', Float(53)),
+    Column('shutdown', Float(53)),
+    Column('status', Text),
+    Column('fuel', Text),
+    Column('technology', Text),
+    Column('type', Text),
+    Column('eeg', Text),
+    Column('chp', Text),
+    Column('capacity', Float(53)),
+    Column('capacity_uba', Float(53)),
+    Column('chp_capacity_uba', Float(53)),
+    Column('efficiency_data', Float(53)),
+    Column('efficiency_estimate', Float(53)),
+    Column('network_node', Text),
+    Column('voltage', Text),
+    Column('network_operator', Text),
+    Column('name_uba', Text),
+    Column('lat', Float(53)),
+    Column('lon', Float(53)),
+    Column('comment', Text),
+    Column('geom', Geometry('POINT', 4326)),
+    Column('voltage_level', SmallInteger),
+    Column('subst_id', BigInteger),
+    Column('otg_id', BigInteger),
+    Column('un_id', BigInteger),
+    Column('preversion', Text),
+    Column('la_id', Integer),
+    Column('scenario', Text),
+    Column('flag', Text),
+    Column('nuts', String),
+    schema='supply'
+)
 
 
 class EgoDpResPowerplant(Base):
@@ -130,6 +279,148 @@ class EgoDpResPowerplant(Base):
     rea_flag = Column(String)
     rea_geom_line = Column(Geometry('LINESTRING', 3035))
     rea_geom_new = Column(Geometry('POINT', 3035), index=True)
+    preversion = Column(Text)
+    flag = Column(String)
+    scenario = Column(String, primary_key=True, nullable=False, server_default=text("'none'::character varying"))
+    nuts = Column(String)
+
+
+t_ego_dp_res_powerplant_ego100_mview = Table(
+    'ego_dp_res_powerplant_ego100_mview', metadata,
+    Column('version', Text),
+    Column('id', BigInteger),
+    Column('start_up_date', DateTime),
+    Column('electrical_capacity', Numeric),
+    Column('generation_type', Text),
+    Column('generation_subtype', String),
+    Column('thermal_capacity', Numeric),
+    Column('city', String),
+    Column('postcode', String),
+    Column('address', String),
+    Column('lon', Numeric),
+    Column('lat', Numeric),
+    Column('gps_accuracy', String),
+    Column('validation', String),
+    Column('notification_reason', String),
+    Column('eeg_id', String),
+    Column('tso', Float(53)),
+    Column('tso_eic', String),
+    Column('dso_id', String),
+    Column('dso', String),
+    Column('voltage_level_var', String),
+    Column('network_node', String),
+    Column('power_plant_id', String),
+    Column('source', String),
+    Column('comment', String),
+    Column('geom', Geometry('POINT', 4326)),
+    Column('subst_id', BigInteger),
+    Column('otg_id', BigInteger),
+    Column('un_id', BigInteger),
+    Column('voltage_level', SmallInteger),
+    Column('la_id', Integer),
+    Column('mvlv_subst_id', Integer),
+    Column('rea_sort', Integer),
+    Column('rea_flag', String),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
+    Column('preversion', Text),
+    Column('flag', String),
+    Column('scenario', String),
+    Column('nuts', String),
+    schema='supply'
+)
+
+
+t_ego_dp_res_powerplant_nep2035_mview = Table(
+    'ego_dp_res_powerplant_nep2035_mview', metadata,
+    Column('version', Text),
+    Column('id', BigInteger),
+    Column('start_up_date', DateTime),
+    Column('electrical_capacity', Numeric),
+    Column('generation_type', Text),
+    Column('generation_subtype', String),
+    Column('thermal_capacity', Numeric),
+    Column('city', String),
+    Column('postcode', String),
+    Column('address', String),
+    Column('lon', Numeric),
+    Column('lat', Numeric),
+    Column('gps_accuracy', String),
+    Column('validation', String),
+    Column('notification_reason', String),
+    Column('eeg_id', String),
+    Column('tso', Float(53)),
+    Column('tso_eic', String),
+    Column('dso_id', String),
+    Column('dso', String),
+    Column('voltage_level_var', String),
+    Column('network_node', String),
+    Column('power_plant_id', String),
+    Column('source', String),
+    Column('comment', String),
+    Column('geom', Geometry('POINT', 4326)),
+    Column('subst_id', BigInteger),
+    Column('otg_id', BigInteger),
+    Column('un_id', BigInteger),
+    Column('voltage_level', SmallInteger),
+    Column('la_id', Integer),
+    Column('mvlv_subst_id', Integer),
+    Column('rea_sort', Integer),
+    Column('rea_flag', String),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
+    Column('preversion', Text),
+    Column('flag', String),
+    Column('scenario', String),
+    Column('nuts', String),
+    schema='supply'
+)
+
+
+t_ego_dp_res_powerplant_sq_mview = Table(
+    'ego_dp_res_powerplant_sq_mview', metadata,
+    Column('version', Text),
+    Column('id', BigInteger),
+    Column('start_up_date', DateTime),
+    Column('electrical_capacity', Numeric),
+    Column('generation_type', Text),
+    Column('generation_subtype', String),
+    Column('thermal_capacity', Numeric),
+    Column('city', String),
+    Column('postcode', String),
+    Column('address', String),
+    Column('lon', Numeric),
+    Column('lat', Numeric),
+    Column('gps_accuracy', String),
+    Column('validation', String),
+    Column('notification_reason', String),
+    Column('eeg_id', String),
+    Column('tso', Float(53)),
+    Column('tso_eic', String),
+    Column('dso_id', String),
+    Column('dso', String),
+    Column('voltage_level_var', String),
+    Column('network_node', String),
+    Column('power_plant_id', String),
+    Column('source', String),
+    Column('comment', String),
+    Column('geom', Geometry('POINT', 4326)),
+    Column('subst_id', BigInteger),
+    Column('otg_id', BigInteger),
+    Column('un_id', BigInteger),
+    Column('voltage_level', SmallInteger),
+    Column('la_id', Integer),
+    Column('mvlv_subst_id', Integer),
+    Column('rea_sort', Integer),
+    Column('rea_flag', String),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
+    Column('preversion', Text),
+    Column('flag', String),
+    Column('scenario', String),
+    Column('nuts', String),
+    schema='supply'
+)
 
 
 t_ego_renewable_power_plants_germany_hydro_mview = Table(
@@ -329,6 +620,43 @@ t_fred_dp_conv_powerplant_hydro_on_river_mview = Table(
 )
 
 
+t_fred_dp_res_powerplant_hydro_on_gauge_mview = Table(
+    'fred_dp_res_powerplant_hydro_on_gauge_mview', metadata,
+    Column('plant_id', BigInteger, unique=True),
+    Column('gauge_id', Integer),
+    Column('station_id', BigInteger),
+    Column('station', String),
+    Column('water', String),
+    Column('source', Text),
+    Column('dp_geom', Geometry, index=True),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('st_distance', Float(53)),
+    schema='supply'
+)
+
+
+t_fred_dp_res_powerplant_hydro_on_river_mview = Table(
+    'fred_dp_res_powerplant_hydro_on_river_mview', metadata,
+    Column('id', BigInteger),
+    Column('gwk', String(20)),
+    Column('nam', String(100)),
+    Column('orig_geom', Geometry('POINT', 4326)),
+    Column('dp_geom', Geometry),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('st_distance', Float(53)),
+    schema='supply'
+)
+
+
+t_fred_dp_res_powerplant_hydro_on_wg_mview = Table(
+    'fred_dp_res_powerplant_hydro_on_wg_mview', metadata,
+    Column('id', BigInteger, unique=True),
+    Column('dp_geom', Geometry, index=True),
+    Column('wg_id', Integer),
+    schema='supply'
+)
+
+
 t_opsd_power_plants_germany_hydro_mview = Table(
     'opsd_power_plants_germany_hydro_mview', metadata,
     Column('gid', Integer),
@@ -363,6 +691,56 @@ t_opsd_power_plants_germany_hydro_mview = Table(
     Column('lon', Float(53)),
     Column('comment', Text),
     Column('geom', Geometry('POINT', 4326), index=True),
+    schema='supply'
+)
+
+
+t_temp_table_cl = Table(
+    'temp_table_cl', metadata,
+    Column('name', Text),
+    Column('geom', Geometry),
+    Column('num_turb', Integer),
+    Column('dvn', Float(53)),
+    Column('hn', Float(53)),
+    Column('pn', Float(53)),
+    Column('turb_type', Text),
+    schema='supply'
+)
+
+
+t_temp_table_cl_gauge_mview = Table(
+    'temp_table_cl_gauge_mview', metadata,
+    Column('plant_id', Text),
+    Column('gauge_id', Integer),
+    Column('station_id', BigInteger),
+    Column('station', String),
+    Column('water', String),
+    Column('source', Text),
+    Column('dp_geom', Geometry),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('st_distance', Float(53)),
+    schema='supply'
+)
+
+
+t_temp_table_cl_river_mview = Table(
+    'temp_table_cl_river_mview', metadata,
+    Column('name', Text),
+    Column('gwk', String(20)),
+    Column('nam', String(100)),
+    Column('orig_geom', Geometry),
+    Column('dp_geom', Geometry),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('st_distance', Float(53)),
+    schema='supply'
+)
+
+
+t_temp_table_cl_wg_mview = Table(
+    'temp_table_cl_wg_mview', metadata,
+    Column('name', Text),
+    Column('dp_geom', Geometry),
+    Column('wg_id', Integer),
     schema='supply'
 )
 
