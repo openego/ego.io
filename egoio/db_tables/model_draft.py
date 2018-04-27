@@ -5138,6 +5138,7 @@ class EgoSupplyResPowerplant(Base):
     un_id = Column(BigInteger)
     voltage_level = Column(SmallInteger)
     la_id = Column(Integer)
+    w_id = Column(Integer)
     mvlv_subst_id = Column(Integer)
     rea_sort = Column(Integer)
     rea_flag = Column(String)
@@ -5181,6 +5182,7 @@ t_ego_supply_res_powerplant_ego100_mview = Table(
     Column('flag', String),
     Column('nuts', String),
     Column('la_id', Integer),
+    Column('w_id', Integer),
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
@@ -5226,6 +5228,7 @@ t_ego_supply_res_powerplant_nep2035_mview = Table(
     Column('flag', String),
     Column('nuts', String),
     Column('la_id', Integer),
+    Column('w_id', Integer),
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
@@ -5357,6 +5360,7 @@ t_ego_supply_res_powerplant_sq_mview = Table(
     Column('flag', String),
     Column('nuts', String),
     Column('la_id', Integer),
+    Column('w_id', Integer),
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
