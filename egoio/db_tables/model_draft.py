@@ -3951,7 +3951,7 @@ class ScenarioLog(Base):
     table_name = Column(Text)
     script_name = Column(Text)
     entries = Column(Integer)
-    status = Column(Text)
+    comment = Column(Text)
     user_name = Column(Text)
     timestamp = Column(DateTime)
     meta_data = Column(Text)
