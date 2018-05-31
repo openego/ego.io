@@ -3924,10 +3924,10 @@ class EgoScenario(Base):
 
 
 class EgoScenarioInput(Base):
-    __tablename__ = 'ego_scenario_input'
+    __tablename__ = 'scenario_input'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_scenario_input_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.scenario_input_id_seq'::regclass)"))
     version = Column(Text)
     oid = Column(OID)
     database = Column(String)
@@ -3940,7 +3940,7 @@ class EgoScenarioInput(Base):
 
 
 class ScenarioLog(Base):
-    __tablename__ = 'ego_scenario_log'
+    __tablename__ = 'scenario_log'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_scenario_log_id_seq'::regclass)"))
