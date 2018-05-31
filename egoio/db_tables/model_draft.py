@@ -3939,11 +3939,12 @@ class EgoScenarioInput(Base):
     meta_data = Column(Text)
 
 
-class EgoScenarioLog(Base):
+class ScenarioLog(Base):
     __tablename__ = 'ego_scenario_log'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_scenario_log_id_seq'::regclass)"))
+    project = Column(Text)
     version = Column(Text)
     io = Column(Text)
     schema_name = Column(Text)
