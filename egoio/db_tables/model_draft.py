@@ -3943,7 +3943,7 @@ class ScenarioLog(Base):
     __tablename__ = 'scenario_log'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_scenario_log_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.scenario_log_id_seq'::regclass)"))
     project = Column(Text)
     version = Column(Text)
     io = Column(Text)
