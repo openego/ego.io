@@ -279,7 +279,7 @@ class EgoLineExpansionCost(Base):
     capital_costs_pypsa = Column(Float(53))
 
 
-class EgoPfHvBu(Base):
+class EgoPfHvBus(Base):
     __tablename__ = 'ego_pf_hv_bus'
     __table_args__ = {'schema': 'grid'}
 
@@ -293,7 +293,7 @@ class EgoPfHvBu(Base):
     geom = Column(Geometry('POINT', 4326), index=True)
 
 
-class EgoPfHvExtensionBu(Base):
+class EgoPfHvExtensionBus(Base):
     __tablename__ = 'ego_pf_hv_extension_bus'
     __table_args__ = {'schema': 'grid'}
 
@@ -743,7 +743,7 @@ class OtgEhvhvResultsMetadatum(Base):
     user_comment = Column(Text)
 
 
-class EgoPfHvResultBu(Base):
+class EgoPfHvResultBus(Base):
     __tablename__ = 'ego_pf_hv_result_bus'
     __table_args__ = {'schema': 'grid'}
 

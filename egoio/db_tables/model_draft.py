@@ -508,7 +508,7 @@ t_corr_mv_lines_results = Table(
 )
 
 
-class CorrVisHvBu(Base):
+class CorrVisHvBus(Base):
     __tablename__ = 'corr_vis_hv_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -538,7 +538,7 @@ class CorrVisHvLine(Base):
     max_srel = Column(Float(53))
 
 
-class CorrVisMvBu(Base):
+class CorrVisMvBus(Base):
     __tablename__ = 'corr_vis_mv_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -2749,7 +2749,7 @@ class EgoGridMvlvSubstationVoronoi(Base):
     geom = Column(Geometry('POLYGON', 3035), index=True)
 
 
-class EgoGridPfHvBu(Base):
+class EgoGridPfHvBus(Base):
     __tablename__ = 'ego_grid_pf_hv_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -3152,7 +3152,7 @@ class EgoGridPfHvNep2035Link(Base):
     topo = Column(Geometry('LINESTRING', 4326))
 
 
-class EgoGridPfHvResultBu(Base):
+class EgoGridPfHvResultBus(Base):
     __tablename__ = 'ego_grid_pf_hv_result_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -3515,7 +3515,7 @@ class EgoGridPfHvTransformerV030(Base):
     topo = Column(Geometry('LINESTRING', 4326))
 
 
-class EgoGridPfMvBu(Base):
+class EgoGridPfMvBus(Base):
     __tablename__ = 'ego_grid_pf_mv_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -3610,7 +3610,7 @@ class EgoGridPfMvLoadPqSet(Base):
     grid_id = Column(Integer)
 
 
-class EgoGridPfMvResBu(Base):
+class EgoGridPfMvResBus(Base):
     __tablename__ = 'ego_grid_pf_mv_res_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -3697,7 +3697,7 @@ class EgoGridPfMvTransformer(Base):
     grid_id = Column(Integer)
 
 
-class EgoGridPpEntsoeBu(Base):
+class EgoGridPpEntsoeBus(Base):
     __tablename__ = 'ego_grid_pp_entsoe_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -7889,7 +7889,7 @@ class WnAbwEgoDpResPowerplant(Base):
     nuts = Column(String)
 
 
-class WnAbwEgoPfHvBu(Base):
+class WnAbwEgoPfHvBus(Base):
     __tablename__ = 'wn_abw_ego_pf_hv_bus'
     __table_args__ = {'schema': 'model_draft'}
 
