@@ -7275,8 +7275,7 @@ class EgoGridLvBranchtee(Base):
     __tablename__ = 'ego_grid_lv_branchtee'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_lv_branchtee_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(36))
     geom = Column(Geometry('POINT', 4326))
@@ -7287,8 +7286,7 @@ class EgoGridLvGrid(Base):
     __tablename__ = 'ego_grid_lv_grid'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_lv_grid_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(22))
     geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
@@ -7301,8 +7299,7 @@ class EgoGridLvGenerator(Base):
     __tablename__ = 'ego_grid_lv_generator'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_lv_generator_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(34))
     geom = Column(Geometry('POINT', 4326))
@@ -7317,8 +7314,7 @@ class EgoGridLvLoad(Base):
     __tablename__ = 'ego_grid_lv_load'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_lv_load_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(26))
     geom = Column(Geometry('POINT', 4326))
@@ -7330,8 +7326,7 @@ class EgoGridLvmvStation(Base):
     __tablename__ = 'ego_grid_lvmv_station'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_lvmv_station_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(27))
     geom = Column(Geometry('POINT', 4326))
@@ -7342,8 +7337,7 @@ class EgoGridLvTransformer(Base):
     __tablename__ = 'ego_grid_lv_transformer'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_lv_transformer_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(29))
     geom = Column(Geometry('POINT', 4326))
@@ -7358,8 +7352,7 @@ class EgoGridLvmvMapping(Base):
     __tablename__ = 'ego_grid_lvmv_mapping'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_lvmv_mapping_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     lv_grid_id = Column(Integer)
     lv_grid_id_db = Column(String(30))
@@ -7371,8 +7364,7 @@ class EgoGridLine(Base):
     __tablename__ = 'ego_grid_line'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_line_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     edge_name = Column(String(20))
     grid_id_db = Column(String(30))
@@ -7406,8 +7398,7 @@ class EgoGridMvBranchtee(Base):
     __tablename__ = 'ego_grid_mv_branchtee'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_mv_branchtee_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(36))
     geom = Column(Geometry('POINT', 4326))
@@ -7418,8 +7409,7 @@ class EgoGridMvGrid(Base):
     __tablename__ = 'ego_grid_mv_grid'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_mv_grid_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(22))
     geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
@@ -7432,8 +7422,7 @@ class EgoGridMvGenerator(Base):
     __tablename__ = 'ego_grid_mv_generator'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_mv_generator_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(34))
     geom = Column(Geometry('POINT', 4326))
@@ -7448,8 +7437,7 @@ class EgoGridMvLoad(Base):
     __tablename__ = 'ego_grid_mv_load'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_mv_load_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(26))
     geom = Column(Geometry('POINT', 4326))
@@ -7461,8 +7449,7 @@ class EgoGridMvhvStation(Base):
     __tablename__ = 'ego_grid_mvhv_station'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_mvhv_station_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(27))
     geom = Column(Geometry('POINT', 4326))
@@ -7474,8 +7461,7 @@ class EgoGridMvTransformer(Base):
     __tablename__ = 'ego_grid_mv_transformer'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True,
-                server_default=text("nextval('model_draft.ego_grid_mv_transformer_id_seq'::regclass)"))
+    id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(29))
     geom = Column(Geometry('POINT', 4326))
