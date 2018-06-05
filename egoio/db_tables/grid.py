@@ -576,6 +576,25 @@ class EgoPfHvLine(Base):
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
 
+class EgoPfHvLink(Base):
+    __tablename__ = 'ego_pf_hv_link'
+    __table_args__ = {'schema': 'grid'}
+
+    version = version = Column(Text, primary_key=True, nullable=False)
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'NEP'::character varying"))
+    link_id = Column(BigInteger, primary_key=True, nullable=False)
+    bus0 = Column(BigInteger)
+    bus1 = Column(BigInteger)
+    efficiency = Column(Float(53))
+    p_nom = Column(Numeric, server_default=text("0"))
+    p_nom_extendable = Column(Boolean, server_default=text("false"))
+    p_nom_min = Column(Float(53), server_default=text("0"))
+    p_nom_max = Column(Float(53))
+    capital_cost = Column(Float(53))
+    length = Column(Float(53))
+    terrain_factor = Column(Float(53), server_default=text("1"))
+    geom = Column(Geometry('MULTILINESTRING', 4326))
+    topo = Column(Geometry('LINESTRING', 4326))
 
 t_ego_pf_hv_link = Table(
     'ego_pf_hv_link', metadata,
