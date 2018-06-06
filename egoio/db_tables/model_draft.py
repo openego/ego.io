@@ -7420,8 +7420,8 @@ class EgoGridDing0MvlvStation(Base):
     lv_grid_id_db = Column(String(22))
 
 
-class EgoGridDing0LvTransformer(Base):
-    __tablename__ = 'ego_grid_ding0_lv_transformer'
+class EgoGridDing0MvlvTransformer(Base):
+    __tablename__ = 'ego_grid_ding0_mvlv_transformer'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
