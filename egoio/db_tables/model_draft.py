@@ -7388,9 +7388,9 @@ class EgoGridDing0LvGenerator(Base):
 
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
-    id_db = Column(String(50))
+    id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(22))
+    lv_grid_id_db = Column(String(100))
     type = Column(String(22))
     subtype = Column(String(22))
     v_level = Column(Integer)
