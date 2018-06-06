@@ -115,6 +115,7 @@ def get_connection_details(section):
         Used for configuration file parser language.
     """
     print('Please enter your connection details:')
+    dialect = input('Enter input value for `dialect` (default: psycopg2): ') or 'psycopg2'
     username = input('Enter value for `username`: ')
     database = input('Enter value for `database`: ')
     host = input('Enter value for `host`: ')
@@ -122,11 +123,12 @@ def get_connection_details(section):
 
     cfg = cp.ConfigParser()
     cfg.add_section(section)
+    cfg.set(section, 'dialect', dialect)
     cfg.set(section, 'username', username)
     cfg.set(section, 'host', host)
     cfg.set(section, 'port', port)
     cfg.set(section, 'database', database)
-    pw = getpass.getpass(prompt="Enter your password to " \
+    pw = getpass.getpass(prompt="Enter your password/token to " \
                                         "store it in "
                                         "keyring: ".format(database=section))
     keyring.set_password(section, cfg.get(section, "username"), pw)
@@ -226,7 +228,8 @@ def connection(filepath=None, section='oep'):
         
     # establish connection and return it
     conn = create_engine(
-        "postgresql+psycopg2://{user}:{password}@{host}:{port}/{db}".format(
+        "postgresql+{dialect}://{user}:{password}@{host}:{port}/{db}".format(
+            dialect=cfg.get(section, 'dialect', fallback='psycopg2'),
             user=cfg.get(section, 'username'),
             password=pw,
             host=cfg.get(section, 'host'),

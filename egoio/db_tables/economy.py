@@ -2,7 +2,6 @@
 from sqlalchemy import Column, Float, String
 from sqlalchemy.ext.declarative import declarative_base
 
-
 Base = declarative_base()
 metadata = Base.metadata
 

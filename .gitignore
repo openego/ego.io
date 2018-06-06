@@ -1,9 +1,32 @@
-/.idea/*
-/ego.io.egg-info/*
+# exclude project files
+.idea/
+
+
+# exclude certain types of files
+*.doctree
+*.txt
+*.html
+*.js
+*.inv
+*.pyc
+*.ttf
+*.woff
+*.png
+*.css
+*.pkl
+
+# exclude locally built docs
+doc/_html
+
+# exclude egg-info
+ego.io.egg-info/
+ego.io.egg-info/*
 /egoio.egg-info/PKG-INFO
 /egoio.egg-info/SOURCES.txt
 /egoio.egg-info/dependency_links.txt
 /egoio.egg-info/top_level.txt
+
+#exclude pycaches
 /egoio/__pycache__/__init__.cpython-34.pyc
 /egoio/tools/__pycache__/__init__.cpython-34.pyc
 /egoio/tools/__pycache__/config.cpython-34.pyc

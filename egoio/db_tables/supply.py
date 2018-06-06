@@ -1,12 +1,92 @@
 # coding: utf-8
-from sqlalchemy import ARRAY, BigInteger, Column, DateTime, Float, Integer, Numeric, SmallInteger, String, Table, Text, text
+from sqlalchemy import ARRAY, BigInteger, Column, Date, DateTime, Float, Integer, Numeric, SmallInteger, String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.dialects.postgresql import REAL
-
 
 Base = declarative_base()
 metadata = Base.metadata
+
+
+class BnetzaEegAnlagenstammdaten(Base):
+    __tablename__ = 'bnetza_eeg_anlagenstammdaten'
+    __table_args__ = {'schema': 'supply'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('supply.bnetza_eeg_anlagenstammdaten_id_seq'::regclass)"))
+    version = Column(Text)
+    meldedatum = Column(Date)
+    meldegrund = Column(Text)
+    anlagennummer = Column(String(14))
+    _1_8_eeg_anlagenschlüssel = Column('1.8_eeg-anlagenschl\xfcssel', Text)
+    _3_1_genehmigungs_datum = Column('3.1_genehmigungs-datum', Date)
+    _3_2_genehmigungs_behörde = Column('3.2_genehmigungs-beh\xf6rde', Text)
+    _3_3_genehmigungs_aktenzeichen = Column('3.3_genehmigungs-aktenzeichen', Text)
+    _3_4_geplantes_inbetriebnahme_datum = Column('3.4_geplantes_inbetriebnahme-datum', Date)
+    _3_5_errichtungs_frist = Column('3.5_errichtungs-frist', Date)
+    _4_1_energieträger = Column('4.1_energietr\xe4ger', Text)
+    _4_2_installierte_leistung = Column('4.2_installierte_leistung', Float(53))
+    _4_2_1_inst__leistung_vor_änderung = Column('4.2.1_inst._leistung_vor_\xe4nderung', Float(53))
+    _4_2_2_inst__leistung_nach_änderung = Column('4.2.2_inst._leistung_nach_\xe4nderung', Float(53))
+    _4_3_tatsächliche_inbetriebnahme = Column('4.3_tats\xe4chliche_inbetriebnahme', Date)
+    _4_4_datum_leistungsänderung = Column('4.4_datum_leistungs\xe4nderung', Date)
+    _4_5_stilllegungsdatum = Column('4.5_stilllegungsdatum', Date)
+    _4_6_name_der_anlage = Column('4.6_name_der_anlage', Text)
+    _4_7_strasse_bzw__flurstück = Column('4.7_strasse_bzw._flurst\xfcck', Text)
+    _4_8_hausnummer = Column('4.8_hausnummer', Text)
+    _4_9_postleitzahl = Column('4.9_postleitzahl', Text)
+    _4_10_ort_bzw__gemarkung = Column('4.10_ort_bzw._gemarkung', Text)
+    _4_10_1_gemeindeschlüssel = Column('4.10_1_gemeindeschl\xfcssel', Text)
+    _4_11_bundesland = Column('4.11_bundesland', Text)
+    _4_12_utm_zonenwert = Column('4.12_utm-zonenwert', Integer)
+    _4_12_utm_east = Column('4.12_utm-east', Float(53))
+    _4_12_utm_north = Column('4.12_utm-north', Float(53))
+    _4_13_zugehörigkeit_anlagenpark = Column('4.13_zugeh\xf6rigkeit_anlagenpark', Text)
+    _4_13_1_name_des_anlagenparks = Column('4.13.1_name_des_anlagenparks', Text)
+    _4_14_spannungsebene = Column('4.14_spannungsebene', Text)
+    _4_15_netzanschlusspunkt = Column('4.15_netzanschlusspunkt', Text)
+    _4_15_1_zählpunktbezeichnung = Column('4.15.1_z\xe4hlpunktbezeichnung', Text)
+    _4_16_name_des_netzbetreibers = Column('4.16_name_des_netzbetreibers', Text)
+    _4_17_fernsteuerbarkeit_durch = Column('4.17_fernsteuerbarkeit_durch', Text)
+    _4_18_gemeinsame_techn__einrichtung = Column('4.18_gemeinsame_techn._einrichtung', Text)
+    _4_19_inanspruchnahme_finanzielle_Förderung = Column('4.19_inanspruchnahme_finanzielle_F\xf6rderung', Text)
+    _4_20_Eigenverbrauch_geplant = Column('4.20_Eigenverbrauch_geplant', Text)
+    _5_1_eingesetzte_biomasse = Column('5.1_eingesetzte_biomasse', Text)
+    _5_2_ausschließlich_biomasse = Column('5.2_ausschlie\xdflich_biomasse', Text)
+    _5_3_flexprämie_eeg = Column('5.3_flexpr\xe4mie_eeg', Text)
+    _5_4_erstmalige_inanspruchnahme_flexprämie = Column('5.4_erstmalige_inanspruchnahme_flexpr\xe4mie', Date)
+    _5_4_1_leistungserhöhung_flexprämie = Column('5.4.1_leistungserh\xf6hung_flexpr\xe4mie', Text)
+    _5_4_2_datum_leistungserhöhung_flexprämie = Column('5.4.2_datum_leistungserh\xf6hung_flexpr\xe4mie', Date)
+    _5_4_3_umfang_der_leistungserhöhung = Column('5.4.3_umfang_der_leistungserh\xf6hung', Text)
+    _5_5_erstmalig_ausschließlich_biomethan = Column('5.5_erstmalig_ausschlie\xdflich_biomethan', Text)
+    _5_6_zustimmung_gesonderte_veröffentlich = Column('5.6_zustimmung_gesonderte_ver\xf6ffentlich', Text)
+    _6_1_kwk_anlage = Column('6.1_kwk-anlage', Text)
+    _6_2_thermische_leistung = Column('6.2_thermische_leistung', Float(53))
+    _6_3_andere_energieträger = Column('6.3_andere_energietr\xe4ger', Text)
+    _6_4_eingesetzte_andere_energieträger = Column('6.4_eingesetzte_andere_energietr\xe4ger', Text)
+    _6_5_erstmalige_stromerzeugung = Column('6.5_erstmalige_stromerzeugung', Date)
+    _7_1_windanlagenhersteller = Column('7.1_windanlagenhersteller', Text)
+    _7_2_anlagentyp = Column('7.2_anlagentyp', Text)
+    _7_3_nabenhöhe = Column('7.3_nabenh\xf6he', Float(53))
+    _7_4_rotordurch_messer = Column('7.4_rotordurch-messer', Float(53))
+    _7_5_repowering = Column('7.5_repowering', Text)
+    _7_6_stilllegung_gemeldet = Column('7.6_stilllegung_gemeldet', Text)
+    _7_7_1_mittlere_windgeschwindigkeit = Column('7.7.1_mittlere_windgeschwindigkeit', Float(53))
+    _7_7_2_formparameter_weibull_verteilung = Column('7.7.2_formparameter_weibull-verteilung', Float(53))
+    _7_7_3_skalenparameter_weibull_verteilung = Column('7.7.3_skalenparameter_weibull-verteilung', Float(53))
+    _7_7_4_ertrags_einschätzung = Column('7.7.4_ertrags-einsch\xe4tzung', Float(53))
+    _7_7_5_ertragseinschätzung_referenzertrag = Column('7.7.5_ertragseinsch\xe4tzung/referenzertrag', Float(53))
+    _7_8_1_seelage = Column('7.8.1_seelage', Text)
+    _7_8_2_wassertiefe = Column('7.8.2_wassertiefe', Text)
+    _7_8_3_küstenentfernung = Column('7.8.3_k\xfcstenentfernung', Text)
+    _7_9_pilotwindanlage = Column('7.9_pilotwindanlage', Text)
+    _8_1_ertüchtigung_wasserkraftanlage = Column('8.1_ert\xfcchtigung_wasserkraftanlage', Text)
+    _8_2_art_der_ertüchtigung = Column('8.2_art_der_ert\xfcchtigung', Text)
+    _8_3_zulassungspflichtige_maßnahme = Column('8.3_zulassungspflichtige_ma\xdfnahme', Text)
+    _8_4__höhe_leistungssteigerung = Column('8.4._h\xf6he_leistungssteigerung', Float(53))
+    _8_5_datum_der_ertüchtigung = Column('8.5_datum_der_ert\xfcchtigung', Date)
+    _9_1_zuschlagnummer_pv_freifläche = Column('9.1_zuschlagnummer_pv-freifl\xe4che', Text)
+    _9_2_fläche_pv_freiflächenanlage = Column('9.2_fl\xe4che_pv-freifl\xe4chenanlage', Float(53))
+    _9_3_pv_freifläche_auf_ackerland = Column('9.3_pv-freifl\xe4che_auf_ackerland', Float(53))
+    geom = Column(Geometry('POINT', 5652))
 
 
 class EgoConventionalPowerplant(Base):
@@ -423,6 +503,32 @@ t_ego_dp_res_powerplant_sq_mview = Table(
 )
 
 
+class EgoPowerClas(Base):
+    __tablename__ = 'ego_power_class'
+    __table_args__ = {'schema': 'supply'}
+
+    version = Column(Text, primary_key=True, nullable=False)
+    power_class_id = Column(Integer, primary_key=True, nullable=False)
+    lower_limit = Column(Float(53))
+    upper_limit = Column(Float(53))
+    wea = Column(Text)
+    h_hub = Column(Float(53))
+    d_rotor = Column(Float(53))
+
+
+class EgoRenewableFeedin(Base):
+    __tablename__ = 'ego_renewable_feedin'
+    __table_args__ = {'schema': 'supply'}
+
+    version = Column(Text, primary_key=True, nullable=False)
+    weather_scenario_id = Column(Integer, primary_key=True, nullable=False)
+    w_id = Column(Integer, primary_key=True, nullable=False)
+    source = Column(Text, primary_key=True, nullable=False)
+    weather_year = Column(Integer, primary_key=True, nullable=False)
+    feedin = Column(ARRAY(Float(precision=53)))
+    power_class = Column(Integer, primary_key=True, nullable=False)
+
+
 t_ego_renewable_power_plants_germany_hydro_mview = Table(
     'ego_renewable_power_plants_germany_hydro_mview', metadata,
     Column('id', BigInteger),
@@ -548,7 +654,7 @@ class ForwindOekoRenewableFeedinPerFederalstate(Base):
     year = Column(SmallInteger, nullable=False)
     federal_state = Column(Text)
     comment = Column(Text)
-    time_series = Column(ARRAY(REAL()))
+    time_series = Column(ARRAY(Float()))
 
 
 t_fred_dp_conv_powerplant_hydro_mview = Table(
