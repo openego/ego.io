@@ -576,29 +576,27 @@ class EgoPfHvLine(Base):
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
 
+class EgoPfHvLink(Base):
+    __tablename__ = 'ego_pf_hv_link'
+    __table_args__ = {'schema': 'grid'}
 
-t_ego_pf_hv_link = Table(
-    'ego_pf_hv_link', metadata,
-    Column('version', Text, nullable=False),
-    Column('scn_name', String, nullable=False, server_default=text("'Status Quo'::character varying")),
-    Column('link_id', BigInteger, nullable=False),
-    Column('bus0', BigInteger),
-    Column('bus1', BigInteger),
-    Column('efficiency', Float(53), server_default=text("1")),
-    Column('marginal_cost', Float(53), server_default=text("0")),
-    Column('p_nom', Numeric, server_default=text("0")),
-    Column('p_nom_extendable', Boolean, server_default=text("false")),
-    Column('p_nom_min', Float(53), server_default=text("0")),
-    Column('p_nom_max', Float(53)),
-    Column('capital_cost', Float(53)),
-    Column('length', Float(53)),
-    Column('terrain_factor', Float(53), server_default=text("1")),
-    Column('geom', Geometry('MULTILINESTRING', 4326)),
-    Column('topo', Geometry('LINESTRING', 4326)),
-    schema='grid'
-)
+    version = version = Column(Text, primary_key=True, nullable=False)
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'NEP'::character varying"))
+    link_id = Column(BigInteger, primary_key=True, nullable=False)
+    bus0 = Column(BigInteger)
+    bus1 = Column(BigInteger)
+    efficiency = Column(Float(53))
+    p_nom = Column(Numeric, server_default=text("0"))
+    p_nom_extendable = Column(Boolean, server_default=text("false"))
+    p_nom_min = Column(Float(53), server_default=text("0"))
+    p_nom_max = Column(Float(53))
+    capital_cost = Column(Float(53))
+    length = Column(Float(53))
+    terrain_factor = Column(Float(53), server_default=text("1"))
+    geom = Column(Geometry('MULTILINESTRING', 4326))
+    topo = Column(Geometry('LINESTRING', 4326))
 
-
+    
 class EgoPfHvLoad(Base):
     __tablename__ = 'ego_pf_hv_load'
     __table_args__ = {'schema': 'grid'}

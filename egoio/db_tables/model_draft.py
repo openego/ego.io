@@ -8011,7 +8011,7 @@ class EgoDemandPfLoadSingle(Base):
     sign = Column(Float(53), server_default=text("'-1'::integer"))
     e_annual = Column(Float(53))
 
-    ego_grid_pf_hv_bu = relationship('EgoGridPfHvBu')
+    ego_grid_pf_hv_bu = relationship('EgoGridPfHvBus')
 
 
 class EgoGridPfHvBusVMagSet(Base):
