@@ -4,7 +4,6 @@ from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
-
 Base = declarative_base()
 metadata = Base.metadata
 
@@ -118,7 +117,7 @@ class OsmDeuNode(Base):
     id = Column(BigInteger, primary_key=True)
     lat = Column(Integer, nullable=False)
     lon = Column(Integer, nullable=False)
-    tags = Column(ARRAY(TEXT()))
+    tags = Column(ARRAY(Text()))
 
 
 class OsmDeuPoint(Base):
@@ -196,6 +195,17 @@ class OsmDeuPoint(Base):
     tags = Column(HSTORE(Text()), index=True)
     geom = Column(Geometry('POINT', 900913), index=True)
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_point_gid_seq'::regclass)"))
+
+
+class OsmDeuPointWindpower(Base):
+    __tablename__ = 'osm_deu_point_windpower'
+    __table_args__ = {'schema': 'openstreetmap'}
+
+    gid = Column(Integer, primary_key=True)
+    osm_id = Column(BigInteger)
+    building = Column(Text)
+    tags = Column(HSTORE(Text()))
+    geom = Column(Geometry, index=True)
 
 
 class OsmDeuPolygon(Base):
@@ -448,9 +458,9 @@ class OsmDeuRel(Base):
     id = Column(BigInteger, primary_key=True, index=True)
     way_off = Column(SmallInteger)
     rel_off = Column(SmallInteger)
-    parts = Column(ARRAY(BIGINT()), index=True)
-    members = Column(ARRAY(TEXT()))
-    tags = Column(ARRAY(TEXT()))
+    parts = Column(ARRAY(BigInteger()), index=True)
+    members = Column(ARRAY(Text()))
+    tags = Column(ARRAY(Text()))
     pending = Column(Boolean, nullable=False)
 
 
@@ -542,6 +552,6 @@ class OsmDeuWay(Base):
     __table_args__ = {'schema': 'openstreetmap'}
 
     id = Column(BigInteger, primary_key=True, index=True)
-    nodes = Column(ARRAY(BIGINT()), nullable=False, index=True)
-    tags = Column(ARRAY(TEXT()))
+    nodes = Column(ARRAY(BigInteger()), nullable=False, index=True)
+    tags = Column(ARRAY(Text()))
     pending = Column(Boolean, nullable=False)

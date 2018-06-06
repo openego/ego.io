@@ -3,7 +3,6 @@ from sqlalchemy import Column, Integer, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
-
 Base = declarative_base()
 metadata = Base.metadata
 

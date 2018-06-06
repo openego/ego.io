@@ -3,7 +3,6 @@ from sqlalchemy import BigInteger, Boolean, Column, Date, Float, Integer, Numeri
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
-
 Base = declarative_base()
 metadata = Base.metadata
 
@@ -485,6 +484,16 @@ t_bkg_vg250_statistics_view = Table(
     Column('area_sum_ha', Integer),
     schema='boundaries'
 )
+
+
+class FfeOsmNut3(Base):
+    __tablename__ = 'ffe_osm_nut3'
+    __table_args__ = {'schema': 'boundaries'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('boundaries.ffe_osm_nut3_id_seq'::regclass)"))
+    version = Column(Text)
+    nuts_code = Column(String(5))
+    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
 
 
 class OsmPostcode(Base):
