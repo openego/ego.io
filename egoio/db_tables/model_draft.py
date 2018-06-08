@@ -7358,28 +7358,63 @@ class WnAbwRegionTransport(Base):
                 server_default=text("nextval('model_draft.wn_abw_region_transport_id_seq'::regclass)"))
 
 
+class EgoGridDing0HvmvStation(Base):
+    __tablename__ = 'ego_grid_ding0_hvmv_station'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    run_id = Column(BigInteger)
+    id_db = Column(String(100))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(100))
+    lv_grid_id_db = Column(String(100))
+
+
+class EgoGridDing0HvmvTransformer(Base):
+    __tablename__ = 'ego_grid_ding0_hvmv_transformer'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    run_id = Column(BigInteger)
+    id_db = Column(String(100))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(100))
+    voltage_op = Column(Float(10))
+    S_nom = Column(Float(10))
+    X = Column(Float(10))
+    R = Column(Float(10))
+    lv_grid_id_db = Column(String(100))
+
+
+class EgoGridDing0Line(Base):
+    __tablename__ = 'ego_grid_ding0_line'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    run_id = Column(BigInteger)
+    edge_name = Column(String(100))
+    grid_id_db = Column(String(100))
+    node1 = Column(String(40))
+    node2 = Column(String(40))
+    type_kind = Column(String(20))
+    type_name = Column(String(30))
+    length = Column(Float(10))
+    U_n = Column(Float(10))
+    C = Column(Float(10))
+    L = Column(Float(10))
+    R = Column(Float(10))
+    I_max_th = Column(Float(10))
+
+
 class EgoGridDing0LvBranchtee(Base):
     __tablename__ = 'ego_grid_ding0_lv_branchtee'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
-    id_db = Column(String(36))
+    id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(22))
-
-
-class EgoGridDing0LvGrid(Base):
-    __tablename__ = 'ego_grid_ding0_lv_grid'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
-    id_db = Column(String(22))
-    geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
-    lv_grid_id = Column(BigInteger)
-    population = Column(BigInteger)
-    voltage_nom = Column(Float(10)) #Todo: Check Datatypes
+    lv_grid_id_db = Column(String(100))
 
 
 class EgoGridDing0LvGenerator(Base):
@@ -7397,42 +7432,86 @@ class EgoGridDing0LvGenerator(Base):
     nominal_capacity = Column(Float(10))
 
 
+class EgoGridDing0LvGrid(Base):
+    __tablename__ = 'ego_grid_ding0_lv_grid'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    run_id = Column(BigInteger)
+    id_db = Column(String(100))
+    geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
+    lv_grid_id = Column(BigInteger)
+    population = Column(BigInteger)
+    voltage_nom = Column(Float(10)) #Todo: Check Datatypes
+
+
 class EgoGridDing0LvLoad(Base):
     __tablename__ = 'ego_grid_ding0_lv_load'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
-    id_db = Column(String(26))
+    id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(22))
-    consumption = Column(String(22))
+    lv_grid_id_db = Column(String(100))
+    consumption_residential = Column(Float(10))
+    consumption_retail = Column(Float(10))
+    consumption_agricultural = Column(Float(10))
+    consumption_industrial = Column(Float(10))
 
 
-class EgoGridDing0MvlvStation(Base):
-    __tablename__ = 'ego_grid_ding0_mvlv_station'
+class EgoGridDing0MvBranchtee(Base):
+    __tablename__ = 'ego_grid_ding0_mv_branchtee'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
-    id_db = Column(String(27))
+    id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(22))
+    mv_grid_id_db = Column(String(100))
 
 
-class EgoGridDing0MvlvTransformer(Base):
-    __tablename__ = 'ego_grid_ding0_mvlv_transformer'
+class EgoGridDing0MvGenerator(Base):
+    __tablename__ = 'ego_grid_ding0_mv_generator'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
-    id_db = Column(String(29))
+    id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(22))
-    voltage_op = Column(Float(10))
-    S_nom = Column(Float(10))
-    X = Column(Float(10))
-    R = Column(Float(10))
+    mv_grid_id_db = Column(String(100))
+    type = Column(String(22))
+    subtype = Column(String(22))
+    v_level = Column(Integer)
+    nominal_capacity = Column(Float(10))
+
+
+class EgoGridDing0MvGrid(Base):
+    __tablename__ = 'ego_grid_ding0_mv_grid'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    run_id = Column(BigInteger)
+    id_db = Column(String(100))
+    geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
+    mv_grid_id = Column(BigInteger)
+    population = Column(BigInteger)
+    voltage_nom = Column(Float(10)) #Todo: Check Datatypes
+
+
+class EgoGridDing0MvLoad(Base):
+    __tablename__ = 'ego_grid_ding0_mv_load'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    run_id = Column(BigInteger)
+    id_db = Column(String(100))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(100))
+    consumption_residential = Column(Float(10))
+    consumption_retail = Column(Float(10))
+    consumption_agricultural = Column(Float(10))
+    consumption_industrial = Column(Float(10))
 
 
 class EgoGridDing0MvlvMapping(Base):
@@ -7442,105 +7521,32 @@ class EgoGridDing0MvlvMapping(Base):
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     lv_grid_id = Column(Integer)
-    lv_grid_id_db = Column(String(30))
+    lv_grid_id_db = Column(String(100))
     mv_grid_id = Column(Integer)
-    mv_grid_id_db = Column(String(30))
+    mv_grid_id_db = Column(String(100))
 
 
-class EgoGridDing0Line(Base):
-    __tablename__ = 'ego_grid_ding0_line'
+class EgoGridDing0MvlvStation(Base):
+    __tablename__ = 'ego_grid_ding0_mvlv_station'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
-    edge_name = Column(String(20))
-    grid_id_db = Column(String(30))
-    node1 = Column(String(40))
-    node2 = Column(String(40))
-    type_kind = Column(String(20))
-    type_name = Column(String(30))
-    length = Column(Float(10))
-    U_n = Column(Float(10))
-    C = Column(Float(10))
-    L = Column(Float(10))
-    R = Column(Float(10))
-    I_max_th = Column(Float(10))
-
-
-class EgoGridDing0MvBranchtee(Base):
-    __tablename__ = 'ego_grid_ding0_mv_branchtee'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
-    id_db = Column(String(36))
+    id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
-    mv_grid_id_db = Column(String(22))
+    lv_grid_id_db = Column(String(100))
 
 
-class EgoGridDing0MvGrid(Base):
-    __tablename__ = 'ego_grid_ding0_mv_grid'
+class EgoGridDing0MvlvTransformer(Base):
+    __tablename__ = 'ego_grid_ding0_mvlv_transformer'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
-    id_db = Column(String(22))
-    geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
-    mv_grid_id = Column(BigInteger)
-    population = Column(BigInteger)
-    voltage_nom = Column(Float(10)) #Todo: Check Datatypes
-
-
-class EgoGridDing0MvGenerator(Base):
-    __tablename__ = 'ego_grid_ding0_mv_generator'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
-    id_db = Column(String(34))
+    id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
-    mv_grid_id_db = Column(String(22))
-    type = Column(String(22))
-    subtype = Column(String(22))
-    v_level = Column(Integer)
-    nominal_capacity = Column(Float(10))
-
-
-class EgoGridDing0MvLoad(Base):
-    __tablename__ = 'ego_grid_ding0_mv_load'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
-    id_db = Column(String(26))
-    geom = Column(Geometry('POINT', 4326))
-    mv_grid_id_db = Column(String(22))
-    consumption = Column(String(22))
-
-
-class EgoGridDing0HvmvStation(Base):
-    __tablename__ = 'ego_grid_ding0_hvmv_station'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
-    id_db = Column(String(27))
-    geom = Column(Geometry('POINT', 4326))
-    mv_grid_id_db = Column(String(22))
-    lv_grid_id_db = Column(String(22))
-
-
-class EgoGridDing0HvmvTransformer(Base):
-    __tablename__ = 'ego_grid_ding0_hvmv_transformer'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
-    id_db = Column(String(29))
-    geom = Column(Geometry('POINT', 4326))
-    mv_grid_id_db = Column(String(22))
+    lv_grid_id_db = Column(String(100))
     voltage_op = Column(Float(10))
     S_nom = Column(Float(10))
     X = Column(Float(10))
     R = Column(Float(10))
-    lv_grid_id_db = Column(String(2))
