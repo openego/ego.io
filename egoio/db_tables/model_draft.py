@@ -7367,7 +7367,6 @@ class EgoGridDing0HvmvStation(Base):
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     mv_grid_id_db = Column(String(100))
-    lv_grid_id_db = Column(String(100))
 
 
 class EgoGridDing0HvmvTransformer(Base):
@@ -7394,8 +7393,8 @@ class EgoGridDing0Line(Base):
     run_id = Column(BigInteger)
     edge_name = Column(String(100))
     grid_id_db = Column(String(100))
-    node1 = Column(String(40))
-    node2 = Column(String(40))
+    node1 = Column(String(100))
+    node2 = Column(String(100))
     type_kind = Column(String(20))
     type_name = Column(String(30))
     length = Column(Float(10))
@@ -7478,12 +7477,13 @@ class EgoGridDing0MvGenerator(Base):
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(100))
-    geom = Column(Geometry('POINT', 4326))
     mv_grid_id_db = Column(String(100))
+    geom = Column(Geometry('GEOMETRY',  4326))
     type = Column(String(22))
     subtype = Column(String(22))
     v_level = Column(Integer)
     nominal_capacity = Column(Float(10))
+    is_aggregated = Column(Boolean)
 
 
 class EgoGridDing0MvGrid(Base):
@@ -7506,8 +7506,9 @@ class EgoGridDing0MvLoad(Base):
     id = Column(Integer, primary_key=True)
     run_id = Column(BigInteger)
     id_db = Column(String(100))
-    geom = Column(Geometry('POINT', 4326))
     mv_grid_id_db = Column(String(100))
+    geom = Column(Geometry('GEOMETRY', 4326))
+    is_aggregated = Column(Boolean)
     consumption_residential = Column(Float(10))
     consumption_retail = Column(Float(10))
     consumption_agricultural = Column(Float(10))
