@@ -7358,8 +7358,8 @@ class WnAbwRegionTransport(Base):
                 server_default=text("nextval('model_draft.wn_abw_region_transport_id_seq'::regclass)"))
 
 
-class EgoGridDing0HvmvStation(Base):
-    __tablename__ = 'ego_grid_ding0_hvmv_station'
+class EgoGridDing0MvStation(Base):
+    __tablename__ = 'ego_grid_ding0_mv_station'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
@@ -7429,6 +7429,7 @@ class EgoGridDing0LvGenerator(Base):
     subtype = Column(String(22))
     v_level = Column(Integer)
     nominal_capacity = Column(Float(10))
+    weather_cell_id = Column(BigInteger)
 
 
 class EgoGridDing0LvGrid(Base):
@@ -7453,10 +7454,7 @@ class EgoGridDing0LvLoad(Base):
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     lv_grid_id_db = Column(String(100))
-    consumption_residential = Column(Float(10))
-    consumption_retail = Column(Float(10))
-    consumption_agricultural = Column(Float(10))
-    consumption_industrial = Column(Float(10))
+    consumption = Column(String(100))
 
 
 class EgoGridDing0MvBranchtee(Base):
@@ -7469,6 +7467,16 @@ class EgoGridDing0MvBranchtee(Base):
     geom = Column(Geometry('POINT', 4326))
     mv_grid_id_db = Column(String(100))
 
+class EgoGridDing0MvCircuitbreaker(Base):
+    __tablename__ = 'ego_grid_ding0_mv_circuitbreaker'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    run_id = Column(BigInteger)
+    id_db = Column(String(100))
+    geom = Column(Geometry('POINT', 4326))
+    mv_grid_id_db = Column(String(100))
+    status = Column(String(10))
 
 class EgoGridDing0MvGenerator(Base):
     __tablename__ = 'ego_grid_ding0_mv_generator'
@@ -7478,11 +7486,12 @@ class EgoGridDing0MvGenerator(Base):
     run_id = Column(BigInteger)
     id_db = Column(String(100))
     mv_grid_id_db = Column(String(100))
-    geom = Column(Geometry('GEOMETRY',  4326))
+    geom = Column(Geometry('POINT',  4326))
     type = Column(String(22))
     subtype = Column(String(22))
     v_level = Column(Integer)
     nominal_capacity = Column(Float(10))
+    weather_cell_id = Column(BigInteger)
     is_aggregated = Column(Boolean)
 
 
@@ -7509,10 +7518,7 @@ class EgoGridDing0MvLoad(Base):
     mv_grid_id_db = Column(String(100))
     geom = Column(Geometry('GEOMETRY', 4326))
     is_aggregated = Column(Boolean)
-    consumption_residential = Column(Float(10))
-    consumption_retail = Column(Float(10))
-    consumption_agricultural = Column(Float(10))
-    consumption_industrial = Column(Float(10))
+    consumption = Column(String(100))
 
 
 class EgoGridDing0MvlvMapping(Base):
@@ -7527,8 +7533,8 @@ class EgoGridDing0MvlvMapping(Base):
     mv_grid_id_db = Column(String(100))
 
 
-class EgoGridDing0MvlvStation(Base):
-    __tablename__ = 'ego_grid_ding0_mvlv_station'
+class EgoGridDing0LvStation(Base):
+    __tablename__ = 'ego_grid_ding0_lv_station'
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
