@@ -7358,12 +7358,21 @@ class WnAbwRegionTransport(Base):
                 server_default=text("nextval('model_draft.wn_abw_region_transport_id_seq'::regclass)"))
 
 
+class EgoGridDing0Versioning(Base):
+    __tablename__ = 'ego_grid_ding0_versioning'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    run_id = Column(BigInteger, unique=True, nullable=False)
+    description = Column(String(3000))
+
+
 class EgoGridDing0MvStation(Base):
     __tablename__ = 'ego_grid_ding0_mv_station'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    id = Column(BigInteger, primary_key=True)
+    run_id = Column(BigInteger, ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'), nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     mv_grid_id_db = Column(String(100))
