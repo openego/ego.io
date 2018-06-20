@@ -7372,7 +7372,9 @@ class EgoGridDing0MvStation(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(BigInteger, primary_key=True)
-    run_id = Column(BigInteger, ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'), nullable=False)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     mv_grid_id_db = Column(String(100))
@@ -7383,7 +7385,9 @@ class EgoGridDing0HvmvTransformer(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     mv_grid_id_db = Column(String(100))
@@ -7399,7 +7403,9 @@ class EgoGridDing0Line(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     edge_name = Column(String(100))
     grid_id_db = Column(String(100))
     node1 = Column(String(100))
@@ -7419,7 +7425,9 @@ class EgoGridDing0LvBranchtee(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     lv_grid_id_db = Column(String(100))
@@ -7430,7 +7438,9 @@ class EgoGridDing0LvGenerator(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     lv_grid_id_db = Column(String(100))
@@ -7446,7 +7456,9 @@ class EgoGridDing0LvGrid(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
     lv_grid_id = Column(BigInteger)
@@ -7459,7 +7471,9 @@ class EgoGridDing0LvLoad(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     lv_grid_id_db = Column(String(100))
@@ -7471,7 +7485,9 @@ class EgoGridDing0MvBranchtee(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     mv_grid_id_db = Column(String(100))
@@ -7481,7 +7497,9 @@ class EgoGridDing0MvCircuitbreaker(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     mv_grid_id_db = Column(String(100))
@@ -7492,7 +7510,9 @@ class EgoGridDing0MvGenerator(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     mv_grid_id_db = Column(String(100))
     geom = Column(Geometry('POINT',  4326))
@@ -7509,7 +7529,9 @@ class EgoGridDing0MvGrid(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
     mv_grid_id = Column(BigInteger)
@@ -7522,7 +7544,9 @@ class EgoGridDing0MvLoad(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     mv_grid_id_db = Column(String(100))
     geom = Column(Geometry('GEOMETRY', 4326))
@@ -7535,7 +7559,9 @@ class EgoGridDing0MvlvMapping(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     lv_grid_id = Column(Integer)
     lv_grid_id_db = Column(String(100))
     mv_grid_id = Column(Integer)
