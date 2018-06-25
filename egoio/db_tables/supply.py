@@ -2,7 +2,7 @@
 from sqlalchemy import ARRAY, BigInteger, Column, DateTime, Float, Integer, Numeric, SmallInteger, String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.dialects.postgresql import REAL
+from sqlalchemy.dialects.postgresql import REAL, DOUBLE_PRECISION
 
 
 Base = declarative_base()
@@ -93,6 +93,19 @@ class EgoDpConvPowerplant(Base):
     scenario = Column(Text, primary_key=True, nullable=False, server_default=text("'none'::text"))
     flag = Column(Text)
     nuts = Column(String)
+
+class EgoRenewableFeedin(Base):
+    __tablename__ = 'ego_renewable_feedin'
+    __table_args__ = {'schema': 'supply'}
+
+    version = Column(Text, primary_key=True, nullable=False)
+    weather_scenario_id = Column(Integer, primary_key=True, nullable=False)
+    w_id = Column(Integer, primary_key=True, nullable=False)
+    source = Column(Text, primary_key=True, nullable=False)
+    weather_year = Column(Integer, primary_key=True, nullable=False)
+    power_class = Column(Integer, primary_key=True, nullable=False)
+    feedin = Column(ARRAY(DOUBLE_PRECISION(precision=53)))
+    scenario = Column(Text, primary_key=True, nullable=False)
 
 
 t_ego_dp_conv_powerplant_ego100_mview = Table(
