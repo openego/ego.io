@@ -274,7 +274,7 @@ t_ego_dp_conv_powerplant_nep2035_mview = Table(
 t_ego_dp_conv_powerplant_sq_mview = Table(
     'ego_dp_conv_powerplant_sq_mview', metadata,
     Column('version', Text),
-    Column('gid', Integer),
+    Column('id', Integer),
     Column('bnetza_id', Text),
     Column('company', Text),
     Column('name', Text),
