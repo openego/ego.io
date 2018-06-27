@@ -2785,50 +2785,51 @@ class EgoGridPfHvBusmap(Base):
     path_length = Column(Numeric)
 
 
-t_ego_grid_pf_hv_extension_bus = Table(
-    'ego_grid_pf_hv_extension_bus', metadata,
-    Column('scn_name', String, nullable=False, server_default=text("'extension_nep2035_confirmed'::character varying")),
-    Column('bus_id', BigInteger, nullable=False),
-    Column('v_nom', Float(53)),
-    Column('current_type', Text, server_default=text("'AC'::text")),
-    Column('v_mag_pu_min', Float(53), server_default=text("0")),
-    Column('v_mag_pu_max', Float(53)),
-    Column('geom', Geometry('POINT', 4326)),
-    Column('project', String),
-    Column('bus_name', String),
-    schema='model_draft'
-)
 
 
-t_ego_grid_pf_hv_extension_line = Table(
-    'ego_grid_pf_hv_extension_line', metadata,
-    Column('scn_name', String, nullable=False, server_default=text("'extension_nep2035_confirmed'::character varying")),
-    Column('line_id', BigInteger, nullable=False),
-    Column('bus0', BigInteger),
-    Column('bus1', BigInteger),
-    Column('x', Numeric, server_default=text("0")),
-    Column('r', Numeric, server_default=text("0")),
-    Column('g', Numeric, server_default=text("0")),
-    Column('b', Numeric, server_default=text("0")),
-    Column('s_nom', Numeric, server_default=text("0")),
-    Column('s_nom_extendable', Boolean, server_default=text("false")),
-    Column('s_nom_min', Float(53), server_default=text("0")),
-    Column('s_nom_max', Float(53)),
-    Column('capital_cost', Float(53)),
-    Column('length', Float(53)),
-    Column('cables', Integer),
-    Column('frequency', Numeric),
-    Column('terrain_factor', Float(53), server_default=text("1")),
-    Column('geom', Geometry('MULTILINESTRING', 4326)),
-    Column('topo', Geometry('LINESTRING', 4326)),
-    Column('v_nom', BigInteger),
-    Column('project', String),
-    Column('project_id', BigInteger),
-    Column('segment', BigInteger),
-    Column('cable', Boolean, server_default=text("false")),
-    Column('nova', String),
-    schema='model_draft'
-)
+class EgoGridPfHvExtensionBus(Base):
+    __tablename__ = 'ego_grid_pf_hv_extension_bus'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
+    bus_id = Column(BigInteger, primary_key=True, nullable=False)
+    v_nom = Column(Float(53))
+    current_type = Column(Text, server_default=text("'AC'::text"))
+    v_mag_pu_min = Column(Float(53), server_default=text("0"))
+    v_mag_pu_max = Column(Float(53))
+    geom = Column(Geometry('POINT', 4326), index=True)
+    project = Column(String)
+    bus_name = Column(String)
+
+class EgoGridPfHvExtensionLine(Base):
+    __tablename__ = 'ego_grid_pf_hv_extension_line'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, nullable=False, server_default=text("'extension_nep2035_confirmed'::character varying"))
+    line_id = Column(BigInteger, primary_key=True, nullable=False)
+    bus0 = Column(BigInteger)
+    bus1 = Column(BigInteger)
+    x = Column(Numeric, server_default=text("0"))
+    r = Column(Numeric, server_default=text("0"))
+    g = Column(Numeric, server_default=text("0"))
+    b = Column(Numeric, server_default=text("0"))
+    s_nom = Column(Numeric, server_default=text("0"))
+    s_nom_extendable = Column(Boolean, server_default=text("false"))
+    s_nom_min = Column(Float(53), server_default=text("0"))
+    s_nom_max = Column(Float(53))
+    capital_cost = Column(Float(53))
+    length = Column(Float(53))
+    cables = Column(Integer)
+    frequency = Column(Numeric)
+    terrain_factor = Column(Float(53), server_default=text("1"))
+    geom = Column(Geometry('MULTILINESTRING', 4326))
+    topo = Column(Geometry('LINESTRING', 4326))
+    v_nom = Column(BigInteger)
+    project = Column(String)
+    project_id = Column(BigInteger)
+    segment = Column(BigInteger),
+    cable = Column(Boolean, server_default=text("false")),
+    nova = Column(String)
 
 
 class EgoGridPfHvExtensionLink(Base):
@@ -2867,14 +2868,16 @@ class EgoGridPfHvExtensionLoad(Base):
     e_annual = Column(Float(53))
 
 
-t_ego_grid_pf_hv_extension_source = Table(
-    'ego_grid_pf_hv_extension_source', metadata,
-    Column('source_id', BigInteger),
-    Column('name', Text),
-    Column('co2_emissions', Float(53)),
-    Column('commentary', Text),
-    schema='model_draft'
-)
+
+class EgoGridPfHvExtensionSource(Base):
+    __tablename__ = 'ego_grid_pf_hv_extension_source'
+    __table_args__ = {'schema': 'model_draft'}
+
+    source_id = Column(BigInteger,primary_key=True, nullable=False)
+    name = Column(Text)
+    co2_emissions = Column(Float(53))
+    commentary = Column(Text)
+
 
 
 class EgoGridPfHvExtensionStorage(Base):
@@ -2920,14 +2923,16 @@ class EgoGridPfHvExtensionStoragePqSet(Base):
     inflow = Column(ARRAY(Float(precision=53)))
 
 
-t_ego_grid_pf_hv_extension_temp_resolution = Table(
-    'ego_grid_pf_hv_extension_temp_resolution', metadata,
-    Column('temp_id', BigInteger),
-    Column('timesteps', BigInteger),
-    Column('resolution', Text),
-    Column('start_time', DateTime),
-    schema='model_draft'
-)
+
+class EgoGridPfHvExtensionTempResolution(Base):
+    __tablename__ = 'ego_grid_pf_hv_extension_temp_resolution'
+    __table_args__ = {'schema': 'model_draft'}
+
+    temp_id = Column(BigInteger, primary_key=True, nullable=False)
+    timesteps = Column(BigInteger)
+    resolution = Column(Text)
+    start_time = Column(DateTime)
+
 
 
 class EgoGridPfHvExtensionTransformer(Base):
@@ -8026,39 +8031,42 @@ class EgoGridPfHvBusVMagSet(Base):
     temp = relationship('EgoGridPfHvTempResolution')
 
 
-t_ego_grid_pf_hv_extension_generator = Table(
-    'ego_grid_pf_hv_extension_generator', metadata,
-    Column('scn_name', String, nullable=False, server_default=text("'Status Quo'::character varying")),
-    Column('generator_id', BigInteger, nullable=False),
-    Column('bus', BigInteger),
-    Column('dispatch', Text, server_default=text("'flexible'::text")),
-    Column('control', Text, server_default=text("'PQ'::text")),
-    Column('p_nom', Float(53), server_default=text("0")),
-    Column('p_nom_extendable', Boolean, server_default=text("false")),
-    Column('p_nom_min', Float(53), server_default=text("0")),
-    Column('p_nom_max', Float(53)),
-    Column('p_min_pu_fixed', Float(53), server_default=text("0")),
-    Column('p_max_pu_fixed', Float(53), server_default=text("1")),
-    Column('sign', Float(53), server_default=text("1")),
-    Column('source', ForeignKey('model_draft.ego_grid_pf_hv_source.source_id')),
-    Column('marginal_cost', Float(53)),
-    Column('capital_cost', Float(53)),
-    Column('efficiency', Float(53)),
-    schema='model_draft'
-)
+
+class EgoGridPfHvExtensionGenerator(Base):
+    __tablename__ = 'ego_grid_pf_hv_extension_generator'
+    __table_args__ = {'schema': 'model_draft'}
+
+    scn_name = Column(String, primary_key=True, nullable=False)
+    generator_id = Column(BigInteger, primary_key=True, nullable=False)
+    bus = Column(BigInteger)
+    dispatch = Column(Text, server_default=text("'flexible'::text"))
+    control = Column(Text, server_default=text("'PQ'::text"))
+    p_nom = Column(Float(53), server_default=text("0"))
+    p_nom_extendable = Column(Boolean, server_default=text("false"))
+    p_nom_min = Column(Float(53), server_default=text("0"))
+    p_nom_max = Column(Float(53))
+    p_min_pu_fixed = Column(Float(53), server_default=text("0"))
+    p_max_pu_fixed = Column(Float(53), server_default=text("1"))
+    sign = Column(Float(53), server_default=text("1"))
+    source = Column(BigInteger)
+    marginal_cost = Column(Float(53))
+    capital_cost = Column(Float(53))
+    efficiency = Column(Float(53))
 
 
-t_ego_grid_pf_hv_extension_generator_pq_set = Table(
-    'ego_grid_pf_hv_extension_generator_pq_set', metadata,
-    Column('scn_name', String, nullable=False, server_default=text("'Status Quo'::character varying")),
-    Column('generator_id', BigInteger, nullable=False),
-    Column('temp_id', ForeignKey('model_draft.ego_grid_pf_hv_temp_resolution.temp_id'), nullable=False),
-    Column('p_set', ARRAY(Float(precision=53))),
-    Column('q_set', ARRAY(Float(precision=53))),
-    Column('p_min_pu', ARRAY(Float(precision=53))),
-    Column('p_max_pu', ARRAY(Float(precision=53))),
-    schema='model_draft'
-)
+class EgoGridPfHvExtensionGeneratorPqSet(Base):
+    __tablename__ = 'ego_grid_pf_hv_extension_generator_pq_set'
+    __table_args__ = {'schema': 'model_draft'}
+
+    version = Column(Text, primary_key=True, nullable=False)
+    scn_name = Column(String, primary_key=True, nullable=False)
+    generator_id = Column(BigInteger, primary_key=True, nullable=False)
+    temp_id = Column(Integer, primary_key=True, nullable=False)
+    p_set = Column(ARRAY(Float(precision=53)))
+    q_set = Column(ARRAY(Float(precision=53)))
+    p_min_pu = Column(ARRAY(Float(precision=53)))
+    p_max_pu = Column(ARRAY(Float(precision=53)))
+
 
 
 class EgoGridPfHvExtensionLoadPqSet(Base):
