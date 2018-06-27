@@ -354,6 +354,7 @@ class EgoDpResPowerplant(Base):
     un_id = Column(BigInteger)
     voltage_level = Column(SmallInteger)
     la_id = Column(Integer)
+    w_id = Column(BigInteger)
     mvlv_subst_id = Column(Integer)
     rea_sort = Column(Integer)
     rea_flag = Column(String)
@@ -398,6 +399,7 @@ t_ego_dp_res_powerplant_ego100_mview = Table(
     Column('un_id', BigInteger),
     Column('voltage_level', SmallInteger),
     Column('la_id', Integer),
+    Column('w_id', BigInteger),
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
@@ -444,6 +446,7 @@ t_ego_dp_res_powerplant_nep2035_mview = Table(
     Column('un_id', BigInteger),
     Column('voltage_level', SmallInteger),
     Column('la_id', Integer),
+    Column('w_id', BigInteger),
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
@@ -490,6 +493,7 @@ t_ego_dp_res_powerplant_sq_mview = Table(
     Column('un_id', BigInteger),
     Column('voltage_level', SmallInteger),
     Column('la_id', Integer),
+    Column('w_id', BigInteger),
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
