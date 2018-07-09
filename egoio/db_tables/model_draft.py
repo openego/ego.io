@@ -7441,7 +7441,8 @@ class EgoGridDing0LvGenerator(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(Integer)
+    la_id = Column(Integer)
     geom = Column(Geometry('POINT', 4326))
     lv_grid_id_db = Column(String(100))
     type = Column(String(22))
@@ -7449,6 +7450,7 @@ class EgoGridDing0LvGenerator(Base):
     v_level = Column(Integer)
     nominal_capacity = Column(Float(10))
     weather_cell_id = Column(BigInteger)
+    is_aggregated = Column(Boolean)
 
 
 class EgoGridDing0LvGrid(Base):
@@ -7513,7 +7515,7 @@ class EgoGridDing0MvGenerator(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(Integer)
     mv_grid_id_db = Column(String(100))
     geom = Column(Geometry('POINT',  4326))
     type = Column(String(22))
