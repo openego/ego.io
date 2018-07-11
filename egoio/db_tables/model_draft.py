@@ -7575,7 +7575,9 @@ class EgoGridDing0LvStation(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     lv_grid_id_db = Column(String(100))
@@ -7586,7 +7588,9 @@ class EgoGridDing0MvlvTransformer(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    run_id = Column(BigInteger)
+    run_id = Column(BigInteger,
+                    ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
+                    nullable=False)
     id_db = Column(String(100))
     geom = Column(Geometry('POINT', 4326))
     lv_grid_id_db = Column(String(100))
