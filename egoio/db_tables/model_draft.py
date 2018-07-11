@@ -7418,6 +7418,7 @@ class EgoGridDing0Line(Base):
     L = Column(Float(10))
     R = Column(Float(10))
     I_max_th = Column(Float(10))
+    geom = Column(Geometry('LINESTRING', 4326))
 
 
 class EgoGridDing0LvBranchtee(Base):
