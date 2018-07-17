@@ -7375,9 +7375,9 @@ class EgoGridDing0MvStation(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
     geom = Column(Geometry('POINT', 4326))
-    mv_grid_id_db = Column(String(100))
+    name = Column(String(100))
 
 
 class EgoGridDing0HvmvTransformer(Base):
@@ -7388,14 +7388,13 @@ class EgoGridDing0HvmvTransformer(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
     geom = Column(Geometry('POINT', 4326))
-    mv_grid_id_db = Column(String(100))
+    name = Column(String(100))
     voltage_op = Column(Float(10))
-    S_nom = Column(Float(10))
-    X = Column(Float(10))
-    R = Column(Float(10))
-    lv_grid_id_db = Column(String(100))
+    s_nom = Column(Float(10))
+    x = Column(Float(10))
+    r = Column(Float(10))
 
 
 class EgoGridDing0Line(Base):
@@ -7406,18 +7405,19 @@ class EgoGridDing0Line(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
+    id_db = Column(BigInteger)
     edge_name = Column(String(100))
-    grid_id_db = Column(String(100))
+    grid_name = Column(String(100))
     node1 = Column(String(100))
     node2 = Column(String(100))
     type_kind = Column(String(20))
     type_name = Column(String(30))
     length = Column(Float(10))
-    U_n = Column(Float(10))
-    C = Column(Float(10))
-    L = Column(Float(10))
-    R = Column(Float(10))
-    I_max_th = Column(Float(10))
+    u_n = Column(Float(10))
+    c = Column(Float(10))
+    l = Column(Float(10))
+    r = Column(Float(10))
+    i_max_th = Column(Float(10))
     geom = Column(Geometry('LINESTRING', 4326))
 
 
@@ -7429,9 +7429,9 @@ class EgoGridDing0LvBranchtee(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(100))
+    name = Column(String(100))
 
 
 class EgoGridDing0LvGenerator(Base):
@@ -7442,10 +7442,11 @@ class EgoGridDing0LvGenerator(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(Integer)
-    la_id = Column(Integer)
+    id_db = Column(BigInteger)
+    la_id = Column(BigInteger)
+    name = Column(String(100))
+    lv_grid_id = Column(BigInteger)
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(100))
     type = Column(String(22))
     subtype = Column(String(22))
     v_level = Column(Integer)
@@ -7462,9 +7463,9 @@ class EgoGridDing0LvGrid(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
+    name = Column(String(100))
     geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
-    lv_grid_id = Column(BigInteger)
     population = Column(BigInteger)
     voltage_nom = Column(Float(10)) #Todo: Check Datatypes
 
@@ -7477,9 +7478,10 @@ class EgoGridDing0LvLoad(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
+    name = Column(String(100))
+    lv_grid_id = Column(Integer)
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(100))
     consumption = Column(String(100))
 
 
@@ -7491,9 +7493,9 @@ class EgoGridDing0MvBranchtee(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
     geom = Column(Geometry('POINT', 4326))
-    mv_grid_id_db = Column(String(100))
+    name = Column(String(100))
 
 class EgoGridDing0MvCircuitbreaker(Base):
     __tablename__ = 'ego_grid_ding0_mv_circuitbreaker'
@@ -7503,9 +7505,9 @@ class EgoGridDing0MvCircuitbreaker(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
     geom = Column(Geometry('POINT', 4326))
-    mv_grid_id_db = Column(String(100))
+    name = Column(String(100))
     status = Column(String(10))
 
 class EgoGridDing0MvGenerator(Base):
@@ -7516,8 +7518,8 @@ class EgoGridDing0MvGenerator(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(Integer)
-    mv_grid_id_db = Column(String(100))
+    id_db = Column(BigInteger)
+    name = Column(String(100))
     geom = Column(Geometry('POINT',  4326))
     type = Column(String(22))
     subtype = Column(String(22))
@@ -7535,9 +7537,9 @@ class EgoGridDing0MvGrid(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
     geom = Column(Geometry('MULTIPOLYGON', 4326)) #Todo: check if right srid?
-    mv_grid_id = Column(BigInteger)
+    name = Column(String(100))
     population = Column(BigInteger)
     voltage_nom = Column(Float(10)) #Todo: Check Datatypes
 
@@ -7550,8 +7552,8 @@ class EgoGridDing0MvLoad(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
-    mv_grid_id_db = Column(String(100))
+    id_db = Column(BigInteger)
+    name = Column(String(100))
     geom = Column(Geometry('GEOMETRY', 4326))
     is_aggregated = Column(Boolean)
     consumption = Column(String(100))
@@ -7565,10 +7567,10 @@ class EgoGridDing0MvlvMapping(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    lv_grid_id = Column(Integer)
-    lv_grid_id_db = Column(String(100))
-    mv_grid_id = Column(Integer)
-    mv_grid_id_db = Column(String(100))
+    lv_grid_id = Column(BigInteger)
+    lv_grid_name = Column(String(100))
+    mv_grid_id = Column(BigInteger)
+    mv_grid_name = Column(String(100))
 
 
 class EgoGridDing0LvStation(Base):
@@ -7579,9 +7581,9 @@ class EgoGridDing0LvStation(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(100))
+    name = Column(String(100))
 
 
 class EgoGridDing0MvlvTransformer(Base):
@@ -7592,10 +7594,10 @@ class EgoGridDing0MvlvTransformer(Base):
     run_id = Column(BigInteger,
                     ForeignKey('model_draft.ego_grid_ding0_versioning.run_id'),
                     nullable=False)
-    id_db = Column(String(100))
+    id_db = Column(BigInteger)
     geom = Column(Geometry('POINT', 4326))
-    lv_grid_id_db = Column(String(100))
+    name = Column(String(100))
     voltage_op = Column(Float(10))
-    S_nom = Column(Float(10))
-    X = Column(Float(10))
-    R = Column(Float(10))
+    s_nom = Column(Float(10))
+    x = Column(Float(10))
+    r = Column(Float(10))
