@@ -636,6 +636,18 @@ t_ego_res_powerplant_altmark_vg_mview = Table(
 )
 
 
+class EgoAggrWeather(Base):
+    __tablename__ = 'ego_aggr_weather'
+    __table_args__ = {'schema': 'supply'}
+    
+    version = Column(Text, primary_key=True, nullable=False)
+    aggr_id = Column(BigInteger)
+    w_id = Column(BigInteger)
+    scn_name = Column(Text)
+    bus = Column(BigInteger)
+    row_number = Column(BigInteger, primary_key=True, nullable=False)
+    
+   
 class ForwindOekoRenewableCapacityPerFederalstate(Base):
     __tablename__ = 'forwind_oeko_renewable_capacity_per_federalstate'
     __table_args__ = {'schema': 'supply'}
