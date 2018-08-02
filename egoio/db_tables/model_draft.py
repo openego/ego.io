@@ -4344,17 +4344,6 @@ class EgoStorageH2AreasDe(Base):
     geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
 
 
-t_ego_supply_aggr_weather_mview = Table(
-    'ego_supply_aggr_weather_mview', metadata,
-    Column('aggr_id', BigInteger),
-    Column('w_id', BigInteger),
-    Column('scn_name', String),
-    Column('bus', BigInteger),
-    Column('row_number', BigInteger),
-    schema='model_draft'
-)
-
-
 t_ego_supply_conv_nep2035_temp = Table(
     'ego_supply_conv_nep2035_temp', metadata,
     Column('preversion', Text),
