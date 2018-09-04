@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, Float, Integer, Numeric, String, Text
+from sqlalchemy import Column, Float, Integer, Numeric, String, Table, Text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -67,3 +67,101 @@ class EgoDpLoadarea(Base):
     geom_surfacepoint = Column(Geometry('POINT', 3035))
     geom_centre = Column(Geometry('POINT', 3035))
     geom = Column(Geometry('POLYGON', 3035), index=True)
+
+
+t_ego_dp_loadarea_v0_4_3_mview = Table(
+    'ego_dp_loadarea_v0_4_3_mview', metadata,
+    Column('version', Text),
+    Column('id', Integer, unique=True),
+    Column('subst_id', Integer),
+    Column('area_ha', Numeric),
+    Column('nuts', String(5)),
+    Column('rs_0', String(12)),
+    Column('ags_0', String(12)),
+    Column('otg_id', Integer),
+    Column('un_id', Integer),
+    Column('zensus_sum', Integer),
+    Column('zensus_count', Integer),
+    Column('zensus_density', Numeric),
+    Column('ioer_sum', Numeric),
+    Column('ioer_count', Integer),
+    Column('ioer_density', Numeric),
+    Column('sector_area_residential', Numeric),
+    Column('sector_area_retail', Numeric),
+    Column('sector_area_industrial', Numeric),
+    Column('sector_area_agricultural', Numeric),
+    Column('sector_area_sum', Numeric),
+    Column('sector_share_residential', Numeric),
+    Column('sector_share_retail', Numeric),
+    Column('sector_share_industrial', Numeric),
+    Column('sector_share_agricultural', Numeric),
+    Column('sector_share_sum', Numeric),
+    Column('sector_count_residential', Integer),
+    Column('sector_count_retail', Integer),
+    Column('sector_count_industrial', Integer),
+    Column('sector_count_agricultural', Integer),
+    Column('sector_count_sum', Integer),
+    Column('sector_consumption_residential', Float(53)),
+    Column('sector_consumption_retail', Float(53)),
+    Column('sector_consumption_industrial', Float(53)),
+    Column('sector_consumption_agricultural', Float(53)),
+    Column('sector_consumption_sum', Float(53)),
+    Column('sector_peakload_retail', Float(53)),
+    Column('sector_peakload_residential', Float(53)),
+    Column('sector_peakload_industrial', Float(53)),
+    Column('sector_peakload_agricultural', Float(53)),
+    Column('geom_centroid', Geometry('POINT', 3035)),
+    Column('geom_surfacepoint', Geometry('POINT', 3035)),
+    Column('geom_centre', Geometry('POINT', 3035)),
+    Column('geom', Geometry('POLYGON', 3035), index=True),
+    schema='demand'
+)
+
+
+t_ego_dp_loadarea_v0_4_5_mview = Table(
+    'ego_dp_loadarea_v0_4_5_mview', metadata,
+    Column('version', Text),
+    Column('id', Integer, unique=True),
+    Column('subst_id', Integer),
+    Column('area_ha', Numeric),
+    Column('nuts', String(5)),
+    Column('rs_0', String(12)),
+    Column('ags_0', String(12)),
+    Column('otg_id', Integer),
+    Column('un_id', Integer),
+    Column('zensus_sum', Integer),
+    Column('zensus_count', Integer),
+    Column('zensus_density', Numeric),
+    Column('ioer_sum', Numeric),
+    Column('ioer_count', Integer),
+    Column('ioer_density', Numeric),
+    Column('sector_area_residential', Numeric),
+    Column('sector_area_retail', Numeric),
+    Column('sector_area_industrial', Numeric),
+    Column('sector_area_agricultural', Numeric),
+    Column('sector_area_sum', Numeric),
+    Column('sector_share_residential', Numeric),
+    Column('sector_share_retail', Numeric),
+    Column('sector_share_industrial', Numeric),
+    Column('sector_share_agricultural', Numeric),
+    Column('sector_share_sum', Numeric),
+    Column('sector_count_residential', Integer),
+    Column('sector_count_retail', Integer),
+    Column('sector_count_industrial', Integer),
+    Column('sector_count_agricultural', Integer),
+    Column('sector_count_sum', Integer),
+    Column('sector_consumption_residential', Float(53)),
+    Column('sector_consumption_retail', Float(53)),
+    Column('sector_consumption_industrial', Float(53)),
+    Column('sector_consumption_agricultural', Float(53)),
+    Column('sector_consumption_sum', Float(53)),
+    Column('sector_peakload_retail', Float(53)),
+    Column('sector_peakload_residential', Float(53)),
+    Column('sector_peakload_industrial', Float(53)),
+    Column('sector_peakload_agricultural', Float(53)),
+    Column('geom_centroid', Geometry('POINT', 3035)),
+    Column('geom_surfacepoint', Geometry('POINT', 3035)),
+    Column('geom_centre', Geometry('POINT', 3035)),
+    Column('geom', Geometry('POLYGON', 3035), index=True),
+    schema='demand'
+)

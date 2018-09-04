@@ -197,6 +197,36 @@ class OsmDeuPoint(Base):
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_point_gid_seq'::regclass)"))
 
 
+t_osm_deu_point_biogas_mview = Table(
+    'osm_deu_point_biogas_mview', metadata,
+    Column('osm_id', BigInteger),
+    Column('gid', Integer),
+    Column('tags', HSTORE(Text())),
+    Column('geom', Geometry('POINT', 3035), index=True),
+    schema='openstreetmap'
+)
+
+
+t_osm_deu_point_solar_mview = Table(
+    'osm_deu_point_solar_mview', metadata,
+    Column('osm_id', BigInteger),
+    Column('gid', Integer),
+    Column('tags', HSTORE(Text())),
+    Column('geom', Geometry('POINT', 3035), index=True),
+    schema='openstreetmap'
+)
+
+
+t_osm_deu_point_wind_mview = Table(
+    'osm_deu_point_wind_mview', metadata,
+    Column('osm_id', BigInteger),
+    Column('gid', Integer),
+    Column('tags', HSTORE(Text())),
+    Column('geom', Geometry('POINT', 3035), index=True),
+    schema='openstreetmap'
+)
+
+
 class OsmDeuPointWindpower(Base):
     __tablename__ = 'osm_deu_point_windpower'
     __table_args__ = {'schema': 'openstreetmap'}
