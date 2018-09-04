@@ -89,6 +89,18 @@ class BnetzaEegAnlagenstammdaten(Base):
     geom = Column(Geometry('POINT', 5652))
 
 
+class EgoAggrWeather(Base):
+    __tablename__ = 'ego_aggr_weather'
+    __table_args__ = {'schema': 'supply'}
+
+    version = Column(Text, primary_key=True, nullable=False)
+    aggr_id = Column(BigInteger)
+    w_id = Column(BigInteger)
+    scn_name = Column(String)
+    bus = Column(BigInteger)
+    row_number = Column(BigInteger, primary_key=True, nullable=False)
+
+
 class EgoConventionalPowerplant(Base):
     __tablename__ = 'ego_conventional_powerplant'
     __table_args__ = {'schema': 'supply'}
@@ -132,7 +144,7 @@ class EgoDpConvPowerplant(Base):
     __table_args__ = {'schema': 'supply'}
 
     version = Column(Text, primary_key=True, nullable=False)
-    gid = Column(Integer, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True, nullable=False)
     bnetza_id = Column(Text)
     company = Column(Text)
     name = Column(Text)
@@ -179,7 +191,7 @@ t_ego_dp_conv_powerplant_ego100_mview = Table(
     'ego_dp_conv_powerplant_ego100_mview', metadata,
     Column('version', Text),
     Column('preversion', Text),
-    Column('gid', Integer),
+    Column('id', Integer),
     Column('bnetza_id', Text),
     Column('company', Text),
     Column('name', Text),
@@ -226,7 +238,7 @@ t_ego_dp_conv_powerplant_ego100_mview = Table(
 t_ego_dp_conv_powerplant_nep2035_mview = Table(
     'ego_dp_conv_powerplant_nep2035_mview', metadata,
     Column('version', Text),
-    Column('gid', Integer),
+    Column('id', Integer),
     Column('bnetza_id', Text),
     Column('company', Text),
     Column('name', Text),
@@ -354,7 +366,6 @@ class EgoDpResPowerplant(Base):
     un_id = Column(BigInteger)
     voltage_level = Column(SmallInteger)
     la_id = Column(Integer)
-    w_id = Column(BigInteger)
     mvlv_subst_id = Column(Integer)
     rea_sort = Column(Integer)
     rea_flag = Column(String)
@@ -364,6 +375,7 @@ class EgoDpResPowerplant(Base):
     flag = Column(String)
     scenario = Column(String, primary_key=True, nullable=False, server_default=text("'none'::character varying"))
     nuts = Column(String)
+    w_id = Column(BigInteger)
 
 
 t_ego_dp_res_powerplant_ego100_mview = Table(
@@ -399,7 +411,6 @@ t_ego_dp_res_powerplant_ego100_mview = Table(
     Column('un_id', BigInteger),
     Column('voltage_level', SmallInteger),
     Column('la_id', Integer),
-    Column('w_id', BigInteger),
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
@@ -409,6 +420,7 @@ t_ego_dp_res_powerplant_ego100_mview = Table(
     Column('flag', String),
     Column('scenario', String),
     Column('nuts', String),
+    Column('w_id', BigInteger),
     schema='supply'
 )
 
@@ -446,7 +458,6 @@ t_ego_dp_res_powerplant_nep2035_mview = Table(
     Column('un_id', BigInteger),
     Column('voltage_level', SmallInteger),
     Column('la_id', Integer),
-    Column('w_id', BigInteger),
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
@@ -456,6 +467,7 @@ t_ego_dp_res_powerplant_nep2035_mview = Table(
     Column('flag', String),
     Column('scenario', String),
     Column('nuts', String),
+    Column('w_id', BigInteger),
     schema='supply'
 )
 
@@ -493,7 +505,6 @@ t_ego_dp_res_powerplant_sq_mview = Table(
     Column('un_id', BigInteger),
     Column('voltage_level', SmallInteger),
     Column('la_id', Integer),
-    Column('w_id', BigInteger),
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
@@ -503,6 +514,7 @@ t_ego_dp_res_powerplant_sq_mview = Table(
     Column('flag', String),
     Column('scenario', String),
     Column('nuts', String),
+    Column('w_id', BigInteger),
     schema='supply'
 )
 
