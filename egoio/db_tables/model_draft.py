@@ -508,7 +508,7 @@ t_corr_mv_lines_results = Table(
 )
 
 
-class CorrVisHvBus(Base):
+class CorrVisHvBu(Base):
     __tablename__ = 'corr_vis_hv_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -538,7 +538,7 @@ class CorrVisHvLine(Base):
     max_srel = Column(Float(53))
 
 
-class CorrVisMvBus(Base):
+class CorrVisMvBu(Base):
     __tablename__ = 'corr_vis_mv_bus'
     __table_args__ = {'schema': 'model_draft'}
 
@@ -1755,6 +1755,269 @@ t_ego_dp_supply_res_powerplant_out_mview = Table(
 )
 
 
+class EgoDpSupplyResPowerplantV030(Base):
+    __tablename__ = 'ego_dp_supply_res_powerplant_v030'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(BigInteger, primary_key=True, nullable=False)
+    start_up_date = Column(DateTime)
+    electrical_capacity = Column(Numeric)
+    generation_type = Column(Text)
+    generation_subtype = Column(String)
+    thermal_capacity = Column(Numeric)
+    city = Column(String)
+    postcode = Column(String)
+    address = Column(String)
+    lon = Column(Numeric)
+    lat = Column(Numeric)
+    gps_accuracy = Column(String)
+    validation = Column(String)
+    notification_reason = Column(String)
+    eeg_id = Column(String)
+    tso = Column(Float(53))
+    tso_eic = Column(String)
+    dso_id = Column(String)
+    dso = Column(String)
+    voltage_level_var = Column(String)
+    network_node = Column(String)
+    power_plant_id = Column(String)
+    source = Column(String)
+    comment = Column(String)
+    geom = Column(Geometry('POINT', 4326))
+    subst_id = Column(BigInteger)
+    otg_id = Column(BigInteger)
+    un_id = Column(BigInteger)
+    voltage_level = Column(SmallInteger)
+    la_id = Column(Integer)
+    mvlv_subst_id = Column(Integer)
+    rea_sort = Column(Integer)
+    rea_flag = Column(String)
+    rea_geom_line = Column(Geometry('LINESTRING', 3035))
+    rea_geom_new = Column(Geometry('POINT', 3035))
+    preversion = Column(Text)
+    flag = Column(String)
+    scenario = Column(String, primary_key=True, nullable=False, server_default=text("'none'::character varying"))
+    nuts = Column(String)
+    w_id = Column(BigInteger)
+
+
+class EgoGridDing0HvmvTransformer(Base):
+    __tablename__ = 'ego_grid_ding0_hvmv_transformer'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_hvmv_transformer_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    name = Column(String(100))
+    voltage_op = Column(Float)
+    s_nom = Column(Float)
+    x = Column(Float)
+    r = Column(Float)
+
+
+class EgoGridDing0Line(Base):
+    __tablename__ = 'ego_grid_ding0_line'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_line_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    edge_name = Column(String(100))
+    grid_name = Column(String(100))
+    node1 = Column(String(100))
+    node2 = Column(String(100))
+    type_kind = Column(String(20))
+    type_name = Column(String(30))
+    length = Column(Float)
+    u_n = Column(Float)
+    c = Column(Float)
+    l = Column(Float)
+    r = Column(Float)
+    i_max_th = Column(Float)
+    geom = Column(Geometry('LINESTRING', 4326), index=True)
+
+
+class EgoGridDing0LvBranchtee(Base):
+    __tablename__ = 'ego_grid_ding0_lv_branchtee'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_lv_branchtee_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    name = Column(String(100))
+
+
+class EgoGridDing0LvGenerator(Base):
+    __tablename__ = 'ego_grid_ding0_lv_generator'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_lv_generator_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    la_id = Column(BigInteger)
+    name = Column(String(100))
+    lv_grid_id = Column(BigInteger)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    type = Column(String(22))
+    subtype = Column(String(22))
+    v_level = Column(Integer)
+    nominal_capacity = Column(Float)
+    weather_cell_id = Column(BigInteger)
+    is_aggregated = Column(Boolean)
+
+
+class EgoGridDing0LvGrid(Base):
+    __tablename__ = 'ego_grid_ding0_lv_grid'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_lv_grid_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    name = Column(String(100))
+    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+    population = Column(BigInteger)
+    voltage_nom = Column(Float)
+
+
+class EgoGridDing0LvLoad(Base):
+    __tablename__ = 'ego_grid_ding0_lv_load'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_lv_load_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    name = Column(String(100))
+    lv_grid_id = Column(Integer)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    consumption = Column(String(100))
+
+
+class EgoGridDing0LvStation(Base):
+    __tablename__ = 'ego_grid_ding0_lv_station'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_lv_station_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    name = Column(String(100))
+
+
+class EgoGridDing0MvBranchtee(Base):
+    __tablename__ = 'ego_grid_ding0_mv_branchtee'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_branchtee_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    name = Column(String(100))
+
+
+class EgoGridDing0MvCircuitbreaker(Base):
+    __tablename__ = 'ego_grid_ding0_mv_circuitbreaker'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_circuitbreaker_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    name = Column(String(100))
+    status = Column(String(10))
+
+
+class EgoGridDing0MvGenerator(Base):
+    __tablename__ = 'ego_grid_ding0_mv_generator'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_generator_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    name = Column(String(100))
+    geom = Column(Geometry('POINT', 4326), index=True)
+    type = Column(String(22))
+    subtype = Column(String(22))
+    v_level = Column(Integer)
+    nominal_capacity = Column(Float)
+    weather_cell_id = Column(BigInteger)
+    is_aggregated = Column(Boolean)
+
+
+class EgoGridDing0MvGrid(Base):
+    __tablename__ = 'ego_grid_ding0_mv_grid'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_grid_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+    name = Column(String(100))
+    population = Column(BigInteger)
+    voltage_nom = Column(Float)
+
+
+class EgoGridDing0MvLoad(Base):
+    __tablename__ = 'ego_grid_ding0_mv_load'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_load_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    name = Column(String(100))
+    geom = Column(Geometry(srid=4326), index=True)
+    is_aggregated = Column(Boolean)
+    consumption = Column(String(100))
+
+
+class EgoGridDing0MvStation(Base):
+    __tablename__ = 'ego_grid_ding0_mv_station'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_station_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    name = Column(String(100))
+
+
+class EgoGridDing0MvlvMapping(Base):
+    __tablename__ = 'ego_grid_ding0_mvlv_mapping'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mvlv_mapping_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    lv_grid_id = Column(BigInteger)
+    lv_grid_name = Column(String(100))
+    mv_grid_id = Column(BigInteger)
+    mv_grid_name = Column(String(100))
+
+
+class EgoGridDing0MvlvTransformer(Base):
+    __tablename__ = 'ego_grid_ding0_mvlv_transformer'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mvlv_transformer_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False)
+    id_db = Column(BigInteger)
+    geom = Column(Geometry('POINT', 4326), index=True)
+    name = Column(String(100))
+    voltage_op = Column(Float)
+    s_nom = Column(Float)
+    x = Column(Float)
+    r = Column(Float)
+
+
+class EgoGridDing0Versioning(Base):
+    __tablename__ = 'ego_grid_ding0_versioning'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_versioning_id_seq'::regclass)"))
+    run_id = Column(BigInteger, nullable=False, unique=True)
+    description = Column(String(3000))
+
+
 class EgoGridEhvSubstation(Base):
     __tablename__ = 'ego_grid_ehv_substation'
     __table_args__ = {'schema': 'model_draft'}
@@ -1928,6 +2191,31 @@ t_ego_grid_hvmv_substation_mun_2_mview = Table(
 )
 
 
+class EgoGridHvmvSubstationV030(Base):
+    __tablename__ = 'ego_grid_hvmv_substation_v030'
+    __table_args__ = {'schema': 'model_draft'}
+
+    subst_id = Column(Integer, nullable=False, server_default=text("nextval('model_draft.ego_grid_hvmv_substation_v030_subst_id_seq'::regclass)"))
+    lon = Column(Float(53), nullable=False)
+    lat = Column(Float(53), nullable=False)
+    point = Column(Geometry('POINT', 4326), nullable=False)
+    polygon = Column(Geometry, nullable=False)
+    voltage = Column(Text)
+    power_type = Column(Text)
+    substation = Column(Text)
+    osm_id = Column(Text, primary_key=True)
+    osm_www = Column(Text, nullable=False)
+    frequency = Column(Text)
+    subst_name = Column(Text)
+    ref = Column(Text)
+    operator = Column(Text)
+    dbahn = Column(Text)
+    status = Column(SmallInteger, nullable=False)
+    otg_id = Column(BigInteger)
+    ags_0 = Column(Text)
+    geom = Column(Geometry('POINT', 3035))
+
+
 class EgoGridHvmvSubstationVoronoi(Base):
     __tablename__ = 'ego_grid_hvmv_substation_voronoi'
     __table_args__ = {'schema': 'model_draft'}
@@ -2037,26 +2325,6 @@ t_ego_grid_hvmv_substation_voronoi_mview = Table(
     Column('geom', Geometry('POLYGON', 3035), index=True),
     schema='model_draft'
 )
-
-
-class EgoGridLine(Base):
-    __tablename__ = 'ego_grid_line'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_line_id_seq'::regclass)"))
-    run_id = Column(BigInteger)
-    edge_name = Column(String(20))
-    grid_id_db = Column(String(30))
-    node1 = Column(String(40))
-    node2 = Column(String(40))
-    type_kind = Column(String(20))
-    type_name = Column(String(30))
-    length = Column(Float)
-    U_n = Column(Float)
-    C = Column(Float)
-    L = Column(Float)
-    R = Column(Float)
-    I_max_th = Column(Float)
 
 
 class EgoGridLineExpansionCost(Base):
@@ -2785,51 +3053,62 @@ class EgoGridPfHvBusmap(Base):
     path_length = Column(Numeric)
 
 
-
-
-class EgoGridPfHvExtensionBus(Base):
-    __tablename__ = 'ego_grid_pf_hv_extension_bus'
+class EgoGridPfHvDataCheck(Base):
+    __tablename__ = 'ego_grid_pf_hv_data_check'
     __table_args__ = {'schema': 'model_draft'}
 
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    bus_id = Column(BigInteger, primary_key=True, nullable=False)
-    v_nom = Column(Float(53))
-    current_type = Column(Text, server_default=text("'AC'::text"))
-    v_mag_pu_min = Column(Float(53), server_default=text("0"))
-    v_mag_pu_max = Column(Float(53))
-    geom = Column(Geometry('POINT', 4326), index=True)
-    project = Column(String)
-    bus_name = Column(String)
+    test_id = Column(Integer, nullable=False, server_default=text("nextval('model_draft.ego_grid_pf_hv_data_check_test_id_seq'::regclass)"))
+    version = Column(String, primary_key=True, nullable=False)
+    scn_name = Column(String, primary_key=True, nullable=False)
+    test = Column(String, primary_key=True, nullable=False)
+    table_name = Column(String)
+    count = Column(Integer)
 
-class EgoGridPfHvExtensionLine(Base):
-    __tablename__ = 'ego_grid_pf_hv_extension_line'
-    __table_args__ = {'schema': 'model_draft'}
 
-    scn_name = Column(String, nullable=False, server_default=text("'extension_nep2035_confirmed'::character varying"))
-    line_id = Column(BigInteger, primary_key=True, nullable=False)
-    bus0 = Column(BigInteger)
-    bus1 = Column(BigInteger)
-    x = Column(Numeric, server_default=text("0"))
-    r = Column(Numeric, server_default=text("0"))
-    g = Column(Numeric, server_default=text("0"))
-    b = Column(Numeric, server_default=text("0"))
-    s_nom = Column(Numeric, server_default=text("0"))
-    s_nom_extendable = Column(Boolean, server_default=text("false"))
-    s_nom_min = Column(Float(53), server_default=text("0"))
-    s_nom_max = Column(Float(53))
-    capital_cost = Column(Float(53))
-    length = Column(Float(53))
-    cables = Column(Integer)
-    frequency = Column(Numeric)
-    terrain_factor = Column(Float(53), server_default=text("1"))
-    geom = Column(Geometry('MULTILINESTRING', 4326))
-    topo = Column(Geometry('LINESTRING', 4326))
-    v_nom = Column(BigInteger)
-    project = Column(String)
-    project_id = Column(BigInteger)
-    segment = Column(BigInteger),
-    cable = Column(Boolean, server_default=text("false")),
-    nova = Column(String)
+t_ego_grid_pf_hv_extension_bus = Table(
+    'ego_grid_pf_hv_extension_bus', metadata,
+    Column('scn_name', String, nullable=False, server_default=text("'extension_nep2035_confirmed'::character varying")),
+    Column('bus_id', BigInteger, nullable=False),
+    Column('v_nom', Float(53)),
+    Column('current_type', Text, server_default=text("'AC'::text")),
+    Column('v_mag_pu_min', Float(53), server_default=text("0")),
+    Column('v_mag_pu_max', Float(53)),
+    Column('geom', Geometry('POINT', 4326)),
+    Column('project', String),
+    Column('bus_name', String),
+    schema='model_draft'
+)
+
+
+t_ego_grid_pf_hv_extension_line = Table(
+    'ego_grid_pf_hv_extension_line', metadata,
+    Column('scn_name', String, nullable=False, server_default=text("'extension_nep2035_confirmed'::character varying")),
+    Column('line_id', BigInteger, nullable=False),
+    Column('bus0', BigInteger),
+    Column('bus1', BigInteger),
+    Column('x', Numeric, server_default=text("0")),
+    Column('r', Numeric, server_default=text("0")),
+    Column('g', Numeric, server_default=text("0")),
+    Column('b', Numeric, server_default=text("0")),
+    Column('s_nom', Numeric, server_default=text("0")),
+    Column('s_nom_extendable', Boolean, server_default=text("false")),
+    Column('s_nom_min', Float(53), server_default=text("0")),
+    Column('s_nom_max', Float(53)),
+    Column('capital_cost', Float(53)),
+    Column('length', Float(53)),
+    Column('cables', Integer),
+    Column('frequency', Numeric),
+    Column('terrain_factor', Float(53), server_default=text("1")),
+    Column('geom', Geometry('MULTILINESTRING', 4326)),
+    Column('topo', Geometry('LINESTRING', 4326)),
+    Column('v_nom', BigInteger),
+    Column('project', String),
+    Column('project_id', BigInteger),
+    Column('segment', BigInteger),
+    Column('cable', Boolean, server_default=text("false")),
+    Column('nova', String),
+    schema='model_draft'
+)
 
 
 class EgoGridPfHvExtensionLink(Base):
@@ -2868,16 +3147,14 @@ class EgoGridPfHvExtensionLoad(Base):
     e_annual = Column(Float(53))
 
 
-
-class EgoGridPfHvExtensionSource(Base):
-    __tablename__ = 'ego_grid_pf_hv_extension_source'
-    __table_args__ = {'schema': 'model_draft'}
-
-    source_id = Column(BigInteger,primary_key=True, nullable=False)
-    name = Column(Text)
-    co2_emissions = Column(Float(53))
-    commentary = Column(Text)
-
+t_ego_grid_pf_hv_extension_source = Table(
+    'ego_grid_pf_hv_extension_source', metadata,
+    Column('source_id', BigInteger),
+    Column('name', Text),
+    Column('co2_emissions', Float(53)),
+    Column('commentary', Text),
+    schema='model_draft'
+)
 
 
 class EgoGridPfHvExtensionStorage(Base):
@@ -2923,16 +3200,14 @@ class EgoGridPfHvExtensionStoragePqSet(Base):
     inflow = Column(ARRAY(Float(precision=53)))
 
 
-
-class EgoGridPfHvExtensionTempResolution(Base):
-    __tablename__ = 'ego_grid_pf_hv_extension_temp_resolution'
-    __table_args__ = {'schema': 'model_draft'}
-
-    temp_id = Column(BigInteger, primary_key=True, nullable=False)
-    timesteps = Column(BigInteger)
-    resolution = Column(Text)
-    start_time = Column(DateTime)
-
+t_ego_grid_pf_hv_extension_temp_resolution = Table(
+    'ego_grid_pf_hv_extension_temp_resolution', metadata,
+    Column('temp_id', BigInteger),
+    Column('timesteps', BigInteger),
+    Column('resolution', Text),
+    Column('start_time', DateTime),
+    schema='model_draft'
+)
 
 
 class EgoGridPfHvExtensionTransformer(Base):
@@ -2964,68 +3239,8 @@ class EgoGridPfHvExtensionTransformer(Base):
     s_min = Column(Float(53), server_default=text("0"))
 
 
-class EgoGridPfHvGeneratorPqSetV030(Base):
-    __tablename__ = 'ego_grid_pf_hv_generator_pq_set_v030'
-    __table_args__ = {'schema': 'model_draft'}
-
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    generator_id = Column(BigInteger, primary_key=True, nullable=False)
-    temp_id = Column(Integer, primary_key=True, nullable=False)
-    p_set = Column(ARRAY(Float(precision=53)))
-    q_set = Column(ARRAY(Float(precision=53)))
-    p_min_pu = Column(ARRAY(Float(precision=53)))
-    p_max_pu = Column(ARRAY(Float(precision=53)))
-
-
-class EgoGridPfHvGeneratorV030(Base):
-    __tablename__ = 'ego_grid_pf_hv_generator_v030'
-    __table_args__ = {'schema': 'model_draft'}
-
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    generator_id = Column(BigInteger, primary_key=True, nullable=False)
-    bus = Column(BigInteger)
-    dispatch = Column(Text, server_default=text("'flexible'::text"))
-    control = Column(Text, server_default=text("'PQ'::text"))
-    p_nom = Column(Float(53), server_default=text("0"))
-    p_nom_extendable = Column(Boolean, server_default=text("false"))
-    p_nom_min = Column(Float(53), server_default=text("0"))
-    p_nom_max = Column(Float(53))
-    p_min_pu_fixed = Column(Float(53), server_default=text("0"))
-    p_max_pu_fixed = Column(Float(53), server_default=text("1"))
-    sign = Column(Float(53), server_default=text("1"))
-    source = Column(BigInteger)
-    marginal_cost = Column(Float(53))
-    capital_cost = Column(Float(53))
-    efficiency = Column(Float(53))
-
-
 class EgoGridPfHvLine(Base):
     __tablename__ = 'ego_grid_pf_hv_line'
-    __table_args__ = {'schema': 'model_draft'}
-
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    line_id = Column(BigInteger, primary_key=True, nullable=False)
-    bus0 = Column(BigInteger)
-    bus1 = Column(BigInteger)
-    x = Column(Numeric, server_default=text("0"))
-    r = Column(Numeric, server_default=text("0"))
-    g = Column(Numeric, server_default=text("0"))
-    b = Column(Numeric, server_default=text("0"))
-    s_nom = Column(Numeric, server_default=text("0"))
-    s_nom_extendable = Column(Boolean, server_default=text("false"))
-    s_nom_min = Column(Float(53), server_default=text("0"))
-    s_nom_max = Column(Float(53))
-    capital_cost = Column(Float(53))
-    length = Column(Float(53))
-    cables = Column(Integer)
-    frequency = Column(Numeric)
-    terrain_factor = Column(Float(53), server_default=text("1"))
-    geom = Column(Geometry('MULTILINESTRING', 4326))
-    topo = Column(Geometry('LINESTRING', 4326))
-
-
-class EgoGridPfHvLineV030(Base):
-    __tablename__ = 'ego_grid_pf_hv_line_v030'
     __table_args__ = {'schema': 'model_draft'}
 
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
@@ -3070,51 +3285,8 @@ class EgoGridPfHvLink(Base):
     topo = Column(Geometry('LINESTRING', 4326))
 
 
-class EgoGridPfHvLinkV030(Base):
-    __tablename__ = 'ego_grid_pf_hv_link_v030'
-    __table_args__ = {'schema': 'model_draft'}
-
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    link_id = Column(BigInteger, primary_key=True, nullable=False)
-    bus0 = Column(BigInteger)
-    bus1 = Column(BigInteger)
-    efficiency = Column(Float(53), server_default=text("1"))
-    marginal_cost = Column(Float(53), server_default=text("0"))
-    p_nom = Column(Numeric, server_default=text("0"))
-    p_nom_extendable = Column(Boolean, server_default=text("false"))
-    p_nom_min = Column(Float(53), server_default=text("0"))
-    p_nom_max = Column(Float(53))
-    capital_cost = Column(Float(53))
-    length = Column(Float(53))
-    terrain_factor = Column(Float(53), server_default=text("1"))
-    geom = Column(Geometry('MULTILINESTRING', 4326))
-    topo = Column(Geometry('LINESTRING', 4326))
-
-
 class EgoGridPfHvLoad(Base):
     __tablename__ = 'ego_grid_pf_hv_load'
-    __table_args__ = {'schema': 'model_draft'}
-
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    load_id = Column(BigInteger, primary_key=True, nullable=False)
-    bus = Column(BigInteger)
-    sign = Column(Float(53), server_default=text("'-1'::integer"))
-    e_annual = Column(Float(53))
-
-
-class EgoGridPfHvLoadPqSetV030(Base):
-    __tablename__ = 'ego_grid_pf_hv_load_pq_set_v030'
-    __table_args__ = {'schema': 'model_draft'}
-
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    load_id = Column(BigInteger, primary_key=True, nullable=False)
-    temp_id = Column(Integer, primary_key=True, nullable=False)
-    p_set = Column(ARRAY(Float(precision=53)))
-    q_set = Column(ARRAY(Float(precision=53)))
-
-
-class EgoGridPfHvLoadV030(Base):
-    __tablename__ = 'ego_grid_pf_hv_load_v030'
     __table_args__ = {'schema': 'model_draft'}
 
     scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
@@ -3421,47 +3593,32 @@ class EgoGridPfHvSource(Base):
     commentary = Column(Text)
 
 
-class EgoGridPfHvStoragePqSetV030(Base):
-    __tablename__ = 'ego_grid_pf_hv_storage_pq_set_v030'
-    __table_args__ = {'schema': 'model_draft'}
-
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    storage_id = Column(BigInteger, primary_key=True, nullable=False)
-    temp_id = Column(Integer, primary_key=True, nullable=False)
-    p_set = Column(ARRAY(Float(precision=53)))
-    q_set = Column(ARRAY(Float(precision=53)))
-    p_min_pu = Column(ARRAY(Float(precision=53)))
-    p_max_pu = Column(ARRAY(Float(precision=53)))
-    soc_set = Column(ARRAY(Float(precision=53)))
-    inflow = Column(ARRAY(Float(precision=53)))
-
-
-class EgoGridPfHvStorageV030(Base):
-    __tablename__ = 'ego_grid_pf_hv_storage_v030'
-    __table_args__ = {'schema': 'model_draft'}
-
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    storage_id = Column(BigInteger, primary_key=True, nullable=False)
-    bus = Column(BigInteger)
-    dispatch = Column(Text, server_default=text("'flexible'::text"))
-    control = Column(Text, server_default=text("'PQ'::text"))
-    p_nom = Column(Float(53), server_default=text("0"))
-    p_nom_extendable = Column(Boolean, server_default=text("false"))
-    p_nom_min = Column(Float(53), server_default=text("0"))
-    p_nom_max = Column(Float(53))
-    p_min_pu_fixed = Column(Float(53), server_default=text("0"))
-    p_max_pu_fixed = Column(Float(53), server_default=text("1"))
-    sign = Column(Float(53), server_default=text("1"))
-    source = Column(BigInteger)
-    marginal_cost = Column(Float(53))
-    capital_cost = Column(Float(53))
-    efficiency = Column(Float(53))
-    soc_initial = Column(Float(53))
-    soc_cyclic = Column(Boolean, server_default=text("false"))
-    max_hours = Column(Float(53))
-    efficiency_store = Column(Float(53))
-    efficiency_dispatch = Column(Float(53))
-    standing_loss = Column(Float(53))
+t_ego_grid_pf_hv_storage_eins = Table(
+    'ego_grid_pf_hv_storage_eins', metadata,
+    Column('scn_name', String, nullable=False, server_default=text("'Status Quo'::character varying")),
+    Column('storage_id', BigInteger, nullable=False),
+    Column('bus', BigInteger),
+    Column('dispatch', Text, server_default=text("'flexible'::text")),
+    Column('control', Text, server_default=text("'PQ'::text")),
+    Column('p_nom', Float(53), server_default=text("0")),
+    Column('p_nom_extendable', Boolean, server_default=text("false")),
+    Column('p_nom_min', Float(53), server_default=text("0")),
+    Column('p_nom_max', Float(53)),
+    Column('p_min_pu_fixed', Float(53), server_default=text("0")),
+    Column('p_max_pu_fixed', Float(53), server_default=text("1")),
+    Column('sign', Float(53), server_default=text("1")),
+    Column('source', BigInteger),
+    Column('marginal_cost', Float(53)),
+    Column('capital_cost', Float(53)),
+    Column('efficiency', Float(53)),
+    Column('soc_initial', Float(53)),
+    Column('soc_cyclic', Boolean, server_default=text("false")),
+    Column('max_hours', Float(53)),
+    Column('efficiency_store', Float(53)),
+    Column('efficiency_dispatch', Float(53)),
+    Column('standing_loss', Float(53)),
+    schema='model_draft'
+)
 
 
 class EgoGridPfHvTempResolution(Base):
@@ -3482,29 +3639,6 @@ class EgoGridPfHvTransformer(Base):
     trafo_id = Column(BigInteger, primary_key=True, nullable=False)
     bus0 = Column(BigInteger, index=True)
     bus1 = Column(BigInteger, index=True)
-    x = Column(Numeric, server_default=text("0"))
-    r = Column(Numeric, server_default=text("0"))
-    g = Column(Numeric, server_default=text("0"))
-    b = Column(Numeric, server_default=text("0"))
-    s_nom = Column(Float(53), server_default=text("0"))
-    s_nom_extendable = Column(Boolean, server_default=text("false"))
-    s_nom_min = Column(Float(53), server_default=text("0"))
-    s_nom_max = Column(Float(53))
-    tap_ratio = Column(Float(53))
-    phase_shift = Column(Float(53))
-    capital_cost = Column(Float(53), server_default=text("0"))
-    geom = Column(Geometry('MULTILINESTRING', 4326))
-    topo = Column(Geometry('LINESTRING', 4326))
-
-
-class EgoGridPfHvTransformerV030(Base):
-    __tablename__ = 'ego_grid_pf_hv_transformer_v030'
-    __table_args__ = {'schema': 'model_draft'}
-
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'Status Quo'::character varying"))
-    trafo_id = Column(BigInteger, primary_key=True, nullable=False)
-    bus0 = Column(BigInteger)
-    bus1 = Column(BigInteger)
     x = Column(Numeric, server_default=text("0"))
     r = Column(Numeric, server_default=text("0"))
     g = Column(Numeric, server_default=text("0"))
@@ -3777,6 +3911,33 @@ class EgoLanduseIndustry(Base):
     nuts = Column(String(5))
     consumption = Column(Numeric)
     peak_load = Column(Numeric)
+
+
+class EgoLattice1km(Base):
+    __tablename__ = 'ego_lattice_1km'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry('POINT', 3035))
+    subst_id = Column(BigInteger)
+
+
+class EgoLattice2km(Base):
+    __tablename__ = 'ego_lattice_2km'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry('POINT', 3035))
+    subst_id = Column(BigInteger)
+
+
+class EgoLattice2pt5km(Base):
+    __tablename__ = 'ego_lattice_2pt5km'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True)
+    geom = Column(Geometry('POINT', 3035))
+    subst_id = Column(BigInteger)
 
 
 class EgoLattice360mLv(Base):
@@ -4342,6 +4503,17 @@ class EgoStorageH2AreasDe(Base):
     shape_star = Column(Numeric)
     shape_stle = Column(Numeric)
     geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+
+
+t_ego_supply_aggr_weather = Table(
+    'ego_supply_aggr_weather', metadata,
+    Column('aggr_id', BigInteger),
+    Column('w_id', BigInteger),
+    Column('scn_name', String),
+    Column('bus', BigInteger),
+    Column('row_number', BigInteger),
+    schema='model_draft'
+)
 
 
 t_ego_supply_conv_nep2035_temp = Table(
@@ -6731,199 +6903,16 @@ t_ev_charging_xxxx_edges = Table(
 )
 
 
-class ExampleApiTableMatija(Base):
-    __tablename__ = 'example_api_table_matija'
+class ExampleApiTable(Base):
+    __tablename__ = 'example_api_table'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_matija_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableOpenmodWolf(Base):
-    __tablename__ = 'example_api_table_openmod_wolf'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_openmod_wolf_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTablePpSabine(Base):
-    __tablename__ = 'example_api_table_pp_sabine'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_pp_sabine_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTest(Base):
-    __tablename__ = 'example_api_table_test'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_id_seq'::regclass)"))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_id_seq'::regclass)"))
     name = Column(String(50))
     type = Column(String(20))
     capacity = Column(Numeric)
     lat = Column(Numeric)
     lon = Column(Numeric)
-
-
-class ExampleApiTableTestAndre(Base):
-    __tablename__ = 'example_api_table_test_andres'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_andres_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTestCb(Base):
-    __tablename__ = 'example_api_table_test_cb'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_cb_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTestFrauke(Base):
-    __tablename__ = 'example_api_table_test_frauke'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_frauke_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTestJulian(Base):
-    __tablename__ = 'example_api_table_test_julian'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_julian_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTestLudwig(Base):
-    __tablename__ = 'example_api_table_test_ludwig'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_ludwig_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTestManuel(Base):
-    __tablename__ = 'example_api_table_test_manuel'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_manuel_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTestSarah(Base):
-    __tablename__ = 'example_api_table_test_sarah'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_sarah_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTestThoma(Base):
-    __tablename__ = 'example_api_table_test_thomas'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_thomas_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTestThomas1(Base):
-    __tablename__ = 'example_api_table_test_thomas1'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_thomas1_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableTestWilko(Base):
-    __tablename__ = 'example_api_table_test_wilko'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_test_wilko_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableWolf(Base):
-    __tablename__ = 'example_api_table_wolf'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.example_api_table_wolf_id_seq'::regclass)"))
-    name = Column(String(50))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableWolfTest(Base):
-    __tablename__ = 'example_api_table_wolf_test'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.example_api_table_wolf_test_id_seq'::regclass)"))
-    name = Column(String(50))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleApiTableWorkshopRobbie(Base):
-    __tablename__ = 'example_api_table_workshop_robbie'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_api_table_workshop_robbie_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
-
-
-class ExampleNikla(Base):
-    __tablename__ = 'example_niklas'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.example_niklas_id_seq'::regclass)"))
-    name = Column(String(50))
-    type = Column(String(15))
-    capacity = Column(Numeric(15, 0))
-    geom = Column(Geometry('POINT'))
 
 
 t_feasability_check = Table(
@@ -7069,11 +7058,11 @@ class LisChargingGe(Base):
     desc = Column(String)
 
 
-class LisChargingPoiBadSaarow(Base):
-    __tablename__ = 'lis_charging_poi_bad_saarow'
+class LisChargingPoi(Base):
+    __tablename__ = 'lis_charging_poi'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_poi_bad_saarow_id_seq'::regclass)"))
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_poi_id_seq'::regclass)"))
     geom = Column(Geometry('POINT', 3035), index=True)
     osm_id = Column(BigInteger)
     amenity = Column(String)
@@ -7082,112 +7071,17 @@ class LisChargingPoiBadSaarow(Base):
     grid_id = Column(BigInteger)
     potential = Column(Float(53))
     covered_by = Column(BigInteger)
+    region = Column(BigInteger)
 
 
-class LisChargingPoiBerlin(Base):
-    __tablename__ = 'lis_charging_poi_berlin'
+class LisChargingStreet(Base):
+    __tablename__ = 'lis_charging_streets'
     __table_args__ = {'schema': 'model_draft'}
 
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.map_charging_poi_berlin_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
-    osm_id = Column(BigInteger)
-    amenity = Column(String)
-    name = Column(String)
-    category = Column(SmallInteger)
-    grid_id = Column(BigInteger)
-    potential = Column(Float(53))
-    covered_by = Column(BigInteger)
-
-
-class LisChargingPoiBrandenburg(Base):
-    __tablename__ = 'lis_charging_poi_brandenburg'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_poi_brandenburg_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
-    osm_id = Column(BigInteger)
-    amenity = Column(String)
-    name = Column(String)
-    category = Column(SmallInteger)
-    grid_id = Column(BigInteger)
-    potential = Column(Float(53))
-    covered_by = Column(BigInteger)
-
-
-class LisChargingPoiFuerstenwaldespree(Base):
-    __tablename__ = 'lis_charging_poi_fuerstenwaldespree'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_poi_fuerstenwaldespree_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
-    osm_id = Column(BigInteger)
-    amenity = Column(String)
-    name = Column(String)
-    category = Column(SmallInteger)
-    grid_id = Column(BigInteger)
-    potential = Column(Float(53))
-    covered_by = Column(BigInteger)
-
-
-class LisChargingPoiPanketal(Base):
-    __tablename__ = 'lis_charging_poi_panketal'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_poi_panketal_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
-    osm_id = Column(BigInteger)
-    amenity = Column(String)
-    name = Column(String)
-    category = Column(SmallInteger)
-    grid_id = Column(BigInteger)
-    potential = Column(Float(53))
-    covered_by = Column(BigInteger)
-
-
-class LisChargingPoiPotsdam(Base):
-    __tablename__ = 'lis_charging_poi_potsdam'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_poi_potsdam_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
-    osm_id = Column(BigInteger)
-    amenity = Column(String)
-    name = Column(String)
-    category = Column(SmallInteger)
-    grid_id = Column(BigInteger)
-    potential = Column(Float(53))
-    covered_by = Column(BigInteger)
-
-
-class LisChargingPoiUelzen(Base):
-    __tablename__ = 'lis_charging_poi_uelzen'
-    __table_args__ = {'schema': 'model_draft'}
-
-    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.map_charging_poi_uelzen_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
-    osm_id = Column(BigInteger)
-    amenity = Column(String)
-    name = Column(String)
-    category = Column(SmallInteger)
-    grid_id = Column(BigInteger)
-    potential = Column(Float(53))
-    covered_by = Column(BigInteger)
-
-
-t_lis_charging_test = Table(
-    'lis_charging_test', metadata,
-    Column('ge_id', BigInteger),
-    Column('lat', Float(53)),
-    Column('lng', Float(53)),
-    Column('name', String),
-    Column('street', String),
-    Column('postcode', String),
-    Column('city', String),
-    Column('count', Integer),
-    Column('power', Float(53)),
-    Column('type', String),
-    schema='model_draft'
-)
+    id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_streets_id_seq'::regclass)"))
+    geom = Column(Geometry('MULTILINESTRING', 3035), index=True)
+    geom_string = Column(String)
+    desc = Column(String)
 
 
 class NepSupplyConvPowerplantNep2015(Base):
@@ -7213,6 +7107,26 @@ class NepSupplyConvPowerplantNep2015(Base):
     location_checked = Column(Text)
     geom = Column(Geometry('POINT', 4326))
     gid = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.nep_supply_conv_powerplant_nep2015_seq'::regclass)"))
+
+
+class OepMetadataTableExampleV13(Base):
+    __tablename__ = 'oep_metadata_table_example_v13'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.oep_metadata_table_example_v13_id_seq'::regclass)"))
+    year = Column(Integer)
+    value = Column(Float(53))
+    geom = Column(Geometry('POINT', 4326), index=True)
+
+
+class OepMetadataTableExampleV14(Base):
+    __tablename__ = 'oep_metadata_table_example_v14'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.oep_metadata_table_example_v14_id_seq'::regclass)"))
+    year = Column(Integer)
+    value = Column(Float(53))
+    geom = Column(Geometry('POINT', 4326), index=True)
 
 
 t_offshore_feedin_foreign = Table(
@@ -7264,6 +7178,14 @@ class OpenfredFlag(OpenfredVariable):
     id = Column(ForeignKey('model_draft.openfred_variables.id'), primary_key=True)
     flag_ks = Column(ARRAY(Integer()), nullable=False)
     flag_vs = Column(ARRAY(String(length=37)), nullable=False)
+
+
+class Openfredgrid(Base):
+    __tablename__ = 'openfredgrid'
+    __table_args__ = {'schema': 'model_draft'}
+
+    gid = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.openfredgrid_gid_seq'::regclass)"))
+    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
 
 
 t_opsd_hourly_timeseries = Table(
@@ -7495,6 +7417,18 @@ class SupplyWriWorldpowerwatch(Base):
     fuel4 = Column(String)
     field_17 = Column(String)
     field_18 = Column(String)
+
+
+t_temp_supply_aggr_weather = Table(
+    'temp_supply_aggr_weather', metadata,
+    Column('aggr_id', BigInteger),
+    Column('w_id', BigInteger),
+    Column('scn_name', String),
+    Column('bus', BigInteger),
+    Column('power_class', BigInteger),
+    Column('row_number', BigInteger),
+    schema='model_draft'
+)
 
 
 class TemplateTable(Base):
@@ -7949,6 +7883,14 @@ class WnAbwEgoPfHvTransformer(Base):
     topo = Column(Geometry('LINESTRING', 4326))
 
 
+class WnAbwLauProtectedLandscapeElement(Base):
+    __tablename__ = 'wn_abw_lau_protected_landscape_elements'
+    __table_args__ = {'schema': 'model_draft'}
+
+    id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.wn_abw_lau_protected_landscape_elements_id_seq'::regclass)"))
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
+
+
 class WnAbwPowerplantT(Base):
     __tablename__ = 'wn_abw_powerplant_ts'
     __table_args__ = {'schema': 'model_draft'}
@@ -8005,7 +7947,7 @@ class EgoDemandPfLoadSingle(Base):
     sign = Column(Float(53), server_default=text("'-1'::integer"))
     e_annual = Column(Float(53))
 
-    ego_grid_pf_hv_bu = relationship('EgoGridPfHvBus')
+    ego_grid_pf_hv_bus = relationship('EgoGridPfHvBus')
 
 
 class EgoGridPfHvBusVMagSet(Base):
@@ -8020,42 +7962,39 @@ class EgoGridPfHvBusVMagSet(Base):
     temp = relationship('EgoGridPfHvTempResolution')
 
 
+t_ego_grid_pf_hv_extension_generator = Table(
+    'ego_grid_pf_hv_extension_generator', metadata,
+    Column('scn_name', String, nullable=False, server_default=text("'Status Quo'::character varying")),
+    Column('generator_id', BigInteger, nullable=False),
+    Column('bus', BigInteger),
+    Column('dispatch', Text, server_default=text("'flexible'::text")),
+    Column('control', Text, server_default=text("'PQ'::text")),
+    Column('p_nom', Float(53), server_default=text("0")),
+    Column('p_nom_extendable', Boolean, server_default=text("false")),
+    Column('p_nom_min', Float(53), server_default=text("0")),
+    Column('p_nom_max', Float(53)),
+    Column('p_min_pu_fixed', Float(53), server_default=text("0")),
+    Column('p_max_pu_fixed', Float(53), server_default=text("1")),
+    Column('sign', Float(53), server_default=text("1")),
+    Column('source', ForeignKey('model_draft.ego_grid_pf_hv_source.source_id')),
+    Column('marginal_cost', Float(53)),
+    Column('capital_cost', Float(53)),
+    Column('efficiency', Float(53)),
+    schema='model_draft'
+)
 
-class EgoGridPfHvExtensionGenerator(Base):
-    __tablename__ = 'ego_grid_pf_hv_extension_generator'
-    __table_args__ = {'schema': 'model_draft'}
 
-    scn_name = Column(String, primary_key=True, nullable=False)
-    generator_id = Column(BigInteger, primary_key=True, nullable=False)
-    bus = Column(BigInteger)
-    dispatch = Column(Text, server_default=text("'flexible'::text"))
-    control = Column(Text, server_default=text("'PQ'::text"))
-    p_nom = Column(Float(53), server_default=text("0"))
-    p_nom_extendable = Column(Boolean, server_default=text("false"))
-    p_nom_min = Column(Float(53), server_default=text("0"))
-    p_nom_max = Column(Float(53))
-    p_min_pu_fixed = Column(Float(53), server_default=text("0"))
-    p_max_pu_fixed = Column(Float(53), server_default=text("1"))
-    sign = Column(Float(53), server_default=text("1"))
-    source = Column(BigInteger)
-    marginal_cost = Column(Float(53))
-    capital_cost = Column(Float(53))
-    efficiency = Column(Float(53))
-
-
-class EgoGridPfHvExtensionGeneratorPqSet(Base):
-    __tablename__ = 'ego_grid_pf_hv_extension_generator_pq_set'
-    __table_args__ = {'schema': 'model_draft'}
-
-    version = Column(Text, primary_key=True, nullable=False)
-    scn_name = Column(String, primary_key=True, nullable=False)
-    generator_id = Column(BigInteger, primary_key=True, nullable=False)
-    temp_id = Column(Integer, primary_key=True, nullable=False)
-    p_set = Column(ARRAY(Float(precision=53)))
-    q_set = Column(ARRAY(Float(precision=53)))
-    p_min_pu = Column(ARRAY(Float(precision=53)))
-    p_max_pu = Column(ARRAY(Float(precision=53)))
-
+t_ego_grid_pf_hv_extension_generator_pq_set = Table(
+    'ego_grid_pf_hv_extension_generator_pq_set', metadata,
+    Column('scn_name', String, nullable=False, server_default=text("'Status Quo'::character varying")),
+    Column('generator_id', BigInteger, nullable=False),
+    Column('temp_id', ForeignKey('model_draft.ego_grid_pf_hv_temp_resolution.temp_id'), nullable=False),
+    Column('p_set', ARRAY(Float(precision=53))),
+    Column('q_set', ARRAY(Float(precision=53))),
+    Column('p_min_pu', ARRAY(Float(precision=53))),
+    Column('p_max_pu', ARRAY(Float(precision=53))),
+    schema='model_draft'
+)
 
 
 class EgoGridPfHvExtensionLoadPqSet(Base):

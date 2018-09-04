@@ -250,6 +250,80 @@ class EgoDpMvGriddistrict(Base):
     geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
 
 
+t_ego_dp_mv_griddistrict_v0_4_3_mview = Table(
+    'ego_dp_mv_griddistrict_v0_4_3_mview', metadata,
+    Column('version', Text),
+    Column('subst_id', Integer, unique=True),
+    Column('subst_sum', Integer),
+    Column('type1', Integer),
+    Column('type1_cnt', Integer),
+    Column('type2', Integer),
+    Column('type2_cnt', Integer),
+    Column('type3', Integer),
+    Column('type3_cnt', Integer),
+    Column('group', CHAR(1)),
+    Column('gem', Integer),
+    Column('gem_clean', Integer),
+    Column('zensus_sum', Integer),
+    Column('zensus_count', Integer),
+    Column('zensus_density', Numeric),
+    Column('population_density', Numeric),
+    Column('la_count', Integer),
+    Column('area_ha', Numeric),
+    Column('la_area', Numeric(10, 1)),
+    Column('free_area', Numeric(10, 1)),
+    Column('area_share', Numeric(4, 1)),
+    Column('consumption', Numeric),
+    Column('consumption_per_area', Numeric),
+    Column('dea_cnt', Integer),
+    Column('dea_capacity', Numeric),
+    Column('lv_dea_cnt', Integer),
+    Column('lv_dea_capacity', Numeric),
+    Column('mv_dea_cnt', Integer),
+    Column('mv_dea_capacity', Numeric),
+    Column('geom_type', Text),
+    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    schema='grid'
+)
+
+
+t_ego_dp_mv_griddistrict_v0_4_5_mview = Table(
+    'ego_dp_mv_griddistrict_v0_4_5_mview', metadata,
+    Column('version', Text),
+    Column('subst_id', Integer, unique=True),
+    Column('subst_sum', Integer),
+    Column('type1', Integer),
+    Column('type1_cnt', Integer),
+    Column('type2', Integer),
+    Column('type2_cnt', Integer),
+    Column('type3', Integer),
+    Column('type3_cnt', Integer),
+    Column('group', CHAR(1)),
+    Column('gem', Integer),
+    Column('gem_clean', Integer),
+    Column('zensus_sum', Integer),
+    Column('zensus_count', Integer),
+    Column('zensus_density', Numeric),
+    Column('population_density', Numeric),
+    Column('la_count', Integer),
+    Column('area_ha', Numeric),
+    Column('la_area', Numeric(10, 1)),
+    Column('free_area', Numeric(10, 1)),
+    Column('area_share', Numeric(4, 1)),
+    Column('consumption', Numeric),
+    Column('consumption_per_area', Numeric),
+    Column('dea_cnt', Integer),
+    Column('dea_capacity', Numeric),
+    Column('lv_dea_cnt', Integer),
+    Column('lv_dea_capacity', Numeric),
+    Column('mv_dea_cnt', Integer),
+    Column('mv_dea_capacity', Numeric),
+    Column('geom_type', Text),
+    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    schema='grid'
+)
+
+
 class EgoDpMvlvSubstation(Base):
     __tablename__ = 'ego_dp_mvlv_substation'
     __table_args__ = {'schema': 'grid'}
@@ -267,8 +341,8 @@ class EgoLineExpansionCost(Base):
     __tablename__ = 'ego_line_expansion_costs'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(Text)
-    cost_id = Column(BigInteger, primary_key=True)
+    version = Column(Text, primary_key=True, nullable=False)
+    cost_id = Column(BigInteger, primary_key=True, nullable=False)
     voltage_level = Column(Text)
     component = Column(Text)
     measure = Column(Text)
@@ -291,6 +365,18 @@ class EgoPfHvBus(Base):
     v_mag_pu_min = Column(Float(53), server_default=text("0"))
     v_mag_pu_max = Column(Float(53))
     geom = Column(Geometry('POINT', 4326), index=True)
+
+
+class EgoPfHvDataCheck(Base):
+    __tablename__ = 'ego_pf_hv_data_check'
+    __table_args__ = {'schema': 'grid'}
+
+    test_id = Column(Integer, primary_key=True, nullable=False)
+    version = Column(String, primary_key=True, nullable=False)
+    scn_name = Column(String, nullable=False)
+    test = Column(String, nullable=False)
+    table_name = Column(String)
+    count = Column(Integer)
 
 
 class EgoPfHvExtensionBus(Base):
@@ -378,7 +464,7 @@ class EgoPfHvExtensionLink(Base):
     __tablename__ = 'ego_pf_hv_extension_link'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(Text)
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False)
     link_id = Column(BigInteger, primary_key=True, nullable=False)
     bus0 = Column(BigInteger)
@@ -466,7 +552,7 @@ class EgoPfHvExtensionStoragePqSet(Base):
     __tablename__ = 'ego_pf_hv_extension_storage_pq_set'
     __table_args__ = {'schema': 'grid'}
 
-    version = Column(Text)
+    version = Column(Text, primary_key=True, nullable=False)
     scn_name = Column(String, primary_key=True, nullable=False)
     storage_id = Column(BigInteger, primary_key=True, nullable=False)
     temp_id = Column(Integer, primary_key=True, nullable=False)
@@ -576,27 +662,29 @@ class EgoPfHvLine(Base):
     geom = Column(Geometry('MULTILINESTRING', 4326))
     topo = Column(Geometry('LINESTRING', 4326))
 
-class EgoPfHvLink(Base):
-    __tablename__ = 'ego_pf_hv_link'
-    __table_args__ = {'schema': 'grid'}
 
-    version = version = Column(Text, primary_key=True, nullable=False)
-    scn_name = Column(String, primary_key=True, nullable=False, server_default=text("'NEP'::character varying"))
-    link_id = Column(BigInteger, primary_key=True, nullable=False)
-    bus0 = Column(BigInteger)
-    bus1 = Column(BigInteger)
-    efficiency = Column(Float(53))
-    p_nom = Column(Numeric, server_default=text("0"))
-    p_nom_extendable = Column(Boolean, server_default=text("false"))
-    p_nom_min = Column(Float(53), server_default=text("0"))
-    p_nom_max = Column(Float(53))
-    capital_cost = Column(Float(53))
-    length = Column(Float(53))
-    terrain_factor = Column(Float(53), server_default=text("1"))
-    geom = Column(Geometry('MULTILINESTRING', 4326))
-    topo = Column(Geometry('LINESTRING', 4326))
+t_ego_pf_hv_link = Table(
+    'ego_pf_hv_link', metadata,
+    Column('version', Text, nullable=False),
+    Column('scn_name', String, nullable=False, server_default=text("'Status Quo'::character varying")),
+    Column('link_id', BigInteger, nullable=False),
+    Column('bus0', BigInteger),
+    Column('bus1', BigInteger),
+    Column('efficiency', Float(53), server_default=text("1")),
+    Column('marginal_cost', Float(53), server_default=text("0")),
+    Column('p_nom', Numeric, server_default=text("0")),
+    Column('p_nom_extendable', Boolean, server_default=text("false")),
+    Column('p_nom_min', Float(53), server_default=text("0")),
+    Column('p_nom_max', Float(53)),
+    Column('capital_cost', Float(53)),
+    Column('length', Float(53)),
+    Column('terrain_factor', Float(53), server_default=text("1")),
+    Column('geom', Geometry('MULTILINESTRING', 4326)),
+    Column('topo', Geometry('LINESTRING', 4326)),
+    schema='grid'
+)
 
-    
+
 class EgoPfHvLoad(Base):
     __tablename__ = 'ego_pf_hv_load'
     __table_args__ = {'schema': 'grid'}
