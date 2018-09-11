@@ -3535,6 +3535,30 @@ class EgoLattice500m(Base):
     geom = Column(Geometry('POINT', 3035), index=True)
 
 
+class EgoLattice1km(Base):
+    __tablename__ = 'ego_lattice_1km'
+    __table_args__ = {'schema': 'model_draft'}
+    id = Column(Integer, primary_key=True, nullable=False)
+    subst_id = Column(BigInteger)
+    geom = Column(Geometry('POINT', 3035), index=True)
+
+
+class EgoLattice2km(Base):
+    __tablename__ = 'ego_lattice_2km'
+    __table_args__ = {'schema': 'model_draft'}
+    id = Column(Integer, primary_key=True, nullable=False)
+    subst_id = Column(BigInteger)
+    geom = Column(Geometry('POINT', 3035), index=True)
+
+
+class EgoLattice2pt5km(Base):
+    __tablename__ = 'ego_lattice_2pt5km'
+    __table_args__ = {'schema': 'model_draft'}
+    id = Column(Integer, primary_key=True, nullable=False)
+    subst_id = Column(BigInteger)
+    geom = Column(Geometry('POINT', 3035), index=True)
+
+
 t_ego_lattice_500m_la_mview = Table(
     'ego_lattice_500m_la_mview', metadata,
     Column('id', Integer),
