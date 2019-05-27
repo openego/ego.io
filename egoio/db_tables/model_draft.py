@@ -3048,6 +3048,7 @@ class EgoGridPfHvBusmap(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     scn_name = Column(Text, primary_key=True, nullable=False)
+    version = Column(Text, primary_key=True, nullable=False)
     bus0 = Column(Text, primary_key=True, nullable=False)
     bus1 = Column(Text, primary_key=True, nullable=False)
     path_length = Column(Numeric)
