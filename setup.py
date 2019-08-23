@@ -19,5 +19,5 @@ setup(name='egoio',
           'psycopg2'],
       extras_require={
           "sqlalchemy": 'postgresql'},
-      package_data={'tools': 'sqlacodegen_oedb.sh'}
+      package_data={'tools': ['sqlacodegen_oedb.sh']}
       )
