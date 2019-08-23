@@ -16,7 +16,8 @@ setup(name='egoio',
           'sqlalchemy >= 1.2.0',
           'keyring >= 4.0',
           'keyrings.alt',
-          'psycopg2'],
+          'psycopg2',
+          'oedialect'],
       extras_require={
           "sqlalchemy": 'postgresql'},
       package_data={'tools': ['sqlacodegen_oedb.sh']}
