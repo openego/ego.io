@@ -3,6 +3,7 @@ import configparser as cp
 import keyring
 import getpass
 from sqlalchemy import create_engine
+import oedialect
 
 
 def grant_db_access(conn, schema, table, role):
@@ -182,7 +183,7 @@ def create_oedb_config_file(filepath, section='oep'):
     return cfg
 
 
-def connection(filepath=None, section='oep'):
+def connection(filepath=None, section='oep', readonly=False):
     """
     Instantiate a database connection (for the use with SQLAlchemy).
 
@@ -194,6 +195,11 @@ def connection(filepath=None, section='oep'):
     ----------
     filepath : str
         Absolute path of config file including the filename itself
+
+    readonly : bool
+        Set this option to True for creating a read-only and passwordless
+        engine for accessing the open energy platform.
+        Default: False.
     
     Returns
     -------
@@ -201,39 +207,43 @@ def connection(filepath=None, section='oep'):
         SQLalchemy engine object containing the connection details
     """
 
-    # define default filepath if not provided
-    if filepath is None:
-        filepath = os.path.join(os.path.expanduser("~"), '.egoio', 'config.ini')
-
-    # does the file exist?
-    if not os.path.isfile(filepath):
-        print('DB config file {file} not found. '
-          'This might be the first run of the tool. '
-          .format(file=filepath))
-        cfg = create_oedb_config_file(filepath, section=section)
+    if readonly:
+        conn = create_engine(
+            "postgresql+oedialect://openenergy-platform.org")
     else:
-        cfg = readcfg(filepath, section)
-    
-    try:
-        pw = cfg.get(section, "password")
-    except:
-        pw = keyring.get_password(section,
-                                  cfg.get(section, "username"))
-        if pw is None:
-            pw = getpass.getpass(prompt='No password found for database "{db}". '
-                                        'Enter your password to '
-                                        'store it in keyring: '
-                                 .format(db=cfg.get(section, 'database')))
-            keyring.set_password(section, cfg.get(section, "username"), pw)
-        
-    # establish connection and return it
-    conn = create_engine(
-        "postgresql+{dialect}://{user}:{password}@{host}:{port}/{db}".format(
-            dialect=cfg.get(section, 'dialect', fallback='psycopg2'),
-            user=cfg.get(section, 'username'),
-            password=pw,
-            host=cfg.get(section, 'host'),
-            port=cfg.get(section, 'port'),
-            db=cfg.get(section, 'database')))
+        # define default filepath if not provided
+        if filepath is None:
+            filepath = os.path.join(os.path.expanduser("~"), '.egoio', 'config.ini')
+
+        # does the file exist?
+        if not os.path.isfile(filepath):
+            print('DB config file {file} not found. '
+              'This might be the first run of the tool. '
+              .format(file=filepath))
+            cfg = create_oedb_config_file(filepath, section=section)
+        else:
+            cfg = readcfg(filepath, section)
+
+        try:
+            pw = cfg.get(section, "password")
+        except:
+            pw = keyring.get_password(section,
+                                      cfg.get(section, "username"))
+            if pw is None:
+                pw = getpass.getpass(prompt='No password found for database "{db}". '
+                                            'Enter your password to '
+                                            'store it in keyring: '
+                                     .format(db=cfg.get(section, 'database')))
+                keyring.set_password(section, cfg.get(section, "username"), pw)
+
+        # establish connection and return it
+        conn = create_engine(
+            "postgresql+{dialect}://{user}:{password}@{host}:{port}/{db}".format(
+                dialect=cfg.get(section, 'dialect', fallback='psycopg2'),
+                user=cfg.get(section, 'username'),
+                password=pw,
+                host=cfg.get(section, 'host'),
+                port=cfg.get(section, 'port'),
+                db=cfg.get(section, 'database')))
 
     return conn
