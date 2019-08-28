@@ -195,7 +195,9 @@ def connection(filepath=None, section='oep', readonly=False):
     ----------
     filepath : str
         Absolute path of config file including the filename itself
-
+    section : str
+        Section in config file containing database connection parameters.
+        Default: 'oep'.
     readonly : bool
         Set this option to True for creating a read-only and passwordless
         engine for accessing the open energy platform.
