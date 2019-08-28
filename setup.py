@@ -12,12 +12,13 @@ setup(name='egoio',
       packages=find_packages(),
       license='GNU Affero General Public License v3.0',
       install_requires=[
-          'geoalchemy2 >= 0.3.0, <= 0.4.1',
-          'sqlalchemy >= 1.0.11, <= 1.2.0',
+          'geoalchemy2 >= 0.3.0',
+          'sqlalchemy >= 1.2.0',
           'keyring >= 4.0',
           'keyrings.alt',
-          'psycopg2'],
+          'psycopg2-binary',
+          'oedialect'],
       extras_require={
           "sqlalchemy": 'postgresql'},
-      package_data={'tools': 'sqlacodegen_oedb.sh'}
+      package_data={'tools': ['sqlacodegen_oedb.sh']}
       )
