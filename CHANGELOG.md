@@ -39,5 +39,5 @@ with depending packages) #72 #73
 
 ## Prior releases
 
-There's no changelog for releases prior to v0.4.6. Check out the outdated
-issues and pull requests on github.
+There's no changelog for releases prior to v0.4.6. Check out the
+[releases](https://github.com/openego/ego.io/releases) on github.
