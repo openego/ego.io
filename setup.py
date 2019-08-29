@@ -18,7 +18,7 @@ setup(name='egoio',
           'keyrings.alt',
           'psycopg2-binary',
           'oedialect @ https://github.com/OpenEnergyPlatform/oedialect/archive/master.zip',
-          'numpy],
+          'numpy'],
       extras_require={
           "sqlalchemy": 'postgresql'},
       package_data={'tools': ['sqlacodegen_oedb.sh']}
