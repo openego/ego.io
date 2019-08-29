@@ -17,7 +17,7 @@ setup(name='egoio',
           'keyring >= 4.0',
           'keyrings.alt',
           'psycopg2-binary',
-          'oedialect @ https://github.com/OpenEnergyPlatform/oedialect/archive/master.zip',
+          'oedialect',
           'numpy'],
       extras_require={
           "sqlalchemy": 'postgresql'},
