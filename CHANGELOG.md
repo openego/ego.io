@@ -22,6 +22,11 @@ Here is a template for new release sections
 
 ### Changed
 
+## [0.4.7] 2019-08-29
+
+### Changed
+- fix installation problem when installing via pip #81
+
 ## [0.4.6] 2019-08-29
 
 ### Added
