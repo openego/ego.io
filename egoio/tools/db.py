@@ -116,11 +116,14 @@ def get_connection_details(section):
         Used for configuration file parser language.
     """
     print('Please enter your connection details:')
-    dialect = input('Enter input value for `dialect` (default: psycopg2): ') or 'psycopg2'
+    dialect = input('Enter input value for `dialect` (default: oedialect): ') \
+              or 'oedialect'
     username = input('Enter value for `username`: ')
-    database = input('Enter value for `database`: ')
-    host = input('Enter value for `host`: ')
-    port = input('Enter value for `port` (default: 5432): ') or '5432'
+    database = input('Enter value for `database` (default: oedb): ') or 'oedb'
+    host = input(
+        'Enter value for `host` (default: openenergy-platform.org): ') or \
+           'openenergy-platform.org'
+    port = input('Enter value for `port` (default: 80): ') or '80'
 
     cfg = cp.ConfigParser()
     cfg.add_section(section)
