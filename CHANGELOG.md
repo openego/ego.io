@@ -21,6 +21,7 @@ Here is a template for new release sections
 ### Added
 
 ### Changed
+- set default values for database connection details to oep connection details
 
 ## [0.4.7] 2019-08-29
 
