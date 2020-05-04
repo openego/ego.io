@@ -2,8 +2,8 @@
 from sqlalchemy import BigInteger, Boolean, Column, Date, Float, Integer, Numeric, String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+from egoio.tools import Base
 
-Base = declarative_base()
 metadata = Base.metadata
 
 

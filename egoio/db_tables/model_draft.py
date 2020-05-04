@@ -5,8 +5,8 @@ from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from sqlalchemy.dialects.postgresql.base import OID
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from egoio.tools import Base
 
-Base = declarative_base()
 metadata = Base.metadata
 
 

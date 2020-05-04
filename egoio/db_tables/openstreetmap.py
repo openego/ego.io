@@ -3,8 +3,8 @@ from sqlalchemy import ARRAY, BigInteger, Boolean, Column, Float, Integer, Small
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+from egoio.tools import Base
 
-Base = declarative_base()
 metadata = Base.metadata
 
 

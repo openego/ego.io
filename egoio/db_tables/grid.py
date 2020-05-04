@@ -3,8 +3,8 @@ from sqlalchemy import ARRAY, BigInteger, Boolean, CHAR, Column, Date, DateTime,
 from geoalchemy2.types import Geometry
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from egoio.tools import Base
 
-Base = declarative_base()
 metadata = Base.metadata
 
 
