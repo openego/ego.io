@@ -12,4 +12,4 @@ class Cosmoclmgrid(Base):
     __table_args__ = {'schema': 'climate'}
 
     gid = Column(Integer, primary_key=True, server_default=text("nextval('climate.cosmoclmgrid_gid_seq'::regclass)"))
-    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 4326))

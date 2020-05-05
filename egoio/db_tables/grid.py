@@ -13,7 +13,7 @@ class BnetzaVorhabenBbplg(Base):
     __table_args__ = {'schema': 'grid'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('grid.bnetza_vorhaben_bbplg_id_seq'::regclass)"))
-    geom = Column(Geometry('MULTILINESTRING', 5652), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 5652))
     object_id = Column(BigInteger)
     rechtsgrundlage = Column(String(5))
     vorhabennummer = Column(Integer)
@@ -55,7 +55,7 @@ class BnetzaVorhabenEnlag(Base):
     __table_args__ = {'schema': 'grid'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('grid.bnetza_vorhaben_enlag_id_seq'::regclass)"))
-    geom = Column(Geometry('MULTILINESTRING', 5652), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 5652))
     object_id = Column(BigInteger)
     rechtsgrundlage = Column(String(5))
     vorhabennummer = Column(Integer)
@@ -96,7 +96,7 @@ class BnetzaVorhabenpunkteBbplg(Base):
     __table_args__ = {'schema': 'grid'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('grid.bnetza_vorhabenpunkte_bbplg_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 4647), index=True)
+    geom = Column(Geometry('POINT', 4647))
     object_id = Column(BigInteger)
     name = Column(String(50))
 
@@ -106,7 +106,7 @@ class BnetzaVorhabenpunkteEnlag(Base):
     __table_args__ = {'schema': 'grid'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('grid.bnetza_vorhabenpunkte_enlag_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 4647), index=True)
+    geom = Column(Geometry('POINT', 4647))
     object_id = Column(BigInteger)
     name = Column(String(50))
 
@@ -116,7 +116,7 @@ class EgoDpEhvGriddistrict(Base):
     __table_args__ = {'schema': 'grid'}
 
     version = Column(Text, primary_key=True, nullable=False)
-    geom = Column(Geometry('POLYGON', 4326), index=True)
+    geom = Column(Geometry('POLYGON', 4326))
     subst_id = Column(Integer, primary_key=True, nullable=False)
 
 
@@ -128,7 +128,7 @@ class EgoDpEhvSubstation(Base):
     subst_id = Column(Integer, primary_key=True, nullable=False)
     lon = Column(Float(53))
     lat = Column(Float(53))
-    point = Column(Geometry('POINT', 4326), index=True)
+    point = Column(Geometry('POINT', 4326))
     polygon = Column(Geometry)
     voltage = Column(Text)
     power_type = Column(Text)
@@ -167,7 +167,7 @@ class EgoDpHvmvSubstation(Base):
     status = Column(SmallInteger)
     otg_id = Column(BigInteger)
     ags_0 = Column(Text)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
 
 
 class EgoDpLvGriddistrict(Base):
@@ -210,7 +210,7 @@ class EgoDpLvGriddistrict(Base):
     sector_peakload_retail = Column(Float(53))
     sector_peakload_industrial = Column(Float(53))
     sector_peakload_agricultural = Column(Float(53))
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoDpMvGriddistrict(Base):
@@ -247,7 +247,7 @@ class EgoDpMvGriddistrict(Base):
     mv_dea_cnt = Column(Integer)
     mv_dea_capacity = Column(Numeric)
     geom_type = Column(Text)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 t_ego_dp_mv_griddistrict_v0_4_3_mview = Table(
@@ -282,7 +282,7 @@ t_ego_dp_mv_griddistrict_v0_4_3_mview = Table(
     Column('mv_dea_cnt', Integer),
     Column('mv_dea_capacity', Numeric),
     Column('geom_type', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='grid'
 )
 
@@ -319,7 +319,7 @@ t_ego_dp_mv_griddistrict_v0_4_5_mview = Table(
     Column('mv_dea_cnt', Integer),
     Column('mv_dea_capacity', Numeric),
     Column('geom_type', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='grid'
 )
 
@@ -332,7 +332,7 @@ class EgoDpMvlvSubstation(Base):
     mvlv_subst_id = Column(Integer, primary_key=True, nullable=False)
     la_id = Column(Integer)
     subst_id = Column(Integer)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
     is_dummy = Column(Boolean)
     subst_cnt = Column(Integer)
 
@@ -364,7 +364,7 @@ class EgoPfHvBus(Base):
     current_type = Column(Text, server_default=text("'AC'::text"))
     v_mag_pu_min = Column(Float(53), server_default=text("0"))
     v_mag_pu_max = Column(Float(53))
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
 
 
 class EgoPfHvDataCheck(Base):
@@ -390,7 +390,7 @@ class EgoPfHvExtensionBus(Base):
     current_type = Column(Text, server_default=text("'AC'::text"))
     v_mag_pu_min = Column(Float(53), server_default=text("0"))
     v_mag_pu_max = Column(Float(53))
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     project = Column(String)
 
 
@@ -840,7 +840,7 @@ class EgoPfHvResultBus(Base):
     current_type = Column(Text)
     v_mag_pu_min = Column(Float(53))
     v_mag_pu_max = Column(Float(53))
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
 
     result = relationship('EgoPfHvResultMeta')
 

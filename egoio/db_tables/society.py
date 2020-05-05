@@ -44,16 +44,16 @@ class DestatisZensusPopulationPerHa(Base):
     x_mp = Column(Numeric(10, 0))
     y_mp = Column(Numeric(10, 0))
     population = Column(Numeric(10, 0))
-    geom_point = Column(Geometry('POINT', 3035), index=True)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom_point = Column(Geometry('POINT', 3035))
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_destatis_zensus_population_per_ha_mview = Table(
     'destatis_zensus_population_per_ha_mview', metadata,
     Column('gid', Integer, unique=True),
     Column('population', Numeric(10, 0)),
-    Column('geom_point', Geometry('POINT', 3035), index=True),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom_point', Geometry('POINT', 3035)),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='society'
 )
 
@@ -76,8 +76,8 @@ class DestatisZensusPopulationPerKm2(Base):
     vacancy_bldg = Column(Numeric)
     avg_space_resident = Column(Numeric)
     avg_space_dwelling = Column(Numeric)
-    geom_point = Column(Geometry('POINT', 3035), index=True)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom_point = Column(Geometry('POINT', 3035))
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_destatis_zensus_population_per_km2_mview = Table(

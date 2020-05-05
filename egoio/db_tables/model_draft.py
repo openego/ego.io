@@ -16,7 +16,7 @@ class AEgoDemandLaOsm(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.a_ego_demand_la_osm_id_seq'::regclass)"))
     area_ha = Column(Float(53))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class AaEgoDemandLaOsm(Base):
@@ -25,7 +25,7 @@ class AaEgoDemandLaOsm(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.aa_ego_demand_la_osm_id_seq'::regclass)"))
     area_ha = Column(Float(53))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class BkgVg250201501011Sta(Base):
@@ -95,7 +95,7 @@ class BnetzaEegAnlagenstammdaten(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.bnetza_eeg_anlagenstammdaten_registerdaten_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 5652), index=True)
+    geom = Column(Geometry('POINT', 5652))
     Meldedatum = Column(String)
     Meldegrund = Column(String)
     Anlagennummer = Column(String)
@@ -203,7 +203,7 @@ class BnetzaEegAnlagenstammdatenWindClassification(Base):
     wea_specific_power = Column(Float(53))
     wea_type = Column(Text)
     wea_type_comment = Column(Text)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
 
 
 class BnetzaEegAnlagenstammdatenWindLttc(Base):
@@ -224,8 +224,8 @@ class BnetzaEegAnlagenstammdatenWindLttc(Base):
     wea_specific_power = Column(Float(53))
     wea_type = Column(Text)
     wea_group = Column(Text)
-    geom_centroid = Column(Geometry('POINT', 3035), index=True)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom_centroid = Column(Geometry('POINT', 3035))
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class BuergenDistrictLandUse(Base):
@@ -605,8 +605,8 @@ t_destatis_zensus_population_per_ha_invg_mview = Table(
     Column('gid', Integer, unique=True),
     Column('population', Numeric(10, 0)),
     Column('inside_borders', Boolean),
-    Column('geom_point', Geometry('POINT', 3035), index=True),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom_point', Geometry('POINT', 3035)),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -618,7 +618,7 @@ class DestatisZensusPopulationPerHaMvgdla(Base):
     gid = Column(Integer, primary_key=True)
     population = Column(Integer)
     inside = Column(Boolean)
-    geom_point = Column(Geometry('POINT', 3035), index=True)
+    geom_point = Column(Geometry('POINT', 3035))
 
 
 t_destatis_zensus_population_per_ha_outvg_mview = Table(
@@ -626,8 +626,8 @@ t_destatis_zensus_population_per_ha_outvg_mview = Table(
     Column('gid', Integer, unique=True),
     Column('population', Numeric(10, 0)),
     Column('inside_borders', Boolean),
-    Column('geom_point', Geometry('POINT', 3035), index=True),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom_point', Geometry('POINT', 3035)),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -648,7 +648,7 @@ class EgoBoundariesBkgVg2506GemClean(Base):
     count_hole = Column(Integer)
     path = Column(ARRAY(Integer()))
     is_hole = Column(Boolean)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoBoundariesHvmvSubstPerGem(Base):
@@ -667,7 +667,7 @@ class EgoBoundariesHvmvSubstPerGem(Base):
     count_hole = Column(Integer)
     path = Column(ARRAY(Integer()))
     is_hole = Column(Boolean)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
     subst_sum = Column(Integer)
     subst_type = Column(Integer)
 
@@ -717,9 +717,9 @@ class EgoBoundariesHvmvSubstPerGem3Nn(Base):
     subst_ags_0 = Column(Text)
     subst_id = Column(Integer)
     subst_type = Column(Integer)
-    geom_sub = Column(Geometry('POINT', 3035), index=True)
+    geom_sub = Column(Geometry('POINT', 3035))
     distance = Column(Float(53))
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 t_ego_boundaries_hvmv_subst_per_gem_3_nn_line = Table(
@@ -727,8 +727,8 @@ t_ego_boundaries_hvmv_subst_per_gem_3_nn_line = Table(
     Column('id', BigInteger, unique=True),
     Column('nn_id', Integer),
     Column('subst_id', Integer),
-    Column('geom_centre', Geometry('POINT', 3035), index=True),
-    Column('geom', Geometry('LINESTRING', 3035), index=True),
+    Column('geom_centre', Geometry('POINT', 3035)),
+    Column('geom', Geometry('LINESTRING', 3035)),
     schema='model_draft'
 )
 
@@ -737,7 +737,7 @@ t_ego_boundaries_hvmv_subst_per_gem_3_nn_union = Table(
     'ego_boundaries_hvmv_subst_per_gem_3_nn_union', metadata,
     Column('subst_id', Integer, unique=True),
     Column('subst_type', Integer),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -797,7 +797,7 @@ class EgoDataProcessingResultsMvgd(Base):
     la_area = Column(Numeric(10, 1))
     free_area = Column(Numeric(10, 1))
     area_share = Column(Numeric(4, 1))
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
     timestamp = Column(DateTime)
     compound = Column(Text)
     group = Column(CHAR(1))
@@ -812,7 +812,7 @@ class EgoDeaAgriculturalSectorPerGridDistrict(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_dea_agricultural_sector_per_grid_district_id_seq'::regclass)"))
     subst_id = Column(Integer)
     area_ha = Column(Numeric)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoDeaAllocation(Base):
@@ -830,9 +830,9 @@ class EgoDeaAllocation(Base):
     source = Column(String)
     la_id = Column(Integer)
     flag = Column(String)
-    geom = Column(Geometry('POINT', 3035), index=True)
-    geom_line = Column(Geometry('LINESTRING', 3035), index=True)
-    geom_new = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
+    geom_line = Column(Geometry('LINESTRING', 3035))
+    geom_new = Column(Geometry('POINT', 3035))
 
 
 t_ego_dea_allocation_m1_1_a_mview = Table(
@@ -843,7 +843,7 @@ t_ego_dea_allocation_m1_1_a_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -862,9 +862,9 @@ t_ego_dea_allocation_m1_1_mview = Table(
     Column('source', String),
     Column('la_id', Integer),
     Column('flag', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
-    Column('geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('geom_new', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -877,7 +877,7 @@ t_ego_dea_allocation_m1_1_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -891,7 +891,7 @@ t_ego_dea_allocation_m1_2_a_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -910,9 +910,9 @@ t_ego_dea_allocation_m1_2_mview = Table(
     Column('source', String),
     Column('la_id', Integer),
     Column('flag', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
-    Column('geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('geom_new', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -925,7 +925,7 @@ t_ego_dea_allocation_m1_2_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -939,7 +939,7 @@ t_ego_dea_allocation_m2_a_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -958,9 +958,9 @@ t_ego_dea_allocation_m2_mview = Table(
     Column('source', String),
     Column('la_id', Integer),
     Column('flag', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
-    Column('geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('geom_new', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -973,7 +973,7 @@ t_ego_dea_allocation_m2_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -987,7 +987,7 @@ t_ego_dea_allocation_m3_a_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -1006,9 +1006,9 @@ t_ego_dea_allocation_m3_mview = Table(
     Column('source', String),
     Column('la_id', Integer),
     Column('flag', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
-    Column('geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('geom_new', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -1021,7 +1021,7 @@ t_ego_dea_allocation_m3_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -1035,7 +1035,7 @@ t_ego_dea_allocation_m4_a_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -1054,9 +1054,9 @@ t_ego_dea_allocation_m4_mview = Table(
     Column('source', String),
     Column('la_id', Integer),
     Column('flag', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
-    Column('geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('geom_new', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -1069,7 +1069,7 @@ t_ego_dea_allocation_m4_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -1083,7 +1083,7 @@ t_ego_dea_allocation_m5_a_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -1102,9 +1102,9 @@ t_ego_dea_allocation_m5_mview = Table(
     Column('source', String),
     Column('la_id', Integer),
     Column('flag', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
-    Column('geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('geom_new', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -1117,7 +1117,7 @@ t_ego_dea_allocation_m5_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', String),
     Column('subst_id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('flag', String),
     schema='model_draft'
 )
@@ -1136,9 +1136,9 @@ t_ego_dea_allocation_out_mview = Table(
     Column('source', String),
     Column('la_id', Integer),
     Column('flag', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
-    Column('geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('geom_new', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -1198,8 +1198,8 @@ class EgoDemandHvLargescaleconsumer(Base):
     un_id = Column(Integer)
     consumption = Column(Numeric)
     peak_load = Column(Numeric)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
-    geom_centre = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
+    geom_centre = Column(Geometry('POINT', 3035))
 
 
 class EgoDemandHvmvDemand(Base):
@@ -1228,7 +1228,7 @@ class EgoDemandLaOsm(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_demand_la_osm_id_seq'::regclass)"))
     area_ha = Column(Float(53))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoDemandLaZensu(Base):
@@ -1239,8 +1239,8 @@ class EgoDemandLaZensu(Base):
     gid = Column(Integer)
     population = Column(Integer)
     inside_la = Column(Boolean)
-    geom_point = Column(Geometry('POINT', 3035), index=True)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom_point = Column(Geometry('POINT', 3035))
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoDemandLaZensusCluster(Base):
@@ -1250,10 +1250,10 @@ class EgoDemandLaZensusCluster(Base):
     cid = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_demand_la_zensus_cluster_cid_seq'::regclass)"))
     zensus_sum = Column(Integer)
     area_ha = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
     geom_buffer = Column(Geometry('POLYGON', 3035))
-    geom_centroid = Column(Geometry('POINT', 3035), index=True)
-    geom_surfacepoint = Column(Geometry('POINT', 3035), index=True)
+    geom_centroid = Column(Geometry('POINT', 3035))
+    geom_surfacepoint = Column(Geometry('POINT', 3035))
 
 
 class EgoDemandLoadCollect(Base):
@@ -1261,7 +1261,7 @@ class EgoDemandLoadCollect(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_demand_load_collect_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoDemandLoadCollectBuffer100(Base):
@@ -1269,7 +1269,7 @@ class EgoDemandLoadCollectBuffer100(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_demand_load_collect_buffer100_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoDemandLoadMelt(Base):
@@ -1277,7 +1277,7 @@ class EgoDemandLoadMelt(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_demand_load_melt_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoDemandLoadMelt99(Base):
@@ -1285,7 +1285,7 @@ class EgoDemandLoadMelt99(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_demand_load_melt_99_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_ego_demand_load_melt_error_2_geom_mview = Table(
@@ -1294,7 +1294,7 @@ t_ego_demand_load_melt_error_2_geom_mview = Table(
     Column('error', Boolean),
     Column('error_reason', String),
     Column('error_location', Geometry('POINT', 3035)),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -1306,7 +1306,7 @@ t_ego_demand_load_melt_error_geom_fix_mview = Table(
     Column('geom_type', Text),
     Column('area', Float(53)),
     Column('geom_buffer', Geometry('POLYGON', 3035)),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -1317,7 +1317,7 @@ t_ego_demand_load_melt_error_geom_mview = Table(
     Column('error', Boolean),
     Column('error_reason', String),
     Column('error_location', Geometry('POINT', 3035)),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -1364,16 +1364,16 @@ class EgoDemandLoadarea(Base):
     sector_peakload_residential = Column(Float(53))
     sector_peakload_industrial = Column(Float(53))
     sector_peakload_agricultural = Column(Float(53))
-    geom_centroid = Column(Geometry('POINT', 3035), index=True)
-    geom_surfacepoint = Column(Geometry('POINT', 3035), index=True)
-    geom_centre = Column(Geometry('POINT', 3035), index=True)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom_centroid = Column(Geometry('POINT', 3035))
+    geom_surfacepoint = Column(Geometry('POINT', 3035))
+    geom_centre = Column(Geometry('POINT', 3035))
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_ego_demand_loadarea_error_noags_mview = Table(
     'ego_demand_loadarea_error_noags_mview', metadata,
     Column('id', Integer, unique=True),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -1393,7 +1393,7 @@ t_ego_demand_loadarea_smaller100m2_mview = Table(
     'ego_demand_loadarea_smaller100m2_mview', metadata,
     Column('id', Integer, unique=True),
     Column('area_ha', Numeric),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -1480,16 +1480,16 @@ class EgoDemandLoadareaVoi(Base):
     sector_consumption_industrial = Column(Numeric)
     sector_consumption_agricultural = Column(Numeric)
     sector_consumption_sum = Column(Numeric)
-    geom_centroid = Column(Geometry('POINT', 3035), index=True)
-    geom_surfacepoint = Column(Geometry('POINT', 3035), index=True)
-    geom_centre = Column(Geometry('POINT', 3035), index=True)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom_centroid = Column(Geometry('POINT', 3035))
+    geom_surfacepoint = Column(Geometry('POINT', 3035))
+    geom_centre = Column(Geometry('POINT', 3035))
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_ego_demand_loadarea_voi_error_noags_mview = Table(
     'ego_demand_loadarea_voi_error_noags_mview', metadata,
     Column('id', Integer, unique=True),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -1498,7 +1498,7 @@ t_ego_demand_loadarea_voi_smaller100m2_mview = Table(
     'ego_demand_loadarea_voi_smaller100m2_mview', metadata,
     Column('id', Integer, unique=True),
     Column('area_ha', Numeric),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -1510,7 +1510,7 @@ class EgoDemandLoad(Base):
     un_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_demand_loads_un_id_seq'::regclass)"))
     ssc_id = Column(Integer)
     lsc_id = Column(Integer)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoDemandPerDistrict(Base):
@@ -1554,7 +1554,7 @@ class EgoDeuLoadsOsm(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_deu_loads_osm_id_seq'::regclass)"))
     area_ha = Column(Float(53))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_ego_dp_res_powerplant_vg_enavan_mview = Table(
@@ -1584,7 +1584,7 @@ t_ego_dp_res_powerplant_vg_enavan_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -1652,7 +1652,7 @@ class EgoDpSupplyConvPowerplant(Base):
     lat = Column(Float(53))
     lon = Column(Float(53))
     comment = Column(Text)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     voltage_level = Column(SmallInteger)
     subst_id = Column(BigInteger)
     otg_id = Column(BigInteger)
@@ -1692,7 +1692,7 @@ class EgoDpSupplyResPowerplant(Base):
     power_plant_id = Column(String)
     source = Column(String)
     comment = Column(String)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     subst_id = Column(BigInteger)
     otg_id = Column(BigInteger)
     un_id = Column(BigInteger)
@@ -1706,7 +1706,7 @@ class EgoDpSupplyResPowerplant(Base):
     rea_sort = Column(Integer)
     rea_flag = Column(String)
     rea_geom_line = Column(Geometry('LINESTRING', 3035))
-    rea_geom_new = Column(Geometry('POINT', 3035), index=True)
+    rea_geom_new = Column(Geometry('POINT', 3035))
 
 
 t_ego_dp_supply_res_powerplant_out_mview = Table(
@@ -1736,7 +1736,7 @@ t_ego_dp_supply_res_powerplant_out_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -1749,8 +1749,8 @@ t_ego_dp_supply_res_powerplant_out_mview = Table(
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
-    Column('rea_geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('rea_geom_new', Geometry('POINT', 3035), index=True),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -1808,7 +1808,7 @@ class EgoGridDing0HvmvTransformer(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_hvmv_transformer_id_seq'::regclass)"))
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     name = Column(String(100))
     voltage_op = Column(Float)
     s_nom = Column(Float)
@@ -1835,7 +1835,7 @@ class EgoGridDing0Line(Base):
     l = Column(Float)
     r = Column(Float)
     i_max_th = Column(Float)
-    geom = Column(Geometry('LINESTRING', 4326), index=True)
+    geom = Column(Geometry('LINESTRING', 4326))
 
 
 class EgoGridDing0LvBranchtee(Base):
@@ -1845,7 +1845,7 @@ class EgoGridDing0LvBranchtee(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_lv_branchtee_id_seq'::regclass)"))
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     name = Column(String(100))
 
 
@@ -1859,7 +1859,7 @@ class EgoGridDing0LvGenerator(Base):
     la_id = Column(BigInteger)
     name = Column(String(100))
     lv_grid_id = Column(BigInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     type = Column(String(22))
     subtype = Column(String(22))
     v_level = Column(Integer)
@@ -1876,7 +1876,7 @@ class EgoGridDing0LvGrid(Base):
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
     name = Column(String(100))
-    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 4326))
     population = Column(BigInteger)
     voltage_nom = Column(Float)
 
@@ -1890,7 +1890,7 @@ class EgoGridDing0LvLoad(Base):
     id_db = Column(BigInteger)
     name = Column(String(100))
     lv_grid_id = Column(Integer)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     consumption = Column(String(100))
 
 
@@ -1901,7 +1901,7 @@ class EgoGridDing0LvStation(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_lv_station_id_seq'::regclass)"))
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     name = Column(String(100))
 
 
@@ -1912,7 +1912,7 @@ class EgoGridDing0MvBranchtee(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_branchtee_id_seq'::regclass)"))
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     name = Column(String(100))
 
 
@@ -1923,7 +1923,7 @@ class EgoGridDing0MvCircuitbreaker(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_circuitbreaker_id_seq'::regclass)"))
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     name = Column(String(100))
     status = Column(String(10))
 
@@ -1936,7 +1936,7 @@ class EgoGridDing0MvGenerator(Base):
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
     name = Column(String(100))
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     type = Column(String(22))
     subtype = Column(String(22))
     v_level = Column(Integer)
@@ -1952,7 +1952,7 @@ class EgoGridDing0MvGrid(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_grid_id_seq'::regclass)"))
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
-    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 4326))
     name = Column(String(100))
     population = Column(BigInteger)
     voltage_nom = Column(Float)
@@ -1966,7 +1966,7 @@ class EgoGridDing0MvLoad(Base):
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
     name = Column(String(100))
-    geom = Column(Geometry(srid=4326), index=True)
+    geom = Column(Geometry(srid=4326))
     is_aggregated = Column(Boolean)
     consumption = Column(String(100))
 
@@ -1978,7 +1978,7 @@ class EgoGridDing0MvStation(Base):
     id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mv_station_id_seq'::regclass)"))
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     name = Column(String(100))
 
 
@@ -2001,7 +2001,7 @@ class EgoGridDing0MvlvTransformer(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_ding0_mvlv_transformer_id_seq'::regclass)"))
     run_id = Column(BigInteger, nullable=False)
     id_db = Column(BigInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     name = Column(String(100))
     voltage_op = Column(Float)
     s_nom = Column(Float)
@@ -2045,7 +2045,7 @@ class EgoGridEhvSubstationVoronoi(EgoGridEhvSubstation):
     __tablename__ = 'ego_grid_ehv_substation_voronoi'
     __table_args__ = {'schema': 'model_draft'}
 
-    geom = Column(Geometry('POLYGON', 4326), index=True)
+    geom = Column(Geometry('POLYGON', 4326))
     subst_id = Column(ForeignKey('model_draft.ego_grid_ehv_substation.subst_id'), primary_key=True)
 
 
@@ -2169,7 +2169,7 @@ class EgoGridHvmvSubstation(Base):
     status = Column(SmallInteger, nullable=False)
     otg_id = Column(BigInteger)
     ags_0 = Column(Text)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
 
 
 class EgoGridHvmvSubstationDummy(Base):
@@ -2178,7 +2178,7 @@ class EgoGridHvmvSubstationDummy(Base):
 
     subst_id = Column(Integer, primary_key=True)
     subst_name = Column(Text)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
 
 
 t_ego_grid_hvmv_substation_mun_2_mview = Table(
@@ -2220,7 +2220,7 @@ class EgoGridHvmvSubstationVoronoi(Base):
     __tablename__ = 'ego_grid_hvmv_substation_voronoi'
     __table_args__ = {'schema': 'model_draft'}
 
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_hvmv_substation_voronoi_id_seq'::regclass)"))
     subst_id = Column(Integer)
     subst_sum = Column(Integer)
@@ -2237,8 +2237,8 @@ class EgoGridHvmvSubstationVoronoiCut(Base):
     ags_0 = Column(String(12))
     subst_type = Column(Integer)
     subst_sum = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
-    geom_sub = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
+    geom_sub = Column(Geometry('POINT', 3035))
 
 
 t_ego_grid_hvmv_substation_voronoi_cut_0subst_mview = Table(
@@ -2249,7 +2249,7 @@ t_ego_grid_hvmv_substation_voronoi_cut_0subst_mview = Table(
     Column('voi_id', Integer),
     Column('ags_0', String(12)),
     Column('subst_type', Integer),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -2259,8 +2259,8 @@ t_ego_grid_hvmv_substation_voronoi_cut_0subst_nn_line_mview = Table(
     Column('id', BigInteger, unique=True),
     Column('voi_id', Integer),
     Column('subst_id', Integer),
-    Column('geom_centre', Geometry('POINT', 3035), index=True),
-    Column('geom', Geometry('LINESTRING', 3035), index=True),
+    Column('geom_centre', Geometry('POINT', 3035)),
+    Column('geom', Geometry('LINESTRING', 3035)),
     schema='model_draft'
 )
 
@@ -2269,10 +2269,10 @@ t_ego_grid_hvmv_substation_voronoi_cut_0subst_nn_mview = Table(
     'ego_grid_hvmv_substation_voronoi_cut_0subst_nn_mview', metadata,
     Column('voi_id', Integer, unique=True),
     Column('voi_ags_0', String(12)),
-    Column('geom_voi', Geometry('POLYGON', 3035), index=True),
+    Column('geom_voi', Geometry('POLYGON', 3035)),
     Column('subst_id', Integer),
     Column('ags_0', String(12)),
-    Column('geom_sub', Geometry('POLYGON', 3035), index=True),
+    Column('geom_sub', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -2280,7 +2280,7 @@ t_ego_grid_hvmv_substation_voronoi_cut_0subst_nn_mview = Table(
 t_ego_grid_hvmv_substation_voronoi_cut_0subst_nn_union_mview = Table(
     'ego_grid_hvmv_substation_voronoi_cut_0subst_nn_union_mview', metadata,
     Column('subst_id', Integer, unique=True),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -2294,7 +2294,7 @@ t_ego_grid_hvmv_substation_voronoi_cut_1subst_mview = Table(
     Column('ags_0', String(12)),
     Column('subst_type', Integer),
     Column('subst_sum', Integer),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     Column('geom_sub', Geometry('POINT', 3035)),
     schema='model_draft'
 )
@@ -2306,13 +2306,13 @@ class EgoGridHvmvSubstationVoronoiCutNnCollect(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_hvmv_substation_voronoi_cut_nn_collect_id_seq'::regclass)"))
     subst_id = Column(Integer)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 t_ego_grid_hvmv_substation_voronoi_cut_nn_mview = Table(
     'ego_grid_hvmv_substation_voronoi_cut_nn_mview', metadata,
     Column('subst_id', Integer, unique=True),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -2322,7 +2322,7 @@ t_ego_grid_hvmv_substation_voronoi_mview = Table(
     Column('id', Integer, unique=True),
     Column('subst_id', Integer),
     Column('subst_sum', Integer),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -2350,7 +2350,7 @@ class EgoGridLvBuildingConn(Base):
     building_id = Column(Integer)
     street_id = Column(Integer)
     la_id = Column(Integer)
-    geom_line = Column(Geometry('LINESTRING', 3035), index=True)
+    geom_line = Column(Geometry('LINESTRING', 3035))
     distance = Column(Float(53))
 
 
@@ -2361,7 +2361,7 @@ class EgoGridLvBuilding(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_buildings_id_seq'::regclass)"))
     polygon_id = Column(Integer)
     la_id = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridLvCandidatepoint(Base):
@@ -2419,7 +2419,7 @@ class EgoGridLvGriddistrict(Base):
     sector_peakload_retail = Column(Float(53))
     sector_peakload_industrial = Column(Float(53))
     sector_peakload_agricultural = Column(Float(53))
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridLvGriddistrictCut(Base):
@@ -2430,7 +2430,7 @@ class EgoGridLvGriddistrictCut(Base):
     la_id = Column(Integer)
     subst_id = Column(Integer)
     subst_cnt = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridLvGriddistrictCut0subst(Base):
@@ -2441,7 +2441,7 @@ class EgoGridLvGriddistrictCut0subst(Base):
     la_id = Column(Integer)
     subst_id = Column(Integer)
     subst_cnt = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridLvGriddistrictCut1subst(Base):
@@ -2452,7 +2452,7 @@ class EgoGridLvGriddistrictCut1subst(Base):
     la_id = Column(Integer)
     subst_id = Column(Integer)
     subst_cnt = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridLvGriddistrictCutNn(Base):
@@ -2464,8 +2464,8 @@ class EgoGridLvGriddistrictCutNn(Base):
     b_id = Column(Integer)
     subst_id = Column(Integer)
     la_id = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
-    geom_line = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
+    geom_line = Column(Geometry('LINESTRING', 3035))
     distance = Column(Float(53))
 
 
@@ -2478,7 +2478,7 @@ class EgoGridLvGriddistrictCutNnCollect(Base):
     subst_id = Column(Integer)
     la_id = Column(Integer)
     nn = Column(Boolean)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridLvGriddistrictCutXsubst(Base):
@@ -2489,7 +2489,7 @@ class EgoGridLvGriddistrictCutXsubst(Base):
     la_id = Column(Integer)
     subst_id = Column(Integer)
     subst_cnt = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridLvGriddistrictPaper(Base):
@@ -2497,7 +2497,7 @@ class EgoGridLvGriddistrictPaper(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
     la_id = Column(Integer)
     ont_count = Column(Integer)
     ont_id = Column(Integer)
@@ -2510,7 +2510,7 @@ class EgoGridLvGriddistrictsvoronoi(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_griddistrictsvoronoi_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
     subst_id = Column(Integer)
 
 
@@ -2519,7 +2519,7 @@ class EgoGridLvGriddistrictwithoutpop(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_griddistrictwithoutpop_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
     load_area_id = Column(Integer)
 
 
@@ -2529,8 +2529,8 @@ class EgoGridLvLoadareaRest(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_loadarea_rest_id_seq'::regclass)"))
     la_id = Column(Integer)
-    geom_point = Column(Geometry('POINT', 3035), index=True)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom_point = Column(Geometry('POINT', 3035))
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_ego_grid_lv_loadareas = Table(
@@ -2561,7 +2561,7 @@ class EgoGridLvStreet(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_lv_streets_id_seq'::regclass)"))
     line_id = Column(Integer)
     la_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
 
 
 class EgoGridLvTestGriddistrict(Base):
@@ -2627,7 +2627,7 @@ class EgoGridMvGriddistrict(Base):
     mv_dea_cnt = Column(Integer)
     mv_dea_capacity = Column(Numeric)
     geom_type = Column(Text)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 t_ego_grid_mv_griddistrict_2035 = Table(
@@ -2710,10 +2710,10 @@ class EgoGridMvGriddistrictCollect(Base):
     subst_id = Column(Integer)
     subst_name = Column(Text)
     ags_0 = Column(String(12))
-    geom_sub = Column(Geometry('POINT', 3035), index=True)
+    geom_sub = Column(Geometry('POINT', 3035))
     subst_sum = Column(Integer)
     subst_type = Column(Integer)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridMvGriddistrictDump(Base):
@@ -2723,8 +2723,8 @@ class EgoGridMvGriddistrictDump(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mv_griddistrict_dump_id_seq1'::regclass)"))
     subst_id = Column(Integer)
     subst_cnt = Column(Integer)
-    geom_point = Column(Geometry('POINT', 3035), index=True)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom_point = Column(Geometry('POINT', 3035))
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridMvGriddistrictDump0sub(Base):
@@ -2735,7 +2735,7 @@ class EgoGridMvGriddistrictDump0sub(Base):
     subst_id = Column(Integer)
     subst_cnt = Column(Integer)
     geom_point = Column(Geometry('POINT', 3035))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridMvGriddistrictDump1sub(Base):
@@ -2745,7 +2745,7 @@ class EgoGridMvGriddistrictDump1sub(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mv_griddistrict_dump_1sub_id_seq'::regclass)"))
     subst_id = Column(Integer)
     subst_cnt = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridMvGriddistrictDumpNn(Base):
@@ -2768,7 +2768,7 @@ class EgoGridMvGriddistrictDumpNnCollect(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mv_griddistrict_dump_nn_collect_id_seq'::regclass)"))
     subst_id = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridMvGriddistrictDumpNnCollectUnion(Base):
@@ -2776,7 +2776,7 @@ class EgoGridMvGriddistrictDumpNnCollectUnion(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     subst_id = Column(Integer, primary_key=True)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridMvGriddistrictDumpNnLine(Base):
@@ -2786,7 +2786,7 @@ class EgoGridMvGriddistrictDumpNnLine(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mv_griddistrict_dump_nn_line_id_seq'::regclass)"))
     a_id = Column(Integer)
     subst_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
 
 
 class EgoGridMvGriddistrictDumpNnUnion(Base):
@@ -2794,7 +2794,7 @@ class EgoGridMvGriddistrictDumpNnUnion(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     subst_id = Column(Integer, primary_key=True)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridMvGriddistrictNew(Base):
@@ -2802,7 +2802,7 @@ class EgoGridMvGriddistrictNew(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     subst_id = Column(Integer, primary_key=True)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridMvGriddistrictNewDump(Base):
@@ -2813,7 +2813,7 @@ class EgoGridMvGriddistrictNewDump(Base):
     subst_id = Column(Integer)
     subst_cnt = Column(Integer)
     geom_point = Column(Geometry('POINT', 3035))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridMvGriddistrictType1(Base):
@@ -2823,10 +2823,10 @@ class EgoGridMvGriddistrictType1(Base):
     subst_id = Column(Integer, primary_key=True)
     subst_name = Column(Text)
     ags_0 = Column(String(12))
-    geom_sub = Column(Geometry('POINT', 3035), index=True)
+    geom_sub = Column(Geometry('POINT', 3035))
     subst_sum = Column(Integer)
     subst_type = Column(Integer)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridMvGriddistrictType2(Base):
@@ -2836,10 +2836,10 @@ class EgoGridMvGriddistrictType2(Base):
     subst_id = Column(Integer, primary_key=True)
     subst_name = Column(Text)
     ags_0 = Column(String(12))
-    geom_sub = Column(Geometry('POINT', 3035), index=True)
+    geom_sub = Column(Geometry('POINT', 3035))
     subst_sum = Column(Integer)
     subst_type = Column(Integer)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridMvGriddistrictType3(Base):
@@ -2849,10 +2849,10 @@ class EgoGridMvGriddistrictType3(Base):
     subst_id = Column(Integer, primary_key=True)
     subst_name = Column(Text)
     ags_0 = Column(String(12))
-    geom_sub = Column(Geometry('POINT', 3035), index=True)
+    geom_sub = Column(Geometry('POINT', 3035))
     subst_sum = Column(Integer)
     subst_type = Column(Integer)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridMvGriddistrictUnion(Base):
@@ -2860,7 +2860,7 @@ class EgoGridMvGriddistrictUnion(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     subst_id = Column(Integer, primary_key=True)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoGridMvVisualizationBranch(Base):
@@ -2874,7 +2874,7 @@ class EgoGridMvVisualizationBranch(Base):
     type_v_nom = Column(Integer)
     type_s_nom = Column(Float(53))
     length = Column(Float(53))
-    geom = Column(Geometry('LINESTRING', 4326), index=True)
+    geom = Column(Geometry('LINESTRING', 4326))
     s_res0 = Column(Float(53))
     s_res1 = Column(Float(53))
 
@@ -2890,7 +2890,7 @@ class EgoGridMvVisualizationBranchesJa(Base):
     type_v_nom = Column(Integer)
     type_s_nom = Column(Float(53))
     length = Column(Float(53))
-    geom = Column(Geometry('LINESTRING', 4326), index=True)
+    geom = Column(Geometry('LINESTRING', 4326))
     s_res0 = Column(Float(53))
     s_res1 = Column(Float(53))
 
@@ -2900,13 +2900,13 @@ class EgoGridMvVisualizationBunch(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     grid_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mv_visualization_bunch_grid_id_seq'::regclass)"))
-    geom_mv_station = Column(Geometry('POINT', 4326), index=True)
-    geom_mv_cable_dists = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_mv_circuit_breakers = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_lv_load_area_centres = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_lv_stations = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_mv_generators = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_mv_lines = Column(Geometry('MULTILINESTRING', 4326), index=True)
+    geom_mv_station = Column(Geometry('POINT', 4326))
+    geom_mv_cable_dists = Column(Geometry('MULTIPOINT', 4326))
+    geom_mv_circuit_breakers = Column(Geometry('MULTIPOINT', 4326))
+    geom_lv_load_area_centres = Column(Geometry('MULTIPOINT', 4326))
+    geom_lv_stations = Column(Geometry('MULTIPOINT', 4326))
+    geom_mv_generators = Column(Geometry('MULTIPOINT', 4326))
+    geom_mv_lines = Column(Geometry('MULTILINESTRING', 4326))
 
 
 class EgoGridMvVisualizationBunchJa(Base):
@@ -2914,13 +2914,13 @@ class EgoGridMvVisualizationBunchJa(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     grid_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mv_visualization_bunch_grid_id_seq'::regclass)"))
-    geom_mv_station = Column(Geometry('POINT', 4326), index=True)
-    geom_mv_cable_dists = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_mv_circuit_breakers = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_lv_load_area_centres = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_lv_stations = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_mv_generators = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_mv_lines = Column(Geometry('MULTILINESTRING', 4326), index=True)
+    geom_mv_station = Column(Geometry('POINT', 4326))
+    geom_mv_cable_dists = Column(Geometry('MULTIPOINT', 4326))
+    geom_mv_circuit_breakers = Column(Geometry('MULTIPOINT', 4326))
+    geom_lv_load_area_centres = Column(Geometry('MULTIPOINT', 4326))
+    geom_lv_stations = Column(Geometry('MULTIPOINT', 4326))
+    geom_mv_generators = Column(Geometry('MULTIPOINT', 4326))
+    geom_mv_lines = Column(Geometry('MULTILINESTRING', 4326))
 
 
 class EgoGridMvVisualizationBunchPaper1(Base):
@@ -2928,13 +2928,13 @@ class EgoGridMvVisualizationBunchPaper1(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     grid_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mv_visualization_bunch_paper1_grid_id_seq'::regclass)"))
-    geom_mv_station = Column(Geometry('POINT', 4326), index=True)
-    geom_mv_cable_dists = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_mv_circuit_breakers = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_lv_load_area_centres = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_lv_stations = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_mv_generators = Column(Geometry('MULTIPOINT', 4326), index=True)
-    geom_mv_lines = Column(Geometry('MULTILINESTRING', 4326), index=True)
+    geom_mv_station = Column(Geometry('POINT', 4326))
+    geom_mv_cable_dists = Column(Geometry('MULTIPOINT', 4326))
+    geom_mv_circuit_breakers = Column(Geometry('MULTIPOINT', 4326))
+    geom_lv_load_area_centres = Column(Geometry('MULTIPOINT', 4326))
+    geom_lv_stations = Column(Geometry('MULTIPOINT', 4326))
+    geom_mv_generators = Column(Geometry('MULTIPOINT', 4326))
+    geom_mv_lines = Column(Geometry('MULTILINESTRING', 4326))
 
 
 class EgoGridMvVisualizationNode(Base):
@@ -2944,7 +2944,7 @@ class EgoGridMvVisualizationNode(Base):
     node_id = Column(String(100), primary_key=True)
     grid_id = Column(Integer)
     v_nom = Column(Integer)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     v_res0 = Column(Float(53))
     v_res1 = Column(Float(53))
 
@@ -2956,7 +2956,7 @@ class EgoGridMvVisualizationNodesJa(Base):
     node_id = Column(String(100), primary_key=True)
     grid_id = Column(Integer)
     v_nom = Column(Integer)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     v_res0 = Column(Float(53))
     v_res1 = Column(Float(53))
 
@@ -2993,7 +2993,7 @@ class EgoGridMvlvSubstation(Base):
     mvlv_subst_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_mvlv_subst_id_seq'::regclass)"))
     la_id = Column(Integer)
     subst_id = Column(Integer)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
     is_dummy = Column(Boolean)
 
 
@@ -3004,7 +3004,7 @@ class EgoGridMvlvSubstationPaper(Base):
     mvlv_subst_id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_paper_mvlv_subst_id_seq'::regclass)"))
     la_id = Column(Integer)
     subst_id = Column(Integer)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
     is_dummy = Column(Boolean)
 
 
@@ -3014,7 +3014,7 @@ class EgoGridMvlvSubstationVoronoi(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_grid_mvlv_substation_voronoi_id_seq'::regclass)"))
     subst_id = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoGridPfHvBus(Base):
@@ -3077,7 +3077,7 @@ class EgoGridPfHvExtensionBus(Base):
     current_type = Column(Text, server_default=text("'AC'::text"))
     v_mag_pu_min = Column(Float(53), server_default=text("0"))
     v_mag_pu_max = Column(Float(53))
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     project = Column(String)
     bus_name = Column(String)
 
@@ -3909,10 +3909,10 @@ class EgoLanduseIndustry(Base):
     area_ha = Column(Float(53))
     tags = Column(HSTORE(Text()))
     vg250 = Column(Text)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
-    geom_centroid = Column(Geometry('POINT', 3035), index=True)
-    geom_surfacepoint = Column(Geometry('POINT', 3035), index=True)
-    geom_centre = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
+    geom_centroid = Column(Geometry('POINT', 3035))
+    geom_surfacepoint = Column(Geometry('POINT', 3035))
+    geom_centre = Column(Geometry('POINT', 3035))
     nuts = Column(String(5))
     consumption = Column(Numeric)
     peak_load = Column(Numeric)
@@ -3951,7 +3951,7 @@ class EgoLattice360mLv(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_lattice_360m_lv_id_seq'::regclass)"))
     la_id = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoLattice500m(Base):
@@ -3961,8 +3961,8 @@ class EgoLattice500m(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_lattice_500m_id_seq'::regclass)"))
     subst_id = Column(Integer)
     area_type = Column(Text)
-    geom_box = Column(Geometry('POLYGON', 3035), index=True)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom_box = Column(Geometry('POLYGON', 3035))
+    geom = Column(Geometry('POINT', 3035))
 
 
 t_ego_lattice_500m_la_mview = Table(
@@ -3971,7 +3971,7 @@ t_ego_lattice_500m_la_mview = Table(
     Column('subst_id', Integer),
     Column('area_type', Text),
     Column('geom_box', Geometry('POLYGON', 3035)),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -3982,7 +3982,7 @@ t_ego_lattice_500m_out_mview = Table(
     Column('subst_id', Integer),
     Column('area_type', Text),
     Column('geom_box', Geometry('POLYGON', 3035)),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -3993,7 +3993,7 @@ t_ego_lattice_500m_wpa_mview = Table(
     Column('subst_id', Integer),
     Column('area_type', Text),
     Column('geom_box', Geometry('POLYGON', 3035)),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -4004,7 +4004,7 @@ t_ego_lattice_500m_x_mview = Table(
     Column('subst_id', Integer),
     Column('area_type', Text),
     Column('geom_box', Geometry('POLYGON', 3035)),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -4016,8 +4016,8 @@ class EgoLattice50m(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_lattice_50m_id_seq'::regclass)"))
     subst_id = Column(Integer)
     area_type = Column(Text)
-    geom_box = Column(Geometry('POLYGON', 3035), index=True)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom_box = Column(Geometry('POLYGON', 3035))
+    geom = Column(Geometry('POINT', 3035))
 
 
 t_ego_lattice_50m_la_mview = Table(
@@ -4026,7 +4026,7 @@ t_ego_lattice_50m_la_mview = Table(
     Column('subst_id', Integer),
     Column('area_type', Text),
     Column('geom_box', Geometry('POLYGON', 3035)),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -4104,14 +4104,14 @@ class EgoOsmAgriculturePerMvgd(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_agriculture_per_mvgd_id_seq'::regclass)"))
     subst_id = Column(Integer)
     area_ha = Column(Numeric)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoOsmDeuStreetStreetcrossing(Base):
     __tablename__ = 'ego_osm_deu_street_streetcrossing'
     __table_args__ = {'schema': 'model_draft'}
 
-    geom = Column(Geometry, index=True)
+    geom = Column(Geometry)
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_deu_street_streetcrossing_id_seq'::regclass)"))
 
 
@@ -4120,7 +4120,7 @@ class EgoOsmSectorPerGriddistrict1Residential(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_sector_per_griddistrict_1_residential_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoOsmSectorPerGriddistrict2Retail(Base):
@@ -4128,7 +4128,7 @@ class EgoOsmSectorPerGriddistrict2Retail(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_sector_per_griddistrict_2_retail_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoOsmSectorPerGriddistrict3Industrial(Base):
@@ -4136,7 +4136,7 @@ class EgoOsmSectorPerGriddistrict3Industrial(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_sector_per_griddistrict_3_industrial_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoOsmSectorPerGriddistrict4Agricultural(Base):
@@ -4144,7 +4144,7 @@ class EgoOsmSectorPerGriddistrict4Agricultural(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_sector_per_griddistrict_4_agricultural_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
     subst_id = Column(Integer)
     area_ha = Column(Float(53))
 
@@ -4154,7 +4154,7 @@ class EgoOsmSectorPerLvgd1Residential(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_sector_per_lvgd_1_residential_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoOsmSectorPerLvgd2Retail(Base):
@@ -4162,7 +4162,7 @@ class EgoOsmSectorPerLvgd2Retail(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_sector_per_lvgd_2_retail_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoOsmSectorPerLvgd3Industrial(Base):
@@ -4170,7 +4170,7 @@ class EgoOsmSectorPerLvgd3Industrial(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_sector_per_lvgd_3_industrial_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoOsmSectorPerLvgd4Agricultural(Base):
@@ -4178,7 +4178,7 @@ class EgoOsmSectorPerLvgd4Agricultural(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_osm_sector_per_lvgd_4_agricultural_id_seq'::regclass)"))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_ego_political_boundary_bkg_vg250_6_gem_hole_mview = Table(
@@ -4195,7 +4195,7 @@ t_ego_political_boundary_bkg_vg250_6_gem_hole_mview = Table(
     Column('count_hole', Integer),
     Column('path', ARRAY(Integer())),
     Column('is_hole', Boolean),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -4216,7 +4216,7 @@ class EgoPoliticalBoundaryHvmvSubstPerGem(Base):
     count_hole = Column(Integer)
     path = Column(ARRAY(Integer()))
     is_hole = Column(Boolean)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
     subst_sum = Column(Integer)
     subst_type = Column(Integer)
 
@@ -4266,9 +4266,9 @@ class EgoPoliticalBoundaryHvmvSubstPerGem3Nn(Base):
     subst_ags_0 = Column(Text)
     subst_id = Column(Integer)
     subst_type = Column(Integer)
-    geom_sub = Column(Geometry('POINT', 3035), index=True)
+    geom_sub = Column(Geometry('POINT', 3035))
     distance = Column(Float(53))
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 t_ego_political_boundary_hvmv_subst_per_gem_3_nn_line = Table(
@@ -4276,8 +4276,8 @@ t_ego_political_boundary_hvmv_subst_per_gem_3_nn_line = Table(
     Column('id', BigInteger, unique=True),
     Column('nn_id', Integer),
     Column('subst_id', Integer),
-    Column('geom_centre', Geometry('POINT', 3035), index=True),
-    Column('geom', Geometry('LINESTRING', 3035), index=True),
+    Column('geom_centre', Geometry('POINT', 3035)),
+    Column('geom', Geometry('LINESTRING', 3035)),
     schema='model_draft'
 )
 
@@ -4286,7 +4286,7 @@ t_ego_political_boundary_hvmv_subst_per_gem_3_nn_union = Table(
     'ego_political_boundary_hvmv_subst_per_gem_3_nn_union', metadata,
     Column('subst_id', Integer, unique=True),
     Column('subst_type', Integer),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -4353,7 +4353,7 @@ t_ego_renewable_powerplant_eaa_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     schema='model_draft'
 )
 
@@ -4470,8 +4470,8 @@ class EgoSocialZensusLoad(Base):
     gid = Column(Integer)
     population = Column(Integer)
     inside_la = Column(Boolean)
-    geom_point = Column(Geometry('POINT', 3035), index=True)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom_point = Column(Geometry('POINT', 3035))
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoSocialZensusLoadCluster(Base):
@@ -4481,10 +4481,10 @@ class EgoSocialZensusLoadCluster(Base):
     cid = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_social_zensus_load_cluster_cid_seq'::regclass)"))
     zensus_sum = Column(Integer)
     area_ha = Column(Integer)
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
     geom_buffer = Column(Geometry('POLYGON', 3035))
-    geom_centroid = Column(Geometry('POINT', 3035), index=True)
-    geom_surfacepoint = Column(Geometry('POINT', 3035), index=True)
+    geom_centroid = Column(Geometry('POINT', 3035))
+    geom_surfacepoint = Column(Geometry('POINT', 3035))
 
 
 t_ego_society_zensus_per_la_mview = Table(
@@ -4507,7 +4507,7 @@ class EgoStorageH2AreasDe(Base):
     id = Column(Integer)
     shape_star = Column(Numeric)
     shape_stle = Column(Numeric)
-    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 4326))
 
 
 t_ego_supply_aggr_weather = Table(
@@ -4555,7 +4555,7 @@ t_ego_supply_conv_nep2035_temp = Table(
     Column('lat', Float(53)),
     Column('lon', Float(53)),
     Column('comment', Text),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('voltage_level', SmallInteger),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
@@ -4601,7 +4601,7 @@ t_ego_supply_conv_powerplant = Table(
     Column('lat', Float(53)),
     Column('lon', Float(53)),
     Column('comment', Text),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     schema='model_draft'
 )
 
@@ -4640,7 +4640,7 @@ t_ego_supply_conv_powerplant_2035 = Table(
     Column('lat', Float(53)),
     Column('lon', Float(53)),
     Column('comment', Text),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('la_id', Integer),
     Column('scenario', Text),
     Column('flag', Text),
@@ -4803,7 +4803,7 @@ class EgoSupplyGenerator(Base):
     conv_id = Column(Integer)
     aggr_id_pf = Column(Integer)
     aggr_id_ms = Column(Integer)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
 
 
 class EgoSupplyGeneratorNep2035(Base):
@@ -4815,7 +4815,7 @@ class EgoSupplyGeneratorNep2035(Base):
     conv_id = Column(BigInteger)
     aggr_id_pf = Column(BigInteger)
     aggr_id_ms = Column(BigInteger)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
 
 
 class EgoSupplyGeneratorTest(Base):
@@ -4827,7 +4827,7 @@ class EgoSupplyGeneratorTest(Base):
     conv_id = Column(Integer)
     aggr_id_pf = Column(Integer)
     aggr_id_ms = Column(Integer)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
 
 
 class EgoSupplyRea(Base):
@@ -4845,9 +4845,9 @@ class EgoSupplyRea(Base):
     la_id = Column(Integer)
     sort = Column(Integer)
     flag = Column(String)
-    geom = Column(Geometry('POINT', 3035), index=True)
-    geom_line = Column(Geometry('LINESTRING', 3035), index=True)
-    geom_new = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
+    geom_line = Column(Geometry('LINESTRING', 3035))
+    geom_new = Column(Geometry('POINT', 3035))
 
 
 t_ego_supply_rea_m1_1_mview = Table(
@@ -4877,7 +4877,7 @@ t_ego_supply_rea_m1_1_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -4890,8 +4890,8 @@ t_ego_supply_rea_m1_1_mview = Table(
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
-    Column('rea_geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('rea_geom_new', Geometry('POINT', 3035), index=True),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -4904,7 +4904,7 @@ t_ego_supply_rea_m1_1_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', SmallInteger),
     Column('subst_id', BigInteger),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('rea_flag', String),
     schema='model_draft'
 )
@@ -4937,7 +4937,7 @@ t_ego_supply_rea_m1_2_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -4950,8 +4950,8 @@ t_ego_supply_rea_m1_2_mview = Table(
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
-    Column('rea_geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('rea_geom_new', Geometry('POINT', 3035), index=True),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -4964,7 +4964,7 @@ t_ego_supply_rea_m1_2_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', SmallInteger),
     Column('subst_id', BigInteger),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('rea_flag', String),
     schema='model_draft'
 )
@@ -4997,7 +4997,7 @@ t_ego_supply_rea_m2_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5010,8 +5010,8 @@ t_ego_supply_rea_m2_mview = Table(
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
-    Column('rea_geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('rea_geom_new', Geometry('POINT', 3035), index=True),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -5024,7 +5024,7 @@ t_ego_supply_rea_m2_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', SmallInteger),
     Column('subst_id', BigInteger),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('rea_flag', String),
     schema='model_draft'
 )
@@ -5041,7 +5041,7 @@ class EgoSupplyReaM2Windfarm(Base):
     electrical_capacity_sum = Column(Numeric)
     rea_geom_new = Column(Geometry('POLYGON', 3035))
     rea_geom_line = Column(Geometry('LINESTRING', 3035))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_ego_supply_rea_m3_mview = Table(
@@ -5071,7 +5071,7 @@ t_ego_supply_rea_m3_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5084,8 +5084,8 @@ t_ego_supply_rea_m3_mview = Table(
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
-    Column('rea_geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('rea_geom_new', Geometry('POINT', 3035), index=True),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -5098,7 +5098,7 @@ t_ego_supply_rea_m3_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', SmallInteger),
     Column('subst_id', BigInteger),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('rea_flag', String),
     schema='model_draft'
 )
@@ -5131,7 +5131,7 @@ t_ego_supply_rea_m4_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5144,8 +5144,8 @@ t_ego_supply_rea_m4_mview = Table(
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
-    Column('rea_geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('rea_geom_new', Geometry('POINT', 3035), index=True),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -5158,7 +5158,7 @@ t_ego_supply_rea_m4_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', SmallInteger),
     Column('subst_id', BigInteger),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('rea_flag', String),
     schema='model_draft'
 )
@@ -5191,7 +5191,7 @@ t_ego_supply_rea_m5_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5204,8 +5204,8 @@ t_ego_supply_rea_m5_mview = Table(
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
-    Column('rea_geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('rea_geom_new', Geometry('POINT', 3035), index=True),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -5218,7 +5218,7 @@ t_ego_supply_rea_m5_rest_2_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', SmallInteger),
     Column('subst_id', BigInteger),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('rea_flag', String),
     schema='model_draft'
 )
@@ -5232,7 +5232,7 @@ t_ego_supply_rea_m5_rest_mview = Table(
     Column('generation_subtype', String),
     Column('voltage_level', SmallInteger),
     Column('subst_id', BigInteger),
-    Column('geom', Geometry, index=True),
+    Column('geom', Geometry),
     Column('rea_flag', String),
     schema='model_draft'
 )
@@ -5251,9 +5251,9 @@ t_ego_supply_rea_out_mview = Table(
     Column('la_id', Integer),
     Column('sort', Integer),
     Column('flag', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
-    Column('geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('geom_new', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
+    Column('geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -5300,7 +5300,7 @@ class EgoSupplyReaPerMvgd(Base):
     lv_dea_capacity = Column(Numeric)
     mv_dea_cnt = Column(Integer)
     mv_dea_capacity = Column(Numeric)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class EgoSupplyRenewableBnetzaFullAttribute(Base):
@@ -5396,7 +5396,7 @@ class EgoSupplyRenewableBnetzaFullAttribute(Base):
     field_86 = Column(Numeric(10, 0))
     field_87 = Column(String(254))
     field_88 = Column(String(254))
-    geom = Column(Geometry('POINT', 25832), index=True)
+    geom = Column(Geometry('POINT', 25832))
 
 
 t_ego_supply_res_biomass_2035_temp = Table(
@@ -5426,7 +5426,7 @@ t_ego_supply_res_biomass_2035_temp = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry, index=True),
+    Column('geom', Geometry),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5471,7 +5471,7 @@ t_ego_supply_res_biomass_2050_temp = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5516,7 +5516,7 @@ t_ego_supply_res_chp_2050_temp = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5561,7 +5561,7 @@ t_ego_supply_res_hydro_2035_temp = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5606,7 +5606,7 @@ t_ego_supply_res_hydro_2050_temp = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5652,7 +5652,7 @@ class EgoSupplyResPowerplant(Base):
     power_plant_id = Column(String)
     source = Column(String)
     comment = Column(String)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     subst_id = Column(BigInteger)
     otg_id = Column(BigInteger)
     un_id = Column(BigInteger)
@@ -5783,7 +5783,7 @@ t_ego_supply_res_powerplant_out_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5792,8 +5792,8 @@ t_ego_supply_res_powerplant_out_mview = Table(
     Column('mvlv_subst_id', Integer),
     Column('rea_sort', Integer),
     Column('rea_flag', String),
-    Column('rea_geom_line', Geometry('LINESTRING', 3035), index=True),
-    Column('rea_geom_new', Geometry('POINT', 3035), index=True),
+    Column('rea_geom_line', Geometry('LINESTRING', 3035)),
+    Column('rea_geom_new', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -5940,7 +5940,7 @@ t_ego_supply_res_woff_2035_temp = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -5985,7 +5985,7 @@ t_ego_supply_res_woff_2050_temp = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
     Column('un_id', BigInteger),
@@ -6021,7 +6021,7 @@ class EgoSupplyWpaPerMvgd(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ego_supply_wpa_per_mvgd_id_seq'::regclass)"))
     subst_id = Column(Integer)
     area_ha = Column(Float(53))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class EgoWeatherMeasurementPoint(Base):
@@ -6037,7 +6037,7 @@ t_ev_charging_berlin_parking_poly = Table(
     'ev_charging_berlin_parking_poly', metadata,
     Column('osm_id', BigInteger),
     Column('tags', HSTORE(Text())),
-    Column('geom', Geometry, index=True),
+    Column('geom', Geometry),
     schema='model_draft'
 )
 
@@ -6063,7 +6063,7 @@ t_ev_charging_berlin_shops_pts = Table(
 t_ev_charging_bonn_poi_points = Table(
     'ev_charging_bonn_poi_points', metadata,
     Column('id', BigInteger),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('amenity', String(50)),
     Column('weight', Integer),
     schema='model_draft'
@@ -6103,7 +6103,7 @@ class EvChargingBrandenburgStreetseg(Base):
 t_ev_charging_buildings_berlin = Table(
     'ev_charging_buildings_berlin', metadata,
     Column('gid', Integer, unique=True),
-    Column('geom', Geometry, index=True),
+    Column('geom', Geometry),
     schema='model_draft'
 )
 
@@ -6113,7 +6113,7 @@ class EvChargingCandidatepoint(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_candidatepoints_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
 
 
 class EvChargingCensusblocksSpiekeroog(Base):
@@ -6128,7 +6128,7 @@ class EvChargingCensusblocksSpiekeroog(Base):
 t_ev_charging_chosenpoints = Table(
     'ev_charging_chosenpoints', metadata,
     Column('id', Integer),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('current_cp', Boolean),
     schema='model_draft'
 )
@@ -6159,7 +6159,7 @@ t_ev_charging_essen_charging_points = Table(
     Column('charger_count', Integer),
     Column('power_kwh', Float(53)),
     Column('charger_type', Text),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -6168,7 +6168,7 @@ t_ev_charging_essen_districtdata = Table(
     'ev_charging_essen_districtdata', metadata,
     Column('index', BigInteger, index=True),
     Column('Name', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     Column('Wohnungsbezogene Charakterisierung', Text),
     Column('Sozialraeumliche Charakterisierung', Text),
     Column('Mietspiegel', Float(53)),
@@ -6227,7 +6227,7 @@ t_ev_charging_geom_spiekeroog = Table(
 t_ev_charging_giessen_poi_points_ = Table(
     'ev_charging_giessen_poi_points_', metadata,
     Column('id', BigInteger),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     Column('amenity', String(50)),
     Column('weight', Integer),
     schema='model_draft'
@@ -6237,7 +6237,7 @@ t_ev_charging_giessen_poi_points_ = Table(
 t_ev_charging_giessen_poi_points__clusters = Table(
     'ev_charging_giessen_poi_points__clusters', metadata,
     Column('npoints', Integer),
-    Column('geom', Geometry, index=True),
+    Column('geom', Geometry),
     schema='model_draft'
 )
 
@@ -6248,7 +6248,7 @@ class EvChargingGiessenStreet(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.\"ev_charging_gießen_streets_id_seq\"'::regclass)"))
     osm_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Numeric)
     highway = Column(HSTORE(Text()))
 
@@ -6262,7 +6262,7 @@ class EvChargingGiessenStreetsSegmented(Base):
     y1 = Column(Float(53))
     x2 = Column(Float(53))
     y2 = Column(Float(53))
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Float(53))
 
 
@@ -6511,7 +6511,7 @@ t_ev_charging_preprocess_segments = Table(
 t_ev_charging_saarland_streets_ = Table(
     'ev_charging_saarland_streets_', metadata,
     Column('id', BigInteger),
-    Column('geom', Geometry, index=True),
+    Column('geom', Geometry),
     schema='model_draft'
 )
 
@@ -6525,7 +6525,7 @@ class EvChargingSaarlandStreetsSegmented(Base):
     y1 = Column(Float(53))
     x2 = Column(Float(53))
     y2 = Column(Float(53))
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Float(53))
 
 
@@ -6548,7 +6548,7 @@ class EvChargingStreet(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_streets_id_seq'::regclass)"))
     osm_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Numeric)
 
 
@@ -6558,7 +6558,7 @@ class EvChargingStreetsBerlin(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_streets_berlin_id_seq'::regclass)"))
     osm_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Numeric)
     highway = Column(HSTORE(Text()))
 
@@ -6603,7 +6603,7 @@ class EvChargingStreetsDittwar(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_streets_dittwar_id_seq'::regclass)"))
     osm_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Numeric)
     highway = Column(HSTORE(Text()))
 
@@ -6627,7 +6627,7 @@ class EvChargingStreetsEssen(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_streets_essen_id_seq'::regclass)"))
     osm_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Numeric)
     highway = Column(HSTORE(Text()))
 
@@ -6651,7 +6651,7 @@ class EvChargingStreetsFriedland(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_streets_friedland_id_seq'::regclass)"))
     osm_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Numeric)
     highway = Column(HSTORE(Text()))
 
@@ -6675,7 +6675,7 @@ class EvChargingStreetsGiessen(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.\"ev_charging_streets_gießen_id_seq\"'::regclass)"))
     osm_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Numeric)
     highway = Column(HSTORE(Text()))
 
@@ -6741,7 +6741,7 @@ class EvChargingStreetsSpiekeroog(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_streets_spiekeroog_id_seq'::regclass)"))
     osm_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Numeric)
     highway = Column(HSTORE(Text()))
 
@@ -6840,7 +6840,7 @@ class EvChargingWinterbergStreet(Base):
 
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ev_charging_winterberg_streets_id_seq'::regclass)"))
     osm_id = Column(Integer)
-    geom = Column(Geometry('LINESTRING', 3035), index=True)
+    geom = Column(Geometry('LINESTRING', 3035))
     length = Column(Numeric)
     highway = Column(HSTORE(Text()))
 
@@ -6935,7 +6935,7 @@ t_fred_dp_hydropower_mview = Table(
     Column('capacity', Float(53)),
     Column('voltage_level', SmallInteger),
     Column('source', Text),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='model_draft'
 )
 
@@ -6952,8 +6952,8 @@ t_fred_dp_hydropower_on_river_mview = Table(
     Column('riversystem_id', Integer),
     Column('gwk', String),
     Column('nam', String(100)),
-    Column('geom', Geometry('POINT', 3035), index=True),
-    Column('geom_line', Geometry('LINESTRING', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
+    Column('geom_line', Geometry('LINESTRING', 3035)),
     Column('distance', Float(53)),
     schema='model_draft'
 )
@@ -6965,7 +6965,7 @@ t_fred_dp_river_mview = Table(
     Column('riversystem_id', Integer),
     Column('gwk', String),
     Column('nam', String(100)),
-    Column('geom', Geometry('MULTILINESTRING', 3035), index=True),
+    Column('geom', Geometry('MULTILINESTRING', 3035)),
     schema='model_draft'
 )
 
@@ -6976,7 +6976,7 @@ t_fred_dp_river_systems_mview = Table(
     Column('riversystem_name', Text),
     Column('river_cnt', BigInteger),
     Column('river_lenght', Float(53)),
-    Column('geom', Geometry('MULTILINESTRING', 3035), index=True),
+    Column('geom', Geometry('MULTILINESTRING', 3035)),
     schema='model_draft'
 )
 
@@ -6990,7 +6990,7 @@ t_fred_dp_river_with_hydropower_mview = Table(
     Column('riversystem_id', Integer),
     Column('riversystem_name', Text),
     Column('nam', String(100)),
-    Column('geom', Geometry('MULTILINESTRING', 3035), index=True),
+    Column('geom', Geometry('MULTILINESTRING', 3035)),
     schema='model_draft'
 )
 
@@ -7023,7 +7023,7 @@ class IoerUrbanShareIndustrialCentroid(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.ioer_urban_share_industrial_centroid_id_seq'::regclass)"))
     rid = Column(Integer)
     ioer_share = Column(Numeric)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
 
 
 class LanduseCalc(Base):
@@ -7042,7 +7042,7 @@ class LisCharging(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
     desc = Column(String)
 
 
@@ -7052,7 +7052,7 @@ class LisChargingGe(Base):
 
     id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_ge_id_seq'::regclass)"))
     ge_id = Column(BigInteger)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
     name = Column(String)
     street = Column(String)
     postcode = Column(String)
@@ -7068,7 +7068,7 @@ class LisChargingPoi(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_poi_id_seq'::regclass)"))
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
     osm_id = Column(BigInteger)
     amenity = Column(String)
     name = Column(String)
@@ -7084,7 +7084,7 @@ class LisChargingStreet(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     id = Column(BigInteger, primary_key=True, server_default=text("nextval('model_draft.lis_charging_streets_id_seq'::regclass)"))
-    geom = Column(Geometry('MULTILINESTRING', 3035), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 3035))
     geom_string = Column(String)
     desc = Column(String)
 
@@ -7121,7 +7121,7 @@ class OepMetadataTableExampleV13(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.oep_metadata_table_example_v13_id_seq'::regclass)"))
     year = Column(Integer)
     value = Column(Float(53))
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
 
 
 class OepMetadataTableExampleV14(Base):
@@ -7131,7 +7131,7 @@ class OepMetadataTableExampleV14(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.oep_metadata_table_example_v14_id_seq'::regclass)"))
     year = Column(Integer)
     value = Column(Float(53))
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
 
 
 t_offshore_feedin_foreign = Table(
@@ -7190,7 +7190,7 @@ class Openfredgrid(Base):
     __table_args__ = {'schema': 'model_draft'}
 
     gid = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.openfredgrid_gid_seq'::regclass)"))
-    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 4326))
 
 
 t_opsd_hourly_timeseries = Table(
@@ -7265,7 +7265,7 @@ t_opsd_hourly_timeseries = Table(
 t_osm_deu_polygon_urban_buffer100_mview = Table(
     'osm_deu_polygon_urban_buffer100_mview', metadata,
     Column('id', Integer, unique=True),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='model_draft'
 )
 
@@ -7309,7 +7309,7 @@ class RenpassgisEconomicWeatherpointVoronoi(Base):
     __tablename__ = 'renpassgis_economic_weatherpoint_voronoi'
     __table_args__ = {'schema': 'model_draft'}
 
-    geom = Column(Geometry('POLYGON', 4326), index=True)
+    geom = Column(Geometry('POLYGON', 4326))
     id = Column(Integer, primary_key=True)
 
 
@@ -7317,7 +7317,7 @@ class RenpassgisEconomyClimatepointVoronoi(Base):
     __tablename__ = 'renpassgis_economy_climatepoint_voronoi'
     __table_args__ = {'schema': 'model_draft'}
 
-    geom = Column(Geometry('POLYGON', 4326), index=True)
+    geom = Column(Geometry('POLYGON', 4326))
     id = Column(Integer, primary_key=True)
 
 
@@ -7338,7 +7338,7 @@ class RliResearchInstitute(Base):
     source = Column(Text)
     lon = Column(Float(53))
     lat = Column(Float(53))
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
 
 
 class ScenarioLog(Base):
@@ -7443,8 +7443,8 @@ class TemplateTable(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('model_draft.template_table_id_seq'::regclass)"))
     base_id = Column(Integer)
     area_type = Column(Text)
-    geom_poly = Column(Geometry('POLYGON', 3035), index=True)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom_poly = Column(Geometry('POLYGON', 3035))
+    geom = Column(Geometry('POINT', 3035))
 
 
 t_template_table_mview = Table(
@@ -7452,7 +7452,7 @@ t_template_table_mview = Table(
     Column('id', Integer),
     Column('base_id', Integer),
     Column('area_type', Text),
-    Column('geom', Geometry, index=True),
+    Column('geom', Geometry),
     schema='model_draft'
 )
 
@@ -7551,7 +7551,7 @@ class WnAbwBkgVg2504Kr(Base):
     ags_0 = Column(String(12))
     wsk = Column(Date)
     debkg_id = Column(String(16))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class WnAbwBkgVg2506Gem(Base):
@@ -7583,7 +7583,7 @@ class WnAbwBkgVg2506Gem(Base):
     ags_0 = Column(String(12))
     wsk = Column(Date)
     debkg_id = Column(String(16))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class WnAbwDemandElT(Base):
@@ -7610,8 +7610,8 @@ class WnAbwEgoDemandHvLargescaleconsumer(Base):
     un_id = Column(Integer)
     consumption = Column(Numeric)
     peak_load = Column(Numeric)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
-    geom_centre = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
+    geom_centre = Column(Geometry('POINT', 3035))
     hvmv_subst_id = Column(Integer)
 
 
@@ -7651,7 +7651,7 @@ class WnAbwEgoDpConvPowerplant(Base):
     lat = Column(Float(53))
     lon = Column(Float(53))
     comment = Column(Text)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     voltage_level = Column(SmallInteger)
     subst_id = Column(BigInteger)
     otg_id = Column(BigInteger)
@@ -7686,7 +7686,7 @@ class WnAbwEgoDpHvmvSubstation(Base):
     status = Column(SmallInteger)
     otg_id = Column(BigInteger)
     ags_0 = Column(Text)
-    geom = Column(Geometry('POINT', 3035), index=True)
+    geom = Column(Geometry('POINT', 3035))
 
 
 class WnAbwEgoDpLoadarea(Base):
@@ -7735,7 +7735,7 @@ class WnAbwEgoDpLoadarea(Base):
     geom_centroid = Column(Geometry('POINT', 3035))
     geom_surfacepoint = Column(Geometry('POINT', 3035))
     geom_centre = Column(Geometry('POINT', 3035))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 class WnAbwEgoDpMvGriddistrict(Base):
@@ -7772,7 +7772,7 @@ class WnAbwEgoDpMvGriddistrict(Base):
     mv_dea_cnt = Column(Integer)
     mv_dea_capacity = Column(Numeric)
     geom_type = Column(Text)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
     consumption_total = Column(Integer)
 
 
@@ -7805,7 +7805,7 @@ class WnAbwEgoDpResPowerplant(Base):
     power_plant_id = Column(String)
     source = Column(String)
     comment = Column(String)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     subst_id = Column(BigInteger)
     otg_id = Column(BigInteger)
     un_id = Column(BigInteger)
@@ -7815,7 +7815,7 @@ class WnAbwEgoDpResPowerplant(Base):
     rea_sort = Column(Integer)
     rea_flag = Column(String)
     rea_geom_line = Column(Geometry('LINESTRING', 3035))
-    rea_geom_new = Column(Geometry('POINT', 3035), index=True)
+    rea_geom_new = Column(Geometry('POINT', 3035))
     preversion = Column(Text)
     flag = Column(String)
     scenario = Column(String, primary_key=True, nullable=False, server_default=text("'none'::character varying"))
@@ -7833,7 +7833,7 @@ class WnAbwEgoPfHvBus(Base):
     current_type = Column(Text, server_default=text("'AC'::text"))
     v_mag_pu_min = Column(Float(53), server_default=text("0"))
     v_mag_pu_max = Column(Float(53))
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     hvmv_subst_id = Column(Integer)
     region_bus = Column(Boolean, server_default=text("false"))
 

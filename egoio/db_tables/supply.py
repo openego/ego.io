@@ -175,7 +175,7 @@ class EgoDpConvPowerplant(Base):
     lat = Column(Float(53))
     lon = Column(Float(53))
     comment = Column(Text)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     voltage_level = Column(SmallInteger)
     subst_id = Column(BigInteger)
     otg_id = Column(BigInteger)
@@ -360,7 +360,7 @@ class EgoDpResPowerplant(Base):
     power_plant_id = Column(String)
     source = Column(String)
     comment = Column(String)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
     subst_id = Column(BigInteger)
     otg_id = Column(BigInteger)
     un_id = Column(BigInteger)
@@ -370,7 +370,7 @@ class EgoDpResPowerplant(Base):
     rea_sort = Column(Integer)
     rea_flag = Column(String)
     rea_geom_line = Column(Geometry('LINESTRING', 3035))
-    rea_geom_new = Column(Geometry('POINT', 3035), index=True)
+    rea_geom_new = Column(Geometry('POINT', 3035))
     preversion = Column(Text)
     flag = Column(String)
     scenario = Column(String, primary_key=True, nullable=False, server_default=text("'none'::character varying"))
@@ -571,7 +571,7 @@ t_ego_renewable_power_plants_germany_hydro_mview = Table(
     Column('power_plant_id', String),
     Column('source', String),
     Column('comment', String),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     schema='supply'
 )
 
@@ -614,7 +614,7 @@ class EgoRenewablePowerplant(Base):
     power_plant_id = Column(String)
     source = Column(String)
     comment = Column(String)
-    geom = Column(Geometry('POINT', 4326), index=True)
+    geom = Column(Geometry('POINT', 4326))
 
 
 t_ego_res_powerplant_altmark_vg_mview = Table(
@@ -707,7 +707,7 @@ t_fred_dp_conv_powerplant_hydro_mview = Table(
     Column('lat', Float(53)),
     Column('lon', Float(53)),
     Column('comment', Text),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     Column('voltage_level', SmallInteger),
     Column('subst_id', BigInteger),
     Column('otg_id', BigInteger),
@@ -750,7 +750,7 @@ t_fred_dp_res_powerplant_hydro_on_gauge_mview = Table(
     Column('station', String),
     Column('water', String),
     Column('source', Text),
-    Column('dp_geom', Geometry, index=True),
+    Column('dp_geom', Geometry),
     Column('geom_line', Geometry('LINESTRING', 3035)),
     Column('st_distance', Float(53)),
     schema='supply'
@@ -773,7 +773,7 @@ t_fred_dp_res_powerplant_hydro_on_river_mview = Table(
 t_fred_dp_res_powerplant_hydro_on_wg_mview = Table(
     'fred_dp_res_powerplant_hydro_on_wg_mview', metadata,
     Column('id', BigInteger, unique=True),
-    Column('dp_geom', Geometry, index=True),
+    Column('dp_geom', Geometry),
     Column('wg_id', Integer),
     schema='supply'
 )
@@ -812,7 +812,7 @@ t_opsd_power_plants_germany_hydro_mview = Table(
     Column('lat', Float(53)),
     Column('lon', Float(53)),
     Column('comment', Text),
-    Column('geom', Geometry('POINT', 4326), index=True),
+    Column('geom', Geometry('POINT', 4326)),
     schema='supply'
 )
 
@@ -872,4 +872,4 @@ class VernetzenWindPotentialArea(Base):
     __table_args__ = {'schema': 'supply'}
 
     region_key = Column(String, primary_key=True)
-    geom = Column(Geometry('MULTIPOLYGON', 25832), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 25832))
