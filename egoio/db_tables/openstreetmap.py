@@ -87,7 +87,7 @@ class OsmDeuLine(Base):
     abandoned_power = Column('abandoned:power', Text)
     area_highway = Column('area:highway', Text)
     tags = Column(HSTORE(Text()), index=True)
-    geom = Column(Geometry('LINESTRING', 900913), index=True)
+    geom = Column(Geometry('LINESTRING', 900913))
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_line_gid_seq'::regclass)"))
 
 
@@ -193,7 +193,7 @@ class OsmDeuPoint(Base):
     wood = Column(Text)
     z_order = Column(Integer)
     tags = Column(HSTORE(Text()), index=True)
-    geom = Column(Geometry('POINT', 900913), index=True)
+    geom = Column(Geometry('POINT', 900913))
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_point_gid_seq'::regclass)"))
 
 
@@ -573,7 +573,7 @@ class OsmDeuRoad(Base):
     abandoned_power = Column('abandoned:power', Text)
     area_highway = Column('area:highway', Text)
     tags = Column(HSTORE(Text()), index=True)
-    geom = Column(Geometry('LINESTRING', 900913), index=True)
+    geom = Column(Geometry('LINESTRING', 900913))
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_roads_gid_seq'::regclass)"))
 
 
