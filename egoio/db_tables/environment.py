@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, Float, Integer, SmallInteger, String, Table, text
+from sqlalchemy import BigInteger, Column, Float, Integer, SmallInteger, String, Table, text, Sequence
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
 from egoio.tools import Base
@@ -53,7 +53,8 @@ class Dlm250Geb01F(Base):
     __tablename__ = 'dlm250_geb01_f'
     __table_args__ = {'schema': 'environment'}
 
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('environment.dlm250_geb01_f_gid_seq'::regclass)"))
+    gid_seq = Sequence('dlm250_geb01_f_gid_seq', schema=__table_args__['schema'])
+    gid = Column(Integer, gid_seq, primary_key=True, server_default=gid_seq.next_value())
     land = Column(String(3))
     modellart = Column(String(20))
     objart = Column(String(5))
