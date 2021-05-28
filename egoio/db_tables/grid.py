@@ -231,21 +231,21 @@ class EgoDpMvGriddistrict(Base):
     gem_clean = Column(Integer)
     zensus_sum = Column(Integer)
     zensus_count = Column(Integer)
-    zensus_density = Column(Numeric)
-    population_density = Column(Numeric)
+    zensus_density = Column(Float(53))
+    population_density = Column(Float(53))
     la_count = Column(Integer)
-    area_ha = Column(Numeric)
+    area_ha = Column(Float(53))
     la_area = Column(Numeric(10, 1))
     free_area = Column(Numeric(10, 1))
     area_share = Column(Numeric(4, 1))
-    consumption = Column(Numeric)
-    consumption_per_area = Column(Numeric)
+    consumption = Column(Float(53))
+    consumption_per_area = Column(Float(53))
     dea_cnt = Column(Integer)
-    dea_capacity = Column(Numeric)
+    dea_capacity = Column(Float(53))
     lv_dea_cnt = Column(Integer)
-    lv_dea_capacity = Column(Numeric)
+    lv_dea_capacity = Column(Float(53))
     mv_dea_cnt = Column(Integer)
-    mv_dea_capacity = Column(Numeric)
+    mv_dea_capacity = Column(Float(53))
     geom_type = Column(Text)
     geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
 
@@ -303,21 +303,21 @@ t_ego_dp_mv_griddistrict_v0_4_5_mview = Table(
     Column('gem_clean', Integer),
     Column('zensus_sum', Integer),
     Column('zensus_count', Integer),
-    Column('zensus_density', Numeric),
-    Column('population_density', Numeric),
+    Column('zensus_density', Float(53)),
+    Column('population_density', Float(53)),
     Column('la_count', Integer),
-    Column('area_ha', Numeric),
+    Column('area_ha', Float(53)),
     Column('la_area', Numeric(10, 1)),
     Column('free_area', Numeric(10, 1)),
     Column('area_share', Numeric(4, 1)),
-    Column('consumption', Numeric),
-    Column('consumption_per_area', Numeric),
+    Column('consumption', Float(53)),
+    Column('consumption_per_area', Float(53)),
     Column('dea_cnt', Integer),
-    Column('dea_capacity', Numeric),
+    Column('dea_capacity', Float(53)),
     Column('lv_dea_cnt', Integer),
-    Column('lv_dea_capacity', Numeric),
+    Column('lv_dea_capacity', Float(53)),
     Column('mv_dea_cnt', Integer),
-    Column('mv_dea_capacity', Numeric),
+    Column('mv_dea_capacity', Float(53)),
     Column('geom_type', Text),
     Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
     schema='grid'

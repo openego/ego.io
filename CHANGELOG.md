@@ -22,6 +22,12 @@ Here is a template for new release sections
 
 ### Changed
 
+## [0.4.8] 2021-05-29
+
+### Changed
+- replace data type Numeric by Float(53) #86
+- set default values for database connection details to oep connection details #83
+
 ## [0.4.7] 2019-08-29
 
 ### Changed
