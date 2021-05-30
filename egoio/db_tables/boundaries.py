@@ -2,8 +2,8 @@
 from sqlalchemy import BigInteger, Boolean, Column, Date, Float, Integer, Numeric, String, Table, Text, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+from egoio.tools import Base
 
-Base = declarative_base()
 metadata = Base.metadata
 
 
@@ -92,7 +92,7 @@ class BkgGn250P(Base):
     box_geo = Column(String(250))
     box_gk = Column(String(250))
     box_utm = Column(String(250))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 class BkgVg2501Sta(Base):
@@ -101,7 +101,7 @@ class BkgVg2501Sta(Base):
 
     reference_date = Column(Date, primary_key=True, nullable=False)
     id = Column(Integer, primary_key=True, nullable=False, server_default=text("nextval('boundaries.bkg_vg250_1_sta_id_seq'::regclass)"))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
     ade = Column(BigInteger)
     gf = Column(BigInteger)
     bsg = Column(BigInteger)
@@ -133,7 +133,7 @@ t_bkg_vg250_1_sta_bbox_mview = Table(
     Column('id', Integer, unique=True),
     Column('bez', Text),
     Column('area_ha', Float(53)),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='boundaries'
 )
 
@@ -143,7 +143,7 @@ t_bkg_vg250_1_sta_error_geom_mview = Table(
     Column('id', Integer, unique=True),
     Column('error', Boolean),
     Column('error_reason', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='boundaries'
 )
 
@@ -155,7 +155,7 @@ t_bkg_vg250_1_sta_mview = Table(
     Column('bez', Text),
     Column('gf', Float(53)),
     Column('area_ha', Float(53)),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='boundaries'
 )
 
@@ -166,7 +166,7 @@ t_bkg_vg250_1_sta_union_mview = Table(
     Column('id', Integer, unique=True),
     Column('bez', Text),
     Column('area_ha', Float(53)),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='boundaries'
 )
 
@@ -200,7 +200,7 @@ class BkgVg2502Lan(Base):
     ags_0 = Column(String(12))
     wsk = Column(Date)
     debkg_id = Column(String(16))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 t_bkg_vg250_2_lan_brandenburg = Table(
@@ -224,7 +224,7 @@ t_bkg_vg250_2_lan_mview = Table(
     Column('reference_date', Text),
     Column('ags_0', String(12), unique=True),
     Column('gen', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='boundaries'
 )
 
@@ -276,7 +276,7 @@ class BkgVg2503Rbz(Base):
     ags_0 = Column(String(12))
     wsk = Column(Date)
     debkg_id = Column(String(16))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class BkgVg2504Kr(Base):
@@ -308,7 +308,7 @@ class BkgVg2504Kr(Base):
     ags_0 = Column(String(12))
     wsk = Column(Date)
     debkg_id = Column(String(16))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 t_bkg_vg250_4_krs_mview = Table(
@@ -321,7 +321,7 @@ t_bkg_vg250_4_krs_mview = Table(
     Column('rs_0', String(12)),
     Column('ags_0', String(12)),
     Column('area_ha', Float(53)),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='boundaries'
 )
 
@@ -355,7 +355,7 @@ class BkgVg2505Vwg(Base):
     ags_0 = Column(String(12))
     wsk = Column(Date)
     debkg_id = Column(String(16))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class BkgVg2506Gem(Base):
@@ -387,7 +387,7 @@ class BkgVg2506Gem(Base):
     ags_0 = Column(String(12))
     wsk = Column(Date)
     debkg_id = Column(String(16))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 t_bkg_vg250_6_gem_dump_mview = Table(
@@ -401,7 +401,7 @@ t_bkg_vg250_6_gem_dump_mview = Table(
     Column('rs_0', String(12)),
     Column('ags_0', String(12)),
     Column('area_ha', Float(53)),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='boundaries'
 )
 
@@ -411,7 +411,7 @@ t_bkg_vg250_6_gem_error_geom_mview = Table(
     Column('id', Integer, unique=True),
     Column('error', Boolean),
     Column('error_reason', String),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='boundaries'
 )
 
@@ -432,7 +432,7 @@ t_bkg_vg250_6_gem_mview = Table(
     Column('census_count', Integer),
     Column('census_density', Integer),
     Column('pd', Float(53)),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='boundaries'
 )
 
@@ -463,7 +463,7 @@ t_bkg_vg250_6_gem_rs_mview = Table(
     Column('census_count', Integer),
     Column('census_density', Integer),
     Column('pd', Float(53)),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='boundaries'
 )
 
@@ -493,7 +493,7 @@ class FfeOsmNut3(Base):
     id = Column(Integer, primary_key=True, server_default=text("nextval('boundaries.ffe_osm_nut3_id_seq'::regclass)"))
     version = Column(Text)
     nuts_code = Column(String(5))
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 class OsmPostcode(Base):
@@ -505,7 +505,7 @@ class OsmPostcode(Base):
     stellen = Column(Integer)
     plz = Column(String(5))
     note = Column(Text)
-    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 4326))
 
 
 t_vg250_statistics = Table(

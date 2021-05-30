@@ -2,8 +2,8 @@
 from sqlalchemy import Column, Float, Integer, Numeric, String, Table, Text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+from egoio.tools import Base
 
-Base = declarative_base()
 metadata = Base.metadata
 
 
@@ -66,7 +66,7 @@ class EgoDpLoadarea(Base):
     geom_centroid = Column(Geometry('POINT', 3035))
     geom_surfacepoint = Column(Geometry('POINT', 3035))
     geom_centre = Column(Geometry('POINT', 3035))
-    geom = Column(Geometry('POLYGON', 3035), index=True)
+    geom = Column(Geometry('POLYGON', 3035))
 
 
 t_ego_dp_loadarea_v0_4_3_mview = Table(
@@ -113,7 +113,7 @@ t_ego_dp_loadarea_v0_4_3_mview = Table(
     Column('geom_centroid', Geometry('POINT', 3035)),
     Column('geom_surfacepoint', Geometry('POINT', 3035)),
     Column('geom_centre', Geometry('POINT', 3035)),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='demand'
 )
 
@@ -162,6 +162,6 @@ t_ego_dp_loadarea_v0_4_5_mview = Table(
     Column('geom_centroid', Geometry('POINT', 3035)),
     Column('geom_surfacepoint', Geometry('POINT', 3035)),
     Column('geom_centre', Geometry('POINT', 3035)),
-    Column('geom', Geometry('POLYGON', 3035), index=True),
+    Column('geom', Geometry('POLYGON', 3035)),
     schema='demand'
 )

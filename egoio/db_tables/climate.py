@@ -2,8 +2,8 @@
 from sqlalchemy import Column, Integer, text
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+from egoio.tools import Base
 
-Base = declarative_base()
 metadata = Base.metadata
 
 
@@ -12,4 +12,4 @@ class Cosmoclmgrid(Base):
     __table_args__ = {'schema': 'climate'}
 
     gid = Column(Integer, primary_key=True, server_default=text("nextval('climate.cosmoclmgrid_gid_seq'::regclass)"))
-    geom = Column(Geometry('MULTIPOLYGON', 4326), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 4326))

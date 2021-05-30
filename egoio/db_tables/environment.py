@@ -1,9 +1,9 @@
 # coding: utf-8
-from sqlalchemy import BigInteger, Column, Float, Integer, SmallInteger, String, Table, text
+from sqlalchemy import BigInteger, Column, Float, Integer, SmallInteger, String, Table, text, Sequence
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+from egoio.tools import Base
 
-Base = declarative_base()
 metadata = Base.metadata
 
 
@@ -12,7 +12,7 @@ class CopernicusClc2012V184(Base):
     __table_args__ = {'schema': 'environment'}
 
     ogc_fid = Column(Integer, primary_key=True, server_default=text("nextval('environment.clc_corine_land_cover_2012_v_18_4_ogc_fid_seq'::regclass)"))
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
     code_12 = Column(String)
     id = Column(String)
     remark = Column(String)
@@ -40,7 +40,7 @@ class CopernicusClc2012V184Germany(Base):
     __table_args__ = {'schema': 'environment'}
 
     ogc_fid = Column(Integer, primary_key=True)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
     code_12 = Column(String)
     id = Column(String)
     remark = Column(String)
@@ -53,7 +53,8 @@ class Dlm250Geb01F(Base):
     __tablename__ = 'dlm250_geb01_f'
     __table_args__ = {'schema': 'environment'}
 
-    gid = Column(Integer, primary_key=True, server_default=text("nextval('environment.dlm250_geb01_f_gid_seq'::regclass)"))
+    gid_seq = Sequence('dlm250_geb01_f_gid_seq', schema=__table_args__['schema'])
+    gid = Column(Integer, gid_seq, primary_key=True, server_default=gid_seq.next_value())
     land = Column(String(3))
     modellart = Column(String(20))
     objart = Column(String(5))
@@ -72,7 +73,7 @@ class Dlm250Geb01F(Base):
     rgs = Column(String(100))
     sch = Column(String(20))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Geb01L(Base):
@@ -91,7 +92,7 @@ class Dlm250Geb01L(Base):
     agz = Column(String(30))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Geb02F(Base):
@@ -111,7 +112,7 @@ class Dlm250Geb02F(Base):
     nam = Column(String(100))
     rgs = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Geb03F(Base):
@@ -136,7 +137,7 @@ class Dlm250Geb03F(Base):
     sgn = Column(String(20))
     zon = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 t_dlm250_gew0103_l = Table(
@@ -163,7 +164,7 @@ t_dlm250_gew0103_l = Table(
     Column('znm', String(100)),
     Column('zus', String(4)),
     Column('bemerkung', String(200)),
-    Column('geom', Geometry('MULTILINESTRING', 31467), index=True),
+    Column('geom', Geometry('MULTILINESTRING', 31467)),
     schema='environment'
 )
 
@@ -193,7 +194,7 @@ class Dlm250Gew01F(Base):
     znm = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Gew01L(Base):
@@ -222,7 +223,7 @@ class Dlm250Gew01L(Base):
     znm = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Gew02F(Base):
@@ -242,7 +243,7 @@ class Dlm250Gew02F(Base):
     nam = Column(String(100))
     znm = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Gew02L(Base):
@@ -262,7 +263,7 @@ class Dlm250Gew02L(Base):
     gwk = Column(String(20))
     nam = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Gew02P(Base):
@@ -283,7 +284,7 @@ class Dlm250Gew02P(Base):
     nam = Column(String(100))
     znm = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 class Dlm250Gew03L(Base):
@@ -306,7 +307,7 @@ class Dlm250Gew03L(Base):
     sfk = Column(String(4))
     znm = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Hdu01B(Base):
@@ -321,7 +322,7 @@ class Dlm250Hdu01B(Base):
     objart_2 = Column(String(5))
     objid_2 = Column(String(16))
     ebene_2 = Column(String(7))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 class Dlm250Rel01L(Base):
@@ -345,7 +346,7 @@ class Dlm250Rel01L(Base):
     hho = Column(SmallInteger)
     nam = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Rel01P(Base):
@@ -364,7 +365,7 @@ class Dlm250Rel01P(Base):
     nam = Column(String(100))
     znm = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 class Dlm250Rel02P(Base):
@@ -383,7 +384,7 @@ class Dlm250Rel02P(Base):
     ang = Column(String(4))
     hoehe = Column(Float(53))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 class Dlm250Sie01F(Base):
@@ -402,7 +403,7 @@ class Dlm250Sie01F(Base):
     nam = Column(String(100))
     rgs = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Sie01P(Base):
@@ -421,7 +422,7 @@ class Dlm250Sie01P(Base):
     nam = Column(String(100))
     rgs = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 class Dlm250Sie02F(Base):
@@ -443,7 +444,7 @@ class Dlm250Sie02F(Base):
     rgs = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Sie03F(Base):
@@ -464,7 +465,7 @@ class Dlm250Sie03F(Base):
     nam = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Sie03L(Base):
@@ -483,7 +484,7 @@ class Dlm250Sie03L(Base):
     bwf = Column(String(4))
     pro = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Sie03P(Base):
@@ -505,7 +506,7 @@ class Dlm250Sie03P(Base):
     spo = Column(String(4))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 class Dlm250Sie04F(Base):
@@ -523,7 +524,7 @@ class Dlm250Sie04F(Base):
     ende = Column(String(20))
     nam = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Sie04L(Base):
@@ -543,7 +544,7 @@ class Dlm250Sie04L(Base):
     nam = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Sie04P(Base):
@@ -563,7 +564,7 @@ class Dlm250Sie04P(Base):
     nam = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 class Dlm250Sie05P(Base):
@@ -586,7 +587,7 @@ class Dlm250Sie05P(Base):
     znm = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 class Dlm250Veg01F(Base):
@@ -605,7 +606,7 @@ class Dlm250Veg01F(Base):
     nam = Column(String(100))
     veg = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Veg02F(Base):
@@ -624,7 +625,7 @@ class Dlm250Veg02F(Base):
     nam = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Veg03F(Base):
@@ -644,7 +645,7 @@ class Dlm250Veg03F(Base):
     nam = Column(String(100))
     ofm = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Veg04F(Base):
@@ -664,7 +665,7 @@ class Dlm250Veg04F(Base):
     nam = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Ver01L(Base):
@@ -692,7 +693,7 @@ class Dlm250Ver01L(Base):
     znm = Column(String(200))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Ver02L(Base):
@@ -712,7 +713,7 @@ class Dlm250Ver02L(Base):
     nam = Column(String(100))
     znm = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Ver03F(Base):
@@ -729,7 +730,7 @@ class Dlm250Ver03F(Base):
     beginn = Column(String(20))
     ende = Column(String(20))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Ver03L(Base):
@@ -754,7 +755,7 @@ class Dlm250Ver03L(Base):
     znm = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Ver04F(Base):
@@ -777,7 +778,7 @@ class Dlm250Ver04F(Base):
     znm = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Ver05L(Base):
@@ -796,7 +797,7 @@ class Dlm250Ver05L(Base):
     art = Column(String(20))
     nam = Column(String(100))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Ver06F(Base):
@@ -816,7 +817,7 @@ class Dlm250Ver06F(Base):
     nam = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTIPOLYGON', 31467), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 31467))
 
 
 class Dlm250Ver06L(Base):
@@ -841,7 +842,7 @@ class Dlm250Ver06L(Base):
     znm = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('MULTILINESTRING', 31467), index=True)
+    geom = Column(Geometry('MULTILINESTRING', 31467))
 
 
 class Dlm250Ver06P(Base):
@@ -867,7 +868,7 @@ class Dlm250Ver06P(Base):
     znm = Column(String(100))
     zus = Column(String(4))
     bemerkung = Column(String(200))
-    geom = Column(Geometry('POINT', 31467), index=True)
+    geom = Column(Geometry('POINT', 31467))
 
 
 t_fred_dp_river_mosel_mview = Table(
@@ -880,7 +881,7 @@ t_fred_dp_river_mosel_mview = Table(
     Column('flr', SmallInteger),
     Column('gwk', String(30), unique=True),
     Column('nam', String(100)),
-    Column('geom', Geometry('MULTILINESTRING', 3035), index=True),
+    Column('geom', Geometry('MULTILINESTRING', 3035)),
     schema='environment'
 )
 
@@ -892,7 +893,7 @@ t_fred_dp_rivers2_mview = Table(
     Column('modellart', String(20)),
     Column('gwk', String(20)),
     Column('nam', String(100)),
-    Column('geom', Geometry('MULTILINESTRING', 3035), index=True),
+    Column('geom', Geometry('MULTILINESTRING', 3035)),
     schema='environment'
 )
 
@@ -914,6 +915,6 @@ t_fred_dp_rivers_mview = Table(
     Column('sfk', String(4)),
     Column('znm', String(100)),
     Column('bemerkung', String(200)),
-    Column('geom', Geometry('MULTILINESTRING', 3035), index=True),
+    Column('geom', Geometry('MULTILINESTRING', 3035)),
     schema='environment'
 )

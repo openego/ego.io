@@ -3,8 +3,8 @@ from sqlalchemy import ARRAY, BigInteger, Boolean, Column, Float, Integer, Small
 from sqlalchemy.dialects.postgresql.hstore import HSTORE
 from geoalchemy2.types import Geometry
 from sqlalchemy.ext.declarative import declarative_base
+from egoio.tools import Base
 
-Base = declarative_base()
 metadata = Base.metadata
 
 
@@ -87,7 +87,7 @@ class OsmDeuLine(Base):
     abandoned_power = Column('abandoned:power', Text)
     area_highway = Column('area:highway', Text)
     tags = Column(HSTORE(Text()), index=True)
-    geom = Column(Geometry('LINESTRING', 900913), index=True)
+    geom = Column(Geometry('LINESTRING', 900913))
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_line_gid_seq'::regclass)"))
 
 
@@ -105,7 +105,7 @@ t_osm_deu_line_street_mview = Table(
     Column('gid', Integer, unique=True),
     Column('osm_id', BigInteger),
     Column('tags', HSTORE(Text())),
-    Column('geom', Geometry, index=True),
+    Column('geom', Geometry),
     schema='openstreetmap'
 )
 
@@ -193,7 +193,7 @@ class OsmDeuPoint(Base):
     wood = Column(Text)
     z_order = Column(Integer)
     tags = Column(HSTORE(Text()), index=True)
-    geom = Column(Geometry('POINT', 900913), index=True)
+    geom = Column(Geometry('POINT', 900913))
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_point_gid_seq'::regclass)"))
 
 
@@ -202,7 +202,7 @@ t_osm_deu_point_biogas_mview = Table(
     Column('osm_id', BigInteger),
     Column('gid', Integer),
     Column('tags', HSTORE(Text())),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='openstreetmap'
 )
 
@@ -212,7 +212,7 @@ t_osm_deu_point_solar_mview = Table(
     Column('osm_id', BigInteger),
     Column('gid', Integer),
     Column('tags', HSTORE(Text())),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='openstreetmap'
 )
 
@@ -222,7 +222,7 @@ t_osm_deu_point_wind_mview = Table(
     Column('osm_id', BigInteger),
     Column('gid', Integer),
     Column('tags', HSTORE(Text())),
-    Column('geom', Geometry('POINT', 3035), index=True),
+    Column('geom', Geometry('POINT', 3035)),
     schema='openstreetmap'
 )
 
@@ -235,7 +235,7 @@ class OsmDeuPointWindpower(Base):
     osm_id = Column(BigInteger)
     building = Column(Text)
     tags = Column(HSTORE(Text()))
-    geom = Column(Geometry, index=True)
+    geom = Column(Geometry)
 
 
 class OsmDeuPolygon(Base):
@@ -316,15 +316,15 @@ class OsmDeuPolygon(Base):
     abandoned_landuse = Column('abandoned:landuse', Text)
     abandoned_power = Column('abandoned:power', Text)
     area_highway = Column('area:highway', Text)
-    tags = Column(HSTORE(Text()), index=True)
-    geom = Column(Geometry(srid=900913), index=True)
+    tags = Column(HSTORE(Text()))
+    geom = Column(Geometry(srid=900913))
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_polygon_gid_seq'::regclass)"))
 
 
 t_osm_deu_polygon_building_mview = Table(
     'osm_deu_polygon_building_mview', metadata,
     Column('gid', Integer),
-    Column('geom', Geometry, index=True),
+    Column('geom', Geometry),
     Column('building', Text),
     schema='openstreetmap'
 )
@@ -334,7 +334,7 @@ t_osm_deu_polygon_landuse_mview = Table(
     'osm_deu_polygon_landuse_mview', metadata,
     Column('gid', Integer),
     Column('tags', HSTORE(Text())),
-    Column('geom', Geometry(srid=900913), index=True),
+    Column('geom', Geometry(srid=900913)),
     schema='openstreetmap'
 )
 
@@ -350,7 +350,7 @@ class OsmDeuPolygonUrban(Base):
     area_ha = Column(Float(53))
     tags = Column(HSTORE(Text()))
     vg250 = Column(Text)
-    geom = Column(Geometry('MULTIPOLYGON', 3035), index=True)
+    geom = Column(Geometry('MULTIPOLYGON', 3035))
 
 
 t_osm_deu_polygon_urban_error_geom_vg250_mview = Table(
@@ -362,7 +362,7 @@ t_osm_deu_polygon_urban_error_geom_vg250_mview = Table(
     Column('area_ha', Float(53)),
     Column('tags', HSTORE(Text())),
     Column('vg250', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='openstreetmap'
 )
 
@@ -376,7 +376,7 @@ t_osm_deu_polygon_urban_sector_1_residential_mview = Table(
     Column('area_ha', Float(53)),
     Column('tags', HSTORE(Text())),
     Column('vg250', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='openstreetmap'
 )
 
@@ -390,7 +390,7 @@ t_osm_deu_polygon_urban_sector_2_retail_mview = Table(
     Column('area_ha', Float(53)),
     Column('tags', HSTORE(Text())),
     Column('vg250', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='openstreetmap'
 )
 
@@ -404,7 +404,7 @@ t_osm_deu_polygon_urban_sector_3_industrial_mview = Table(
     Column('area_ha', Float(53)),
     Column('tags', HSTORE(Text())),
     Column('vg250', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='openstreetmap'
 )
 
@@ -418,7 +418,7 @@ t_osm_deu_polygon_urban_sector_3_industrial_nolargescale_mview = Table(
     Column('area_ha', Float(53)),
     Column('tags', HSTORE(Text())),
     Column('vg250', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='openstreetmap'
 )
 
@@ -432,7 +432,7 @@ t_osm_deu_polygon_urban_sector_4_agricultural_mview = Table(
     Column('area_ha', Float(53)),
     Column('tags', HSTORE(Text())),
     Column('vg250', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='openstreetmap'
 )
 
@@ -446,7 +446,7 @@ t_osm_deu_polygon_urban_vg250_clean_cut_multi_mview = Table(
     Column('area_ha', Float(53)),
     Column('tags', HSTORE(Text())),
     Column('vg250', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='openstreetmap'
 )
 
@@ -476,7 +476,7 @@ t_osm_deu_polygon_urban_vg250_cut_mview = Table(
     Column('tags', HSTORE(Text())),
     Column('vg250', Text),
     Column('geom_type', Text),
-    Column('geom', Geometry('MULTIPOLYGON', 3035), index=True),
+    Column('geom', Geometry('MULTIPOLYGON', 3035)),
     schema='openstreetmap'
 )
 
@@ -573,7 +573,7 @@ class OsmDeuRoad(Base):
     abandoned_power = Column('abandoned:power', Text)
     area_highway = Column('area:highway', Text)
     tags = Column(HSTORE(Text()), index=True)
-    geom = Column(Geometry('LINESTRING', 900913), index=True)
+    geom = Column(Geometry('LINESTRING', 900913))
     gid = Column(Integer, primary_key=True, server_default=text("nextval('openstreetmap.osm_deu_roads_gid_seq'::regclass)"))
 
 
