@@ -3107,8 +3107,8 @@ class EgoGridPfHvExtensionLine(Base):
     v_nom = Column(BigInteger)
     project = Column(String)
     project_id = Column(BigInteger)
-    segment = Column(BigInteger),
-    cable = Column(Boolean, server_default=text("false")),
+    segment = Column(BigInteger)
+    cable = Column(Boolean, server_default=text("false"))
     nova = Column(String)
 
 
